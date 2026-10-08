@@ -8,8 +8,8 @@ return array(
 		'slug'      => 'cloud-erp-software',
 		'nav'       => 'Cloud ERP',
 		'title'     => 'Cloud ERP Software for Growing Businesses',
-		'seo_title' => 'Cloud ERP Software for Indian Businesses | DotOne ERP',
-		'meta'      => 'Cloud ERP software explained: how it works, security, uptime, offline needs and costs, and how DotOne ERP runs sales, stock, production and GST online.',
+		'seo_title' => 'Cloud ERP Software for Indian Businesses | DotOne',
+		'meta'      => 'Cloud ERP software explained: how it works, security, uptime, offline needs and costs, and how DotOne runs sales, stock, production and GST online.',
 		'focus'     => 'cloud erp software',
 		'keywords'  => array(
 			'cloud erp software',
@@ -140,9 +140,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'How DotOne ERP works as a cloud ERP',
+				'h2' => 'How DotOne works as a cloud ERP',
 				'p'  => array(
-					'DotOne ERP, built by TechDotBit, is a cloud ERP designed for Indian MSMEs and manufacturers. It covers CRM, sales, purchase, inventory, manufacturing, finance and HR, with a mobile app that includes location-based attendance for employees in the field or at multiple sites.',
+					'DotOne, built by TechDotBit, is a cloud ERP designed for Indian MSMEs and manufacturers. It covers CRM, sales, purchase, inventory, manufacturing, finance and HR, with a mobile app that includes location-based attendance for employees in the field or at multiple sites.',
 					'On top of the core modules, DotOne adds AI agents for sales, inventory, purchase, production, finance, CRM and reporting. These agents flag slow-moving stock, overdue receivables or delayed work orders and answer questions in plain language. You can read more on the [[ai-powered-erp|AI-powered ERP]] page.',
 					'Because every business has some process the standard product does not cover, we configure fields, approvals, print formats and reports during implementation, and build custom extensions where needed. Industry templates give plywood, tape, footwear, laminate and other manufacturers a starting point that already speaks their language.',
 				),
@@ -327,9 +327,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'DotOne ERP for MSMEs',
+				'h2' => 'DotOne for MSMEs',
 				'p'  => array(
-					'DotOne ERP from TechDotBit was designed for Indian MSMEs and manufacturers rather than adapted from a large-enterprise product. It runs in the cloud, so there is no server to maintain, and the mobile app lets sales staff, supervisors and employees work from the phone.',
+					'DotOne from TechDotBit was designed for Indian MSMEs and manufacturers rather than adapted from a large-enterprise product. It runs in the cloud, so there is no server to maintain, and the mobile app lets sales staff, supervisors and employees work from the phone.',
 					'Industry templates for sectors such as plywood, adhesive tape, footwear, laminates, ACP and steel give a head start, so you configure rather than design everything from zero. AI agents keep an eye on stock levels, pending orders, receivables and production delays, and surface what needs attention. The [[dotone-ai-powered-industry-specific-erp-india|DotOne introduction]] explains the thinking behind the product.',
 					'Where your process is genuinely unique, we configure fields, approvals and reports, or build extensions. The aim is to keep the system as simple as your business allows while still giving the owner a reliable, real-time view of orders, stock, cash and production.',
 				),
@@ -533,7 +533,7 @@ return array(
 			array(
 				'h2' => 'How TechDotBit approaches custom ERP',
 				'p'  => array(
-					'TechDotBit is a Noida-based software company that builds DotOne ERP and develops custom ERP solutions for businesses whose processes do not fit standard software. Because we maintain our own ERP core, custom projects usually start from tested modules for sales, purchase, inventory, production, finance and HR, and we build only what is truly unique.',
+					'TechDotBit is a Noida-based software company that builds DotOne and develops custom ERP solutions for businesses whose processes do not fit standard software. Because we maintain our own ERP core, custom projects usually start from tested modules for sales, purchase, inventory, production, finance and HR, and we build only what is truly unique.',
 					'That approach keeps projects focused and keeps your system upgradeable. Where a business already has an ERP it likes, we can build extensions, integrations or AI agents around it instead of replacing it. If you are unsure which path suits you, our [[erp-consulting-services|ERP consulting]] engagement can produce a fit-gap study before any development decision is made.',
 				),
 			),
@@ -723,9 +723,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'Implementing DotOne ERP with TechDotBit',
+				'h2' => 'Implementing DotOne with TechDotBit',
 				'p'  => array(
-					'We implement DotOne ERP, our cloud ERP for Indian MSMEs and manufacturers, using industry templates as a starting point so configuration begins close to your process. The same team that builds the product runs implementations, so questions about what the software can do, and what needs configuration or extension, get direct answers.',
+					'We implement DotOne, our cloud ERP for Indian MSMEs and manufacturers, using industry templates as a starting point so configuration begins close to your process. The same team that builds the product runs implementations, so questions about what the software can do, and what needs configuration or extension, get direct answers.',
 					'Because DotOne is cloud based, there is no server to procure, which lets the project focus on process and data. The mobile app and AI agents are introduced once core transactions are stable, so users are not overwhelmed. If you are still evaluating options, our [[how-to-choose-erp-software|ERP selection guide]] and [[erp-consulting-services|consulting services]] can help before you commit.',
 				),
 			),
@@ -900,9 +900,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'Integration with DotOne ERP',
+				'h2' => 'Integration with DotOne',
 				'p'  => array(
-					'DotOne ERP is a cloud system built with integration in mind. Its APIs let us connect portals, stores, gateways and devices, and we configure common flows such as Tally sync, e-invoice and e-way bill during implementation. Where a client needs a connection that is not available out of the box, we build it as a documented extension.',
+					'DotOne is a cloud system built with integration in mind. Its APIs let us connect portals, stores, gateways and devices, and we configure common flows such as Tally sync, e-invoice and e-way bill during implementation. Where a client needs a connection that is not available out of the box, we build it as a documented extension.',
 					'If you already use another ERP, we can still help with integrations and AI agents around it. Integration is often the fastest way to cut manual work without a full system change, and a good starting point before larger decisions about [[custom-erp-development|custom ERP development]].',
 				),
 			),
@@ -1111,9 +1111,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'Moving from Tally to DotOne ERP',
+				'h2' => 'Moving from Tally to DotOne',
 				'p'  => array(
-					'DotOne ERP is a cloud ERP for Indian MSMEs and manufacturers. Tally users moving to DotOne usually start with sales, purchase, inventory and production, and either sync vouchers to Tally or move accounts across in a later phase. Industry templates add what Tally never held, such as BOMs, process stages and quality checks.',
+					'DotOne is a cloud ERP for Indian MSMEs and manufacturers. Tally users moving to DotOne usually start with sales, purchase, inventory and production, and either sync vouchers to Tally or move accounts across in a later phase. Industry templates add what Tally never held, such as BOMs, process stages and quality checks.',
 					'Because DotOne runs in the cloud with a mobile app, teams gain remote access and location-based attendance without setting up servers. AI agents then work on the combined data to highlight shortages, overdue dues and delayed orders. If you are still deciding, our [[msme-erp-software|MSME ERP]] page explains how smaller businesses phase the move.',
 				),
 			),
@@ -1301,9 +1301,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'How DotOne ERP pricing works',
+				'h2' => 'How DotOne pricing works',
 				'p'  => array(
-					'DotOne ERP from TechDotBit is a cloud ERP priced on a subscription basis according to the modules and users you need, so an MSME can start small and expand. Implementation, data migration, integrations and any custom development are scoped separately after we understand your process, and we explain which items are one-time and which recur.',
+					'DotOne from TechDotBit is a cloud ERP priced on a subscription basis according to the modules and users you need, so an MSME can start small and expand. Implementation, data migration, integrations and any custom development are scoped separately after we understand your process, and we explain which items are one-time and which recur.',
 					'We do not publish a one-size price list because a plywood unit with two plants and a single-site distributor have very different needs. The fastest way to an accurate figure is a short discovery call, after which we share a written scope and quote. You can request one through our [[contact-us|contact page]], and our [[msme-erp-software|MSME ERP]] page describes how smaller businesses phase their investment.',
 				),
 			),
@@ -1495,9 +1495,9 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'Where DotOne ERP fits',
+				'h2' => 'Where DotOne fits',
 				'p'  => array(
-					'DotOne ERP is built for Indian MSMEs and manufacturers whose operations have outgrown accounting software. It covers CRM, sales, purchase, inventory, manufacturing, quality, HR and finance, with industry templates for sectors such as plywood, tape, footwear and laminates, plus AI agents that highlight exceptions.',
+					'DotOne is built for Indian MSMEs and manufacturers whose operations have outgrown accounting software. It covers CRM, sales, purchase, inventory, manufacturing, quality, HR and finance, with industry templates for sectors such as plywood, tape, footwear and laminates, plus AI agents that highlight exceptions.',
 					'We do not ask every business to abandon Tally. Where accounts are working well, we often integrate DotOne with Tally and let each system do what it does best. If you are unsure which route suits you, a short conversation through our [[contact-us|contact page]] is usually enough to tell whether you need an ERP at all.',
 				),
 			),
@@ -1594,7 +1594,7 @@ return array(
 				'h2' => 'Why choosing ERP software deserves a process',
 				'p'  => array(
 					'An ERP touches almost every person and transaction in your business, and it will probably stay in place for many years. Knowing how to choose ERP software carefully matters more than finding the most impressive demo. A system that looks powerful but does not fit your process, or that your team finds hard to use, will cost far more in workarounds than it saves.',
-					'This guide is deliberately vendor-neutral. Whether you end up with DotOne ERP or another product, following these steps will help you make a decision you can defend to your partners, your team and yourself.',
+					'This guide is deliberately vendor-neutral. Whether you end up with DotOne or another product, following these steps will help you make a decision you can defend to your partners, your team and yourself.',
 				),
 			),
 			array(
@@ -1694,7 +1694,7 @@ return array(
 			array(
 				'h2' => 'Where AI fits into ERP selection',
 				'p'  => array(
-					'AI is now part of many ERP sales conversations. Treat it like any other feature: ask what it actually does with your data. Useful examples include agents that flag likely stock shortages, highlight overdue receivables, summarise production delays or answer management questions in plain language. DotOne ERP includes such agents, described on the [[ai-powered-erp|AI-powered ERP]] page.',
+					'AI is now part of many ERP sales conversations. Treat it like any other feature: ask what it actually does with your data. Useful examples include agents that flag likely stock shortages, highlight overdue receivables, summarise production delays or answer management questions in plain language. DotOne includes such agents, described on the [[ai-powered-erp|AI-powered ERP]] page.',
 					'AI cannot fix bad data or a broken process, so weigh it after core fit, usability and support rather than ahead of them. Ask the vendor to show an AI feature working on realistic data during the scripted demo, and check whether its suggestions can be traced back to the underlying transactions.',
 				),
 			),
@@ -1846,7 +1846,7 @@ return array(
 				'h2' => 'ERP selection support',
 				'p'  => array(
 					'When choosing a system, we help write the requirement document, define scripted demo scenarios, prepare a weighted scorecard and review vendor proposals so they can be compared on the same basis. Our [[how-to-choose-erp-software|ERP selection guide]] outlines the method.',
-					'Because TechDotBit builds DotOne ERP, we are open about that interest. When DotOne is a good fit we say so and explain why; when another product or a lighter tool fits better, we say that too. Advice that ignores the client\'s needs does not survive the implementation anyway.',
+					'Because TechDotBit builds DotOne, we are open about that interest. When DotOne is a good fit we say so and explain why; when another product or a lighter tool fits better, we say that too. Advice that ignores the client\'s needs does not survive the implementation anyway.',
 				),
 			),
 			array(
@@ -1907,7 +1907,7 @@ return array(
 			array( 'What does an ERP consultant do?', 'An ERP consultant helps a business understand its processes, define requirements, choose suitable software, plan implementation and improve an existing system. The focus is on business outcomes and good decisions rather than only configuring screens.' ),
 			array( 'Is ERP consulting worth it for a small business?', 'It can be, if the decision is significant or internal opinions conflict. A short, focused engagement, such as a readiness check or fit-gap study, often prevents expensive mistakes. If needs are simple and clear, a well-written requirement document may be enough on its own.' ),
 			array( 'Can you help fix an ERP implemented by another vendor?', 'Yes. A health check reviews usage, data, configuration and reports to find out why the system is not delivering. The recovery plan may involve reconfiguration, cleanup, retraining or, occasionally, recommending a different system.' ),
-			array( 'Are your recommendations biased towards DotOne ERP?', 'We build DotOne ERP and are open about it. Our recommendations are based on your requirements and scorecard. When another product or a simpler tool fits better, we say so, because a poor fit would fail during implementation regardless of who recommended it.' ),
+			array( 'Are your recommendations biased towards DotOne?', 'We build DotOne and are open about it. Our recommendations are based on your requirements and scorecard. When another product or a simpler tool fits better, we say so, because a poor fit would fail during implementation regardless of who recommended it.' ),
 			array( 'What deliverables do ERP consulting engagements produce?', 'Typical deliverables include process maps, requirement or fit-gap documents, vendor comparison scorecards, a recommendation report and a phased roadmap. They are written to be usable by your team and by any implementation partner.' ),
 			array( 'How do you charge for ERP consulting?', 'Fees depend on scope: the number of departments and locations, depth of analysis and deliverables. We agree the scope, deliverables and fees in writing before starting, so you know exactly what you will receive.' ),
 		),
@@ -2074,7 +2074,7 @@ return array(
 			array(
 				'h2' => 'Multi-location ERP with DotOne',
 				'p'  => array(
-					'DotOne ERP is a cloud ERP, so a new plant, branch or depot connects through the internet without its own server. Locations share masters, transfers are tracked through dispatch, transit and receipt, and reports are available by site or consolidated. The mobile app supports location-based attendance and on-the-go approvals.',
+					'DotOne is a cloud ERP, so a new plant, branch or depot connects through the internet without its own server. Locations share masters, transfers are tracked through dispatch, transit and receipt, and reports are available by site or consolidated. The mobile app supports location-based attendance and on-the-go approvals.',
 					'We usually recommend piloting at one location, then rolling out to others with a tested template. Our [[erp-implementation-services|implementation services]] page explains how we plan multi-site rollouts, and the cloud ERP page covers connectivity considerations for plants.',
 				),
 			),
@@ -2109,7 +2109,7 @@ return array(
 		'nav'       => 'ERP Company Noida',
 		'title'     => 'ERP Software Company in Noida, Delhi NCR',
 		'seo_title' => 'ERP Software Company in Noida & Delhi NCR | TechDotBit',
-		'meta'      => 'TechDotBit is an ERP software company in Noida building DotOne ERP, custom ERP, integrations and AI agents for MSMEs and manufacturers across Delhi NCR.',
+		'meta'      => 'TechDotBit is an ERP software company in Noida building DotOne, custom ERP, integrations and AI agents for MSMEs and manufacturers across Delhi NCR.',
 		'focus'     => 'erp software company in noida',
 		'keywords'  => array(
 			'erp software company in noida',
@@ -2160,25 +2160,25 @@ return array(
 		),
 		'eyebrow'   => 'ERP Company in Noida',
 		'highlight' => 'Noida, Delhi NCR',
-		'intro'     => 'TechDotBit is a Noida-based software company that builds DotOne ERP and delivers implementation, custom development, integrations and AI agents for businesses across Delhi NCR and India.',
+		'intro'     => 'TechDotBit is a Noida-based software company that builds DotOne and delivers implementation, custom development, integrations and AI agents for businesses across Delhi NCR and India.',
 		'points'    => array(
 			'Product team and implementation team under one roof',
 			'Visits to plants and offices across Delhi NCR when needed',
 			'Cloud delivery for clients anywhere in India',
 		),
-		'excerpt'   => 'A Noida-based ERP software company building DotOne ERP and custom ERP for MSMEs and manufacturers in Delhi NCR.',
+		'excerpt'   => 'A Noida-based ERP software company building DotOne and custom ERP for MSMEs and manufacturers in Delhi NCR.',
 		'body'      => array(
 			array(
 				'h2' => 'An ERP software company in Noida',
 				'p'  => array(
-					'If you are looking for an ERP software company in Noida, you probably want two things: software that fits how your business works, and a team close enough to visit your factory or office when it matters. TechDotBit Private Limited is a software company based in Noida that builds its own ERP product, DotOne ERP, and works with businesses on implementation, custom development, integrations and AI agents.',
+					'If you are looking for an ERP software company in Noida, you probably want two things: software that fits how your business works, and a team close enough to visit your factory or office when it matters. TechDotBit Private Limited is a software company based in Noida that builds its own ERP product, DotOne, and works with businesses on implementation, custom development, integrations and AI agents.',
 					'This page explains what we do, how we work with businesses in Noida and the wider Delhi NCR region, and how to judge any local ERP partner, including us. For a quick conversation, use the contact page linked at the end.',
 				),
 			),
 			array(
 				'h2' => 'What we build and deliver',
 				'h3' => array(
-					array( 'DotOne ERP', 'A cloud ERP for Indian MSMEs and manufacturers covering CRM, sales, purchase, inventory, manufacturing, finance, HR and analytics. It includes a mobile app with location-based attendance and AI agents for sales, inventory, purchase, production, finance, CRM and reporting. The [[dotone-ai-powered-industry-specific-erp-india|DotOne overview]] explains the product in more detail.' ),
+					array( 'DotOne', 'A cloud ERP for Indian MSMEs and manufacturers covering CRM, sales, purchase, inventory, manufacturing, finance, HR and analytics. It includes a mobile app with location-based attendance and AI agents for sales, inventory, purchase, production, finance, CRM and reporting. The [[dotone-ai-powered-industry-specific-erp-india|DotOne overview]] explains the product in more detail.' ),
 					array( 'Implementation', 'Process study, configuration, data migration, training and go-live support, described on our [[erp-implementation-services|ERP implementation services]] page.' ),
 					array( 'Custom ERP development', 'Modules and extensions for processes that standard software does not handle, built on a tested ERP core where possible.' ),
 					array( 'Integrations', 'Connections with Tally, GST e-invoice and e-way bill services, e-commerce, payment gateways, weighbridges and other devices.' ),
@@ -2188,7 +2188,7 @@ return array(
 			array(
 				'h2' => 'Industries we focus on in Delhi NCR',
 				'p'  => array(
-					'The NCR region has a dense mix of manufacturing and trading businesses, from industrial sectors in Noida and Greater Noida to clusters in Ghaziabad, Sahibabad, Faridabad, Gurugram and the industrial belts towards Sonipat. DotOne ERP has industry templates designed around the processes common in many of these businesses.',
+					'The NCR region has a dense mix of manufacturing and trading businesses, from industrial sectors in Noida and Greater Noida to clusters in Ghaziabad, Sahibabad, Faridabad, Gurugram and the industrial belts towards Sonipat. DotOne has industry templates designed around the processes common in many of these businesses.',
 				),
 				'list' => array(
 					'Wood and panel products: [[plywood-erp-software|plywood]], laminates and aluminium composite panels.',
@@ -2259,20 +2259,20 @@ return array(
 			array(
 				'h2' => 'Working with clients beyond NCR',
 				'p'  => array(
-					'Although we are based in Noida, DotOne ERP is a cloud system, so businesses in other parts of India use it in the same way. Discovery, configuration, training and support work well online, and site visits can be arranged for key stages where they make a real difference.',
+					'Although we are based in Noida, DotOne is a cloud system, so businesses in other parts of India use it in the same way. Discovery, configuration, training and support work well online, and site visits can be arranged for key stages where they make a real difference.',
 					'For Delhi NCR businesses with plants or branches in other states, the same system covers every location, with stock transfers, GST registrations and consolidated reports handled centrally. Our [[multi-location-erp|multi-location ERP]] page explains how that works.',
 				),
 			),
 			array(
 				'h2' => 'Getting started',
 				'p'  => array(
-					'A useful first step is a short discussion of your current process and the problems you most want to solve. From there we can suggest whether DotOne ERP, a custom build, an integration or simply better use of your existing software is the right path. There is no obligation to proceed, and the conversation often clarifies priorities even if you decide to wait.',
+					'A useful first step is a short discussion of your current process and the problems you most want to solve. From there we can suggest whether DotOne, a custom build, an integration or simply better use of your existing software is the right path. There is no obligation to proceed, and the conversation often clarifies priorities even if you decide to wait.',
 					'You can reach us through the [[contact-us|contact page]] to arrange a call or, for businesses in Noida and nearby areas, a visit to your site.',
 				),
 			),
 		),
 		'cards'     => array(
-			array( 'Own ERP product', 'We build and maintain DotOne ERP, so fixes and improvements come from the same team.' ),
+			array( 'Own ERP product', 'We build and maintain DotOne, so fixes and improvements come from the same team.' ),
 			array( 'Industry templates', 'Starting configurations for common NCR manufacturing and trading sectors.' ),
 			array( 'Site visits in NCR', 'On-site process study, training and go-live support where it adds value.' ),
 			array( 'Custom development', 'Modules and extensions built for processes standard software cannot handle.' ),
@@ -2287,11 +2287,11 @@ return array(
 			array( 'Ongoing support', 'Help through the first closing cycles and continued support as you grow.' ),
 		),
 		'faq'       => array(
-			array( 'Is TechDotBit based in Noida?', 'Yes. TechDotBit Private Limited is a software company based in Noida. We build DotOne ERP and provide implementation, custom ERP development, integrations and AI agents. For our current office details and to arrange a meeting, please use the contact page on this website.' ),
+			array( 'Is TechDotBit based in Noida?', 'Yes. TechDotBit Private Limited is a software company based in Noida. We build DotOne and provide implementation, custom ERP development, integrations and AI agents. For our current office details and to arrange a meeting, please use the contact page on this website.' ),
 			array( 'Do you visit factories and offices in Delhi NCR?', 'Yes, for stages where being on site helps, such as process study, stock verification, training and go-live. Visits are planned as part of the project scope. Much of the remaining work, including configuration and support, is delivered online.' ),
-			array( 'Can you work with businesses outside Noida?', 'Yes. DotOne ERP is cloud based, so businesses anywhere in India can use it. Discovery, configuration, training and support work well online, and site visits can be arranged for key milestones when they add value.' ),
+			array( 'Can you work with businesses outside Noida?', 'Yes. DotOne is cloud based, so businesses anywhere in India can use it. Discovery, configuration, training and support work well online, and site visits can be arranged for key milestones when they add value.' ),
 			array( 'Which industries do you work with?', 'Our focus is manufacturing and trading MSMEs, including plywood, laminates, ACP, adhesive tapes, packaging, footwear, textiles and garments, steel and metal products, auto components, plastics, chemicals, FMCG and distribution. Each has a template we configure to the specific business.' ),
-			array( 'Do you only sell DotOne ERP?', 'No. DotOne is our product, but we also build custom ERP modules, integrations and AI agents for businesses using other systems. If your current ERP works well, we may recommend improving or extending it rather than replacing it.' ),
+			array( 'Do you only sell DotOne?', 'No. DotOne is our product, but we also build custom ERP modules, integrations and AI agents for businesses using other systems. If your current ERP works well, we may recommend improving or extending it rather than replacing it.' ),
 			array( 'How do we get a quote?', 'Start with a conversation through our contact page. After understanding your process, users, locations and requirements, we share a written scope with one-time and recurring costs listed separately, so you can review it before deciding.' ),
 		),
 		'related'   => array( 'manufacturing-erp-software', 'erp-implementation-services', 'custom-erp-development', 'msme-erp-software' ),

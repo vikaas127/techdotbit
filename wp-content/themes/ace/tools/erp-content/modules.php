@@ -1,14 +1,14 @@
 <?php
 /**
- * DotOne ERP module pages (16), in master-list order.
+ * DotOne module pages (16), in master-list order.
  */
 return array(
 	array(
 		'slug'      => 'inventory-management-software',
 		'nav'       => 'Inventory Management',
 		'title'     => 'Inventory Management Software for Manufacturers',
-		'seo_title' => 'Inventory Management Software in India | DotOne ERP',
-		'meta'      => 'Inventory management software inside DotOne ERP: real-time stock, batches, reorder levels, GST-ready transfers and AI alerts for Indian MSMEs and plants.',
+		'seo_title' => 'Inventory Management Software in India | DotOne',
+		'meta'      => 'Inventory management software inside DotOne: real-time stock, batches, reorder levels, GST-ready transfers and AI alerts for Indian MSMEs and plants.',
 		'focus'     => 'inventory management software',
 		'keywords'  => array(
 			'inventory management software',
@@ -59,7 +59,7 @@ return array(
 		),
 		'eyebrow'   => 'Inventory Module',
 		'highlight' => 'Inventory Management',
-		'intro'     => 'Know exactly what you hold, where it sits and what it is worth. DotOne ERP tracks raw material, WIP and finished goods across stores, plants and job workers in real time.',
+		'intro'     => 'Know exactly what you hold, where it sits and what it is worth. DotOne tracks raw material, WIP and finished goods across stores, plants and job workers in real time.',
 		'points'    => array(
 			'Live stock by item, batch, location and job worker',
 			'Reorder alerts and AI-driven replenishment suggestions',
@@ -71,7 +71,7 @@ return array(
 				'h2' => 'What inventory management software does in a manufacturing ERP',
 				'p'  => array(
 					'Inventory management software records every unit of material that enters, moves within or leaves your business. In a manufacturing setting that means far more than a stock register: it has to follow raw material from the gate, through the store, onto the shop floor as work in progress, and back into the store as finished or semi-finished goods.',
-					'In DotOne ERP the inventory module is not a separate application bolted onto accounts. Every purchase receipt, production issue, sales dispatch and job work challan updates the same stock ledger, so the quantity your sales team promises is the quantity your store actually holds. If you are new to how these pieces fit together, our guide on [[what-is-erp|what an ERP system is]] is a useful starting point.',
+					'In DotOne the inventory module is not a separate application bolted onto accounts. Every purchase receipt, production issue, sales dispatch and job work challan updates the same stock ledger, so the quantity your sales team promises is the quantity your store actually holds. If you are new to how these pieces fit together, our guide on [[what-is-erp|what an ERP system is]] is a useful starting point.',
 				),
 				'list' => array(
 					'Item master: codes, descriptions, HSN codes, GST rates, units of measure and alternate units with conversion factors.',
@@ -109,7 +109,7 @@ return array(
 				'h2' => 'Reorder planning, safety stock and stock classification',
 				'p'  => array(
 					'Holding too much stock ties up working capital; holding too little stops the line. Good stock management software helps you find the middle by combining consumption history, supplier lead times and open orders rather than relying on a fixed number someone set years ago.',
-					'In DotOne ERP each item can carry a minimum level, reorder level, reorder quantity and maximum level per location. These values can be maintained manually or suggested by the system from past consumption. Items can also be grouped using ABC analysis (by value), FSN analysis (fast, slow and non-moving) and XYZ analysis (by demand variability) so that your team spends review time on the items that matter.',
+					'In DotOne each item can carry a minimum level, reorder level, reorder quantity and maximum level per location. These values can be maintained manually or suggested by the system from past consumption. Items can also be grouped using ABC analysis (by value), FSN analysis (fast, slow and non-moving) and XYZ analysis (by demand variability) so that your team spends review time on the items that matter.',
 				),
 				'list' => array(
 					'Reorder alerts appear on the purchase dashboard and can create purchase indents automatically.',
@@ -134,14 +134,14 @@ return array(
 			array(
 				'h2' => 'Indian compliance: GST, stock transfers and job work',
 				'p'  => array(
-					'Inventory software used in India has to respect GST rules on the movement of goods. A transfer between two warehouses in the same GST registration is usually a delivery challan, while a transfer between branches registered in different states is treated as a supply and needs a tax invoice. DotOne ERP decides the document type from the source and destination GSTINs that you configure.',
+					'Inventory software used in India has to respect GST rules on the movement of goods. A transfer between two warehouses in the same GST registration is usually a delivery challan, while a transfer between branches registered in different states is treated as a supply and needs a tax invoice. DotOne decides the document type from the source and destination GSTINs that you configure.',
 					'Material sent to job workers is tracked against the job work challan so you can see what is still outstanding and prepare the related returns. HSN codes on the item master flow into invoices, e-way bills and returns, which keeps your stock records and your [[accounting-gst-software|accounting and GST software]] aligned.',
 				),
 			),
 			array(
 				'h2' => 'How AI agents help with inventory management',
 				'p'  => array(
-					'DotOne ERP includes an Inventory AI agent that watches stock movement continuously instead of waiting for someone to run a report. It does not replace your store manager; it gives them a short list of things that need attention each morning.',
+					'DotOne includes an Inventory AI agent that watches stock movement continuously instead of waiting for someone to run a report. It does not replace your store manager; it gives them a short list of things that need attention each morning.',
 				),
 				'list' => array(
 					'Shortage prediction: compares upcoming production and sales commitments with stock and open purchase orders, and highlights items likely to run short.',
@@ -156,7 +156,7 @@ return array(
 			array(
 				'h2' => 'Integration with other ERP modules',
 				'p'  => array(
-					'Inventory is the meeting point of almost every other function. Purchase depends on it to know what to buy, production depends on it to know what can be started, and sales depends on it to promise delivery dates. Because DotOne ERP uses a single database, there are no nightly imports between these modules.',
+					'Inventory is the meeting point of almost every other function. Purchase depends on it to know what to buy, production depends on it to know what can be started, and sales depends on it to promise delivery dates. Because DotOne uses a single database, there are no nightly imports between these modules.',
 				),
 				'list' => array(
 					'Purchase: reorder alerts become indents and purchase orders; receipts update stock and supplier records.',
@@ -187,7 +187,7 @@ return array(
 		),
 		'faq'       => array(
 			array( 'What is inventory management software?', 'Inventory management software records the quantity, location and value of every item a business holds. It tracks receipts, issues, transfers and adjustments so stock figures are always current. In an ERP, the inventory module also links to purchase, production, sales and accounts, so every transaction updates stock automatically.' ),
-			array( 'Can DotOne ERP manage stock across multiple warehouses and plants?', 'Yes. Each warehouse, plant, branch and job worker can be set up as its own stock location. You can view stock per location or consolidated, transfer between them with the correct GST document, and restrict users to the locations they work in.' ),
+			array( 'Can DotOne manage stock across multiple warehouses and plants?', 'Yes. Each warehouse, plant, branch and job worker can be set up as its own stock location. You can view stock per location or consolidated, transfer between them with the correct GST document, and restrict users to the locations they work in.' ),
 			array( 'Does the inventory module support batch and expiry tracking?', 'Yes. Batch or lot numbers can be captured at goods receipt, along with manufacturing and expiry dates where relevant. The batch is carried through issues, production and dispatch, so you can apply FEFO picking and trace which customers received a given lot.' ),
 			array( 'Which stock valuation methods are supported?', 'The ERP we implement supports FIFO, weighted average and standard costing. The method is configured according to your accounting policy, and landed costs such as freight and duty can be added to item cost so valuation reflects what you actually paid.' ),
 			array( 'How does the system handle material sent to job workers?', 'Material sent for job work is moved to a job worker location using a job work challan. The system shows what is pending return, records processed goods when they come back, and keeps the data needed for GST reporting on job work movements.' ),
@@ -200,8 +200,8 @@ return array(
 		'slug'      => 'production-planning-software',
 		'nav'       => 'Production Planning',
 		'title'     => 'Production Planning Software (PPC and MRP)',
-		'seo_title' => 'Production Planning Software with MRP | DotOne ERP',
-		'meta'      => 'Production planning software with MRP, capacity scheduling, job cards and shop-floor tracking. Plan PPC in DotOne ERP with AI help built for Indian plants.',
+		'seo_title' => 'Production Planning Software with MRP | DotOne',
+		'meta'      => 'Production planning software with MRP, capacity scheduling, job cards and shop-floor tracking. Plan PPC in DotOne with AI help built for Indian plants.',
 		'focus'     => 'production planning software',
 		'keywords'  => array(
 			'production planning software',
@@ -252,7 +252,7 @@ return array(
 		),
 		'eyebrow'   => 'Production Module',
 		'highlight' => 'Production Planning',
-		'intro'     => 'Turn sales orders and forecasts into realistic plans. DotOne ERP runs MRP, schedules machines and tracks every job card from material issue to finished goods.',
+		'intro'     => 'Turn sales orders and forecasts into realistic plans. DotOne runs MRP, schedules machines and tracks every job card from material issue to finished goods.',
 		'points'    => array(
 			'MRP that accounts for stock, open orders and lead times',
 			'Machine and shift-level scheduling with live job status',
@@ -264,7 +264,7 @@ return array(
 				'h2' => 'What production planning software solves',
 				'p'  => array(
 					'Production planning software answers three questions every factory faces daily: what should we make, when should we make it, and do we have the material and machine time to do so? Without a system, these answers live in the heads of a few experienced planners and in whiteboards that are wiped every evening.',
-					'The production planning and control (PPC) module in DotOne ERP connects those answers to live data. Sales orders, forecasts, stock levels, bills of materials and machine capacity are all in one place, so a plan made in the morning reflects what actually happened yesterday. For background on planning approaches, read our article on [[types-of-production-planning|types of production planning]].',
+					'The production planning and control (PPC) module in DotOne connects those answers to live data. Sales orders, forecasts, stock levels, bills of materials and machine capacity are all in one place, so a plan made in the morning reflects what actually happened yesterday. For background on planning approaches, read our article on [[types-of-production-planning|types of production planning]].',
 				),
 			),
 			array(
@@ -281,7 +281,7 @@ return array(
 			array(
 				'h2' => 'Capacity and machine scheduling',
 				'p'  => array(
-					'Material availability is only half the problem. A plan that needs more machine hours than the plant has is not a plan. DotOne ERP holds work centres with their available shifts, holidays and planned maintenance, and compares the hours required by released orders with the hours available.',
+					'Material availability is only half the problem. A plan that needs more machine hours than the plant has is not a plan. DotOne holds work centres with their available shifts, holidays and planned maintenance, and compares the hours required by released orders with the hours available.',
 					'Planners see a load chart per work centre and a Gantt-style schedule per machine. When an urgent order arrives, they can move jobs, split batches or shift work to an alternate machine and immediately see which other deliveries are affected. Where a plant prefers simple sequencing rules, such as earliest due date or grouping by colour or thickness to reduce changeovers, we configure those rules.',
 				),
 				'list' => array(
@@ -317,7 +317,7 @@ return array(
 			array(
 				'h2' => 'How the Production AI agent supports planners',
 				'p'  => array(
-					'Planners spend much of their day chasing information: is the material in, which machine is free, which order is going to be late. The Production AI agent in DotOne ERP does that chasing continuously and surfaces what matters.',
+					'Planners spend much of their day chasing information: is the material in, which machine is free, which order is going to be late. The Production AI agent in DotOne does that chasing continuously and surfaces what matters.',
 				),
 				'list' => array(
 					'Late order warnings: identifies orders whose remaining operations cannot finish before the promised date.',
@@ -363,7 +363,7 @@ return array(
 				'h2' => 'Integration with BOM, inventory, purchase and costing',
 				'p'  => array(
 					'Production planning depends on accurate product structures, so it reads directly from [[bom-management-software|BOM management]], including revisions and alternate materials. It reserves and consumes stock from the inventory module, raises indents for purchase, and posts actual material, labour and overhead to costing, so every finished batch carries a real cost.',
-					'Sales sees the expected completion date of each order, quality receives inspection requests at defined stages, and maintenance schedules feed back into available capacity. Because DotOne ERP is a single system, there is no need to reconcile a separate planning tool with the books at month end.',
+					'Sales sees the expected completion date of each order, quality receives inspection requests at defined stages, and maintenance schedules feed back into available capacity. Because DotOne is a single system, there is no need to reconcile a separate planning tool with the books at month end.',
 				),
 			),
 		),
@@ -383,7 +383,7 @@ return array(
 		),
 		'faq'       => array(
 			array( 'What is production planning and control software?', 'Production planning and control software helps a factory decide what to make, when and on which machines, then tracks whether the plan is being followed. It combines demand, bills of materials, stock and capacity to create production orders, and records actual output, scrap and downtime so planners can react quickly.' ),
-			array( 'What is the difference between MRP and production scheduling?', 'MRP calculates what materials and sub-assemblies are needed and when, based on demand and stock. Production scheduling decides the order in which jobs run on each machine within available capacity. DotOne ERP does both, so material plans and machine schedules stay consistent with each other.' ),
+			array( 'What is the difference between MRP and production scheduling?', 'MRP calculates what materials and sub-assemblies are needed and when, based on demand and stock. Production scheduling decides the order in which jobs run on each machine within available capacity. DotOne does both, so material plans and machine schedules stay consistent with each other.' ),
 			array( 'Can the ERP handle both make-to-order and make-to-stock?', 'Yes. Sales orders, forecasts and finished-goods reorder levels can all feed the master production schedule. Many Indian plants run standard products to stock and special sizes or specifications to order, and the ERP plans both in the same run with order-wise tracking where needed.' ),
 			array( 'How is shop-floor data captured?', 'Supervisors or operators record output, scrap, rejection and downtime against job cards using desktop screens, tablets or the mobile app. Where machines provide counts through controllers or sensors, we can integrate that data so quantities are posted automatically and manual entry is reduced.' ),
 			array( 'Does it support job work and outsourced operations?', 'Yes. An outsourced operation is part of the routing. Material is sent under a job work challan, the job worker appears as a stock location, and processed material returns into the order. This keeps WIP visible and supports GST records for job work movements.' ),
@@ -396,8 +396,8 @@ return array(
 		'slug'      => 'purchase-management-software',
 		'nav'       => 'Purchase Management',
 		'title'     => 'Purchase Management Software for Indian Businesses',
-		'seo_title' => 'Purchase Management Software for MSMEs | DotOne ERP',
-		'meta'      => 'Purchase management software in DotOne ERP: indents, RFQs, approvals, POs, GRN, three-way match and GST input checks, with an AI agent for buyers in India.',
+		'seo_title' => 'Purchase Management Software for MSMEs | DotOne',
+		'meta'      => 'Purchase management software in DotOne: indents, RFQs, approvals, POs, GRN, three-way match and GST input checks, with an AI agent for buyers in India.',
 		'focus'     => 'purchase management software',
 		'keywords'  => array(
 			'purchase management software',
@@ -448,7 +448,7 @@ return array(
 		),
 		'eyebrow'   => 'Purchase Module',
 		'highlight' => 'Purchase Management',
-		'intro'     => 'Buy the right material at the right price and time. DotOne ERP takes every purchase from indent to payment with approvals, GRN checks and GST input reconciliation.',
+		'intro'     => 'Buy the right material at the right price and time. DotOne takes every purchase from indent to payment with approvals, GRN checks and GST input reconciliation.',
 		'points'    => array(
 			'Indent, RFQ, PO and GRN linked in one audit trail',
 			'Approval rules by amount, category and department',
@@ -460,7 +460,7 @@ return array(
 				'h2' => 'Why purchase management software matters for manufacturers',
 				'p'  => array(
 					'For most manufacturers, purchased material is the largest single cost in the product. Purchase management software brings discipline to how that money is spent: who asked for the material, which vendors were considered, who approved the price, whether the right quantity arrived and whether the bill matches what was ordered.',
-					'In many MSMEs these steps happen on phone calls, WhatsApp messages and handwritten indents. It works until a buyer leaves, a rate is paid twice or a vendor invoice is approved for material that was never received. The purchase module in DotOne ERP replaces those informal steps with a connected chain of documents while keeping the process quick for buyers.',
+					'In many MSMEs these steps happen on phone calls, WhatsApp messages and handwritten indents. It works until a buyer leaves, a rate is paid twice or a vendor invoice is approved for material that was never received. The purchase module in DotOne replaces those informal steps with a connected chain of documents while keeping the process quick for buyers.',
 				),
 				'list' => array(
 					'Raw material and packing material: high-volume, rate-sensitive items bought against plans and reorder levels.',
@@ -473,7 +473,7 @@ return array(
 				),
 			),
 			array(
-				'h2' => 'The procure-to-pay workflow in DotOne ERP',
+				'h2' => 'The procure-to-pay workflow in DotOne',
 				'p'  => array(
 					'Procure-to-pay is the full journey from a need being identified to the vendor being paid. Each step in the ERP creates a document that references the previous one, so anyone can trace a payment back to the original request.',
 				),
@@ -530,7 +530,7 @@ return array(
 			array(
 				'h2' => 'How the Purchase AI agent assists buyers',
 				'p'  => array(
-					'Buyers juggle many open orders, and the important ones are not always the loudest. The Purchase AI agent in DotOne ERP reviews open demand and open orders continuously and brings forward the items that need action.',
+					'Buyers juggle many open orders, and the important ones are not always the loudest. The Purchase AI agent in DotOne reviews open demand and open orders continuously and brings forward the items that need action.',
 				),
 				'list' => array(
 					'Draft purchase orders: prepares POs from approved indents using preferred vendors and recent rates, ready for the buyer to check.',
@@ -545,7 +545,7 @@ return array(
 			array(
 				'h2' => 'How purchase connects with inventory, production and finance',
 				'p'  => array(
-					'Purchase does not work in isolation. Reorder signals come from [[inventory-management-software|inventory management]], material requirements come from production planning, inspection results come from quality, and payment schedules go to finance. Because DotOne ERP is one system, these links are live rather than exported at the end of the day.',
+					'Purchase does not work in isolation. Reorder signals come from [[inventory-management-software|inventory management]], material requirements come from production planning, inspection results come from quality, and payment schedules go to finance. Because DotOne is one system, these links are live rather than exported at the end of the day.',
 					'This also means a production planner can see whether a short component has been ordered and when it is expected, and a finance manager can see committed spend before the invoice even arrives. Purchase becomes part of planning rather than a reaction to it.',
 					'Quality results also flow back into purchasing. When a lot is rejected at inspection, the rejection is linked to the vendor and the purchase order, a return challan and debit note can be raised from the same screen, and the vendor rating is updated automatically for the next sourcing decision.',
 				),
@@ -574,7 +574,7 @@ return array(
 		),
 		'faq'       => array(
 			array( 'What is purchase management software?', 'Purchase management software controls how a business buys goods and services. It records requests, quotations, purchase orders, receipts and vendor invoices in a linked sequence, applies approval rules and gives visibility of spend, pending orders and vendor performance. In an ERP it shares data with inventory, production and accounts.' ),
-			array( 'What is the difference between procurement and purchasing?', 'Purchasing usually means the transactional steps of ordering and receiving goods. Procurement is broader and includes sourcing, vendor selection, negotiation, contracts and supplier performance management. The purchase module in DotOne ERP covers both the transactional chain and the vendor and rate controls needed for procurement.' ),
+			array( 'What is the difference between procurement and purchasing?', 'Purchasing usually means the transactional steps of ordering and receiving goods. Procurement is broader and includes sourcing, vendor selection, negotiation, contracts and supplier performance management. The purchase module in DotOne covers both the transactional chain and the vendor and rate controls needed for procurement.' ),
 			array( 'Can purchase orders be created automatically from stock levels?', 'Yes. When stock falls below the reorder level, or when MRP calculates a requirement for production, the ERP creates purchase indents. These can be converted into draft purchase orders with the preferred vendor and recent rate, which a buyer then reviews and releases.' ),
 			array( 'How does the ERP help with GST input tax credit?', 'Purchase invoices are recorded with GSTIN, HSN and tax details. The system supports reconciliation of your purchase register with GSTR-2B data, highlighting invoices that vendors have not reported or have reported differently. This helps your accounts team resolve mismatches before claiming credit.' ),
 			array( 'Can approvals be done on mobile?', 'Yes. Approvers receive pending purchase orders and indents on the mobile app, can view the quotation comparison and last purchase rate, and approve or reject with comments. This keeps purchasing moving when managers are on the shop floor or travelling.' ),
@@ -587,8 +587,8 @@ return array(
 		'slug'      => 'sales-order-management-software',
 		'nav'       => 'Sales Orders',
 		'title'     => 'Sales Order Management Software for Manufacturers',
-		'seo_title' => 'Sales Order Management Software India | DotOne ERP',
-		'meta'      => 'Sales order management software in DotOne ERP: quotes, price lists, credit checks, delivery promises and GST e-invoices, with a Sales AI agent for teams.',
+		'seo_title' => 'Sales Order Management Software India | DotOne',
+		'meta'      => 'Sales order management software in DotOne: quotes, price lists, credit checks, delivery promises and GST e-invoices, with a Sales AI agent for teams.',
 		'focus'     => 'sales order management software',
 		'keywords'  => array(
 			'sales order management software',
@@ -639,7 +639,7 @@ return array(
 		),
 		'eyebrow'   => 'Sales Module',
 		'highlight' => 'Sales Order Management',
-		'intro'     => 'Quote fast, promise realistic dates and invoice correctly. DotOne ERP manages every order from enquiry to e-invoice and payment, connected to stock and production.',
+		'intro'     => 'Quote fast, promise realistic dates and invoice correctly. DotOne manages every order from enquiry to e-invoice and payment, connected to stock and production.',
 		'points'    => array(
 			'Quotation, order, dispatch and invoice in one flow',
 			'Delivery dates based on real stock and production plans',
@@ -651,7 +651,7 @@ return array(
 				'h2' => 'What sales order management software covers',
 				'p'  => array(
 					'Sales order management software handles everything that happens between a customer showing interest and the money reaching your bank. That includes quotations, order confirmation, pricing, delivery commitments, dispatch, invoicing, returns and collection. For a manufacturer, it also has to connect each order to stock and production so that the promises made by sales can actually be kept.',
-					'The sales module in DotOne ERP is designed for B2B businesses that sell to dealers, distributors, OEMs, projects and institutions. It assumes orders will change, partial deliveries will happen and prices will vary by customer, because that is how most Indian manufacturing and trading companies operate.',
+					'The sales module in DotOne is designed for B2B businesses that sell to dealers, distributors, OEMs, projects and institutions. It assumes orders will change, partial deliveries will happen and prices will vary by customer, because that is how most Indian manufacturing and trading companies operate.',
 				),
 			),
 			array(
@@ -671,7 +671,7 @@ return array(
 				'h2' => 'Pricing, discounts and schemes',
 				'p'  => array(
 					'Pricing is one of the most error-prone parts of sales. Different customers, regions, quantities and channels often have different rates, and schemes change every quarter. When prices live in spreadsheets, wrong rates on invoices become routine.',
-					'DotOne ERP keeps price lists with validity periods, customer-specific rates, quantity slabs and channel prices. Discounts beyond a user limit go for approval before the order is confirmed. Trade schemes, such as quantity-based free goods or period-based rebates, can be configured so they apply consistently and are tracked for later settlement.',
+					'DotOne keeps price lists with validity periods, customer-specific rates, quantity slabs and channel prices. Discounts beyond a user limit go for approval before the order is confirmed. Trade schemes, such as quantity-based free goods or period-based rebates, can be configured so they apply consistently and are tracked for later settlement.',
 				),
 				'list' => array(
 					'Price lists by customer group, region, channel and currency.',
@@ -684,7 +684,7 @@ return array(
 				'h2' => 'Different order types, one sales order management system',
 				'p'  => array(
 					'Few manufacturers sell in only one way. A single company may serve dealers with standard catalogue items, OEM customers with scheduled deliveries against an annual contract, project customers with custom specifications and export buyers with letters of credit. A sales order management system that only understands one of these forces the rest back into spreadsheets.',
-					'DotOne ERP supports several order types side by side, each with its own numbering, approval rules and document formats. The underlying stock, pricing and customer data stays common, so management reporting is not split across tools.',
+					'DotOne supports several order types side by side, each with its own numbering, approval rules and document formats. The underlying stock, pricing and customer data stays common, so management reporting is not split across tools.',
 				),
 				'list' => array(
 					'Standard orders: catalogue products supplied from stock with quick confirmation.',
@@ -724,7 +724,7 @@ return array(
 			array(
 				'h2' => 'How the Sales AI agent supports your team',
 				'p'  => array(
-					'Sales teams spend much of their time answering status questions and preparing documents. The Sales AI agent in DotOne ERP takes on the repetitive parts so salespeople can focus on customers.',
+					'Sales teams spend much of their time answering status questions and preparing documents. The Sales AI agent in DotOne takes on the repetitive parts so salespeople can focus on customers.',
 				),
 				'list' => array(
 					'Order status answers: summarises where an order stands, from production stage to dispatch, in plain language.',
@@ -783,8 +783,8 @@ return array(
 		'slug'      => 'quality-management-software',
 		'nav'       => 'Quality Management',
 		'title'     => 'Quality Management Software for Manufacturers',
-		'seo_title' => 'Quality Management Software in ERP | DotOne ERP',
-		'meta'      => 'Quality management software in DotOne ERP: incoming, in-process and final inspection, NCR, CAPA and certificates of analysis, linked to batches and vendors.',
+		'seo_title' => 'Quality Management Software in ERP | DotOne',
+		'meta'      => 'Quality management software in DotOne: incoming, in-process and final inspection, NCR, CAPA and certificates of analysis, linked to batches and vendors.',
 		'focus'     => 'quality management software',
 		'keywords'  => array(
 			'quality management software',
@@ -835,7 +835,7 @@ return array(
 		),
 		'eyebrow'   => 'Quality Module',
 		'highlight' => 'Quality Management',
-		'intro'     => 'Build quality into every step instead of sorting it out at the end. DotOne ERP links inspections, rejections and corrective actions to batches, machines and vendors.',
+		'intro'     => 'Build quality into every step instead of sorting it out at the end. DotOne links inspections, rejections and corrective actions to batches, machines and vendors.',
 		'points'    => array(
 			'Incoming, in-process and final inspection plans',
 			'NCR and CAPA tracked to closure with root causes',
@@ -847,7 +847,7 @@ return array(
 				'h2' => 'Why quality management software belongs inside the ERP',
 				'p'  => array(
 					'Quality management software records what was checked, what was found and what was done about it. Many factories keep these records in registers, standalone spreadsheets or separate QMS tools. The trouble is that quality decisions affect stock, production, purchase and sales, so records kept outside the ERP are always one step behind.',
-					'In DotOne ERP, quality is part of the transaction flow. A lot that fails incoming inspection cannot be issued to production. A batch on quality hold cannot be dispatched. A rejection is linked to the vendor, machine, operator or process step responsible. This makes quality data useful for running the business, not just for passing audits.',
+					'In DotOne, quality is part of the transaction flow. A lot that fails incoming inspection cannot be issued to production. A batch on quality hold cannot be dispatched. A rejection is linked to the vendor, machine, operator or process step responsible. This makes quality data useful for running the business, not just for passing audits.',
 				),
 			),
 			array(
@@ -902,7 +902,7 @@ return array(
 			array(
 				'h2' => 'AI and Vision AI in quality control',
 				'p'  => array(
-					'DotOne ERP includes AI capabilities that support quality teams rather than replace them. Analysis agents review inspection and rejection data to find patterns that are hard to see manually, such as a defect that rises on one shift or with one raw material lot.',
+					'DotOne includes AI capabilities that support quality teams rather than replace them. Analysis agents review inspection and rejection data to find patterns that are hard to see manually, such as a defect that rises on one shift or with one raw material lot.',
 					'Vision AI can be applied where visual inspection is repetitive, for example checking surface defects, labels or packaging. Cameras capture images, a model trained on your accepted and rejected samples classifies them, and results are recorded in the inspection log. Whether this suits a given line depends on lighting, speed and defect types, so we assess it case by case. Read more on our [[ai-powered-erp|AI-powered ERP]] page.',
 				),
 				'list' => array(
@@ -967,7 +967,7 @@ return array(
 		'nav'       => 'Dispatch & Logistics',
 		'title'     => 'Dispatch and Logistics Software for Manufacturers',
 		'seo_title' => 'Dispatch & Logistics Software with E-Way Bill | DotOne',
-		'meta'      => 'Dispatch and logistics software in DotOne ERP: dispatch planning, loading, packing lists, e-way bills, transporter tracking and proof of delivery in India.',
+		'meta'      => 'Dispatch and logistics software in DotOne: dispatch planning, loading, packing lists, e-way bills, transporter tracking and proof of delivery in India.',
 		'focus'     => 'dispatch and logistics software',
 		'keywords'  => array(
 			'dispatch and logistics software',
@@ -1018,7 +1018,7 @@ return array(
 		),
 		'eyebrow'   => 'Dispatch Module',
 		'highlight' => 'Logistics Software',
-		'intro'     => 'Get the right goods on the right truck with the right papers. DotOne ERP plans dispatches, prepares GST documents and e-way bills, and tracks each delivery.',
+		'intro'     => 'Get the right goods on the right truck with the right papers. DotOne plans dispatches, prepares GST documents and e-way bills, and tracks each delivery.',
 		'points'    => array(
 			'Dispatch plans built from pending orders and stock',
 			'Invoices, challans and e-way bills from one screen',
@@ -1030,7 +1030,7 @@ return array(
 				'h2' => 'What dispatch and logistics software does',
 				'p'  => array(
 					'Dispatch and logistics software manages the last internal step before revenue: getting finished goods out of the factory or warehouse and to the customer. It decides what goes out today, on which vehicle, with which documents, and then follows the shipment until delivery is confirmed.',
-					'In many plants this step runs on phone calls between sales, stores and the transport contractor, with invoices typed at the last minute while the truck waits at the gate. The dispatch module in DotOne ERP turns that daily scramble into a planned process connected to orders, stock and accounts.',
+					'In many plants this step runs on phone calls between sales, stores and the transport contractor, with invoices typed at the last minute while the truck waits at the gate. The dispatch module in DotOne turns that daily scramble into a planned process connected to orders, stock and accounts.',
 				),
 				'list' => array(
 					'Trucks waiting at the gate while invoices and e-way bills are typed.',
@@ -1053,7 +1053,7 @@ return array(
 				'h2' => 'E-way bill, e-invoice and GST documents',
 				'p'  => array(
 					'Moving goods in India usually requires an e-way bill once the consignment crosses the value threshold set by GST rules, and many businesses also need e-invoices with an IRN. Typing the same details again on government portals wastes time and introduces errors at exactly the moment the truck is waiting.',
-					'DotOne ERP prepares e-way bill data from the invoice or challan, including GSTINs, HSN codes, values, distance and vehicle details. We configure the integration so that e-way bill and e-invoice numbers can be generated from within the ERP and printed on the documents. Changes such as vehicle updates during transit can be recorded against the same bill.',
+					'DotOne prepares e-way bill data from the invoice or challan, including GSTINs, HSN codes, values, distance and vehicle details. We configure the integration so that e-way bill and e-invoice numbers can be generated from within the ERP and printed on the documents. Changes such as vehicle updates during transit can be recorded against the same bill.',
 				),
 				'list' => array(
 					'Tax invoices for sales and inter-state branch transfers.',
@@ -1095,7 +1095,7 @@ return array(
 			array(
 				'h2' => 'How the AI agent supports dispatch teams',
 				'p'  => array(
-					'Dispatch decisions are made under time pressure, which is when mistakes happen. AI agents in DotOne ERP help by preparing information before the day starts and flagging problems early.',
+					'Dispatch decisions are made under time pressure, which is when mistakes happen. AI agents in DotOne help by preparing information before the day starts and flagging problems early.',
 				),
 				'list' => array(
 					'Daily dispatch summary: lists orders due today and tomorrow, stock readiness and documents pending.',
@@ -1148,7 +1148,7 @@ return array(
 		),
 		'faq'       => array(
 			array( 'What is dispatch management software?', 'Dispatch management software plans and controls outgoing shipments. It decides which orders are dispatched, allocates them to vehicles, prepares invoices, challans and e-way bills, and tracks delivery. In an ERP it is linked to sales orders, stock and accounts, so every dispatch updates inventory and receivables automatically.' ),
-			array( 'Can DotOne ERP generate e-way bills automatically?', 'Yes. E-way bill data is prepared from the invoice or challan, including GSTINs, HSN codes, values, distance and vehicle number. We configure integration so the e-way bill can be generated from the ERP and its number printed on documents, avoiding manual entry on the portal.' ),
+			array( 'Can DotOne generate e-way bills automatically?', 'Yes. E-way bill data is prepared from the invoice or challan, including GSTINs, HSN codes, values, distance and vehicle number. We configure integration so the e-way bill can be generated from the ERP and its number printed on documents, avoiding manual entry on the portal.' ),
 			array( 'How does the system handle partial dispatches?', 'When only part of an order is ready, you can dispatch the available quantity. The invoice and e-way bill cover only what is shipped, and the balance stays open on the sales order with its due date, so planners and sales teams can see what is still pending.' ),
 			array( 'Can I track freight cost per customer or route?', 'Yes. Freight is recorded for each dispatch based on transporter rate contracts or actual bills. Reports show freight cost per order, customer, route and transporter, which helps with pricing decisions and with negotiating better rates for high-volume lanes. Freight can also be allocated to product cost.' ),
 			array( 'Is proof of delivery captured in the ERP?', 'Yes. Proof of delivery can be uploaded as a scanned signed copy or captured through the mobile app with photo and timestamp. Delivered status is updated on the invoice, which supports faster collection and resolves disputes about whether goods reached the customer.' ),
@@ -1161,8 +1161,8 @@ return array(
 		'slug'      => 'accounting-gst-software',
 		'nav'       => 'Accounting & GST',
 		'title'     => 'Accounting and GST Software Built into Your ERP',
-		'seo_title' => 'Accounting & GST Software with E-Invoice | DotOne ERP',
-		'meta'      => 'Accounting and GST software in DotOne ERP: ledgers, GSTR-1 and 3B data, e-invoice, e-way bill, TDS, bank reconciliation and MIS for Indian MSMEs and plants.',
+		'seo_title' => 'Accounting & GST Software with E-Invoice | DotOne',
+		'meta'      => 'Accounting and GST software in DotOne: ledgers, GSTR-1 and 3B data, e-invoice, e-way bill, TDS, bank reconciliation and MIS for Indian MSMEs and plants.',
 		'focus'     => 'accounting and gst software',
 		'keywords'  => array(
 			'accounting and gst software',
@@ -1213,7 +1213,7 @@ return array(
 		),
 		'eyebrow'   => 'Finance Module',
 		'highlight' => 'GST Software',
-		'intro'     => 'Books that update themselves as the business runs. DotOne ERP posts every purchase, sale, payroll and stock movement to accounts with GST, e-invoice and TDS handled in flow.',
+		'intro'     => 'Books that update themselves as the business runs. DotOne posts every purchase, sale, payroll and stock movement to accounts with GST, e-invoice and TDS handled in flow.',
 		'points'    => array(
 			'Automatic postings from sales, purchase, stock and payroll',
 			'GST returns data, e-invoice and e-way bill from the ERP',
@@ -1225,7 +1225,7 @@ return array(
 				'h2' => 'Why accounting and GST software should sit inside the ERP',
 				'p'  => array(
 					'Accounting and GST software is where every business transaction eventually lands. In many Indian MSMEs, operations run on one set of registers while accounts run in a separate package, and an accountant spends days each month re-entering invoices, chasing stock values and reconciling GST figures.',
-					'DotOne ERP removes that double work. When a store records a goods receipt, a salesperson raises an invoice or HR processes payroll, the accounting entry is created automatically with the right ledgers, cost centres and tax. The finance team reviews and controls rather than retypes. For a broader view of how this compares with standalone packages, see our page on [[erp-vs-tally|ERP versus Tally]].',
+					'DotOne removes that double work. When a store records a goods receipt, a salesperson raises an invoice or HR processes payroll, the accounting entry is created automatically with the right ledgers, cost centres and tax. The finance team reviews and controls rather than retypes. For a broader view of how this compares with standalone packages, see our page on [[erp-vs-tally|ERP versus Tally]].',
 				),
 			),
 			array(
@@ -1263,7 +1263,7 @@ return array(
 				'h2' => 'E-invoice and e-way bill integration',
 				'p'  => array(
 					'Businesses above the notified turnover threshold must generate e-invoices through the Invoice Registration Portal, and goods movements above the value limit need e-way bills. Doing this on the portal separately from billing creates duplicate entry and delays at dispatch.',
-					'We configure DotOne ERP so that e-invoice and e-way bill requests are sent from the invoice screen. The IRN, acknowledgement number, signed QR code and e-way bill number are stored on the document and printed automatically. Cancellations and updates are recorded against the same invoice. The dispatch side of this flow is explained on our [[dispatch-logistics-software|dispatch and logistics software]] page.',
+					'We configure DotOne so that e-invoice and e-way bill requests are sent from the invoice screen. The IRN, acknowledgement number, signed QR code and e-way bill number are stored on the document and printed automatically. Cancellations and updates are recorded against the same invoice. The dispatch side of this flow is explained on our [[dispatch-logistics-software|dispatch and logistics software]] page.',
 				),
 			),
 			array(
@@ -1289,7 +1289,7 @@ return array(
 			array(
 				'h2' => 'How the Finance AI agent helps accountants',
 				'p'  => array(
-					'Much of an accountant month is spent on checking rather than thinking. The Finance AI agent in DotOne ERP performs repetitive checks continuously so problems surface during the month instead of at closing.',
+					'Much of an accountant month is spent on checking rather than thinking. The Finance AI agent in DotOne performs repetitive checks continuously so problems surface during the month instead of at closing.',
 				),
 				'list' => array(
 					'Bank matching suggestions: proposes matches between bank statement lines and open invoices or payments.',
@@ -1334,7 +1334,7 @@ return array(
 			array( 'Hand over MIS', 'Monthly reports and dashboards are reviewed with the finance team and owners.' ),
 		),
 		'faq'       => array(
-			array( 'Is DotOne ERP a replacement for separate accounting software?', 'It can be. The finance module covers ledgers, vouchers, GST, TDS, bank reconciliation, fixed assets and financial statements. Some businesses move all accounting into the ERP, while others integrate an existing package for a period. We recommend the approach after reviewing your finance team needs.' ),
+			array( 'Is DotOne a replacement for separate accounting software?', 'It can be. The finance module covers ledgers, vouchers, GST, TDS, bank reconciliation, fixed assets and financial statements. Some businesses move all accounting into the ERP, while others integrate an existing package for a period. We recommend the approach after reviewing your finance team needs.' ),
 			array( 'Can the ERP generate e-invoices with IRN and QR code?', 'Yes. We configure e-invoice integration so the invoice data is submitted from the ERP and the IRN, acknowledgement details and signed QR code are returned and printed on the invoice. Cancellations are recorded against the same document to keep records consistent.' ),
 			array( 'Does the system prepare GST returns?', 'The ERP prepares GSTR-1 and GSTR-3B data from recorded transactions and supports reconciliation of purchases with GSTR-2B. Data can be exported in the required format or filed through a GST suvidha provider integration, depending on your preference and setup.' ),
 			array( 'How does the ERP handle TDS on vendor payments?', 'TDS sections and rates are configured per vendor and nature of payment. Deduction happens when the bill is booked or paid, depending on rules, and deducted amounts are tracked for deposit and quarterly return preparation, with vendor-wise reports for issuing certificates.' ),
@@ -1349,7 +1349,7 @@ return array(
 		'nav'       => 'HR & Payroll',
 		'title'     => 'HR and Payroll Software for Factories and MSMEs',
 		'seo_title' => 'HR & Payroll Software with PF, ESI & Attendance | DotOne',
-		'meta'      => 'HR and payroll software in DotOne ERP: geo-fenced mobile attendance, shifts, overtime, PF, ESI, PT, TDS and payslips for Indian factories, MSMEs and branches.',
+		'meta'      => 'HR and payroll software in DotOne: geo-fenced mobile attendance, shifts, overtime, PF, ESI, PT, TDS and payslips for Indian factories, MSMEs and branches.',
 		'focus'     => 'hr and payroll software',
 		'keywords'  => array(
 			'hr and payroll software',
@@ -1400,7 +1400,7 @@ return array(
 		),
 		'eyebrow'   => 'HR Module',
 		'highlight' => 'Payroll Software',
-		'intro'     => 'Attendance to payslip without spreadsheets. DotOne ERP captures location-based mobile attendance, shifts and overtime, then runs payroll with PF, ESI, PT and TDS.',
+		'intro'     => 'Attendance to payslip without spreadsheets. DotOne captures location-based mobile attendance, shifts and overtime, then runs payroll with PF, ESI, PT and TDS.',
 		'points'    => array(
 			'Geo-fenced mobile attendance for staff, plants and field teams',
 			'Shift, overtime, piece rate and contract labour handling',
@@ -1412,7 +1412,7 @@ return array(
 				'h2' => 'HR and payroll software built for Indian workplaces',
 				'p'  => array(
 					'HR and payroll software in a factory has a harder job than in an office. Workers rotate across shifts, overtime changes week to week, some staff are on piece rates, contract labour comes through agencies and field staff rarely visit the office. Payroll has to handle all of it correctly and on time, with statutory deductions that follow Indian labour and tax rules.',
-					'The HR module in DotOne ERP is designed around that reality. Attendance can be captured through biometric devices, the mobile app with location checks or supervisor entry. Payroll then calculates earnings and deductions from that attendance and posts the result directly to accounts and cost centres. You avoid the month-end routine of exporting attendance to spreadsheets, correcting it by hand and re-entering salary journals.',
+					'The HR module in DotOne is designed around that reality. Attendance can be captured through biometric devices, the mobile app with location checks or supervisor entry. Payroll then calculates earnings and deductions from that attendance and posts the result directly to accounts and cost centres. You avoid the month-end routine of exporting attendance to spreadsheets, correcting it by hand and re-entering salary journals.',
 				),
 			),
 			array(
@@ -1482,7 +1482,7 @@ return array(
 			array(
 				'h2' => 'How AI agents support HR teams',
 				'p'  => array(
-					'HR teams in MSMEs are usually small, and much of their time goes into answering routine questions and checking data before payroll. AI capabilities in DotOne ERP reduce that load.',
+					'HR teams in MSMEs are usually small, and much of their time goes into answering routine questions and checking data before payroll. AI capabilities in DotOne reduce that load.',
 				),
 				'list' => array(
 					'Pre-payroll checks: flags missing punches, unusual overtime, employees with no attendance and bank detail changes before salary is processed.',
@@ -1598,7 +1598,7 @@ return array(
 		),
 		'eyebrow'   => 'CRM Module',
 		'highlight' => 'Leads to Orders',
-		'intro'     => 'A CRM that knows what the factory can deliver. DotOne ERP connects every lead, call and quotation to real stock, production plans, pricing and customer outstanding.',
+		'intro'     => 'A CRM that knows what the factory can deliver. DotOne connects every lead, call and quotation to real stock, production plans, pricing and customer outstanding.',
 		'points'    => array(
 			'Leads from website, portals, calls and field visits in one pipeline',
 			'Quotations and orders created from CRM with live ERP data',
@@ -1610,7 +1610,7 @@ return array(
 				'h2' => 'Why ERP CRM software works better than a standalone CRM',
 				'p'  => array(
 					'ERP CRM software combines customer relationship management with the operational data of the business. A standalone CRM can track leads and calls, but when a customer asks about price, stock, delivery or an unpaid invoice, the salesperson still has to call the office. That gap slows responses and weakens trust.',
-					'The CRM module in DotOne ERP shares one database with sales, inventory, production and accounts. A salesperson looking at a customer sees open enquiries, quotations, orders in production, dispatches, outstanding invoices and past complaints on one screen. B2B manufacturers and distributors, whose sales cycles involve technical discussion, sampling and negotiation, benefit most from this connected view.',
+					'The CRM module in DotOne shares one database with sales, inventory, production and accounts. A salesperson looking at a customer sees open enquiries, quotations, orders in production, dispatches, outstanding invoices and past complaints on one screen. B2B manufacturers and distributors, whose sales cycles involve technical discussion, sampling and negotiation, benefit most from this connected view.',
 				),
 			),
 			array(
@@ -1679,7 +1679,7 @@ return array(
 			array(
 				'h2' => 'How the CRM AI agent helps sales teams',
 				'p'  => array(
-					'Sales teams lose deals mostly through missed follow-ups and slow responses. The CRM AI agent in DotOne ERP watches the pipeline and customer behaviour and helps the team act at the right time.',
+					'Sales teams lose deals mostly through missed follow-ups and slow responses. The CRM AI agent in DotOne watches the pipeline and customer behaviour and helps the team act at the right time.',
 				),
 				'list' => array(
 					'Follow-up nudges: identifies opportunities with no recent activity and suggests the next action.',
@@ -1731,7 +1731,7 @@ return array(
 		'faq'       => array(
 			array( 'What is ERP CRM software?', 'ERP CRM software is customer relationship management that runs inside an ERP system. It manages leads, opportunities, follow-ups and customer interactions while sharing data with sales orders, stock, production and accounts, so salespeople can see prices, availability, order status and outstanding amounts without switching systems.' ),
 			array( 'Can leads from IndiaMART and our website come in automatically?', 'Yes. We configure integrations so that leads from website forms and B2B marketplaces such as IndiaMART flow into the CRM automatically, with source tagging and assignment rules. Duplicate checks prevent the same buyer from being created multiple times across sources.' ),
-			array( 'Is a separate CRM needed if we have DotOne ERP?', 'Usually not. The CRM module covers leads, pipeline, follow-ups, field visits and service tickets within the ERP. If you already use another CRM that works well, we can integrate it instead, though a single system is generally simpler for MSMEs to maintain.' ),
+			array( 'Is a separate CRM needed if we have DotOne?', 'Usually not. The CRM module covers leads, pipeline, follow-ups, field visits and service tickets within the ERP. If you already use another CRM that works well, we can integrate it instead, though a single system is generally simpler for MSMEs to maintain.' ),
 			array( 'Can field sales teams use the CRM on mobile?', 'Yes. Field staff use the mobile app to view visit plans, check in at customer locations, record notes and photos, check stock and prices, and book orders. Managers see visit coverage and outcomes in real time instead of waiting for daily reports.' ),
 			array( 'How does the CRM help with repeat business?', 'The CRM tracks each customer ordering pattern. When a regular customer has not ordered within their usual interval, the AI agent flags it for follow-up. Salespeople also see past orders, prices and complaints, making repeat conversations more informed and timely.' ),
 			array( 'Does the CRM handle after-sales service?', 'Yes. Service tickets, warranty checks, annual maintenance contracts and spare part requests can be managed in the CRM and linked to the original sale. Quality complaints are routed to the quality team for investigation and corrective action, closing the loop.' ),
@@ -1743,8 +1743,8 @@ return array(
 		'slug'      => 'warehouse-management-software',
 		'nav'       => 'Warehouse Management',
 		'title'     => 'Warehouse Management Software with Barcode and Bins',
-		'seo_title' => 'Warehouse Management Software with Barcode | DotOne ERP',
-		'meta'      => 'Warehouse management software in DotOne ERP: bin locations, barcode and QR scanning, putaway, FIFO and FEFO picking, cycle counts and mobile scanning.',
+		'seo_title' => 'Warehouse Management Software with Barcode | DotOne',
+		'meta'      => 'Warehouse management software in DotOne: bin locations, barcode and QR scanning, putaway, FIFO and FEFO picking, cycle counts and mobile scanning.',
 		'focus'     => 'warehouse management software',
 		'keywords'  => array(
 			'warehouse management software',
@@ -1795,7 +1795,7 @@ return array(
 		),
 		'eyebrow'   => 'Warehouse Module',
 		'highlight' => 'Barcode and Bins',
-		'intro'     => 'Know which rack, bin and pallet holds every item. DotOne ERP adds bin-level control, barcode and QR scanning, guided putaway and picking to your stores and warehouses.',
+		'intro'     => 'Know which rack, bin and pallet holds every item. DotOne adds bin-level control, barcode and QR scanning, guided putaway and picking to your stores and warehouses.',
 		'points'    => array(
 			'Bin and rack locations with scan-confirmed movements',
 			'FIFO, FEFO and batch-specific picking with pick lists',
@@ -1807,7 +1807,7 @@ return array(
 				'h2' => 'When you need warehouse management software',
 				'p'  => array(
 					'Basic inventory tells you how much of an item is in a store. Warehouse management software tells you exactly where it is: which rack, which bin, which pallet, which batch. Once a store grows beyond what one experienced storekeeper can remember, that difference becomes the difference between a five-minute pick and a forty-minute search.',
-					'The warehouse features of DotOne ERP sit on top of the core [[inventory-management-software|inventory management]] module. Stock quantities and values remain in one place, while the warehouse layer adds location detail, scanning and guided tasks. You can switch them on for a large finished-goods warehouse while keeping smaller stores on simple location tracking.',
+					'The warehouse features of DotOne sit on top of the core [[inventory-management-software|inventory management]] module. Stock quantities and values remain in one place, while the warehouse layer adds location detail, scanning and guided tasks. You can switch them on for a large finished-goods warehouse while keeping smaller stores on simple location tracking.',
 				),
 				'list' => array(
 					'Pickers regularly cannot find stock that the system says exists.',
@@ -1833,7 +1833,7 @@ return array(
 			array(
 				'h2' => 'Barcode and QR code scanning',
 				'p'  => array(
-					'Scanning removes the most common warehouse errors: wrong item, wrong quantity, wrong location. DotOne ERP can print barcode or QR labels for items, batches, cartons, rolls, coils or pallets at receipt or at the end of production. Each label links to the ERP record, so a single scan tells the user the item, batch, quantity and current location.',
+					'Scanning removes the most common warehouse errors: wrong item, wrong quantity, wrong location. DotOne can print barcode or QR labels for items, batches, cartons, rolls, coils or pallets at receipt or at the end of production. Each label links to the ERP record, so a single scan tells the user the item, batch, quantity and current location.',
 					'Scanning is done using Android handheld scanners or the [[mobile-erp-app|mobile ERP app]] on ordinary smartphones. Every movement, whether putaway, transfer, issue or pick, is confirmed by scanning both the item label and the bin label. The system rejects mismatches immediately rather than leaving them to be discovered during the next count.',
 				),
 			),
@@ -1880,7 +1880,7 @@ return array(
 			array(
 				'h2' => 'How AI helps warehouse teams',
 				'p'  => array(
-					'AI agents in DotOne ERP analyse warehouse movements and highlight improvements that are hard to see day to day.',
+					'AI agents in DotOne analyse warehouse movements and highlight improvements that are hard to see day to day.',
 				),
 				'list' => array(
 					'Slotting suggestions: recommends moving fast-moving items closer to dispatch and slow-moving items to remote racks.',
@@ -1918,7 +1918,7 @@ return array(
 		),
 		'faq'       => array(
 			array( 'What is warehouse management software?', 'Warehouse management software controls where stock is stored inside a warehouse and how it moves. It manages bins, putaway, picking, packing and counting, usually with barcode or QR scanning. In an ERP, it works with inventory, purchase, sales and production so stock records stay accurate at location level.' ),
-			array( 'What is the difference between inventory management and a WMS?', 'Inventory management tracks quantity and value of stock by item and store. A warehouse management system adds detail inside the store: exact bin, pallet or roll location, guided putaway and picking, and scan-confirmed movements. DotOne ERP provides both, so you can add WMS features where needed.' ),
+			array( 'What is the difference between inventory management and a WMS?', 'Inventory management tracks quantity and value of stock by item and store. A warehouse management system adds detail inside the store: exact bin, pallet or roll location, guided putaway and picking, and scan-confirmed movements. DotOne provides both, so you can add WMS features where needed.' ),
 			array( 'Do we need special scanners?', 'Not necessarily. Many tasks can be done on ordinary Android smartphones using the DotOne mobile app camera. For high-volume warehouses, rugged handheld scanners are faster and more durable. We help you decide based on volume, environment and budget during implementation, and both can be used together.' ),
 			array( 'Can the system enforce FIFO or FEFO?', 'Yes. Picking rules are configured per item group. The system proposes the oldest batch for FIFO, or the batch with the earliest expiry for FEFO, and blocks scanning of a different batch unless an authorised user overrides it with a recorded reason.' ),
 			array( 'Can it track rolls, coils or sheets individually?', 'Yes. Each roll, coil, bundle or pallet can carry its own label and identity, with attributes such as width, length, weight, thickness or grade. Partial issues and remnants are tracked, which suits tape, packaging, steel, laminate and plywood warehouses where items vary in size.' ),
@@ -1931,8 +1931,8 @@ return array(
 		'slug'      => 'bom-management-software',
 		'nav'       => 'BOM Management',
 		'title'     => 'BOM Management Software for Manufacturers',
-		'seo_title' => 'BOM Management Software for Manufacturing | DotOne ERP',
-		'meta'      => 'BOM management software in DotOne ERP: multi-level bills of materials, routings, revisions, alternates, scrap factors and BOM costing linked to MRP and stock.',
+		'seo_title' => 'BOM Management Software for Manufacturing | DotOne',
+		'meta'      => 'BOM management software in DotOne: multi-level bills of materials, routings, revisions, alternates, scrap factors and BOM costing linked to MRP and stock.',
 		'focus'     => 'bom management software',
 		'keywords'  => array(
 			'bom management software',
@@ -1983,7 +1983,7 @@ return array(
 		),
 		'eyebrow'   => 'BOM Module',
 		'highlight' => 'BOM Management',
-		'intro'     => 'Your bill of materials is the recipe for every product and every cost. DotOne ERP keeps multi-level BOMs, routings and revisions accurate and connected to MRP, stock and costing.',
+		'intro'     => 'Your bill of materials is the recipe for every product and every cost. DotOne keeps multi-level BOMs, routings and revisions accurate and connected to MRP, stock and costing.',
 		'points'    => array(
 			'Multi-level BOMs with routings, scrap and yield',
 			'Revision control with approval and effective dates',
@@ -1995,13 +1995,13 @@ return array(
 				'h2' => 'Why BOM management software matters',
 				'p'  => array(
 					'A bill of materials lists everything needed to make a product: raw materials, components, sub-assemblies, packing material and the quantities of each. BOM management software keeps those lists accurate, controls changes to them and makes them available to every function that depends on them. In a manufacturing ERP, almost everything depends on them.',
-					'Material planning uses the BOM to calculate what to buy. The store uses it to issue material against production orders. Costing uses it to calculate product cost. Sales uses that cost for pricing. When BOMs live in spreadsheets or in an engineer head, each department works from a different version, and the result is shortages, excess stock and margins that nobody can explain. The BOM module in DotOne ERP gives every department the same, controlled definition of each product.',
+					'Material planning uses the BOM to calculate what to buy. The store uses it to issue material against production orders. Costing uses it to calculate product cost. Sales uses that cost for pricing. When BOMs live in spreadsheets or in an engineer head, each department works from a different version, and the result is shortages, excess stock and margins that nobody can explain. The BOM module in DotOne gives every department the same, controlled definition of each product.',
 				),
 			),
 			array(
 				'h2' => 'Types of BOM supported',
 				'p'  => array(
-					'Manufacturers structure products differently, and a BOM system has to reflect that. Assembly businesses have deep trees of parts and sub-assemblies; process businesses have formulas measured in kilograms or litres with yields and losses. DotOne ERP supports both styles and the hybrid forms most Indian factories actually use.',
+					'Manufacturers structure products differently, and a BOM system has to reflect that. Assembly businesses have deep trees of parts and sub-assemblies; process businesses have formulas measured in kilograms or litres with yields and losses. DotOne supports both styles and the hybrid forms most Indian factories actually use.',
 				),
 				'list' => array(
 					'Multi-level BOMs: finished product built from sub-assemblies, each with its own BOM, exploded to any depth.',
@@ -2027,7 +2027,7 @@ return array(
 				'h2' => 'Scrap, yield and real consumption',
 				'p'  => array(
 					'Theoretical BOM quantities rarely match what is actually consumed. Cutting sheets produces offcuts, coating loses solvent, moulding produces runners and rejects, and stitching wastes thread. If the BOM ignores these losses, MRP under-plans material and costing under-states cost.',
-					'DotOne ERP lets you define scrap percentage per component, process loss per operation and overall yield for formula-based products. Consumption recorded against production orders is compared with BOM standards, and material consumption variance reports show where losses exceed expectations. Over time these comparisons help you set realistic standards and identify processes that need attention.',
+					'DotOne lets you define scrap percentage per component, process loss per operation and overall yield for formula-based products. Consumption recorded against production orders is compared with BOM standards, and material consumption variance reports show where losses exceed expectations. Over time these comparisons help you set realistic standards and identify processes that need attention.',
 				),
 				'list' => array(
 					'Component scrap factor added to planned requirement.',
@@ -2060,7 +2060,7 @@ return array(
 			array(
 				'h2' => 'How AI assists with BOM management',
 				'p'  => array(
-					'Maintaining hundreds of BOMs accurately is tedious work. AI agents in DotOne ERP help engineering and costing teams keep them reliable.',
+					'Maintaining hundreds of BOMs accurately is tedious work. AI agents in DotOne help engineering and costing teams keep them reliable.',
 				),
 				'list' => array(
 					'Variance-based suggestions: highlights components whose actual consumption consistently differs from the BOM standard and proposes revised quantities for review.',
@@ -2099,7 +2099,7 @@ return array(
 			array( 'What is a multi-level BOM?', 'A multi-level BOM describes a product built from sub-assemblies that have their own BOMs. For example, a finished product may contain a frame assembly, which itself contains cut parts and fasteners. The ERP explodes all levels to calculate total material requirements and roll up costs accurately.' ),
 			array( 'How are BOM changes controlled?', 'BOM changes are made as new revisions with an engineering change request, approval and effective date. Open production orders keep their original revision unless updated deliberately. A comparison report shows what changed, so purchase, stores and quality can prepare before the new revision is used.' ),
 			array( 'Can the BOM include scrap and wastage?', 'Yes. You can set a scrap percentage for each component, a process loss for each operation and a yield for formula-based products. These factors are used in MRP and costing, and actual consumption is compared with them to highlight processes where losses are higher than expected.' ),
-			array( 'Does DotOne ERP support formula-based BOMs for process industries?', 'Yes. Formula BOMs define ingredients by quantity or percentage for a standard batch size with expected yield. When a production batch of a different size is planned, quantities scale automatically. This suits chemicals, adhesives, coatings, food and similar process manufacturing businesses.' ),
+			array( 'Does DotOne support formula-based BOMs for process industries?', 'Yes. Formula BOMs define ingredients by quantity or percentage for a standard batch size with expected yield. When a production batch of a different size is planned, quantities scale automatically. This suits chemicals, adhesives, coatings, food and similar process manufacturing businesses.' ),
 			array( 'Can we import BOMs from Excel or CAD?', 'Yes. We import BOMs from spreadsheets and, where your design tool can export structured data, from CAD or PLM exports. Item codes and units are mapped during import, and validation checks catch missing items or inconsistent quantities before the BOMs are activated for planning.' ),
 			array( 'How does BOM costing work?', 'The ERP takes the current cost of each component, applies quantities and scrap factors through every level, and adds operation costs from routings. The result is a rolled-up product cost that updates when input prices change, supporting pricing and margin decisions with current data.' ),
 		),
@@ -2109,8 +2109,8 @@ return array(
 		'slug'      => 'costing-software',
 		'nav'       => 'Costing',
 		'title'     => 'Costing Software for Job, Batch and Product Costing',
-		'seo_title' => 'Manufacturing Costing Software in India | DotOne ERP',
-		'meta'      => 'Costing software in DotOne ERP for job, batch, process and product costing: actual versus standard cost, overhead absorption and margin reports for factories.',
+		'seo_title' => 'Manufacturing Costing Software in India | DotOne',
+		'meta'      => 'Costing software in DotOne for job, batch, process and product costing: actual versus standard cost, overhead absorption and margin reports for factories.',
 		'focus'     => 'costing software',
 		'keywords'  => array(
 			'costing software',
@@ -2161,7 +2161,7 @@ return array(
 		),
 		'eyebrow'   => 'Costing Module',
 		'highlight' => 'Job, Batch and Product Costing',
-		'intro'     => 'Know what each order, batch and product really costs. DotOne ERP builds costs from actual material, labour, machine time and overheads recorded in daily operations.',
+		'intro'     => 'Know what each order, batch and product really costs. DotOne builds costs from actual material, labour, machine time and overheads recorded in daily operations.',
 		'points'    => array(
 			'Job, batch, process and standard costing',
 			'Actual versus standard with variance analysis',
@@ -2173,7 +2173,7 @@ return array(
 				'h2' => 'Why costing software matters for manufacturers',
 				'p'  => array(
 					'Costing software tells you what it actually costs to make each product, fulfil each order and serve each customer. Many manufacturers price from an old cost sheet built in a spreadsheet, updated only when someone has time. Meanwhile raw material prices move, yields drift, power tariffs change and labour costs rise. The cost sheet says the product is profitable long after it has stopped being so.',
-					'The costing module in DotOne ERP draws on data already captured in operations: material issued from stores, output and scrap recorded on job cards, labour hours from HR, machine time from production and expenses from accounts. Instead of estimating cost periodically, you see it built up order by order and batch by batch.',
+					'The costing module in DotOne draws on data already captured in operations: material issued from stores, output and scrap recorded on job cards, labour hours from HR, machine time from production and expenses from accounts. Instead of estimating cost periodically, you see it built up order by order and batch by batch.',
 				),
 			),
 			array(
@@ -2243,7 +2243,7 @@ return array(
 			array(
 				'h2' => 'How AI helps with cost analysis',
 				'p'  => array(
-					'Costing data is detailed, and patterns are easy to miss. AI agents in DotOne ERP review cost data continuously and summarise what needs attention.',
+					'Costing data is detailed, and patterns are easy to miss. AI agents in DotOne review cost data continuously and summarise what needs attention.',
 				),
 				'list' => array(
 					'Margin alerts: flags orders or products where margin has dropped below a threshold you set.',
@@ -2301,7 +2301,7 @@ return array(
 		'slug'      => 'erp-reporting-analytics',
 		'nav'       => 'Reporting & Analytics',
 		'title'     => 'ERP Reporting and Analytics: MIS, Dashboards, BI',
-		'seo_title' => 'ERP Reporting & Analytics, MIS Dashboards | DotOne ERP',
+		'seo_title' => 'ERP Reporting & Analytics, MIS Dashboards | DotOne',
 		'meta'      => 'ERP reporting and analytics in DotOne: MIS reports, live dashboards, drill-down BI and an AI reporting agent that answers business questions in plain English.',
 		'focus'     => 'erp reporting and analytics',
 		'keywords'  => array(
@@ -2353,7 +2353,7 @@ return array(
 		),
 		'eyebrow'   => 'Analytics Module',
 		'highlight' => 'MIS, Dashboards, BI',
-		'intro'     => 'Stop waiting for month-end to know how the business is doing. DotOne ERP turns live transactions into MIS reports, dashboards and plain-English answers from an AI agent.',
+		'intro'     => 'Stop waiting for month-end to know how the business is doing. DotOne turns live transactions into MIS reports, dashboards and plain-English answers from an AI agent.',
 		'points'    => array(
 			'Role-based dashboards for owners, managers and teams',
 			'Drill down from any number to the transactions behind it',
@@ -2365,7 +2365,7 @@ return array(
 				'h2' => 'What ERP reporting and analytics should deliver',
 				'p'  => array(
 					'ERP reporting and analytics turn the thousands of transactions recorded every day into information people can act on. In many MSMEs, reporting means someone exporting data to Excel, cleaning it, building pivot tables and emailing a file that is out of date by the time it is opened. Different departments produce different figures for the same measure, and meetings start with arguments about whose number is right.',
-					'DotOne ERP takes a different approach. Because sales, purchase, inventory, production, HR and accounts share one database, reports draw on the same live data. A sales figure on the owner dashboard matches the sales register, the receivables report and the GST return. The question shifts from whether the number is right to what to do about it.',
+					'DotOne takes a different approach. Because sales, purchase, inventory, production, HR and accounts share one database, reports draw on the same live data. A sales figure on the owner dashboard matches the sales register, the receivables report and the GST return. The question shifts from whether the number is right to what to do about it.',
 				),
 			),
 			array(
@@ -2397,7 +2397,7 @@ return array(
 			array(
 				'h2' => 'Dashboards for every role',
 				'p'  => array(
-					'Dashboards present a small number of important measures visually so people can see at a glance what needs attention. In DotOne ERP dashboards are role-based: each user sees the measures relevant to their responsibilities and the locations they are permitted to view.',
+					'Dashboards present a small number of important measures visually so people can see at a glance what needs attention. In DotOne dashboards are role-based: each user sees the measures relevant to their responsibilities and the locations they are permitted to view.',
 				),
 				'h3' => array(
 					array( 'Owner and director dashboard', 'Sales, margin, cash, receivables, production output and key alerts across companies and plants, with comparison to the previous period and budget.' ),
@@ -2412,7 +2412,7 @@ return array(
 			array(
 				'h2' => 'Drill-down analysis and custom reports',
 				'p'  => array(
-					'A dashboard number is only the start of a conversation. Every figure in DotOne ERP can be drilled into: from monthly sales to sales by customer, to a single customer orders, to an individual invoice. This makes it easy to find out why a number changed rather than just noticing that it did.',
+					'A dashboard number is only the start of a conversation. Every figure in DotOne can be drilled into: from monthly sales to sales by customer, to a single customer orders, to an individual invoice. This makes it easy to find out why a number changed rather than just noticing that it did.',
 					'When the standard library does not cover a need, custom reports can be built with the report designer or created by our team. Reports can be saved, shared with other users and scheduled for automatic delivery by email at a set time, so key people receive the information without logging in.',
 				),
 				'list' => array(
@@ -2425,7 +2425,7 @@ return array(
 			array(
 				'h2' => 'The AI Reporting agent: ask questions in plain English',
 				'p'  => array(
-					'Not everyone wants to learn a report designer. The Reporting AI agent in DotOne ERP lets users ask questions in ordinary language, such as which customers have overdue payments above a certain amount, how this month dispatches compare with last month by product group, or which items have not moved in six months. The agent queries the ERP data, respecting the user access rights, and returns an answer with a table or chart.',
+					'Not everyone wants to learn a report designer. The Reporting AI agent in DotOne lets users ask questions in ordinary language, such as which customers have overdue payments above a certain amount, how this month dispatches compare with last month by product group, or which items have not moved in six months. The agent queries the ERP data, respecting the user access rights, and returns an answer with a table or chart.',
 					'The agent can also produce narrative summaries: a short written explanation of what changed in sales or costs this week and the main reasons behind it. This is useful for owners who want a briefing rather than a spreadsheet. You can read more about this and other agents on our [[ai-agent-library|AI agent library]] page.',
 				),
 				'list' => array(
@@ -2438,7 +2438,7 @@ return array(
 			array(
 				'h2' => 'Exceptions and alerts instead of more reports',
 				'p'  => array(
-					'More reports do not always mean better decisions. Often the most valuable information is the exception: the order that will miss its date, the customer whose payments are slipping, the machine with rising downtime, the product whose margin has fallen. DotOne ERP supports alert rules that notify the right person when a condition is met.',
+					'More reports do not always mean better decisions. Often the most valuable information is the exception: the order that will miss its date, the customer whose payments are slipping, the machine with rising downtime, the product whose margin has fallen. DotOne supports alert rules that notify the right person when a condition is met.',
 					'AI agents extend this by detecting unusual patterns that no one thought to write a rule for, such as a sudden change in a vendor rejection rate or an unexpected drop in a regular customer orders. Alerts appear on dashboards and can be sent to email or mobile.',
 				),
 			),
@@ -2474,7 +2474,7 @@ return array(
 		'faq'       => array(
 			array( 'What reports does an ERP provide?', 'An ERP provides operational reports for each function, such as sales registers, stock summaries, production plan versus actual, vendor performance and payroll registers, along with financial statements and management MIS. Because all data is in one system, reports across departments use consistent figures and can be drilled into.' ),
 			array( 'What is an MIS report in ERP?', 'An MIS report summarises business performance across functions for management, typically covering sales, margin, production, inventory, receivables, payables and cash. In an ERP it is generated from recorded transactions, so it can be produced daily or monthly without manual compilation in spreadsheets.' ),
-			array( 'Can I build my own reports in DotOne ERP?', 'Yes. Users with the right access can create reports using filters, grouping and calculated fields, save them and share them with colleagues. For more complex needs, our team builds custom reports. The AI Reporting agent can also create tables and charts from plain-language questions.' ),
+			array( 'Can I build my own reports in DotOne?', 'Yes. Users with the right access can create reports using filters, grouping and calculated fields, save them and share them with colleagues. For more complex needs, our team builds custom reports. The AI Reporting agent can also create tables and charts from plain-language questions.' ),
 			array( 'How does the AI Reporting agent work?', 'You type a question in ordinary language, such as which customers are overdue by more than sixty days. The agent queries ERP data within your access rights and returns an answer as text, a table or a chart. You can ask follow-up questions or save the result as a report.' ),
 			array( 'Can dashboards be viewed on mobile?', 'Yes. Role-based dashboards are available on the DotOne mobile app, so owners and managers can check sales, production, cash and alerts from anywhere. Access rights apply on mobile in the same way as on desktop, so each person sees only permitted data.' ),
 			array( 'Can ERP data be connected to Power BI?', 'Yes. We can provide a secure connection or a reporting database that Power BI and similar tools can read. This lets analysts combine ERP data with other sources. For many MSMEs, built-in dashboards are enough, so we recommend external BI only where there is a clear need.' ),
@@ -2486,7 +2486,7 @@ return array(
 		'slug'      => 'mobile-erp-app',
 		'nav'       => 'Mobile ERP App',
 		'title'     => 'Mobile ERP App for Owners, Teams and Shop Floor',
-		'seo_title' => 'Mobile ERP App for Android & iOS | DotOne ERP',
+		'seo_title' => 'Mobile ERP App for Android & iOS | DotOne',
 		'meta'      => 'Mobile ERP app from DotOne: approvals, dashboards, geo-fenced attendance, field sales orders, barcode scanning and shop-floor entry on Android and iOS phones.',
 		'focus'     => 'mobile erp app',
 		'keywords'  => array(
@@ -2653,7 +2653,7 @@ return array(
 			array( 'Review usage', 'Adoption and data timeliness are reviewed and screens adjusted where needed.' ),
 		),
 		'faq'       => array(
-			array( 'Is the DotOne ERP mobile app available on Android and iOS?', 'Yes. The mobile app is available for Android and iOS devices. Many shop-floor and field users work on Android phones, so the app is designed to run well on mid-range devices, while owners and managers often use it on iPhones and tablets.' ),
+			array( 'Is the DotOne mobile app available on Android and iOS?', 'Yes. The mobile app is available for Android and iOS devices. Many shop-floor and field users work on Android phones, so the app is designed to run well on mid-range devices, while owners and managers often use it on iPhones and tablets.' ),
 			array( 'How does location-based attendance work on the app?', 'Employees mark in and out on their phone. The app records time and GPS location, and geo-fencing can restrict punches to approved sites. An optional selfie confirms identity. Attendance syncs to the ERP and is used directly in shift, overtime and payroll calculations.' ),
 			array( 'Can I approve purchase orders from my phone?', 'Yes. Pending approvals appear in the app with supporting details such as vendor, items, rates, last purchase price and quotation comparison. You can approve, reject or add comments, and the decision updates the ERP immediately so buyers can proceed without delay.' ),
 			array( 'Can the app work offline?', 'Selected functions such as attendance and some data entry can be configured to capture data offline and synchronise when the connection returns. Most functions need a connection because they check live stock, credit or approval status. We configure offline capture based on site conditions.' ),
@@ -2668,7 +2668,7 @@ return array(
 		'nav'       => 'Plant Maintenance',
 		'title'     => 'Plant Maintenance Software for Factories',
 		'seo_title' => 'Plant Maintenance Software (CMMS) for Factories | DotOne',
-		'meta'      => 'Plant maintenance software in DotOne ERP: machine register, preventive schedules, breakdown work orders, spares, MTBF and MTTR, with AI alerts for factories.',
+		'meta'      => 'Plant maintenance software in DotOne: machine register, preventive schedules, breakdown work orders, spares, MTBF and MTTR, with AI alerts for factories.',
 		'focus'     => 'plant maintenance software',
 		'keywords'  => array(
 			'plant maintenance software',
@@ -2719,7 +2719,7 @@ return array(
 		),
 		'eyebrow'   => 'Maintenance Module',
 		'highlight' => 'Plant Maintenance',
-		'intro'     => 'Keep machines running and stop firefighting. DotOne ERP schedules preventive maintenance, manages breakdown work orders and spares, and tracks machine history and downtime.',
+		'intro'     => 'Keep machines running and stop firefighting. DotOne schedules preventive maintenance, manages breakdown work orders and spares, and tracks machine history and downtime.',
 		'points'    => array(
 			'Preventive schedules by date, hours or output',
 			'Breakdown requests and work orders from mobile',
@@ -2731,7 +2731,7 @@ return array(
 				'h2' => 'Why plant maintenance software matters',
 				'p'  => array(
 					'Plant maintenance software helps a factory keep machines, utilities and tools in working condition through planned care rather than emergency repair. In many MSMEs, maintenance is reactive: a machine breaks, the operator calls the fitter, the fitter looks for a spare, and production waits. History lives in the maintenance supervisor memory or in a register nobody reads.',
-					'The maintenance module in DotOne ERP turns this into a managed process. Machines are registered with their details, preventive schedules generate tasks automatically, breakdowns are logged as work orders, spares are drawn from inventory and every intervention is added to the machine history. Over time this history shows which machines cost the most, fail most often and need replacement or redesign.',
+					'The maintenance module in DotOne turns this into a managed process. Machines are registered with their details, preventive schedules generate tasks automatically, breakdowns are logged as work orders, spares are drawn from inventory and every intervention is added to the machine history. Over time this history shows which machines cost the most, fail most often and need replacement or redesign.',
 					'This matters most in continuous or heavily loaded plants, such as hot presses, coating lines, extruders and moulding machines, where an unplanned stop affects every downstream process and often creates scrap as well as lost time. Planned maintenance lets the plant choose when to stop rather than letting the machine decide.',
 				),
 			),
@@ -2785,7 +2785,7 @@ return array(
 			array(
 				'h2' => 'Maintenance KPIs and reports',
 				'p'  => array(
-					'Maintenance performance is measured through a few well-understood indicators. Because DotOne ERP records each breakdown with start and end times, these can be calculated directly from transactions.',
+					'Maintenance performance is measured through a few well-understood indicators. Because DotOne records each breakdown with start and end times, these can be calculated directly from transactions.',
 				),
 				'list' => array(
 					'MTBF (mean time between failures) per machine and line.',
@@ -2803,7 +2803,7 @@ return array(
 				'h2' => 'Machine monitoring and AI-driven maintenance',
 				'p'  => array(
 					'Where machines have controllers or can be fitted with sensors, we can integrate signals such as running status, cycle counts, temperature, vibration or current draw into the ERP. Running hours then update automatically for hour-based schedules, and abnormal readings can raise alerts before a failure occurs.',
-					'AI agents in DotOne ERP analyse breakdown history, readings and production data to identify patterns, such as a machine whose failures increase after a certain number of hours or a component that fails more often with one supplier. Predictive maintenance of this kind depends on data quality and sensor availability, so we assess each plant before recommending it. See our [[ai-powered-erp|AI-powered ERP]] page for the broader approach.',
+					'AI agents in DotOne analyse breakdown history, readings and production data to identify patterns, such as a machine whose failures increase after a certain number of hours or a component that fails more often with one supplier. Predictive maintenance of this kind depends on data quality and sensor availability, so we assess each plant before recommending it. See our [[ai-powered-erp|AI-powered ERP]] page for the broader approach.',
 				),
 				'list' => array(
 					'Alerts when readings drift outside normal ranges.',
@@ -2847,7 +2847,7 @@ return array(
 			array( 'How are breakdowns reported?', 'Operators or supervisors raise a breakdown request on the mobile app, selecting the machine and adding a description and photos. The maintenance team is notified, assigns a technician and records actions, spares and time. Downtime is calculated from request to closure automatically.' ),
 			array( 'Does the system calculate MTBF and MTTR?', 'Yes. Because every breakdown is recorded with start and end times, the ERP calculates mean time between failures and mean time to repair per machine, line and failure type. These measures help prioritise improvement work and support repair or replace decisions.' ),
 			array( 'Can it manage moulds, dies and tools?', 'Yes. Moulds, dies, press plates and cutting tools can be tracked as maintainable items with shot counts, strokes or usage hours. When usage reaches the defined limit, the system triggers refurbishment or replacement tasks, reducing quality problems caused by worn tooling.' ),
-			array( 'Is predictive maintenance possible with DotOne ERP?', 'It can be, where machines provide reliable signals or can be fitted with sensors. We integrate readings into the ERP and AI agents analyse them with breakdown history to flag early warning signs. We assess data availability before recommending predictive maintenance for any machine.' ),
+			array( 'Is predictive maintenance possible with DotOne?', 'It can be, where machines provide reliable signals or can be fitted with sensors. We integrate readings into the ERP and AI agents analyse them with breakdown history to flag early warning signs. We assess data availability before recommending predictive maintenance for any machine.' ),
 		),
 		'related'   => array( 'production-planning-software', 'inventory-management-software', 'quality-management-software', 'mobile-erp-app' ),
 	),
@@ -2855,8 +2855,8 @@ return array(
 		'slug'      => 'batch-traceability-software',
 		'nav'       => 'Batch Traceability',
 		'title'     => 'Batch Traceability Software: Lot Tracking End to End',
-		'seo_title' => 'Batch Traceability & Lot Tracking Software | DotOne ERP',
-		'meta'      => 'Batch traceability software in DotOne ERP: lot numbers from supplier to customer, forward and backward trace, expiry, FEFO, recalls and genealogy reports.',
+		'seo_title' => 'Batch Traceability & Lot Tracking Software | DotOne',
+		'meta'      => 'Batch traceability software in DotOne: lot numbers from supplier to customer, forward and backward trace, expiry, FEFO, recalls and genealogy reports.',
 		'focus'     => 'batch traceability software',
 		'keywords'  => array(
 			'batch traceability software',
@@ -2907,7 +2907,7 @@ return array(
 		),
 		'eyebrow'   => 'Traceability',
 		'highlight' => 'Lot Tracking End to End',
-		'intro'     => 'Answer in minutes which supplier lot went into which batch and which customers received it. DotOne ERP records batch genealogy from receipt to dispatch automatically.',
+		'intro'     => 'Answer in minutes which supplier lot went into which batch and which customers received it. DotOne records batch genealogy from receipt to dispatch automatically.',
 		'points'    => array(
 			'Supplier lot to customer invoice in one trace',
 			'Expiry, FEFO, hold and release by batch',
@@ -2919,7 +2919,7 @@ return array(
 				'h2' => 'What batch traceability software does',
 				'p'  => array(
 					'Batch traceability software records the identity of every lot of material as it moves through your business: from the supplier lot received at the gate, through each production stage where lots are mixed, split or transformed, to the finished batches dispatched to customers. When something goes wrong, it lets you trace backwards to the cause and forwards to everything that may be affected.',
-					'Without a system, tracing a complaint means searching through goods receipt registers, batch cards, production logs and dispatch records, often on paper, and hoping they were filled in consistently. In DotOne ERP, batch identity is captured as part of normal transactions, so traceability is a by-product of everyday work rather than a separate documentation effort.',
+					'Without a system, tracing a complaint means searching through goods receipt registers, batch cards, production logs and dispatch records, often on paper, and hoping they were filled in consistently. In DotOne, batch identity is captured as part of normal transactions, so traceability is a by-product of everyday work rather than a separate documentation effort.',
 				),
 			),
 			array(
@@ -2989,7 +2989,7 @@ return array(
 			array(
 				'h2' => 'Using AI with traceability data',
 				'p'  => array(
-					'Traceability data is valuable beyond recalls. When quality results, production parameters and batch genealogy are stored together, patterns emerge. AI agents in DotOne ERP can analyse this data to suggest likely causes of quality issues, for example a rise in rejection linked to a particular supplier lot, raw material age or machine.',
+					'Traceability data is valuable beyond recalls. When quality results, production parameters and batch genealogy are stored together, patterns emerge. AI agents in DotOne can analyse this data to suggest likely causes of quality issues, for example a rise in rejection linked to a particular supplier lot, raw material age or machine.',
 				),
 				'list' => array(
 					'Complaint analysis: links complaints to common input lots, shifts or machines.',

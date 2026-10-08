@@ -73,7 +73,7 @@ return array(
 				'p'  => array(
 					'Most Indian manufacturers begin with an accounting package for invoices and a set of Excel sheets for everything else: the production plan, the stock register, the job work challan list, the rejection log. It works while the owner can hold the whole factory in his head. It breaks the day order volumes rise, a second shift starts or a second plant opens. That is usually the point at which manufacturing ERP software becomes necessary rather than optional.',
 					'Manufacturing ERP software replaces those disconnected records with one database. A sales order creates a demand, the bill of materials explodes that demand into raw material and sub-assembly requirements, purchase sees the shortfall, the store issues against a work order, the shop floor reports output and scrap, quality clears the lot, and finance sees the cost. Each department works in its own screen, but everyone reads the same numbers.',
-					'DotOne ERP is the platform we implement for this. It is built for Indian MSMEs, so GST, e-invoice, e-way bill, job work under section 143 and multi-unit stock handling are part of the core rather than add-ons. If you are new to the idea, our guide on [[what-is-erp|what an ERP system is]] covers the basics.',
+					'DotOne is the platform we implement for this. It is built for Indian MSMEs, so GST, e-invoice, e-way bill, job work under section 143 and multi-unit stock handling are part of the core rather than add-ons. If you are new to the idea, our guide on [[what-is-erp|what an ERP system is]] covers the basics.',
 				),
 			),
 			array(
@@ -182,7 +182,7 @@ return array(
 			array( 'How is manufacturing ERP different from Tally?', 'Tally is primarily accounting software with inventory features. A manufacturing ERP adds BOMs, routings, work orders, MRP, shop floor reporting, job work reconciliation, quality checks and order-wise costing. Many factories keep their accounting data and migrate to an ERP that covers both operations and finance in one place.' ),
 			array( 'Can the ERP handle job work and ITC-04?', 'Yes. Material sent to a job worker is held as stock at that vendor location, returns are matched against the outward challan with allowed process loss, and the outward and inward details needed for ITC-04 reporting come from those same transactions.' ),
 			array( 'How long does a manufacturing ERP implementation take?', 'It depends on the number of plants, products and modules, and on how clean your masters are. We work in phases, starting with the modules that remove the most manual effort, and run a pilot on live orders before full go-live, so the timeline is agreed after the process study.' ),
-			array( 'Does DotOne ERP support batch and serial tracking?', 'Yes. Items can be tracked by batch or lot with manufacturing and expiry dates, or by serial number for assembled products. Batch genealogy links finished goods back to raw material lots, which helps in complaint investigation, customer audits and recall. Both methods can be used in the same company for different item groups.' ),
+			array( 'Does DotOne support batch and serial tracking?', 'Yes. Items can be tracked by batch or lot with manufacturing and expiry dates, or by serial number for assembled products. Batch genealogy links finished goods back to raw material lots, which helps in complaint investigation, customer audits and recall. Both methods can be used in the same company for different item groups.' ),
 			array( 'Can the ERP be customised for our industry?', 'Yes. DotOne is designed as an industry-specific ERP, and we configure fields, documents, workflows and reports for your process. Where something is unique to your plant, we build it as a custom screen or report rather than asking you to change how the factory works.' ),
 		),
 		'related'   => array( 'production-planning-software', 'bom-management-software', 'costing-software', 'msme-erp-software' ),
@@ -255,7 +255,7 @@ return array(
 				'h2' => 'Why plywood factories need dedicated plywood ERP software',
 				'p'  => array(
 					'A plywood unit looks simple from the outside: veneer goes in, boards come out. Inside, it is one of the hardest products to keep accurate records for. Timber and veneer are bought by volume, glue by weight, finished boards are sold by the sheet but priced per square foot, and every thickness and grade is a separate item. Add face veneer that varies by species and quality, a hot press that sets the pace of the factory, and grading that only happens after pressing, and a generic accounting system cannot keep up. This is where plywood ERP software earns its place.',
-					'Plywood ERP software is built around this reality. It knows that an 8x4 board in 18 mm is not the same item as an 8x4 in 19 mm, that a core veneer stock in CBM has to convert into the number of plies a press load needs, and that a board graded down after sanding changes both stock value and the margin on the order. DotOne ERP, which we implement for plywood, blockboard and flush door units, holds all of this in one system so that the owner, the production manager and the accountant read the same numbers.',
+					'Plywood ERP software is built around this reality. It knows that an 8x4 board in 18 mm is not the same item as an 8x4 in 19 mm, that a core veneer stock in CBM has to convert into the number of plies a press load needs, and that a board graded down after sanding changes both stock value and the margin on the order. DotOne, which we implement for plywood, blockboard and flush door units, holds all of this in one system so that the owner, the production manager and the accountant read the same numbers.',
 				),
 			),
 			array(
@@ -297,7 +297,7 @@ return array(
 			array(
 				'h2' => 'Plywood costing by thickness, grade and brand',
 				'p'  => array(
-					'Plywood margins are thin and highly sensitive to veneer prices and glue consumption. A rough average cost per sheet hides the fact that some thicknesses or grades may be losing money. In DotOne ERP, cost is built from actual consumption: face and back veneer, core plies, glue, press and sanding time, labour and power, with downgrade and rejection loss added on top.',
+					'Plywood margins are thin and highly sensitive to veneer prices and glue consumption. A rough average cost per sheet hides the fact that some thicknesses or grades may be losing money. In DotOne, cost is built from actual consumption: face and back veneer, core plies, glue, press and sanding time, labour and power, with downgrade and rejection loss added on top.',
 					'Management can then see cost per sheet and cost per sq ft for each thickness and grade, and compare it with the realised price after dealer discounts and schemes. When veneer rates move, the estimated cost for future orders updates from the latest purchase rates. For units that run several brands or private labels from the same press line, costing can be split by brand. The approach is explained further on our [[costing-software|costing software]] page.',
 				),
 			),
@@ -427,7 +427,7 @@ return array(
 				'h2' => 'The problem with tracking tape in rolls and kilograms',
 				'p'  => array(
 					'Adhesive tape is sold as a finished roll, but it is manufactured as area. A coating line converts a film or paper web plus a measured coat of adhesive into a jumbo roll that may be more than a metre wide and thousands of metres long. That jumbo is rewound into log rolls on cores, and the logs are slit into finished rolls of a fixed width and length. At each step the unit of measure changes, and at each step a little material is lost. Adhesive tape ERP software is designed to follow each of these steps.',
-					'When this is tracked in a register or a spreadsheet, it is almost impossible to reconcile. The store issues film in kilograms, production reports jumbos in metres, packing counts rolls and cartons, and the accountant values stock at an average rate. Adhesive tape ERP software solves this by holding every roll as a traceable item with width, length, area and weight, and by booking each conversion with its waste. DotOne ERP, which we configure for tape and coating units, does this from the raw material receipt to the carton on the truck.',
+					'When this is tracked in a register or a spreadsheet, it is almost impossible to reconcile. The store issues film in kilograms, production reports jumbos in metres, packing counts rolls and cartons, and the accountant values stock at an average rate. Adhesive tape ERP software solves this by holding every roll as a traceable item with width, length, area and weight, and by booking each conversion with its waste. DotOne, which we configure for tape and coating units, does this from the raw material receipt to the carton on the truck.',
 				),
 			),
 			array(
@@ -482,7 +482,7 @@ return array(
 			array(
 				'h2' => 'Costing tape per sq m and per roll',
 				'p'  => array(
-					'In DotOne ERP, cost is built up in the same order as production. The jumbo carries the cost of film, adhesive at actual GSM, liner, release coating, power and coating line time, plus its share of start-up waste. The log adds core and rewinding cost. The finished roll adds slitting time, its share of edge trim, and packing.',
+					'In DotOne, cost is built up in the same order as production. The jumbo carries the cost of film, adhesive at actual GSM, liner, release coating, power and coating line time, plus its share of start-up waste. The log adds core and rewinding cost. The finished roll adds slitting time, its share of edge trim, and packing.',
 					'The result is a cost per sq m for each product type and a cost per roll for each width and length. Management can compare this with the price per roll realised from each customer or distributor and see which sizes and grades actually earn money. For quotations, the same structure gives a quick estimate when a customer asks for a non-standard width, length or print.',
 				),
 			),
@@ -506,7 +506,7 @@ return array(
 					'Trace a finished roll back to its jumbo, film and adhesive batch.',
 				),
 				'p2' => array(
-					'A system that cannot do these will push the real work back into spreadsheets. We are happy to run your own product through DotOne ERP as part of a process study.',
+					'A system that cannot do these will push the real work back into spreadsheets. We are happy to run your own product through DotOne as part of a process study.',
 				),
 			),
 		),
@@ -604,7 +604,7 @@ return array(
 				'h2' => 'Why shoe makers need dedicated footwear ERP software',
 				'p'  => array(
 					'A footwear range is a matrix, not a list. One article may come in four colours and eight sizes, which is already thirty-two stock items before you consider width fittings or sole variants. Orders arrive as size sets or assortments, production is planned in pairs, materials are consumed in sq ft, metres and pieces, and finished goods are packed in cartons with a fixed size ratio. A general ERP that treats each size as an unrelated item makes this unmanageable, which is the problem footwear ERP software is designed to solve.',
-					'Footwear ERP software handles the article, colour and size matrix as one structure. A sales order for an assortment explodes into pairs per size, the BOM scales components such as soles and insoles by size, and stock reports show a size grid at a glance. DotOne ERP, which we configure for shoe, sandal, slipper and chappal makers, uses this matrix everywhere: in planning, job work, packing, invoicing and dealer sales.',
+					'Footwear ERP software handles the article, colour and size matrix as one structure. A sales order for an assortment explodes into pairs per size, the BOM scales components such as soles and insoles by size, and stock reports show a size grid at a glance. DotOne, which we configure for shoe, sandal, slipper and chappal makers, uses this matrix everywhere: in planning, job work, packing, invoicing and dealer sales.',
 				),
 			),
 			array(
@@ -654,7 +654,7 @@ return array(
 			array(
 				'h2' => 'Cost per pair and margin by article',
 				'p'  => array(
-					'Small changes in leather yield, sole price or karigar rate move the cost per pair noticeably, and footwear margins depend on getting it right. DotOne ERP builds cost per pair from actual material consumption, job work rates, in-house labour, overheads and packing, with rejection loss included.',
+					'Small changes in leather yield, sole price or karigar rate move the cost per pair noticeably, and footwear margins depend on getting it right. DotOne builds cost per pair from actual material consumption, job work rates, in-house labour, overheads and packing, with rejection loss included.',
 					'Rejection is part of this picture. Common footwear defects include bond failure between upper and sole, stitching faults, colour or shade mismatch between left and right shoes, wrinkles from poor lasting and sole flash. When these are recorded with a reason code at the stage where they are found, the cost of rework and rejected pairs can be assigned to the article, the department or the fabricator responsible, instead of being absorbed into a general wastage figure that nobody owns.',
 					'Management can compare cost against wholesale price, distributor price and MRP for each article. Articles that sell well but earn little become visible, and new articles can be costed from their sample BOM before they are launched. Sample development itself can be tracked as a project, with sample pairs, revisions and approval status recorded against the buyer.',
 				),
@@ -778,7 +778,7 @@ return array(
 				'h2' => 'Why a laminate plant needs laminate ERP software',
 				'p'  => array(
 					'A decorative laminate business manages two very different problems at once. Upstream, it is a chemical and paper process: cooking phenolic and melamine resins, impregnating kraft and decor paper, and controlling resin content and volatiles. Downstream, it is a catalogue business: hundreds or thousands of designs, each in several finishes and thicknesses, sold through dealers who expect a specific design number in stock today. Laminate ERP software has to serve both sides.',
-					'Registers and spreadsheets cannot hold both views together. The impregnation supervisor tracks paper in kilograms and metres, the press hall counts books and sheets, and sales looks for design 1234 in suede finish at 1 mm. Laminate ERP software connects these, so that a dealer order for a design and finish can be checked against finished stock, pressed sheets awaiting grading, impregnated decor in stock and decor paper on order. DotOne ERP is the system we configure for HPL, compact and pre-laminated board manufacturers.',
+					'Registers and spreadsheets cannot hold both views together. The impregnation supervisor tracks paper in kilograms and metres, the press hall counts books and sheets, and sales looks for design 1234 in suede finish at 1 mm. Laminate ERP software connects these, so that a dealer order for a design and finish can be checked against finished stock, pressed sheets awaiting grading, impregnated decor in stock and decor paper on order. DotOne is the system we configure for HPL, compact and pre-laminated board manufacturers.',
 				),
 			),
 			array(
@@ -830,7 +830,7 @@ return array(
 				'h2' => 'Costing a laminate sheet',
 				'p'  => array(
 					'Cost per sheet depends on the decor paper price for that design, the number and GSM of kraft layers for the thickness, actual resin pick-up, press time, energy and the grade achieved. A premium design with imported decor and a gloss finish has a very different cost from a solid colour in suede.',
-					'DotOne ERP builds this cost from actual data: impregnation consumption, books pressed and good sheets graded. Reports show cost per sheet and per sq ft by design group, finish and thickness, and margin after dealer discounts. More on the methods is on our [[costing-software|costing software]] page.',
+					'DotOne builds this cost from actual data: impregnation consumption, books pressed and good sheets graded. Reports show cost per sheet and per sq ft by design group, finish and thickness, and margin after dealer discounts. More on the methods is on our [[costing-software|costing software]] page.',
 				),
 			),
 			array(
@@ -944,7 +944,7 @@ return array(
 				'h2' => 'Why aluminium composite panel makers need ACP ERP software',
 				'p'  => array(
 					'Aluminium composite panel manufacturing combines metal coating, polymer extrusion and continuous lamination in one plant. Material enters as aluminium coils weighed in kilograms, paint in litres, and polyethylene or fire-retardant core compound in bags. It leaves as panels counted in sheets but sold in sq ft or sq m, in dozens of shades, several sheet sizes, two or three thicknesses and different core grades. ACP ERP software is built to hold all of these together.',
-					'Keeping that straight in registers is hard, and the errors are expensive. A coil issued without its number, a shade code typed wrongly on an invoice, or a mixed batch delivered to a facade project can all lead to complaints that are difficult to resolve. ACP ERP software ties each sheet back to the coil, the paint batch and the lamination run it came from. DotOne ERP is the system we configure for ACP, aluminium sheet coating and related panel manufacturers.',
+					'Keeping that straight in registers is hard, and the errors are expensive. A coil issued without its number, a shade code typed wrongly on an invoice, or a mixed batch delivered to a facade project can all lead to complaints that are difficult to resolve. ACP ERP software ties each sheet back to the coil, the paint batch and the lamination run it came from. DotOne is the system we configure for ACP, aluminium sheet coating and related panel manufacturers.',
 				),
 			),
 			array(
@@ -1004,7 +1004,7 @@ return array(
 			array(
 				'h2' => 'Costing ACP per sq ft and per sheet',
 				'p'  => array(
-					'The cost of an ACP sheet is dominated by aluminium, followed by coating and core. Small differences in skin thickness, paint consumption or core weight change the margin noticeably. DotOne ERP builds cost from actual data: aluminium in kilograms converted to area, paint at actual consumption per sq m, core weight, adhesive film, protective film, line time, energy and packing, plus a share of trim and rejection.',
+					'The cost of an ACP sheet is dominated by aluminium, followed by coating and core. Small differences in skin thickness, paint consumption or core weight change the margin noticeably. DotOne builds cost from actual data: aluminium in kilograms converted to area, paint at actual consumption per sq m, core weight, adhesive film, protective film, line time, energy and packing, plus a share of trim and rejection.',
 					'Management sees cost per sq ft and per sheet by shade family, thickness and core type, and compares it with the realised price for distributors, fabricators and project customers. When aluminium prices move, estimated costs for open quotations update from current purchase rates. Our [[costing-software|costing software]] page explains the costing methods we set up.',
 				),
 			),
@@ -1116,7 +1116,7 @@ return array(
 				'h2' => 'Why metal businesses need weight-aware steel ERP software',
 				'p'  => array(
 					'Steel and metal businesses trade in weight but handle pieces. A coil arrives as one object with a weight on a tag, a weight on the weighbridge slip and a theoretical weight calculated from its dimensions. Once it is slit, cut, rolled, drawn or fabricated, it becomes strips, sheets, bars, tubes or components that are counted in numbers but valued per kilogram or per tonne. Every conversion has losses: end cuts, edge trim, scale, burning loss, pickling loss and rejected pieces. Steel ERP software is built around this dual reality.',
-					'The system has to hold both views at once. DotOne ERP, which we configure for steel processors, rolling and tube mills, fabricators, fastener and forging units and stockists, records quantity in pieces or metres and weight in kilograms or MT on every transaction. It tracks material by coil ID or heat number and keeps the mill test certificate attached, so that grade and chemistry are never separated from the steel itself.',
+					'The system has to hold both views at once. DotOne, which we configure for steel processors, rolling and tube mills, fabricators, fastener and forging units and stockists, records quantity in pieces or metres and weight in kilograms or MT on every transaction. It tracks material by coil ID or heat number and keeps the mill test certificate attached, so that grade and chemistry are never separated from the steel itself.',
 				),
 			),
 			array(
@@ -1166,7 +1166,7 @@ return array(
 			array(
 				'h2' => 'Costing steel per MT and per job',
 				'p'  => array(
-					'Steel prices move frequently, so costing has to keep up. DotOne ERP values material at actual purchase cost by coil or lot, or by your chosen valuation method, and adds processing cost per MT for each stage such as slitting, rolling or galvanising. Scrap realisation is credited back against the job.',
+					'Steel prices move frequently, so costing has to keep up. DotOne values material at actual purchase cost by coil or lot, or by your chosen valuation method, and adds processing cost per MT for each stage such as slitting, rolling or galvanising. Scrap realisation is credited back against the job.',
 					'For fabrication and engineered products, job costing compares estimated weight and hours from the quotation with actual consumption and time. Reports show margin per MT by customer, grade and product, which is what management needs when deciding which orders to chase. See [[costing-software|costing software]] for the methods we set up.',
 				),
 			),
@@ -1278,7 +1278,7 @@ return array(
 				'h2' => 'FMCG is a distribution business with a factory attached',
 				'p'  => array(
 					'For a fast-moving consumer goods brand, making the product is often the easier half. The harder half is getting the right SKU, in the right batch, at the right price, to thousands of retailers through super stockists and distributors, while running schemes that change every month and settling the claims that follow. A brand can be profitable at the factory gate and still lose money in the market through expired stock, unverified scheme claims and slow-moving SKUs sitting with distributors. FMCG ERP software has to manage both halves.',
-					'DotOne ERP, which we configure for food, personal care, home care and other consumer goods brands, connects recipe-based production and packing with distributor sales, scheme management and secondary sales visibility. The factory, the sales team and accounts see the same stock, batches and claims.',
+					'DotOne, which we configure for food, personal care, home care and other consumer goods brands, connects recipe-based production and packing with distributor sales, scheme management and secondary sales visibility. The factory, the sales team and accounts see the same stock, batches and claims.',
 				),
 			),
 			array(
@@ -1447,7 +1447,7 @@ return array(
 				'h2' => 'Why distributors move from billing software to distribution ERP software',
 				'p'  => array(
 					'A distribution or wholesale business earns a thin margin on high volume, and that margin is decided by details: the purchase rate and scheme from the principal, freight and unloading on inward, the discount given to each customer, stock lost to damage or expiry, and the days it takes to collect payment. Billing software records sales and purchases, but it rarely shows whether a particular brand, customer or salesperson is actually profitable after all of these. Distribution ERP software is built to show exactly that.',
-					'Distribution ERP software brings purchase, stock, sales, credit and collections into one place, with the commercial terms of each principal and customer built in. DotOne ERP, which we configure for distributors, stockists, C and F agents and traders, is designed for businesses that handle thousands of SKUs across several brands and godowns and need control without slowing down the counter or the dispatch bay.',
+					'Distribution ERP software brings purchase, stock, sales, credit and collections into one place, with the commercial terms of each principal and customer built in. DotOne, which we configure for distributors, stockists, C and F agents and traders, is designed for businesses that handle thousands of SKUs across several brands and godowns and need control without slowing down the counter or the dispatch bay.',
 				),
 			),
 			array(
@@ -1621,7 +1621,7 @@ return array(
 				'h2' => 'Why textile and garment units need textile ERP software',
 				'p'  => array(
 					'Textile and garment manufacturing is long, fragmented and full of conversions. Yarn bought in kilograms becomes grey fabric measured in metres or kilograms, which goes to a process house for dyeing or printing and returns shorter, lighter and in several shades. That fabric is cut into bundles of pieces by style, colour and size, stitched in-house or by a fabricator, sent for embroidery or washing, finished and packed in ratio packs. Somewhere in that chain, material is always lying with someone outside your factory. Textile ERP software is designed for exactly this kind of chain.',
-					'Keeping that chain visible is the job of the ERP. DotOne ERP, which we configure for weavers, knitters, processors, garment manufacturers and exporters, records every stage with its input, output and loss, holds job work stock at each vendor, and keeps style, colour and size intact from cutting to dispatch. The result is fabric and garment stock you can trust and a cost per metre or per piece built from actual data.',
+					'Keeping that chain visible is the job of the ERP. DotOne, which we configure for weavers, knitters, processors, garment manufacturers and exporters, records every stage with its input, output and loss, holds job work stock at each vendor, and keeps style, colour and size intact from cutting to dispatch. The result is fabric and garment stock you can trust and a cost per metre or per piece built from actual data.',
 				),
 			),
 			array(
@@ -1664,7 +1664,7 @@ return array(
 			array(
 				'h2' => 'Costing per metre and per piece',
 				'p'  => array(
-					'A garment cost sheet is usually made at the quotation stage and rarely checked afterwards. In DotOne ERP, the costing is compared with actuals: fabric consumption per piece from cutting, process loss from the process house, trims consumed, CMT or job work charges, washing and embroidery, packing and overheads. For fabric units, cost per metre includes yarn at actual consumption, weaving or knitting charges and processing loss.',
+					'A garment cost sheet is usually made at the quotation stage and rarely checked afterwards. In DotOne, the costing is compared with actuals: fabric consumption per piece from cutting, process loss from the process house, trims consumed, CMT or job work charges, washing and embroidery, packing and overheads. For fabric units, cost per metre includes yarn at actual consumption, weaving or knitting charges and processing loss.',
 					'The difference between costed and actual consumption is often where a garment order gains or loses its margin. Seeing it per order helps merchandisers quote more accurately next time. Our [[costing-software|costing software]] page has more on the costing approach.',
 				),
 			),
@@ -1779,7 +1779,7 @@ return array(
 				'h2' => 'Why packaging converters need packaging ERP software',
 				'p'  => array(
 					'Packaging is a make-to-order business with very little room for error. Almost every job is specific to one customer: a box of a particular size, ply and print, or a laminated pouch with the customer brand printed on it. Orders repeat, but each repeat has to match the previous supply exactly, often under pressure because the customer production line is waiting. Packaging ERP software keeps the specification, the materials and the cost of each job together so that this can happen reliably.',
-					'Packaging margins depend on material yield. Paper reels, films, inks and adhesives make up most of the cost, and trim, set-up waste and over-production can eat into a job before anyone notices. DotOne ERP, which we configure for corrugated box makers, monocarton and label printers, and flexible packaging converters, records consumption and waste against every job card so that the estimate made at enquiry can be checked against what really happened.',
+					'Packaging margins depend on material yield. Paper reels, films, inks and adhesives make up most of the cost, and trim, set-up waste and over-production can eat into a job before anyone notices. DotOne, which we configure for corrugated box makers, monocarton and label printers, and flexible packaging converters, records consumption and waste against every job card so that the estimate made at enquiry can be checked against what really happened.',
 				),
 			),
 			array(
@@ -1943,7 +1943,7 @@ return array(
 				'h2' => 'Why plastic processors need plastic ERP software',
 				'p'  => array(
 					'Plastic processing looks straightforward on paper: granules go into a machine and parts come out. In practice, a moulding or extrusion unit juggles several polymers and grades, colour masterbatches, regrind from its own scrap, dozens of moulds with different cavity counts and cycle times, and machines that switch between jobs several times a week. Plastic ERP software keeps material, moulds and machines in one system so that the plant knows what it consumed, what it produced and what it lost on every shift.',
-					'Polymer prices move often, and part weights of a few grams decide whether a job makes money. When consumption is estimated from a monthly stock count, the losses from heavy parts, high runner weight, excess rejection or unrecorded regrind stay hidden. DotOne ERP, which we configure for injection, blow and roto moulders and extrusion units, records these at the machine and turns them into usable cost and yield information.',
+					'Polymer prices move often, and part weights of a few grams decide whether a job makes money. When consumption is estimated from a monthly stock count, the losses from heavy parts, high runner weight, excess rejection or unrecorded regrind stay hidden. DotOne, which we configure for injection, blow and roto moulders and extrusion units, records these at the machine and turns them into usable cost and yield information.',
 				),
 			),
 			array(
@@ -1999,7 +1999,7 @@ return array(
 				'h2' => 'Costing a plastic part',
 				'p'  => array(
 					'Part cost in plastics is built from material cost and machine cost. Material cost depends on part weight plus its share of runner and rejection, at the current polymer and masterbatch prices, with credit for regrind reused. Machine cost depends on cycle time, cavities and the machine hour rate covering power, labour, mould depreciation and overheads.',
-					'DotOne ERP calculates standard cost from the mould master and actual cost from shift data. Because polymer prices change frequently, many processors agree price variation clauses with OEM customers. The ERP can show the effect of a polymer price change on part cost and support the price revision discussion with data. More on this is on our [[costing-software|costing software]] page.',
+					'DotOne calculates standard cost from the mould master and actual cost from shift data. Because polymer prices change frequently, many processors agree price variation clauses with OEM customers. The ERP can show the effect of a polymer price change on part cost and support the price revision discussion with data. More on this is on our [[costing-software|costing software]] page.',
 				),
 			),
 			array(
@@ -2110,7 +2110,7 @@ return array(
 				'h2' => 'Why process plants need chemical ERP software',
 				'p'  => array(
 					'Chemical manufacturing does not fit the assembly-line model that most business software is designed around. Raw materials arrive in tankers, drums, IBCs and bags, with purity that varies from lot to lot. Recipes scale with batch size, reactions yield more or less than planned, solvents are recovered and reused, and some batches produce useful by-products. Chemical ERP software is designed for this kind of batch process, where quantity alone does not describe the material.',
-					'DotOne ERP is the system we configure for specialty chemical, paint, adhesive, resin, agrochemical formulation, dyes and intermediates manufacturers and chemical traders. It holds stock by batch with its quality attributes, converts between kilograms, litres and active content, controls QC release and links every finished batch back to the raw material lots used in it.',
+					'DotOne is the system we configure for specialty chemical, paint, adhesive, resin, agrochemical formulation, dyes and intermediates manufacturers and chemical traders. It holds stock by batch with its quality attributes, converts between kilograms, litres and active content, controls QC release and links every finished batch back to the raw material lots used in it.',
 				),
 			),
 			array(
@@ -2165,7 +2165,7 @@ return array(
 			array(
 				'h2' => 'Batch costing and price revision',
 				'p'  => array(
-					'Chemical margins are sensitive to raw material prices, many of which track crude oil, natural gas or international commodity markets. DotOne ERP calculates batch cost from actual raw material lots at their cost, adjusted for assay, plus utilities such as steam, power and cooling, reactor time, labour and overheads, less the value of recovered solvent and by-products.',
+					'Chemical margins are sensitive to raw material prices, many of which track crude oil, natural gas or international commodity markets. DotOne calculates batch cost from actual raw material lots at their cost, adjusted for assay, plus utilities such as steam, power and cooling, reactor time, labour and overheads, less the value of recovered solvent and by-products.',
 					'Cost per kilogram is reported by batch and by product, and estimated costs for quotations update from current purchase rates. This supports timely price revisions with customers when key raw materials move. More detail is on our [[costing-software|costing software]] page.',
 				),
 			),
@@ -2277,7 +2277,7 @@ return array(
 				'h2' => 'Why furniture makers need furniture ERP software',
 				'p'  => array(
 					'Furniture combines some of the most varied materials of any industry. A single wardrobe may use pre-laminated particle board, MDF back panels, edge banding tape, hinges, drawer channels, handles, glass, a mirror and fittings packed in a hardware kit. A sofa needs a timber or metal frame, webbing, foam of specific densities, fabric and stitching. Each product is made from dozens of parts, and many orders are customised. Furniture ERP software holds this complexity in a structure that the factory, the stores and the sales team can all use.',
-					'DotOne ERP is the system we configure for panel furniture, modular kitchen and wardrobe, office and institutional, solid wood, metal and upholstered furniture manufacturers. It connects design output and BOMs with cutting, machining, finishing, assembly, packing, dispatch and installation, so that material, labour and project costs are known for every order.',
+					'DotOne is the system we configure for panel furniture, modular kitchen and wardrobe, office and institutional, solid wood, metal and upholstered furniture manufacturers. It connects design output and BOMs with cutting, machining, finishing, assembly, packing, dispatch and installation, so that material, labour and project costs are known for every order.',
 				),
 			),
 			array(
@@ -2330,7 +2330,7 @@ return array(
 			array(
 				'h2' => 'Furniture costing per piece and per project',
 				'p'  => array(
-					'Furniture cost is driven by board and timber yield, hardware, finishing, labour and packing. When costing is done from an old sheet, margins can drift without anyone noticing, especially when hardware prices or board prices change. DotOne ERP builds cost from the BOM and routing, then compares it with actual consumption, including board yield, offcut credit, edge tape, hardware, polishing materials and labour time.',
+					'Furniture cost is driven by board and timber yield, hardware, finishing, labour and packing. When costing is done from an old sheet, margins can drift without anyone noticing, especially when hardware prices or board prices change. DotOne builds cost from the BOM and routing, then compares it with actual consumption, including board yield, offcut credit, edge tape, hardware, polishing materials and labour time.',
 					'For catalogue products, cost per piece is reported by model and finish. For projects, the cost sheet compares quotation with actuals at any point, so the project manager can act before the project closes. The [[costing-software|costing software]] page explains how we set this up for made-to-order work.',
 				),
 			),
@@ -2443,7 +2443,7 @@ return array(
 				'h2' => 'What auto component suppliers need from auto components ERP software',
 				'p'  => array(
 					'Supplying the automotive industry is demanding in ways that most manufacturing is not. OEMs and tier-1 customers send monthly schedules and frequent revisions, expect delivery to the day, audit your quality system, and track your rejection in parts per million. Parts are made to drawings that change through engineering changes, often passing through forging or casting, machining, heat treatment, plating and assembly across several vendors. Auto components ERP software keeps schedules, drawings, job work, quality records and billing connected so that a supplier can meet these demands without an army of people maintaining spreadsheets.',
-					'DotOne ERP is the system we configure for tier-1 and tier-2 suppliers of machined, forged, cast, pressed, fabricated, plastic and rubber parts, for two-wheeler, passenger vehicle, commercial vehicle and tractor customers, and for aftermarket parts businesses.',
+					'DotOne is the system we configure for tier-1 and tier-2 suppliers of machined, forged, cast, pressed, fabricated, plastic and rubber parts, for two-wheeler, passenger vehicle, commercial vehicle and tractor customers, and for aftermarket parts businesses.',
 				),
 			),
 			array(
@@ -2504,7 +2504,7 @@ return array(
 			array(
 				'h2' => 'Costing and aftermarket sales',
 				'p'  => array(
-					'Margins on OEM parts are tight, so knowing actual cost per part matters. DotOne ERP calculates part cost from raw material weight including forging or casting yield, machining and job work charges, rejection at each stage, tooling amortisation, packing and freight, and compares it with the current customer price.',
+					'Margins on OEM parts are tight, so knowing actual cost per part matters. DotOne calculates part cost from raw material weight including forging or casting yield, machining and job work charges, rejection at each stage, tooling amortisation, packing and freight, and compares it with the current customer price.',
 					'Many component makers also sell into the aftermarket through distributors and retailers, with MRP labels, branded packing and dealer schemes. The ERP manages this channel alongside OEM supplies from the same stock, with different packing and pricing rules.',
 				),
 			),
@@ -2610,7 +2610,7 @@ return array(
 				'h2' => 'Why service companies need service business ERP software',
 				'p'  => array(
 					'Service companies do not ship a product off a production line, but their operations are just as complex. An HVAC or elevator maintenance company runs hundreds of contracts with scheduled visits, breakdown calls, spare parts and technicians spread across a city. A facility management or manpower agency bills based on attendance at many sites. An engineering or IT services firm delivers projects with milestones and timesheets. Generic accounting software records the invoices, but service business ERP software connects the contract, the work, the people, the parts and the billing.',
-					'DotOne ERP includes CRM, inventory, HR with a mobile app and location-based attendance, finance and analytics. For service businesses, we configure these modules around contracts, tickets and projects instead of production orders, so that every visit, hour and part used can be traced to a customer contract and its profitability.',
+					'DotOne includes CRM, inventory, HR with a mobile app and location-based attendance, finance and analytics. For service businesses, we configure these modules around contracts, tickets and projects instead of production orders, so that every visit, hour and part used can be traced to a customer contract and its profitability.',
 				),
 			),
 			array(

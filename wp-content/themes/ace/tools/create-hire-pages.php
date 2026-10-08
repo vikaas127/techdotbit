@@ -190,11 +190,11 @@ $ace_roles = array(
 		'points'=> array( 'Custom modules and workflows', 'Integrations and Tally/Excel migration', 'AI agents inside your ERP' ),
 		'about' => array(
 			'ERP developers understand both code and business processes: orders, stock, production, accounting and GST. They build the custom modules, reports and integrations that make an ERP fit how your company actually works.',
-			'Our team builds and implements [[erp-software|DotOne ERP]] and also works on existing ERPs, connecting them to e-commerce, logistics, banking and AI services.',
+			'Our team builds and implements DotOne and also works on existing ERPs, connecting them to e-commerce, logistics, banking and AI services.',
 		),
 		'builds'=> array( 'Custom ERP modules for production, quality and dispatch', 'Integrations with e-commerce, logistics, banking and payment systems', 'Migration from Tally, Excel or legacy software', 'MIS reports and management dashboards', 'Mobile apps for sales teams, shop floor and attendance', 'AI agents for purchase planning, stock alerts and collections' ),
 		'cards' => array( array( 'Customisation', 'Workflows, fields, approvals and print formats that match your process.' ), array( 'Integrations', 'APIs and connectors to the rest of your business systems.' ), array( 'Migration', 'Masters, open orders and balances moved safely from old systems.' ), array( 'Reports', 'MIS, costing and stock reports management actually uses.' ), array( 'Mobile ERP', 'Apps for field sales, approvals, attendance and stock checks.' ), array( 'AI in ERP', 'Agents that prepare purchase orders, flag shortages and chase payments.' ) ),
-		'faq'   => array( array( 'Can you work on our existing ERP?', 'Yes. We extend and integrate existing ERP systems through their APIs, database layers or extension frameworks, and can add AI agents on top without replacing what already works.' ), array( 'Do you build industry-specific ERP?', 'Yes. DotOne ERP is built for Indian manufacturers and distributors, and we configure it for industries such as plywood, adhesive tape, footwear, laminates, ACP, steel, FMCG and services.' ) ),
+		'faq'   => array( array( 'Can you work on our existing ERP?', 'Yes. We extend and integrate existing ERP systems through their APIs, database layers or extension frameworks, and can add AI agents on top without replacing what already works.' ), array( 'Do you build industry-specific ERP?', 'Yes. DotOne is built for Indian manufacturers and distributors, and we configure it for industries such as plywood, adhesive tape, footwear, laminates, ACP, steel, FMCG and services.' ) ),
 	),
 );
 

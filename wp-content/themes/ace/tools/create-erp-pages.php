@@ -40,9 +40,9 @@ if ( in_array( 'remove', $ace_args, true ) ) {
 	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_compare' => 'LIKE', 'meta_value' => '/erp-software/' ) ) as $ace_mi ) {
 		wp_delete_post( $ace_mi->ID, true );
 	}
-	// The "DotOne ERP" column the menu step added (and anything left under it).
+	// The "DotOne" column the menu step added (and anything left under it).
 	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_value' => 'https://dotone.biz/' ) ) as $ace_mi ) {
-		if ( 'DotOne ERP' !== $ace_mi->post_title || ! (int) get_post_meta( $ace_mi->ID, '_menu_item_menu_item_parent', true ) ) {
+		if ( ! in_array( $ace_mi->post_title, array( 'DotOne', 'DotOne ERP' ), true ) || ! (int) get_post_meta( $ace_mi->ID, '_menu_item_menu_item_parent', true ) ) {
 			continue;
 		}
 		foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_menu_item_parent', 'meta_value' => $ace_mi->ID ) ) as $ace_child ) {
@@ -141,7 +141,7 @@ function ace_erp_html( $p, $pages, $hub ) {
 function ace_erp_hub_html( $pages, $groups, $hub ) {
 	$out  = '<h2>What is ERP software?</h2>' . "\n";
 	$out .= '<p>ERP (enterprise resource planning) software brings sales, purchase, inventory, production, quality, dispatch, accounts and HR into one system with one set of data. Instead of re-typing the same order into a register, a spreadsheet and Tally, each department works on the same live record, so stock, costs and delivery dates are always current. Read our ' . ace_erp_links( '[[what-is-erp|complete guide to ERP]]', $pages, $hub ) . ' for the basics.</p>' . "\n";
-	$out .= '<p>TechDotBit builds and implements <strong>DotOne ERP</strong>, an AI-powered, industry-specific ERP for Indian manufacturers, distributors and service companies. It is configured around how your industry actually works: the units you buy and sell in, your production stages, your quality checks and your dispatch process, with GST-ready accounting and a mobile app for teams on the shop floor and in the field.</p>' . "\n";
+	$out .= '<p>TechDotBit builds and implements <strong>DotOne</strong>, an AI-powered, industry-specific ERP for Indian manufacturers, distributors and service companies. It is configured around how your industry actually works: the units you buy and sell in, your production stages, your quality checks and your dispatch process, with GST-ready accounting and a mobile app for teams on the shop floor and in the field.</p>' . "\n";
 	$out .= '<h2>Why businesses move to an industry-specific ERP</h2>' . "\n<ul>\n";
 	foreach ( array(
 		'One source of truth: orders, stock, production and accounts update together, so reports no longer depend on who updated which sheet.',
@@ -164,7 +164,7 @@ function ace_erp_hub_html( $pages, $groups, $hub ) {
 		$out .= "</ul>\n";
 	}
 	$out .= '<h2>How we implement ERP</h2>' . "\n";
-	$out .= '<p>Every implementation starts with a study of your current process, documents and reports. We then configure DotOne ERP (or build custom modules where your process is unique), migrate masters and opening balances from Tally or spreadsheets, train each department and stay with you through the first closing cycles. If you already use an ERP, we can ' . ace_erp_links( '[[erp-integration-services|integrate it]]', $pages, $hub ) . ' with your other systems or add ' . ace_erp_links( '[[ai-powered-erp|AI agents to your existing ERP]]', $pages, $hub ) . '.</p>' . "\n";
+	$out .= '<p>Every implementation starts with a study of your current process, documents and reports. We then configure DotOne (or build custom modules where your process is unique), migrate masters and opening balances from Tally or spreadsheets, train each department and stay with you through the first closing cycles. If you already use an ERP, we can ' . ace_erp_links( '[[erp-integration-services|integrate it]]', $pages, $hub ) . ' with your other systems or add ' . ace_erp_links( '[[ai-powered-erp|AI agents to your existing ERP]]', $pages, $hub ) . '.</p>' . "\n";
 	return $out;
 }
 
@@ -264,7 +264,7 @@ function ace_erp_fields( $p, $i ) {
 		'lp_cta2_label'      => 'See features',
 		'lp_cta2_link'       => '#use-cases',
 		'lp_form_heading'    => 'Get a free ' . $label . ' demo',
-		'lp_form_text'       => 'Tell us about your business and current process. We will show how DotOne ERP fits, module by module.',
+		'lp_form_text'       => 'Tell us about your business and current process. We will show how DotOne fits, module by module.',
 		'lp_cards_eyebrow'   => 'Key features',
 		'lp_cards_heading'   => 'What ' . $label . ' covers',
 		'lp_cards'           => array_map( function ( $r ) { return array( 'title' => $r[0], 'text' => $r[1], 'link' => '' ); }, $p['cards'] ),
@@ -282,8 +282,8 @@ function ace_erp_fields( $p, $i ) {
 $ace_hub = array(
 	'slug'      => $ace_hub_slug,
 	'title'     => 'ERP Software for Manufacturers & Growing Businesses',
-	'seo_title' => 'ERP Software India | AI-Powered DotOne ERP | TechDotBit',
-	'meta'      => 'AI-powered ERP software for Indian manufacturers, distributors and MSMEs. Industry-specific DotOne ERP for inventory, production, GST accounting and more.',
+	'seo_title' => 'ERP Software India | AI-Powered DotOne | TechDotBit',
+	'meta'      => 'AI-powered ERP software for Indian manufacturers, distributors and MSMEs. Industry-specific DotOne for inventory, production, GST accounting and more.',
 	'focus'     => 'erp software',
 	'keywords'  => array( 'erp software', 'erp software india', 'erp system', 'ai erp software', 'industry specific erp' ),
 	'excerpt'   => 'AI-powered, industry-specific ERP for manufacturers, distributors and MSMEs.',
@@ -293,30 +293,30 @@ $ace_hub['content'] = ace_erp_hub_html( $ace_pages, $ace_groups, $ace_hub_slug )
 $ace_hub_fields = array(
 	'lp_hero_style'      => 'knot',
 	'lp_bg_visual'       => 'network',
-	'lp_eyebrow'         => 'DotOne ERP by TechDotBit',
+	'lp_eyebrow'         => 'DotOne by TechDotBit',
 	'lp_title'           => 'AI-powered ERP software built for your industry',
 	'lp_title_highlight' => 'built for your industry',
 	'lp_intro'           => 'Run sales, purchase, inventory, production, quality, dispatch, GST accounting and HR in one system, with AI agents that handle the routine work.',
 	'lp_points'          => array( array( 'text' => 'Industry-specific for manufacturing, trading and services' ), array( 'text' => 'GST-ready accounting and mobile app' ), array( 'text' => 'AI agents for stock, purchase, sales and reports' ) ),
 	'lp_cta_label'       => 'Book a free ERP demo',
 	'lp_form_heading'    => 'Get a free ERP demo',
-	'lp_form_text'       => 'Share your industry and current process. We will show you DotOne ERP configured for it.',
+	'lp_form_text'       => 'Share your industry and current process. We will show you DotOne configured for it.',
 	'lp_cards_eyebrow'   => 'ERP by industry',
 	'lp_cards_heading'   => 'ERP built around how your industry works',
 	'lp_cards'           => array(),
 	'lp_steps_heading'   => 'From first call to go-live',
 	'lp_steps'           => array(
 		array( 'title' => 'Process study', 'text' => 'We map your orders, production, stock, accounts and reports, and agree what the ERP must do.' ),
-		array( 'title' => 'Configure & build', 'text' => 'DotOne ERP is configured for your industry; anything unique is built as a custom module.' ),
+		array( 'title' => 'Configure & build', 'text' => 'DotOne is configured for your industry; anything unique is built as a custom module.' ),
 		array( 'title' => 'Migrate & train', 'text' => 'Masters and opening balances move from Tally or spreadsheets, and every department is trained.' ),
 		array( 'title' => 'Go live & improve', 'text' => 'We support the first closing cycles, then add AI agents and reports as you grow.' ),
 	),
 	'lp_faq'             => array(
 		array( 'question' => 'What is ERP software?', 'answer' => 'ERP (enterprise resource planning) software connects sales, purchase, inventory, production, accounts and HR in one system with one database, so every department works on the same, up-to-date information.' ),
-		array( 'question' => 'What is DotOne ERP?', 'answer' => 'DotOne is the AI-powered, industry-specific ERP built by TechDotBit for Indian businesses. It covers CRM, sales, purchase, inventory, manufacturing, finance, HR and analytics, with AI agents and a mobile app.' ),
+		array( 'question' => 'What is DotOne?', 'answer' => 'DotOne is the AI-powered, industry-specific ERP built by TechDotBit for Indian businesses. It covers CRM, sales, purchase, inventory, manufacturing, finance, HR and analytics, with AI agents and a mobile app.' ),
 		array( 'question' => 'Which industries do you build ERP for?', 'answer' => 'Manufacturing (including plywood, adhesive tape, footwear, laminates, ACP, steel and metal, packaging, plastics, chemicals, furniture and auto components), FMCG, distribution and trading, textiles and service businesses.' ),
 		array( 'question' => 'Can you move us from Tally or Excel?', 'answer' => 'Yes. We migrate item, customer and supplier masters, open orders and opening balances, and can keep Tally running for accounts during the transition if you prefer.' ),
-		array( 'question' => 'Is DotOne ERP cloud-based?', 'answer' => 'DotOne runs in the cloud, so teams can use it from the office, the factory or on the move, with role-based access and regular backups.' ),
+		array( 'question' => 'Is DotOne cloud-based?', 'answer' => 'DotOne runs in the cloud, so teams can use it from the office, the factory or on the move, with role-based access and regular backups.' ),
 	),
 	'lp_sections'        => array( 'erp', 'how' ),
 	'lp_show_stack'      => 0,
@@ -432,7 +432,7 @@ if ( $ace_menu ) {
 				) );
 			}
 			$ace_col = $ace_add( array(
-				'menu-item-title'     => 'DotOne ERP',
+				'menu-item-title'     => 'DotOne',
 				'menu-item-url'       => 'https://dotone.biz/',
 				'menu-item-type'      => 'custom',
 				'menu-item-parent-id' => $ace_parent,

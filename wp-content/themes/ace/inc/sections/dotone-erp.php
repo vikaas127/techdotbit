@@ -46,7 +46,7 @@ if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) {
 				<strong>DotOne</strong>
 				<span>The AI-powered ERP platform for modern businesses, built by TechDotBit.</span>
 			</div>
-			<ol class="tdb-erp__track" aria-label="DotOne ERP modules">
+			<ol class="tdb-erp__track" aria-label="DotOne modules">
 				<?php foreach ( $ace_modules as $i => $m ) : ?>
 					<li style="--i: <?php echo (int) $i; ?>"><?php echo esc_html( $m ); ?></li>
 				<?php endforeach; ?>
@@ -59,7 +59,7 @@ if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) {
 			</ul>
 			<div class="tdb-erp__cta">
 				<p>Already have an ERP, CRM or internal application? We can add AI agents to it, or move you to DotOne.</p>
-				<a class="tdb-btn tdb-btn--primary" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne ERP</a>
+				<a class="tdb-btn tdb-btn--primary" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne</a>
 				<a class="tdb-btn tdb-btn--glass" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Add AI to my ERP <span aria-hidden="true">&rarr;</span></a>
 			</div>
 			<?php if ( $ace_erp_links ) : ?>

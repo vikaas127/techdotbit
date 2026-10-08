@@ -711,3 +711,53 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'ace-home', $uri . '/assets/css/home.css', array( 'ace-light-theme' ), filemtime( $dir . '/assets/css/home.css' ) );
 	wp_enqueue_script( 'ace-home', $uri . '/assets/js/home.js', array(), filemtime( $dir . '/assets/js/home.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }, 42 );
+
+/**
+ * DotOne branding: say "DotOne" (not "DotOne ERP") and send DotOne mentions
+ * to the product website.
+ */
+function ace_dotone_url() {
+	return 'https://dotone.biz/';
+}
+add_filter( 'acf/format_value', function ( $value ) {
+	return is_string( $value ) ? str_replace( 'DotOne ERP', 'DotOne', $value ) : $value;
+}, 21 );
+add_filter( 'the_content', function ( $content ) {
+	if ( ! is_string( $content ) || false === stripos( $content, 'dotone' ) ) {
+		return $content;
+	}
+	$content = str_replace( 'DotOne ERP', 'DotOne', $content );
+	if ( is_admin() || false !== stripos( $content, 'dotone.biz' ) ) {
+		return $content;
+	}
+	// Link the first "DotOne" that is plain text (not in a link or heading).
+	$parts = preg_split( '/(<[^>]+>)/', $content, -1, PREG_SPLIT_DELIM_CAPTURE );
+	$skip  = 0;
+	foreach ( $parts as $i => $part ) {
+		if ( '' !== $part && '<' === $part[0] ) {
+			if ( preg_match( '#^<(a|h[1-6]|script|style|button)\b#i', $part ) ) {
+				$skip++;
+			} elseif ( preg_match( '#^</(a|h[1-6]|script|style|button)>#i', $part ) ) {
+				$skip = max( 0, $skip - 1 );
+			}
+			continue;
+		}
+		if ( ! $skip && preg_match( '/\bDOTONE\b|\bDotOne\b/i', $part ) ) {
+			$parts[ $i ] = preg_replace( '/\b(DOTONE|DotOne|Dotone)\b/', '<a href="' . esc_url( ace_dotone_url() ) . '" target="_blank" rel="noopener">$1</a>', $part, 1 );
+			return implode( '', $parts );
+		}
+	}
+	return $content;
+}, 25 );
+// The "DotOne" item in the main menu opens the product website.
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item ) {
+	if ( 0 === (int) $item->menu_item_parent && preg_match( '/^\s*dot\s*one\s*$/i', wp_strip_all_tags( $item->title ) ) ) {
+		$atts['href']   = ace_dotone_url();
+		$atts['target'] = '_blank';
+		$atts['rel']    = 'noopener';
+	}
+	return $atts;
+}, 10, 2 );
+add_filter( 'nav_menu_item_title', function ( $title ) {
+	return str_replace( 'DotOne ERP', 'DotOne', $title );
+} );
