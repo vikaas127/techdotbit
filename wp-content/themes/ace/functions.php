@@ -3,7 +3,7 @@
 function add_theme_scripts() {
   //Remove desired parent styles
   wp_dequeue_style( 'twenty-twenty-one-style' );
-  wp_enqueue_style( 'style', get_stylesheet_uri() );
+  // The root style.css only holds the theme header, so it is not enqueued.
   wp_enqueue_style( 'lqd-essentials-style', get_stylesheet_directory_uri() . '/assets/vendors/liquid-icon/lqd-essentials/lqd-essentials.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'theme-style', get_stylesheet_directory_uri() . '/assets/css/theme.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'utility-style', get_stylesheet_directory_uri() . '/assets/css/utility.min.css', array(), '1.1', 'all');
@@ -604,3 +604,38 @@ add_filter( 'body_class', function ( $classes ) {
   }
   return $classes;
 } );
+
+/**
+ * Posts that promote third-party products keep their content, but their
+ * outbound links are marked rel="sponsored nofollow" as Google requires for
+ * paid/promotional links. Add slugs via the 'ace_sponsored_post_slugs' filter.
+ */
+function ace_sponsored_post_slugs() {
+  return apply_filters( 'ace_sponsored_post_slugs', array(
+    'crypto-legacy-app-software',
+    'crypto-legacy-apps-safeguarding-digital-wealth-for-future-generation',
+    'crypto-legacy-app-the-game-changer-for-modern-cryptocurrency-traders',
+    'what-is-fintechzoom',
+    'what-is-fintechzoom-com',
+    'what-is-alaya-ai',
+  ) );
+}
+
+add_filter( 'the_content', function ( $content ) {
+  if ( ! is_singular( 'post' ) || ! in_array( get_post_field( 'post_name', get_the_ID() ), ace_sponsored_post_slugs(), true ) ) {
+    return $content;
+  }
+  $home = wp_parse_url( home_url(), PHP_URL_HOST );
+  return preg_replace_callback( '/<a\s[^>]*href=("|\')(https?:\/\/[^"\']+)\1[^>]*>/i', function ( $m ) use ( $home ) {
+    $tag  = $m[0];
+    $host = wp_parse_url( $m[2], PHP_URL_HOST );
+    if ( ! $host || $host === $home || substr( $host, -strlen( '.' . $home ) ) === '.' . $home ) {
+      return $tag; // internal link
+    }
+    if ( preg_match( '/\srel=("|\')([^"\']*)\1/i', $tag, $r ) ) {
+      $rels = array_unique( array_merge( preg_split( '/\s+/', trim( $r[2] ) ), array( 'sponsored', 'nofollow', 'noopener' ) ) );
+      return str_replace( $r[0], ' rel="' . esc_attr( implode( ' ', array_filter( $rels ) ) ) . '"', $tag );
+    }
+    return preg_replace( '/^<a\s/i', '<a rel="sponsored nofollow noopener" ', $tag );
+  }, $content );
+}, 20 );
