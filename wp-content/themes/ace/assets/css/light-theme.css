@@ -341,9 +341,9 @@ h3, .h3 { line-height: 1.3; letter-spacing: -.015em; }
 	margin-right: auto !important;
 }
 .tdb-lp-head { margin-bottom: var(--head-gap) !important; }
-.services > .container > .row > .col-12:first-child { margin-bottom: var(--head-gap) !important; text-align: center; }
+.services > .container > .row > .col-12:first-child:not(:has(.iconbox)) { margin-bottom: var(--head-gap) !important; text-align: center; }
 .tdb-lp-head p,
-.services > .container > .row > .col-12:first-child p {
+.services > .container > .row > .col-12:first-child:not(:has(.iconbox)) p {
 	max-width: 640px;
 	margin: 0 auto !important;
 	font-size: var(--fs-lead) !important;
@@ -613,6 +613,3 @@ html, body { overflow-x: clip; }
 	.tdb-partner__icon svg path, .tdb-partner__icon svg circle { stroke-dasharray: none; stroke-dashoffset: 0; animation: none !important; }
 	.tdb-partner__line, .tdb-partner.is-in .tdb-partner__line i { transform: none; animation: none; }
 }
-
-/* Feature cards: every card uses the same text size (the theme enlarges the first one). */
-.tdb-lp-cards .iconbox .contents p { font-size: 15px !important; line-height: 1.6 !important; }
