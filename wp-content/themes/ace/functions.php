@@ -31,6 +31,7 @@ function add_my_script() {
     wp_enqueue_script('liquid-gdpr-script', get_stylesheet_directory_uri() . '/assets/js/liquid-gdpr.min.js', array('jquery'));
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/assets/js/theme.min.js', array('jquery'));
     wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/assets/js/custom.js', array('jquery'));
+    wp_enqueue_script('modern-script', get_stylesheet_directory_uri() . '/assets/js/modern.js', array(), filemtime( get_stylesheet_directory() . '/assets/js/modern.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ));
     
 }
 add_action( 'wp_footer', 'add_my_script' );
