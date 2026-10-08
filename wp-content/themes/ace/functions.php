@@ -761,3 +761,20 @@ add_filter( 'nav_menu_link_attributes', function ( $atts, $item ) {
 add_filter( 'nav_menu_item_title', function ( $title ) {
 	return str_replace( 'DotOne ERP', 'DotOne', $title );
 } );
+
+/**
+ * LiteSpeed Cache: keep theme styles fresh after every update.
+ * - Theme stylesheets are excluded from CSS combine/minify, so the browser
+ *   always loads the current file (versioned by modification time).
+ * - "Unique CSS" (UCSS) is switched off: it is generated from old page HTML
+ *   and strips the styles of newly added sections until it is regenerated.
+ * Page caching stays on.
+ */
+add_filter( 'litespeed_optimize_css_excludes', function ( $list ) {
+	$list   = (array) $list;
+	$list[] = 'wp-content/themes/ace/assets/css/';
+	return $list;
+} );
+add_action( 'litespeed_init', function () {
+	do_action( 'litespeed_conf_force', 'optm-ucss', false );
+} );
