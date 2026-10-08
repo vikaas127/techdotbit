@@ -3,6 +3,7 @@
  * Homepage: selected work. Uses the projects chosen in Theme Options >
  * Case study (if set), otherwise the latest projects.
  */
+require_once get_stylesheet_directory() . '/inc/project-cover.php';
 $ace_work = array();
 if ( function_exists( 'get_field' ) ) {
 	$ace_cs = get_field( 'case_study', 'option' );
@@ -34,13 +35,7 @@ if ( ! $ace_work ) {
 				$ace_tag   = $ace_terms && ! is_wp_error( $ace_terms ) ? $ace_terms[0]->name : '';
 				?>
 				<a class="tdb-work__card" href="<?php echo esc_url( get_permalink( $ace_w ) ); ?>" style="--i: <?php echo (int) $ace_i; ?>">
-					<span class="tdb-work__media">
-						<?php if ( has_post_thumbnail( $ace_w ) ) : ?>
-							<?php echo get_the_post_thumbnail( $ace_w, 'large', array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
-						<?php else : ?>
-							<span class="tdb-post-card__ph"></span>
-						<?php endif; ?>
-					</span>
+					<span class="tdb-work__media"><?php echo ace_project_cover( $ace_w->ID ); // phpcs:ignore -- escaped inside ?></span>
 					<span class="tdb-work__body">
 						<?php if ( $ace_tag ) : ?><span class="tdb-work__tag"><?php echo esc_html( $ace_tag ); ?></span><?php endif; ?>
 						<span class="tdb-work__title"><?php echo esc_html( get_the_title( $ace_w ) ); ?></span>

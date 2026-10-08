@@ -1,131 +1,75 @@
 <?php
 /* Template Name: Portfolio Template */
 
-get_header(); ?>
-<?php if( have_rows('banner') ):
-  while( have_rows('banner') ) : the_row(); ?>
-  <section class="lqd-section banner bg-no-repeat bg-center bg-cover py-70 px-140 md:px-0" id="banner" style="background-image: url(<?php the_sub_field('banner_bg'); ?>);">
-    <div class="container">
-      <div class="row">
-        <div class="col col-12 col-lg-7 col-xl-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
-          <?php if(get_sub_field('title')): ?>
-          <div class="ld-fancy-heading">
-            <h1 class="ld-fh-element mb-0/35em lqd-split-lines text-white" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php the_sub_field('title'); ?></h1>
-          </div>
-          <?php endif; ?>
-          <?php if(get_sub_field('paragraph')): ?>
-          <div class="ld-fancy-heading">
-            <p class="ld-fh-element mb-2em lqd-split-lines leading-30 text-17 text-white-80" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php the_sub_field('paragraph'); ?>
-            </p>
-          </div>
-          <?php endif; ?>
-        </div>
-      </div>
-    </div>
-  </section>
-  <?php endwhile;
-endif; ?>
+get_header();
+require_once get_stylesheet_directory() . '/inc/project-cover.php';
 
-  <?php include_once('inc/brands.php'); ?>
+$ace_ptitle = __( 'Software we have designed and built', 'ace' );
+$ace_pintro = __( 'AI, web, mobile and business platforms delivered for clients across industries.', 'ace' );
+$ace_terms  = get_terms( array( 'taxonomy' => 'tagportfolio', 'hide_empty' => true ) );
+$ace_loop   = new WP_Query( array( 'post_type' => 'project', 'posts_per_page' => -1 ) );
+?>
 
-  <section class="lqd-section py-70">
-    <div class="container">
-        <?php
-          $terms = get_terms("tagportfolio");
-          $count = count($terms);
-          echo '<ul id="portfolio-filter">';
-          echo '<li><a href="javascript:void(0)" title="All" data-rel="all" class="active">All</a></li>';
-            if ( $count > 0 )
-            { 
-              foreach ( $terms as $term ) {
-                $termname = sanitize_title($term->name);
-                $termname = str_replace(' ', '-', $termname);
-                echo '<li><a href="javascript:void(0)" title="'.esc_attr($term->name).'" data-rel="'.esc_attr($termname).'">'.esc_html($term->name).'</a></li>';
-              }
-            }
-          echo "</ul>";
-        ?>
+<section class="tdb-work-hero">
+	<div class="container">
+		<p class="tdb-contact__chip"><span></span><?php esc_html_e( 'Our work', 'ace' ); ?></p>
+		<h1><?php echo esc_html( $ace_ptitle ); ?></h1>
+		<p class="tdb-work-hero__intro"><?php echo esc_html( $ace_pintro ); ?></p>
+	</div>
+</section>
 
-       <?php 
-        $loop = new WP_Query(array('post_type' => 'project', 'posts_per_page' => -1));
-        $count =0;
-      ?>
-        <div id="portfolio-wrapper">
-            <ul id="portfolio-list" class="list-unstyled">
-            <?php if ( $loop ) : 
+<section class="tdb-worklist">
+	<div class="container">
+		<?php if ( $ace_terms && ! is_wp_error( $ace_terms ) ) : ?>
+			<div class="tdb-worklist__filters" role="toolbar" aria-label="<?php esc_attr_e( 'Filter projects', 'ace' ); ?>">
+				<button type="button" class="is-active" data-filter="all"><?php esc_html_e( 'All', 'ace' ); ?> <span><?php echo (int) $ace_loop->found_posts; ?></span></button>
+				<?php foreach ( $ace_terms as $ace_term ) : ?>
+					<button type="button" data-filter="<?php echo esc_attr( sanitize_title( $ace_term->name ) ); ?>"><?php echo esc_html( $ace_term->name ); ?> <span><?php echo (int) $ace_term->count; ?></span></button>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 
-                while ( $loop->have_posts() ) : $loop->the_post(); ?>
+		<?php if ( $ace_loop->have_posts() ) : ?>
+			<div class="tdb-worklist__grid">
+				<?php while ( $ace_loop->have_posts() ) : $ace_loop->the_post();
+					$ace_pt   = get_the_terms( get_the_ID(), 'tagportfolio' );
+					$ace_slugs = $ace_pt && ! is_wp_error( $ace_pt ) ? implode( ' ', array_map( function ( $x ) { return sanitize_title( $x->name ); }, $ace_pt ) ) : '';
+					?>
+					<a class="tdb-work__card tdb-worklist__item" href="<?php the_permalink(); ?>" data-cats="<?php echo esc_attr( $ace_slugs ); ?>">
+						<span class="tdb-work__media"><?php echo ace_project_cover( get_the_ID() ); // phpcs:ignore -- escaped inside ?></span>
+						<span class="tdb-work__body">
+							<?php if ( $ace_pt && ! is_wp_error( $ace_pt ) ) : ?><span class="tdb-work__tag"><?php echo esc_html( $ace_pt[0]->name ); ?></span><?php endif; ?>
+							<span class="tdb-work__title"><?php the_title(); ?></span>
+							<span class="tdb-work__more"><?php esc_html_e( 'View case study', 'ace' ); ?> <span aria-hidden="true">&rarr;</span></span>
+						</span>
+					</a>
+				<?php endwhile; wp_reset_postdata(); ?>
+			</div>
+		<?php else : ?>
+			<p><?php esc_html_e( 'No projects found.', 'ace' ); ?></p>
+		<?php endif; ?>
+	</div>
+</section>
 
-                    <?php
-                    $terms = get_the_terms( $post->ID, 'tagportfolio' );
+<?php include_once( 'inc/brands.php' ); ?>
+<?php include_once( 'inc/testimonials.php' ); ?>
 
-                    if ( $terms && ! is_wp_error( $terms ) ) : 
-                        $links = array();
-                        foreach ( $terms as $term ) 
-                        {
-                            $links[] = sanitize_title( $term->name );
-                        }
-                        $tax = join( " ", $links );   
-                    else :  
-                        $tax = '';  
-                    endif;
-                    ?>
-
-                    <?php $infos = get_post_custom_values('_url'); ?>
-
-                    <li class="w-100 portfolio-item <?php echo esc_attr( $tax ); ?> all">
-                        <figure>
-                            <?php the_post_thumbnail('large', [ 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy' ] ); ?>
-                            <figcaption>
-                                <span><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span>
-                                <h3><?php the_title(); ?></h3>
-                                
-                                <a href="<?php the_permalink() ?>" class="link">View Portfolio</a>
-                            </figcaption>
-                        </figure>
-                    </li>
-
-                    <?php endwhile; else: ?>
-                    <li class="error-not-found">Sorry, no portfolio entries found.</li>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </div>
-  </section>
-
-  <?php include_once('inc/testimonials.php'); ?>
-
-  <?php include_once('inc/bottom-cta.php'); ?>
-
-<?php add_action( 'wp_footer', function () { ?>
 <script>
-jQuery(document).ready(function(){
-    jQuery('#portfolio-filter li a').click(function(){
-        // reset active class
-        jQuery('#portfolio-filter li a').removeClass("active");
-        // add active class to selected
-        jQuery(this).addClass("active");
-        // return needed to make function work
-        return false;
-    });
-
-
-    jQuery(function() {
-        // create an empty variable
-        var selectedClass = "";
-        // call function when item is clicked
-        jQuery("#portfolio-filter li a").click(function(){
-            // assigns class to selected item
-            selectedClass = jQuery(this).attr("data-rel");
-            // fades out all portfolio items
-            jQuery("#portfolio-list .portfolio-item").hide();
-            // fades in selected category
-            jQuery("#portfolio-list .portfolio-item." + selectedClass).show();
-        });
-    });
-
-}); // document ready
+(function () {
+	var bar = document.querySelector('.tdb-worklist__filters');
+	if (!bar) return;
+	var items = document.querySelectorAll('.tdb-worklist__item');
+	bar.addEventListener('click', function (e) {
+		var btn = e.target.closest('button');
+		if (!btn) return;
+		bar.querySelectorAll('button').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+		var f = btn.getAttribute('data-filter');
+		items.forEach(function (it) {
+			var show = f === 'all' || (' ' + it.getAttribute('data-cats') + ' ').indexOf(' ' + f + ' ') > -1;
+			it.classList.toggle('is-hidden', !show);
+		});
+	});
+})();
 </script>
-<?php }, 100 ); ?>
 
 <?php get_footer(); ?>

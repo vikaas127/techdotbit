@@ -124,22 +124,6 @@
 .tdb-why__list b { display: block; margin-bottom: 4px; color: #0f172a; font-size: 1.05rem; }
 .tdb-why__list span { color: #64748b; font-size: 15px; line-height: 1.55; }
 
-/* ------------------------------------------------------ Selected work */
-.tdb-work__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.tdb-work__card { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #e4e9f0; border-radius: 18px; background: #fff; text-decoration: none !important; box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 10px 26px rgba(16, 24, 40, .05); transition: border-color .25s, box-shadow .25s, transform .25s !important; }
-.tdb-work__card:hover { border-color: #cdeed4; box-shadow: 0 2px 4px rgba(16, 24, 40, .04), 0 18px 40px rgba(16, 24, 40, .10); transform: translateY(-4px) !important; }
-.tdb-work__media { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #eef2f6; }
-.tdb-work__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(15, 23, 42, .18)); }
-.tdb-work__media img { display: block; width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; transition: transform .6s ease; }
-.tdb-work__card:hover .tdb-work__media img { transform: scale(1.05); }
-.tdb-work__media .tdb-post-card__ph { display: block; width: 100%; height: 100%; background: radial-gradient(60% 90% at 100% 0%, rgba(34, 211, 238, .35), transparent 70%), radial-gradient(60% 90% at 0% 100%, rgba(62, 173, 60, .35), transparent 70%), linear-gradient(135deg, #0f2a1d, #0c1f33); }
-.tdb-work__body { display: flex; flex: 1; flex-direction: column; padding: 18px 20px 20px; }
-.tdb-work__tag { align-self: flex-start; margin-bottom: 10px; padding: 3px 10px; border-radius: 999px; background: #eef9f0; color: #23873a; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
-.tdb-work__title { display: -webkit-box; margin-bottom: 14px; overflow: hidden; color: #0f172a; font-size: 1.02rem; font-weight: 700; line-height: 1.45; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 2.9em; }
-.tdb-work__more { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; color: #23873a; font-size: 14px; font-weight: 600; }
-.tdb-work__more span { transition: transform .2s; }
-.tdb-work__card:hover .tdb-work__more span { transform: translateX(4px); }
-
 /* ---------------------------------------------------------- Responsive */
 @media (max-width: 991px) {
 	.tdb-caps__wrap, .tdb-why__grid, .tdb-prod__card { grid-template-columns: 1fr; }
