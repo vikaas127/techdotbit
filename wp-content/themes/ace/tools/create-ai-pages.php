@@ -24,8 +24,12 @@ const ACE_AUDIT_FORM = '[contact-form-7 id="af5387b" title="Free Audit Form"]';
  * site root are moved under the hub instead of duplicated).
  */
 function ace_find_page( $slug ) {
-	$found = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => 'any', 'posts_per_page' => 1 ) );
-	return $found ? $found[0] : null;
+	global $wpdb;
+	$id = $wpdb->get_var( $wpdb->prepare(
+		"SELECT ID FROM {$wpdb->posts} WHERE post_type = 'page' AND post_name = %s AND post_status NOT IN ('trash','auto-draft') ORDER BY ID ASC LIMIT 1",
+		$slug
+	) );
+	return $id ? get_post( (int) $id ) : null;
 }
 
 function ace_save_page( $p, $parent_id = 0, $order = 0 ) {
