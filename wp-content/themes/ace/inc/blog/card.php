@@ -1,4 +1,5 @@
 <?php
+require_once get_stylesheet_directory() . '/inc/project-cover.php';
 /**
  * Blog card for the current post in the loop.
  * Set $ace_card_featured = true before including for the large lead card.
@@ -10,11 +11,7 @@ $ace_card_mins = ace_reading_time( get_the_ID() );
 ?>
 <article <?php post_class( 'tdb-post-card' . ( $ace_card_big ? ' tdb-post-card--featured' : '' ) ); ?>>
 	<a class="tdb-post-card__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<?php the_post_thumbnail( $ace_card_big ? 'large' : 'medium_large', array( 'alt' => '', 'loading' => $ace_card_big ? 'eager' : 'lazy', 'decoding' => 'async' ) ); ?>
-		<?php else : ?>
-			<span class="tdb-post-card__ph"><span><?php echo esc_html( $ace_card_cat ? $ace_card_cat->name : get_bloginfo( 'name' ) ); ?></span></span>
-		<?php endif; ?>
+		<?php echo ace_cover( get_the_ID() ); // phpcs:ignore -- escaped inside ?>
 	</a>
 	<div class="tdb-post-card__body">
 		<?php if ( $ace_card_cat ) : ?>

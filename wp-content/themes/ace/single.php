@@ -278,11 +278,10 @@ get_header(); ?>
 			</div>
 		</header>
 
-		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="container">
-				<figure class="tdb-article__cover"><?php the_post_thumbnail( 'large', array( 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?></figure>
-			</div>
-		<?php endif; ?>
+		<?php require_once get_stylesheet_directory() . '/inc/project-cover.php'; ?>
+		<div class="container">
+			<figure class="tdb-article__cover tdb-article__cover--art"><?php echo ace_cover( get_the_ID() ); // phpcs:ignore -- escaped inside ?></figure>
+		</div>
 
 		<div class="container">
 			<div class="tdb-article__layout">

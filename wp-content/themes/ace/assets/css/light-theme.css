@@ -805,3 +805,9 @@ a.tdb-contact__method:hover { border-color: #3ead3c; transform: translateY(-2px)
 .tdb-worklist__item.is-hidden { display: none !important; }
 @keyframes tdb-work-in { from { opacity: 0; transform: translateY(10px); } }
 @media (max-width: 640px) { .tdb-worklist__filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .tdb-worklist__filters button { flex: none; } }
+.tdb-cover__code { animation: tdb-cover-type 5s ease-in-out infinite; animation-delay: calc(var(--l) * .25s); }
+@keyframes tdb-cover-type { 0% { opacity: 0; transform: translateX(-6px); } 12%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.tdb-cover__caret { animation: tdb-blink-caret 1s steps(2) infinite; }
+@keyframes tdb-blink-caret { 50% { opacity: 0; } }
+.tdb-cover__candle { transform-box: fill-box; transform-origin: center; animation: tdb-cover-candle 3s ease-in-out infinite alternate; animation-delay: calc(var(--c) * .12s); }
+@keyframes tdb-cover-candle { from { transform: scaleY(.7); opacity: .7; } }

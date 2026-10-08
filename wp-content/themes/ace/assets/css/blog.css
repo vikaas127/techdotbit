@@ -216,3 +216,11 @@
 	.tdb-article__body { font-size: 17px; }
 	.tdb-article__cta { padding: 22px; }
 }
+
+/* Designed covers on blog cards and articles */
+.tdb-post-card__media .tdb-cover { transition: transform .5s ease; }
+.tdb-post-card:hover .tdb-cover svg { transform: scale(1.04); }
+.tdb-post-card--featured .tdb-post-card__media .tdb-cover { min-height: 340px; }
+.tdb-article__cover--art { aspect-ratio: 16 / 6; max-height: 420px; }
+.tdb-article__cover--art .tdb-cover { height: 100%; }
+@media (max-width: 640px) { .tdb-article__cover--art { aspect-ratio: 16 / 9; } }
