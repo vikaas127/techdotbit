@@ -228,7 +228,8 @@ endif; ?>
   <?php endwhile; ?>
 
 <?php endif; ?>
-<?php if( have_rows('why_choose') ): ?>
+<?php if ( ! $ace_show_old ) { include locate_template( 'inc/sections/partnership.php' ); } ?>
+<?php if( $ace_show_old && have_rows('why_choose') ): ?>
   <?php while( have_rows('why_choose') ) : the_row(); ?>
   <section class="lqd-section why-tdb pt-100 pb-100 bg-gray-100">
     <div class="container">
