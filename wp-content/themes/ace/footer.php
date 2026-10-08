@@ -50,7 +50,7 @@
       
       
       
-      <footer id="site-footer" class="main-footer bg-light text-dark pt-90" data-sticky-footer="true" data-sticky-footer-options="{&quot;shadow&quot;: &quot;0&quot;}">
+      <footer id="site-footer" class="main-footer bg-light text-dark pt-90">
         <section class="lqd-section module-top">
           <div class="container">
             <div class="row">
@@ -61,7 +61,12 @@
                     <div class="flex items-center mb-35">
                       <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1">
                         <?php 
-                          $footerlogo = get_sub_field('logo'); 
+                          // Use the header logo (transparent, shown dark on the light footer);
+                          // the footer logo upload has a solid background on the live site.
+                          $footerlogo = get_sub_field('logo');
+                          $ace_hdr    = get_field( 'header', 'option' );
+                          $ace_hlogo  = isset( $ace_hdr['logo'] ) ? $ace_hdr['logo'] : ( isset( $ace_hdr[0]['logo'] ) ? $ace_hdr[0]['logo'] : null );
+                          if ( ! empty( $ace_hlogo['url'] ) ) { $footerlogo = $ace_hlogo; }
                           if( !empty( $footerlogo ) ): 
                         ?>
                           <img loading="lazy" decoding="async" class="max-w-full h-auto vertical-top rounded-inherit" width="200" height="40" src="<?php echo esc_url($footerlogo['url']); ?>" alt="<?php echo esc_attr($footerlogo['alt']); ?>">

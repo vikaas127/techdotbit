@@ -322,3 +322,10 @@
 	.tdb-eng__grid li::after, .tdb-trans__col--after li, .tdb-studio__life li, .tdb-studio__panel dl > div, .tdb-case__agent span { animation: none; }
 	.tdb-case__chain li { opacity: 1; transform: none; }
 }
+
+/* AI + ERP: industry ERP links */
+.tdb-erp__industries { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(15, 23, 42, .08); font-size: 14px; }
+.tdb-erp__industries > span { font-weight: 600; color: #0f172a; margin-right: 4px; }
+.tdb-erp__industries a { padding: 6px 13px; border: 1px solid #dfe6ee; border-radius: 999px; background: #fff; color: #334155; text-decoration: none; transition: border-color .2s, color .2s, background .2s; }
+.tdb-erp__industries a:hover { border-color: #3ead3c; color: #23873a; background: #f3fbf3; }
+.tdb-erp__industries a.tdb-erp__all { border-color: transparent; background: none; color: #23873a; font-weight: 600; }

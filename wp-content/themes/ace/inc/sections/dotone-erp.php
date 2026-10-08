@@ -5,6 +5,28 @@
  */
 $ace_modules = array( 'CRM', 'Sales', 'Purchase', 'Inventory', 'Manufacturing', 'Finance', 'HR', 'Analytics' );
 $ace_erp_agents = array( 'Sales Agent', 'Inventory Agent', 'Purchase Agent', 'Production Agent', 'Finance Agent', 'CRM Agent', 'Reporting Agent' );
+// Industry ERP pages (tools/create-erp-pages.php), linked when published.
+$ace_erp_hub   = get_page_by_path( 'erp-software' );
+$ace_erp_links = array();
+if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) {
+	foreach ( array(
+		'manufacturing-erp-software' => 'Manufacturing',
+		'plywood-erp-software'       => 'Plywood',
+		'adhesive-tape-erp-software' => 'Adhesive tape',
+		'footwear-erp-software'      => 'Footwear',
+		'laminate-erp-software'      => 'Laminates',
+		'acp-erp-software'           => 'ACP',
+		'steel-metal-erp-software'   => 'Steel & metal',
+		'fmcg-erp-software'          => 'FMCG',
+		'distribution-erp-software'  => 'Distribution',
+		'service-business-erp-software' => 'Services',
+	) as $ace_slug => $ace_label ) {
+		$ace_pg = get_page_by_path( 'erp-software/' . $ace_slug );
+		if ( $ace_pg && 'publish' === $ace_pg->post_status ) {
+			$ace_erp_links[ $ace_label ] = get_permalink( $ace_pg );
+		}
+	}
+}
 ?>
 <section class="tdb-erp" id="ai-erp" aria-labelledby="tdb-erp-title">
 	<div class="container">
@@ -40,6 +62,15 @@ $ace_erp_agents = array( 'Sales Agent', 'Inventory Agent', 'Purchase Agent', 'Pr
 				<a class="tdb-btn tdb-btn--primary" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne ERP</a>
 				<a class="tdb-btn tdb-btn--glass" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Add AI to my ERP <span aria-hidden="true">&rarr;</span></a>
 			</div>
+			<?php if ( $ace_erp_links ) : ?>
+				<nav class="tdb-erp__industries" aria-label="ERP software by industry">
+					<span>ERP software for</span>
+					<?php foreach ( $ace_erp_links as $ace_label => $ace_url ) : ?>
+						<a href="<?php echo esc_url( $ace_url ); ?>"><?php echo esc_html( $ace_label ); ?></a>
+					<?php endforeach; ?>
+					<a class="tdb-erp__all" href="<?php echo esc_url( get_permalink( $ace_erp_hub ) ); ?>">All ERP solutions <span aria-hidden="true">&rarr;</span></a>
+				</nav>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

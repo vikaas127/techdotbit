@@ -427,8 +427,25 @@ while ( have_posts() ) :
 	<?php endif; ?>
 
 	<?php
-	// Related AI pages (other published pages on this template) for internal linking.
-	$related = get_posts( array(
+	// Related pages for internal linking: the page's own list (ERP pages), or
+	// other published pages on this template.
+	$ace_rel_slugs = (array) get_post_meta( get_the_ID(), '_ace_related', true );
+	$ace_rel_slugs = array_filter( $ace_rel_slugs );
+	$related       = array();
+	$related_title = __( 'Explore more AI services', 'ace' );
+	if ( $ace_rel_slugs ) {
+		$ace_parent = wp_get_post_parent_id( get_the_ID() );
+		foreach ( $ace_rel_slugs as $ace_rs ) {
+			$ace_rp = $ace_parent ? get_page_by_path( get_page_uri( $ace_parent ) . '/' . $ace_rs ) : null;
+			if ( $ace_rp && 'publish' === $ace_rp->post_status ) {
+				$related[] = $ace_rp;
+			}
+		}
+		$related_title = __( 'Related ERP solutions', 'ace' );
+	}
+	if ( ! $related ) {
+		$related_title = __( 'Explore more AI services', 'ace' );
+		$related       = get_posts( array(
 		'post_type'      => 'page',
 		'post_status'    => 'publish',
 		'posts_per_page' => 6,
@@ -437,12 +454,13 @@ while ( have_posts() ) :
 		'meta_value'     => 'landing-template.php',
 		'orderby'        => 'menu_order title',
 		'order'          => 'ASC',
-	) );
+		) );
+	}
 	?>
 	<?php if ( $related ) : ?>
 	<section class="lqd-section tdb-related py-75">
 		<div class="container">
-			<div class="tdb-lp-head"><h2><?php esc_html_e( 'Explore more AI services', 'ace' ); ?></h2></div>
+			<div class="tdb-lp-head"><h2><?php echo esc_html( $related_title ); ?></h2></div>
 			<ul class="tdb-related__list">
 				<?php foreach ( $related as $rel ) : ?>
 					<li>
@@ -468,6 +486,24 @@ while ( have_posts() ) :
 			'url'         => get_permalink(),
 			'serviceType' => wp_strip_all_tags( $eyebrow ? $eyebrow : $title ),
 			'provider'    => array( '@type' => 'Organization', 'name' => get_bloginfo( 'name' ), 'url' => home_url( '/' ) ),
+		), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	?></script>
+
+	<?php
+	// Breadcrumbs (Home > parent pages > this page) for rich results.
+	$ace_crumbs = array( array( get_bloginfo( 'name' ), home_url( '/' ) ) );
+	foreach ( array_reverse( get_post_ancestors( get_the_ID() ) ) as $ace_anc ) {
+		$ace_crumbs[] = array( get_the_title( $ace_anc ), get_permalink( $ace_anc ) );
+	}
+	$ace_crumbs[] = array( get_the_title(), get_permalink() );
+	?>
+	<script type="application/ld+json"><?php
+		echo wp_json_encode( array(
+			'@context'        => 'https://schema.org',
+			'@type'           => 'BreadcrumbList',
+			'itemListElement' => array_map( function ( $c, $i ) {
+				return array( '@type' => 'ListItem', 'position' => $i + 1, 'name' => wp_strip_all_tags( $c[0] ), 'item' => $c[1] );
+			}, $ace_crumbs, array_keys( $ace_crumbs ) ),
 		), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 	?></script>
 

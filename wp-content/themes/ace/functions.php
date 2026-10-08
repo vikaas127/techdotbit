@@ -649,3 +649,28 @@ add_action( 'wp_enqueue_scripts', function () {
   $file = get_stylesheet_directory() . '/assets/css/light-theme.css';
   wp_enqueue_style( 'ace-light-theme', get_stylesheet_directory_uri() . '/assets/css/light-theme.css', array( 'ai-theme-style' ), filemtime( $file ) );
 }, 40 );
+
+/**
+ * SEO fallback for generated pages (tools/create-erp-pages.php): when
+ * All in One SEO is not active, print the stored title and meta description.
+ */
+function ace_seo_fallback_active() {
+	return is_singular() && ! defined( 'AIOSEO_VERSION' ) && get_post_meta( get_queried_object_id(), '_ace_seo_desc', true );
+}
+add_filter( 'pre_get_document_title', function ( $title ) {
+	if ( ace_seo_fallback_active() ) {
+		$t = get_post_meta( get_queried_object_id(), '_ace_seo_title', true );
+		return $t ? $t : $title;
+	}
+	return $title;
+} );
+add_action( 'wp_head', function () {
+	if ( ace_seo_fallback_active() ) {
+		echo '<meta name="description" content="' . esc_attr( get_post_meta( get_queried_object_id(), '_ace_seo_desc', true ) ) . '">' . "\n";
+	}
+}, 1 );
+
+/** Fix a typo stored in the CTA text ("takeyour") without editing options. */
+add_filter( 'acf/format_value', function ( $value ) {
+	return is_string( $value ) ? str_replace( 'takeyour', 'take your', $value ) : $value;
+}, 20 );
