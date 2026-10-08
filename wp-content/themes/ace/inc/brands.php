@@ -7,7 +7,14 @@
  *   "link"       - URL to a case study
  *   "link_label" - text under the logo, e.g. "Case study" (default)
  */
-if ( have_rows( 'brands', 'option' ) ) : ?>
+// Extra client logos shipped with the theme (assets/images/clients/), shown
+// after the logos from Theme Options. Change via the 'ace_extra_clients' filter.
+$ace_extra_clients = apply_filters( 'ace_extra_clients', array(
+  array( 'name' => 'Virgo ACP', 'file' => 'virgo-acp.png', 'w' => 313, 'h' => 124 ),
+  array( 'name' => 'E3 Group', 'file' => 'e3-group.png', 'w' => 335, 'h' => 142 ),
+  array( 'name' => 'Bhutan Tuff', 'file' => 'bhutan-tuff.png', 'w' => 487, 'h' => 138 ),
+) );
+if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
 <style id="tdb-clients-critical">
 /* Essential layout inline so the grid can never render unstyled, even if an
    optimisation cache serves an outdated stylesheet. Full styles: ai-theme.css */
@@ -26,7 +33,7 @@ if ( have_rows( 'brands', 'option' ) ) : ?>
   <div class="container">
     <p id="tdb-clients-title" class="tdb-clients__title"><?php esc_html_e( 'Trusted by teams worldwide', 'ace' ); ?></p>
     <ul class="tdb-clients__grid">
-      <?php while ( have_rows( 'brands', 'option' ) ) : the_row();
+      <?php if ( have_rows( 'brands', 'option' ) ) : while ( have_rows( 'brands', 'option' ) ) : the_row();
         $image = get_sub_field( 'image' );
         if ( empty( $image ) ) {
           continue;
@@ -45,7 +52,14 @@ if ( have_rows( 'brands', 'option' ) ) : ?>
             <a class="tdb-clients__link" href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $label ? $label : __( 'Case study', 'ace' ) ); ?></a>
           <?php endif; ?>
         </li>
-      <?php endwhile; ?>
+      <?php endwhile; endif; ?>
+      <?php foreach ( $ace_extra_clients as $ace_client ) : ?>
+        <li class="tdb-clients__item">
+          <span class="tdb-clients__logo">
+            <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/clients/' . $ace_client['file'] ) ); ?>" alt="<?php echo esc_attr( $ace_client['name'] ); ?>" loading="lazy" decoding="async" width="<?php echo (int) $ace_client['w']; ?>" height="<?php echo (int) $ace_client['h']; ?>">
+          </span>
+        </li>
+      <?php endforeach; ?>
     </ul>
   </div>
 </section>
