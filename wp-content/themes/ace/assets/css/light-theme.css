@@ -613,3 +613,6 @@ html, body { overflow-x: clip; }
 	.tdb-partner__icon svg path, .tdb-partner__icon svg circle { stroke-dasharray: none; stroke-dashoffset: 0; animation: none !important; }
 	.tdb-partner__line, .tdb-partner.is-in .tdb-partner__line i { transform: none; animation: none; }
 }
+
+/* Feature cards: every card uses the same text size (the theme enlarges the first one). */
+.tdb-lp-cards .iconbox .contents p { font-size: 15px !important; line-height: 1.6 !important; }
