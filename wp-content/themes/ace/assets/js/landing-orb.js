@@ -310,3 +310,45 @@
 		run();
 	}
 })();
+
+/**
+ * "How AI agents work": highlight each step in turn; the systems on the
+ * right light up while the Execute step is active.
+ */
+(function () {
+	'use strict';
+	var root = document.querySelector('[data-tdb-how]');
+	if (!root || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+	var steps = root.querySelectorAll('.tdb-how__step');
+	var out = root.querySelector('.tdb-how__side--out');
+	var i = 0, timer = null;
+	function tick() {
+		steps.forEach(function (s) { s.classList.remove('is-active'); });
+		steps[i].classList.add('is-active');
+		if (out) out.classList.toggle('is-live', i === 3);
+		i = (i + 1) % steps.length;
+	}
+	function start() { if (!timer) { tick(); timer = setInterval(tick, 1600); } }
+	function stop() { clearInterval(timer); timer = null; }
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver(function (e) { if (e[0].isIntersecting) start(); else stop(); }, { threshold: 0.2 }).observe(root);
+	} else { start(); }
+})();
+
+/**
+ * Reveal workflow chains (use cases, demonstrations) step by step when they
+ * scroll into view.
+ */
+(function () {
+	'use strict';
+	var items = document.querySelectorAll('[data-tdb-reveal-chain]');
+	if (!items.length) return;
+	if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+		items.forEach(function (el) { el.classList.add('is-in'); });
+		return;
+	}
+	var io = new IntersectionObserver(function (entries) {
+		entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+	}, { threshold: 0.35 });
+	items.forEach(function (el) { io.observe(el); });
+})();

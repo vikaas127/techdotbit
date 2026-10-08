@@ -108,6 +108,18 @@ add_action( 'acf/init', function () {
 				),
 			),
 			array( 'key' => 'field_tdb_lp_show_stack', 'name' => 'lp_show_stack', 'label' => 'Show the AI & Python technology stack section', 'type' => 'true_false', 'ui' => 1 ),
+			array( 'key' => 'field_tdb_lp_tab_sections', 'label' => 'Sections', 'type' => 'tab' ),
+			array(
+				'key' => 'field_tdb_lp_sections', 'name' => 'lp_sections', 'label' => 'Story sections to show', 'type' => 'checkbox',
+				'instructions' => 'Shown after the highlight cards, in this order.',
+				'choices' => array(
+					'how' => 'How AI agents work', 'categories' => 'What we build (agent categories)', 'library' => 'Full agent library',
+					'use_cases' => 'What can an AI agent do (use cases)', 'transform' => 'Before / after transformation', 'erp' => 'AI + ERP (DotOne)',
+					'engineering' => 'AI Engineering', 'architecture' => 'AI agent architecture', 'studio' => 'AI Agent Studio',
+					'human' => 'Human + AI', 'demos' => 'AI solution demonstrations', 'enterprise' => 'Enterprise-ready AI', 'integrations' => 'Integrations orbit',
+				),
+				'layout' => 'vertical', 'return_format' => 'value',
+			),
 			array( 'key' => 'field_tdb_lp_tab_steps', 'label' => 'Process', 'type' => 'tab' ),
 			$text( 'steps_heading', 'lp_steps_heading', 'Heading', array( 'default_value' => 'How we work' ) ),
 			array(

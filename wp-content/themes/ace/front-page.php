@@ -57,10 +57,12 @@ endif; ?>
 
   <?php include_once('inc/brands.php'); ?>
 
-  <?php include locate_template( 'inc/ai-services-grid.php' ); ?>
-
-  <?php include locate_template( 'inc/ai-integrations.php' ); ?>
-  <?php include locate_template( 'inc/ai-tech-stack.php' ); ?>
+  <?php
+  // AI story: what we build -> use cases -> AI + ERP -> engineering -> services -> trust -> integrations -> stack.
+  foreach ( array( 'inc/ai-agent-categories.php', 'inc/sections/use-cases.php', 'inc/sections/dotone-erp.php', 'inc/sections/ai-engineering.php', 'inc/ai-services-grid.php', 'inc/sections/human-ai.php', 'inc/sections/enterprise.php', 'inc/ai-integrations.php', 'inc/ai-tech-stack.php' ) as $ace_part ) {
+    include locate_template( $ace_part );
+  }
+  ?>
 
 <?php if( have_rows('services') ):
   while( have_rows('services') ) : the_row(); ?>

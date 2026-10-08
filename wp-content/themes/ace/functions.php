@@ -593,6 +593,7 @@ add_action( 'wp_enqueue_scripts', function () {
   $dir = get_stylesheet_directory();
   $uri = get_stylesheet_directory_uri();
   wp_enqueue_style( 'ace-landing', $uri . '/assets/css/landing.css', array( 'ai-theme-style' ), filemtime( $dir . '/assets/css/landing.css' ) );
+  wp_enqueue_style( 'ace-sections', $uri . '/assets/css/sections.css', array( 'ace-landing' ), filemtime( $dir . '/assets/css/sections.css' ) );
   wp_enqueue_script( 'ace-landing-orb', $uri . '/assets/js/landing-orb.js', array(), filemtime( $dir . '/assets/js/landing-orb.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }, 30 );
 

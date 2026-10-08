@@ -233,6 +233,31 @@ while ( have_posts() ) :
 	</section>
 	<?php endif; ?>
 
+	<?php
+	// Optional story sections chosen in the "Sections" tab (rendered in a fixed, logical order).
+	$ace_section_files = array(
+		'how'          => 'inc/ai-agent-loop.php',
+		'categories'   => 'inc/ai-agent-categories.php',
+		'library'      => 'inc/ai-agent-library.php',
+		'use_cases'    => 'inc/sections/use-cases.php',
+		'transform'    => 'inc/sections/transformation.php',
+		'erp'          => 'inc/sections/dotone-erp.php',
+		'engineering'  => 'inc/sections/ai-engineering.php',
+		'architecture' => 'inc/sections/architecture.php',
+		'studio'       => 'inc/sections/studio.php',
+		'human'        => 'inc/sections/human-ai.php',
+		'demos'        => 'inc/sections/demos.php',
+		'enterprise'   => 'inc/sections/enterprise.php',
+		'integrations' => 'inc/ai-integrations.php',
+	);
+	$ace_chosen = (array) $f( 'lp_sections', array() );
+	foreach ( $ace_section_files as $ace_key => $ace_file ) {
+		if ( in_array( $ace_key, $ace_chosen, true ) ) {
+			include locate_template( $ace_file );
+		}
+	}
+	?>
+
 	<?php if ( trim( get_the_content() ) ) : ?>
 	<section class="lqd-section tdb-lp-content py-75">
 		<div class="container">
