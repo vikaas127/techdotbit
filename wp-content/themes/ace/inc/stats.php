@@ -21,8 +21,8 @@
                   <?php endif; ?>
                   
                   <div class="contents">
-                    <span class="text-30 mb-25 leading-1\5em"><span class="counting" data-count="<?php the_sub_field('count'); ?>" style="display: inline-block">0</span>+</span>
-                    <h3 class="text-15 leading-1\5em uppercase"><?php the_sub_field('title'); ?></h3>
+                    <span class="text-30 mb-25 leading-1/5em"><span class="counting" data-count="<?php the_sub_field('count'); ?>" style="display: inline-block">0</span>+</span>
+                    <h3 class="text-15 leading-1/5em uppercase"><?php the_sub_field('title'); ?></h3>
                   </div>
                 </div>
               </div>

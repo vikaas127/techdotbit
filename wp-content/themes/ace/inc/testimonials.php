@@ -22,7 +22,7 @@
                 <div class="carousel-item-inner">
                   <div class="carousel-item-content">
                     <h5 class="flex items-center m-0">
-                      <img class="max-w-full h-auto vertical-top rounded-inherit mr-1/5rem" width="75" height="75" src="<?php the_sub_field('image'); ?>" alt="<?php the_sub_field('name'); ?>">
+                      <img loading="lazy" decoding="async" class="max-w-full h-auto vertical-top rounded-inherit mr-1/5rem" width="75" height="75" src="<?php the_sub_field('image'); ?>" alt="<?php the_sub_field('name'); ?>">
                       <span class="text-18">
                         <span><?php the_sub_field('name'); ?></span>
                         <br>

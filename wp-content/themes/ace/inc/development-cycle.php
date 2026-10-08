@@ -25,7 +25,7 @@
                   <?php endif; ?>
                   
                   <div class="contents">
-                    <h3 class="text-15 leading-1\5em uppercase"><?php the_sub_field('text'); ?></h3>
+                    <h3 class="text-15 leading-1/5em uppercase"><?php the_sub_field('text'); ?></h3>
                   </div>
                 </div>
               </div>

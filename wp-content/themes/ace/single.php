@@ -50,7 +50,7 @@ get_header(); ?>
     			<div class="row items-center">
     			    <div class="col col-12 col-md-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
     			        <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                            <img src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
+                            <img loading="lazy" decoding="async" src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
                         </figure>
     			    </div>
     			    <div class="col col-12 col-md-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
@@ -84,7 +84,7 @@ get_header(); ?>
     			    
     			    <div class="col col-12 col-md-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
     			        <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                            <img src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
+                            <img loading="lazy" decoding="async" src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
                         </figure>
     			    </div>
     			</div>
@@ -100,7 +100,7 @@ get_header(); ?>
     			<div class="row items-center">
     			    <div class="col col-12 col-md-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
     			        <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                            <img src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
+                            <img loading="lazy" decoding="async" src="<?php the_sub_field('screen_image'); ?>" alt="<?php the_sub_field('heading'); ?>" class="max-w-full h-auto vertical-top rounded-inherit">
                         </figure>
     			    </div>
     			    <div class="col col-12 col-md-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
@@ -130,7 +130,7 @@ get_header(); ?>
             <div class="col col-12 feature-tab" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
               <?php if( have_rows('tabs') ):  
               $i = 1; // Set the increment variable ?>
-              <ul class="list-unstyled d-flex py-30" id="tabs-tools">
+              <ul class="list-unstyled d-flex py-30" id="tabs-features">
                 <?php while ( have_rows('tabs') ) : the_row(); ?>
                  <li><a href="#tab<?php echo $i++; ?>" class="text-white"><?php the_sub_field('tab_name'); ?></a></li>
                 <?php endwhile; ?>
@@ -138,7 +138,7 @@ get_header(); ?>
               <?php endif; ?>
               <?php if( have_rows('tabs') ):  
               $i = 1; // Set the increment variable ?>
-              <div class="tab-list" id="tabs-tools-content">
+              <div class="tab-list" id="tabs-features-content">
                 <?php while ( have_rows('tabs') ) : the_row(); ?>
                  <div class="tab-content text-white" id="tab<?php echo $i++; ?>">
                      <?php if( have_rows('tab_content') ): ?>
@@ -177,21 +177,21 @@ get_header(); ?>
             <div class="col col-12 col-md-4 col-lg-3" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
               <ul class="list-unstyled text-center md:text-start tools-tab py-30" id="tabs-tools">
                 <?php while ( have_rows('tech_stack') ) : the_row(); ?>
-                 <li><a href="#<?php the_sub_field('tab_heading'); ?>"><?php the_sub_field('tab_heading'); ?></a></li>
+                 <li><a href="#tech-<?php echo esc_attr( sanitize_title( get_sub_field('tab_heading') ) ); ?>"><?php the_sub_field('tab_heading'); ?></a></li>
                 <?php endwhile; ?>
               </ul>
             </div>
             <div class="col col-12 col-md-8 col-lg-9 text-center md:text-start" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
               <div class="tab-list" id="tabs-tools-content">
                 <?php while ( have_rows('tech_stack') ) : the_row(); ?>
-                 <div class="tab-content" id="<?php the_sub_field('tab_heading'); ?>">
+                 <div class="tab-content" id="tech-<?php echo esc_attr( sanitize_title( get_sub_field('tab_heading') ) ); ?>">
                      <?php if( have_rows('list') ): ?>
                      <ul class="list-unstyled tools-list d-flex flex-wrap">
                          <?php while ( have_rows('list') ) : the_row(); ?>
                          <li>
                              <a href="<?php the_sub_field('link'); ?>">
                                  <figure>
-                                     <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?> Icon" width="64" height="64" loading="lazy" class="img-fluid">
+                                     <img loading="lazy" decoding="async" src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?> Icon" width="64" height="64" loading="lazy" class="img-fluid">
                                      <figcaption><?php the_sub_field('title'); ?></figcaption>
                                  </figure>
                              </a>
@@ -225,7 +225,7 @@ get_header(); ?>
                       if( !empty( $image ) ): 
                     ?>
                       <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" width="427" height="494" class="max-w-full h-auto vertical-top rounded-inherit">
+                        <img loading="lazy" decoding="async" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" width="427" height="494" class="max-w-full h-auto vertical-top rounded-inherit">
                       </figure>
                         
                     <?php endif; ?>
@@ -247,23 +247,23 @@ get_header(); ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<section class="breadcrumb inner-banner-area bg-gray-100 py-30">
+	<nav class="breadcrumb inner-banner-area bg-gray-100 py-30" aria-label="Breadcrumb">
 		<div class="container">
-				<a href="#">Home</a> &nbsp;&nbsp;/&nbsp;&nbsp;
-				<a href="#">Blog</a> &nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> &nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="<?php echo esc_url( get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/' ) ); ?>">Blog</a> &nbsp;&nbsp;/&nbsp;&nbsp;
 				<?php $category = get_the_category();
 				if ( ! empty( $category ) ) { ?>
-					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>"><?php echo $category[0]->cat_name; ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;
+					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>"><?php echo esc_html( $category[0]->cat_name ); ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;
 				<?php } ?>
-				<span><?php the_title(); ?></span>
+				<span aria-current="page"><?php the_title(); ?></span>
 		</div>
-	</section>
+	</nav>
 
 	<article class="single-blog-post pt-75">
 		<div class="container entry-header">
 			<div class="row items-center">
 				<div class="col col-12 col-lg-6">
-					<span class="d-block"><?php $cat = get_the_category(); echo $cat[0]->cat_name; ?></span>
+					<span class="d-block"><?php $cat = get_the_category(); if ( $cat ) { echo esc_html( $cat[0]->cat_name ); } ?></span>
 					<h1 class="heading mt-15 text-24"><?php the_title(); ?></h1>
 					<!--<p><--?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>-->
 					<div class="d-flex author-profile items-center mt-30 mt-lg-45">
@@ -272,14 +272,14 @@ get_header(); ?>
 						</div>
 						<div class="author-content">
 							<h4 class="text-16"><?php the_author(); ?></h4>
-							<span class="d-inline-flex align-items-center pr-md-3"><?php the_date(); ?></span> 
+							<span class="d-inline-flex align-items-center pr-md-3"><?php echo esc_html( get_the_date() ); ?></span> 
 							
 						</div>
 					</div>
 				</div>
 				<div class="col col-12 col-lg-6 col-xl-5 offset-xl-1 mt-15 mt-lg-0">
 					<?php if(has_post_thumbnail()){ ?>
-						<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" alt="<?php the_title(); ?>" class="img-fluid post-thumbnail rounded-4 mt-lg-0">
+						<?php the_post_thumbnail( 'large', array( 'class' => 'img-fluid post-thumbnail rounded-4 mt-lg-0', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?>
 					<?php } ?>
 				</div>
 			</div>
@@ -317,7 +317,11 @@ get_header(); ?>
 			<h2 class="h3 py-15">Related Posts</h2>
 			<div class="row mt-20 blog-posts related-post">
 				<?php
-					$related = get_posts( array('posts_per_page' => 3));
+					$related = get_posts( array(
+						'posts_per_page' => 3,
+						'post__not_in'   => array( get_the_ID() ),
+						'category__in'   => wp_get_post_categories( get_the_ID() ),
+					) );
 					foreach( $related as $post ){
 						setup_postdata( $post ); ?>
 
@@ -332,7 +336,7 @@ get_header(); ?>
                   ?>
 					       
 						      <figure>
-						        <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'large' ); ?>" alt="<?php the_title(); ?>" width="700" height="450" class="img-fluid">
+						        <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large', array( 'class' => 'img-fluid', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy', 'decoding' => 'async' ) ); } ?>
 						      </figure>
 						    
 						      <h3 class="entry-title lqd-lp-title text-20 mt-1/5rem relative z-2 mb-20">
@@ -344,7 +348,7 @@ get_header(); ?>
                       <?php // echo get_avatar( get_the_author_meta('ID')); ?>
                     </figure> -->
                     <span class="lqd-lp-author-info">
-                      <?php the_author(); ?> &nbsp;&nbsp; <?php the_date(); ?>
+                      <?php the_author(); ?> &nbsp;&nbsp; <?php echo esc_html( get_the_date() ); ?>
                     </span>
                   </div>
 						  </article>
@@ -362,18 +366,10 @@ get_header(); ?>
 
 <?php include_once('inc/bottom-cta.php'); ?>
 	
-<?php get_footer(); ?>
-
-<?php if ( is_single() && 'post' == get_post_type() ) { ?>
+<?php if ( is_single() && 'post' == get_post_type() ) { add_action( 'wp_footer', function () { ?>
 
 <script type="text/javascript">
 	jQuery(document).ready(function($){
-		$('.table-of-contents ul li a').click(function(event){
-			event.preventDefault();
-			$('html, body').animate({
-				scrollTop: $($.attr(this, 'href')).offset().top-100
-			}, 500);
-		});
 		var topMenu = jQuery(".table-of-contents"),
                 offset = 40,
                 topMenuHeight = topMenu.outerHeight()+offset,
@@ -383,7 +379,7 @@ get_header(); ?>
                 scrollItems = menuItems.map(function(){
                   var href = jQuery(this).attr("href"),
                   id = href.substring(href.indexOf('#')),
-                  item = jQuery(id);
+                  item = id.length > 1 ? jQuery(document.getElementById(id.slice(1))) : jQuery();
                   //console.log(item)
                   if (item.length) { return item; }
                 });
@@ -392,7 +388,8 @@ get_header(); ?>
             menuItems.click(function(e){
               var href = jQuery(this).attr("href"),
                 id = href.substring(href.indexOf('#'));
-                  offsetTop = href === "#" ? 0 : jQuery(id).offset().top-topMenuHeight+1;
+                  target = id.length > 1 ? jQuery(document.getElementById(id.slice(1))) : jQuery(),
+                  offsetTop = target.length ? target.offset().top-topMenuHeight+1 : 0;
               jQuery('html, body').stop().animate({ 
                   scrollTop: offsetTop
               }, 300);
@@ -441,4 +438,6 @@ get_header(); ?>
 	}, false);
 </script>
 
-<?php } ?>
+<?php }, 100 ); } ?>
+
+<?php get_footer(); ?>

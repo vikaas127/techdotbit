@@ -85,7 +85,7 @@ endif; ?>
                       <?php endif; ?>
                       
                       <div class="contents">
-                        <h3 class="text-15 mb-15 leading-1\5em uppercase"><?php the_sub_field('title'); ?></h3>
+                        <h3 class="text-15 mb-15 leading-1/5em uppercase"><?php the_sub_field('title'); ?></h3>
                         <p><?php the_sub_field('paragraph'); ?></p>
                       </div>
                     </div>
@@ -103,6 +103,8 @@ endif; ?>
   endif; ?>
 
 
+    <?php $featured_posts = get_field('case_studies'); ?>
+    <?php if ( $featured_posts && is_array( $featured_posts ) ) : ?>
     <section class="lqd-section case-study-carousel pt-60 pb-50" data-custom-animations="true" data-ca-options="{&quot;animationTarget&quot;: &quot;.animation-element&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;initValues&quot;: {&quot;y&quot;: &quot;30px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
       <div class="container">
         <div class="row items-center justify-between">
@@ -113,15 +115,12 @@ endif; ?>
           </div>
           <div class="col col-12 col-md-6 text-end sm:text-center">
             <div class="fancy-button animation-element">
-              <a href="<?php the_sub_field('page_link'); ?>" class="btn btn-naked font-bold uppercase whitespace-nowrap tracking-1/5 leading-1/4em text-green-900">
+              <a href="<?php echo esc_url( ace_portfolio_url() ); ?>" class="btn btn-naked font-bold uppercase whitespace-nowrap tracking-1/5 leading-1/4em text-green-900">
                 <span class="btn-txt" data-text="see more works">see more works</span>
               </a>
             </div>
           </div>
 
-          <?php $featured_posts = get_field('case_studies');
-            if( $featured_posts ): 
-            ?>
           <div class="col col-12">
             <div class="carousel-container pt-40 animation-element">
               <div class="carousel-items relative" data-lqd-flickity="{ &quot;equalHeightCells&quot;: true, &quot;filters&quot;: &quot;#pf-filter-46824385&quot;, &quot;prevNextButtons&quot;: true, &quot;navArrow&quot;:  6, &quot;fullwidthSide&quot;:  true, &quot;buttonsAppendTo&quot;:  &quot;self&quot; }">
@@ -148,7 +147,7 @@ endif; ?>
                       <div class="lqd-pf-img overflow-hidden rounded-6 relative mb-2em">
                         <figure>
                           <figure class="lqd-overlay flex">
-                            <?php the_post_thumbnail('full', [ 'alt' => esc_html ( get_the_title() ), 'class' => 'w-full h-full objfit-cover objfit-center' ] ); ?>
+                            <?php the_post_thumbnail('large', [ 'alt' => the_title_attribute( array( 'echo' => false ) ), 'class' => 'w-full h-full objfit-cover objfit-center', 'loading' => 'lazy' ] ); ?>
         
                           </figure>
                         </figure>
@@ -159,7 +158,7 @@ endif; ?>
                       <div class="lqd-pf-details sm:text-center text-start">
                         <h2 class="lqd-pf-title mt-0 mb-1 h5"><?php the_title(); ?></h2>
                         
-                        <span class="leading-1/4em"><?php echo $term->name; ?></span>
+                        <span class="leading-1/4em"><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span>
                       </div>
                       <a href="<?php the_permalink(); ?>" class="lqd-overlay flex lqd-pf-overlay-link leading-1/4em fresco" data-fresco-group="case-studies"></a>
                     </div>
@@ -170,10 +169,10 @@ endif; ?>
             </div>
           </div>
           <?php wp_reset_postdata(); ?>
-          <?php endif; ?>
         </div>
       </div>
     </section>
+    <?php endif; ?>
 
 
   <?php if( have_rows('benefits') ): 
@@ -183,7 +182,7 @@ endif; ?>
         <div class="row">
           <div class="col col-12 text-center mb-60 mx-auto">
             <div class="ld-fancy-heading">
-              <h2 class="ld-fh-element mb-0/4em" data-text-rotator="true">
+              <h2 class="ld-fh-element mb-0/4em">
                 <?php the_sub_field('heading'); ?>
               </h2>
             </div>
@@ -254,14 +253,14 @@ endif; ?>
         <div class="col col-12 col-md-4 col-lg-3" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
           <ul class="list-unstyled text-center md:text-start tools-tab py-30" id="tabs-tools">
             <?php while ( have_rows('technologies') ) : the_row(); ?>
-             <li><a href="#<?php the_sub_field('tab_heading'); ?>"><?php the_sub_field('tab_heading'); ?></a></li>
+             <li><a href="#tech-<?php echo esc_attr( sanitize_title( get_sub_field('tab_heading') ) ); ?>"><?php the_sub_field('tab_heading'); ?></a></li>
             <?php endwhile; ?>
           </ul>
         </div>
         <div class="col col-12 col-md-8 col-lg-9 text-center md:text-start" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
           <div class="tab-list" id="tabs-tools-content">
             <?php while ( have_rows('technologies') ) : the_row(); ?>
-             <div class="tab-content" id="<?php the_sub_field('tab_heading'); ?>">
+             <div class="tab-content" id="tech-<?php echo esc_attr( sanitize_title( get_sub_field('tab_heading') ) ); ?>">
                  <?php if( have_rows('list') ): ?>
                  <ul class="list-unstyled tools-list d-flex flex-wrap">
                      <?php while ( have_rows('list') ) : the_row(); ?>

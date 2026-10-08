@@ -47,7 +47,7 @@ endif; ?>
                     </div>
                     
                     <div class="contents">
-                      <h4 class="text-15 leading-1\5em uppercase"><?php the_sub_field('name'); ?></h4>
+                      <h4 class="text-15 leading-1/5em uppercase"><?php the_sub_field('name'); ?></h4>
                       <h5 class="text-14  mb-15"><?php the_sub_field('designation'); ?></h5>
                       <p>"<?php the_sub_field('feedback'); ?>"</p>
                       <p class="mt-15"><strong>Company :</strong> <?php the_sub_field('company_name'); ?></p>

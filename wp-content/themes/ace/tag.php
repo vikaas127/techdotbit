@@ -26,7 +26,7 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                       <div class="row">
                         <div class="col-12 col-md-6 py-0 px-15">
-                          <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'large' ); ?>" alt="<?php the_title(); ?>" width="700" height="450" class="img-fluid"></a>
+                          <a href="<?php the_permalink(); ?>" rel="bookmark"><?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large', array( 'class' => 'img-fluid', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy', 'decoding' => 'async' ) ); } ?></a>
                         </div>
                         <div class="col-12 col-md-6 py-0 px-15">
                           <?php $categories = get_the_category();
@@ -46,7 +46,7 @@
                               <?php // echo get_avatar( get_the_author_meta('ID')); ?>
                             </figure> -->
                             <span class="lqd-lp-author-info">
-                              <?php the_author(); ?> &nbsp;&nbsp; <?php the_date(); ?>
+                              <?php the_author(); ?> &nbsp;&nbsp; <?php echo esc_html( get_the_date() ); ?>
                             </span>
                           </div>
                         </div>
@@ -68,7 +68,7 @@
               <?php
                 $categories = get_categories();
                 foreach($categories as $category) {
-                   echo '<a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a>';
+                   echo '<a href="' . esc_url( get_category_link($category->term_id) ) . '">' . esc_html( $category->name ) . '</a>';
                 }
                ?>
             </div>

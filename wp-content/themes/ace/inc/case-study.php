@@ -11,7 +11,7 @@
         
 
         <?php $featured_posts = get_sub_field('list', 'option');
-          if( $featured_posts ): 
+          if( $featured_posts && is_array( $featured_posts ) ): 
           ?>
         <div class="col col-12">
           <div class="carousel-container pt-40 animation-element">
@@ -50,7 +50,7 @@
             <div class="lqd-pf-details sm:text-center text-start">
                 <h2 class="lqd-pf-title mt-0 mb-1 h5"><?php the_title(); ?></h2>
                 <!-- Removed leading-1/4em to reduce extra spacing -->
-                <span><?php echo $term->name; ?></span>
+                <span><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span>
             </div>
             <a href="<?php the_permalink(); ?>" class="lqd-overlay flex lqd-pf-overlay-link fresco" data-fresco-group="case-studies"></a>
         </div>

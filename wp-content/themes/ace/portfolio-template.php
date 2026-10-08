@@ -38,9 +38,9 @@ endif; ?>
             if ( $count > 0 )
             { 
               foreach ( $terms as $term ) {
-                $termname = strtolower($term->name);
+                $termname = sanitize_title($term->name);
                 $termname = str_replace(' ', '-', $termname);
-                echo '<li><a href="javascript:void(0)" title="'.$term->name.'" data-rel="'.$termname.'">'.$term->name.'</a></li>';
+                echo '<li><a href="javascript:void(0)" title="'.esc_attr($term->name).'" data-rel="'.esc_attr($termname).'">'.esc_html($term->name).'</a></li>';
               }
             }
           echo "</ul>";
@@ -63,9 +63,8 @@ endif; ?>
                         $links = array();
                         foreach ( $terms as $term ) 
                         {
-                            $links[] = $term->name;
+                            $links[] = sanitize_title( $term->name );
                         }
-                        $links = str_replace(' ', '-', $links); 
                         $tax = join( " ", $links );   
                     else :  
                         $tax = '';  
@@ -74,9 +73,9 @@ endif; ?>
 
                     <?php $infos = get_post_custom_values('_url'); ?>
 
-                    <li class="w-100 portfolio-item <?php echo strtolower($tax); ?> all" style="">
+                    <li class="w-100 portfolio-item <?php echo esc_attr( $tax ); ?> all">
                         <figure>
-                            <?php the_post_thumbnail('full', [ 'alt' => esc_html ( get_the_title() ) ] ); ?>
+                            <?php the_post_thumbnail('large', [ 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy' ] ); ?>
                             <figcaption>
                                 <span><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span>
                                 <h3><?php the_title(); ?></h3>
@@ -98,8 +97,7 @@ endif; ?>
 
   <?php include_once('inc/bottom-cta.php'); ?>
 
-<?php get_footer(); ?>
-
+<?php add_action( 'wp_footer', function () { ?>
 <script>
 jQuery(document).ready(function(){
     jQuery('#portfolio-filter li a').click(function(){
@@ -128,3 +126,6 @@ jQuery(document).ready(function(){
 
 }); // document ready
 </script>
+<?php }, 100 ); ?>
+
+<?php get_footer(); ?>

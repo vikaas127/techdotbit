@@ -31,13 +31,14 @@ get_header(); ?>
   
   <section class="lqd-section blog pt-90 pb-70">
     <div class="container">
+      <h1 class="h2 mb-40"><?php echo esc_html( get_option( 'page_for_posts' ) ? get_the_title( get_option( 'page_for_posts' ) ) : __( 'Blog', 'ace' ) ); ?></h1>
       <div class="row">
 
         <?php 
 
         $args = array(
             'posts_per_page' => 1,
-            'post__in'  => get_option( 'sticky_posts' ),
+            'post__in'  => get_option( 'sticky_posts' ) ? get_option( 'sticky_posts' ) : array( 0 ), // no sticky post => no featured slot
             'ignore_sticky_posts' => 1
         );
         $my_query = new WP_Query( $args );
@@ -50,7 +51,7 @@ get_header(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
               <div class="row items-center">
                 <div class="col-12 col-md-6 py-0 px-15">
-                  <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'large' ); ?>" alt="<?php the_title(); ?>" width="700" height="450" class="img-fluid"></a>
+                  <a href="<?php the_permalink(); ?>" rel="bookmark"><?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large', array( 'class' => 'img-fluid', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy', 'decoding' => 'async' ) ); } ?></a>
                 </div>
                 <div class="col-12 col-md-6 py-0 px-15">
                   <?php $categories = get_the_category();
@@ -70,7 +71,7 @@ get_header(); ?>
                       <?php // echo get_avatar( get_the_author_meta('ID')); ?>
                     </figure> -->
                     <span class="lqd-lp-author-info">
-                      <?php the_author(); ?> &nbsp;&nbsp; <?php the_date(); ?>
+                      <?php the_author(); ?> &nbsp;&nbsp; <?php echo esc_html( get_the_date() ); ?>
                     </span>
                   </div>
                 </div>
@@ -96,7 +97,7 @@ get_header(); ?>
                   if ( have_posts() ) {
 					$temp = $wp_query; $wp_query = null; 
 					$wp_query = new WP_Query();
-					$wp_query->query('post_per_page=12' . '&paged='.$paged);
+					$wp_query->query('posts_per_page=12' . '&paged='.$paged);
 					
                     ?>
                     <div class="row">
@@ -106,7 +107,7 @@ get_header(); ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                           <div class="row">
                             <div class="col-12 col-md-6 col-lg-6 py-0 px-15">
-                              <a href="<?php the_permalink(); ?>" rel="bookmark"><img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'large' ); ?>" alt="<?php the_title(); ?>" width="700" height="450" class="img-fluid"></a>
+                              <a href="<?php the_permalink(); ?>" rel="bookmark"><?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large', array( 'class' => 'img-fluid', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy', 'decoding' => 'async' ) ); } ?></a>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 py-0 px-15">
                               <?php $categories = get_the_category();
@@ -125,7 +126,7 @@ get_header(); ?>
                                   <?php // echo get_avatar( get_the_author_meta('ID')); ?>
                                 </figure> -->
                                 <span class="lqd-lp-author-info">
-                                  <?php the_author(); ?> &nbsp;&nbsp; <?php the_date(); ?>
+                                  <?php the_author(); ?> &nbsp;&nbsp; <?php echo esc_html( get_the_date() ); ?>
                                 </span>
                               </div>
                             </div>

@@ -82,7 +82,7 @@ endif; ?>
                         <?php endif; ?>
                         
                         <div class="contents">
-                          <h3 class="text-15 mb-15 leading-1\5em "><?php the_sub_field('title'); ?></h3>
+                          <h3 class="text-15 mb-15 leading-1/5em "><?php the_sub_field('title'); ?></h3>
                           <?php if(get_sub_field('paragraph')): ?><p><?php the_sub_field('paragraph'); ?></p><?php endif; ?>
                         </div>
 
@@ -148,4 +148,3 @@ endif; ?>
 <?php include_once('inc/bottom-cta.php'); ?>
 
 <?php get_footer(); ?>
-  <?php include_once('inc/brands.php'); ?>

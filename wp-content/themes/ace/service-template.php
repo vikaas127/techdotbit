@@ -85,7 +85,7 @@ endif; ?>
                     <?php endif; ?>
                     
                     <div class="contents">
-                      <h3 class="text-15 mb-15 leading-1\5em uppercase"><?php the_sub_field('title'); ?></h3>
+                      <h3 class="text-15 mb-15 leading-1/5em uppercase"><?php the_sub_field('title'); ?></h3>
                       <p><?php the_sub_field('paragraph'); ?></p>
                       <?php if(get_sub_field('link')): ?>
                         <a href="<?php the_sub_field('link'); ?>" class="link">View More</a>
@@ -145,7 +145,7 @@ endif; ?>
       <div class="row">
       	<div class="col col-12  text-center mb-60 mx-auto">
       	  <div class="ld-fancy-heading">
-      	    <h2 class="ld-fh-element mb-0/4em" data-text-rotator="true">
+      	    <h2 class="ld-fh-element mb-0/4em">
       	      <?php the_sub_field('heading'); ?>
       	    </h2>
       	  </div>

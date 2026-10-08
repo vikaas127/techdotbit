@@ -2,7 +2,7 @@
 <section class="lqd-section services py-75 inner-services bg-blue stats">
   <div class="container">
       <div class="ld-fancy-heading">
-        <h2 class="mb-2em text-white text-center" data-text-rotator="true">
+        <h2 class="mb-2em text-white text-center">
           Among The Top App Developers Worldwide
         </h2>
       </div>
@@ -20,7 +20,7 @@
                       if( !empty( $image ) ): 
                     ?>
                       <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" width="150" height="150" class="max-w-full h-auto vertical-top rounded-inherit">
+                        <img loading="lazy" decoding="async" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" width="150" height="150" class="max-w-full h-auto vertical-top rounded-inherit">
                       </figure>
                         
                     <?php endif; ?>

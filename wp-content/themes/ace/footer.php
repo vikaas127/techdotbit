@@ -9,7 +9,7 @@
                     $icon = get_sub_field('icon'); 
                     if( !empty( $icon ) ): 
                   ?>
-                      <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="50" loading="lazy" class="img-fluid h-auto">
+                      <img loading="lazy" decoding="async" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="50" loading="lazy" class="img-fluid h-auto">
                   <?php endif; ?>
                   <address class="mt-20 mb-0">
                       <h5 class="mb-15"><?php the_sub_field('location'); ?></h5>
@@ -21,7 +21,7 @@
                                 <path d="M1.969-18.375v1.313a7.172,7.172,0,0,1,3.65.984A7.31,7.31,0,0,1,8.2-13.494a7.172,7.172,0,0,1,.984,3.65H10.5A8.353,8.353,0,0,0,9.331-14.15a8.4,8.4,0,0,0-3.056-3.056A8.353,8.353,0,0,0,1.969-18.375Zm-6.788,1.969a1.442,1.442,0,0,0-.964.349L-7.9-13.9l.062-.041A1.966,1.966,0,0,0-8.5-12.879a2.041,2.041,0,0,0,.072,1.23A20.666,20.666,0,0,0-6.891-8.367,20.038,20.038,0,0,0-3.671-4.2,21.246,21.246,0,0,0,3.773.554h.021a2.245,2.245,0,0,0,1.2.082A2.32,2.32,0,0,0,6.07.1L8.142-1.969a1.379,1.379,0,0,0,.41-1.015A1.379,1.379,0,0,0,8.142-4L5.455-6.706a1.391,1.391,0,0,0-1.025-.41,1.391,1.391,0,0,0-1.025.41L2.112-5.394A10.206,10.206,0,0,1-.595-7.229,8.015,8.015,0,0,1-2.42-9.905l1.313-1.312a1.505,1.505,0,0,0,.431-1.077,1.234,1.234,0,0,0-.492-1.015l.062.062-2.748-2.81A1.442,1.442,0,0,0-4.819-16.406Zm6.788.656v1.313a4.5,4.5,0,0,1,2.307.615,4.558,4.558,0,0,1,1.671,1.671,4.5,4.5,0,0,1,.615,2.307H7.875a5.809,5.809,0,0,0-.8-2.974A6.127,6.127,0,0,0,4.942-14.95,5.809,5.809,0,0,0,1.969-15.75Zm-6.788.656a.253.253,0,0,1,.144.062l2.687,2.748a.142.142,0,0,1-.041.144l-1.948,1.928.144.41.267.574A11.008,11.008,0,0,0-2.81-7.875,7.98,7.98,0,0,0-1.5-6.3,11.479,11.479,0,0,0,.82-4.573,8.9,8.9,0,0,0,1.969-4l.41.185L4.368-5.8q.041-.041.062-.041t.062.041L7.26-3.035q.041.041.041.051t-.041.051L5.209-.9A.945.945,0,0,1,4.225-.7a19.676,19.676,0,0,1-6.973-4.43A19.5,19.5,0,0,1-5.763-9.044,17.408,17.408,0,0,1-7.2-12.1v-.021a.679.679,0,0,1-.021-.441.745.745,0,0,1,.226-.4l2.03-2.071A.2.2,0,0,1-4.819-15.094Zm6.788,1.969v1.313a1.9,1.9,0,0,1,1.395.574,1.9,1.9,0,0,1,.574,1.395H5.25a3.21,3.21,0,0,0-.441-1.641,3.258,3.258,0,0,0-1.2-1.2A3.21,3.21,0,0,0,1.969-13.125Z" transform="translate(8.563 18.375)" fill="currentColor"></path>
                               </svg>
                             </span>
-                          <a href="tel:<?php the_sub_field('phone'); ?>"><?php the_field('phone'); ?></a>
+                          <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_sub_field('phone') ) ); ?>"><?php the_sub_field('phone'); ?></a>
                         </div>
                       <?php endif; ?>
                       <?php if(get_sub_field('email')): ?>
@@ -31,7 +31,7 @@
                                 <path d="M0-14.844l-.315.2-7.4,4.824V.594H7.719V-9.815L.315-14.64Zm0,1.41L6.049-9.5,0-5.585-6.049-9.5ZM-6.531-8.405-.315-4.379l.315.2,6.531-4.23V-.594H-6.531Z" transform="translate(7.719 14.844)" fill="currentColor"></path>
                               </svg>
                             </span>
-                          <a href="mailto:<?php the_sub_field('email'); ?>"><?php the_field('email'); ?></a>
+                          <a href="mailto:<?php echo esc_attr( get_sub_field('email') ); ?>"><?php the_sub_field('email'); ?></a>
                         </div>
                       <?php endif; ?>
                   </address>
@@ -64,7 +64,7 @@
                           $footerlogo = get_sub_field('logo'); 
                           if( !empty( $footerlogo ) ): 
                         ?>
-                          <img class="max-w-full h-auto vertical-top rounded-inherit" width="200" height="40" src="<?php echo esc_url($footerlogo['url']); ?>" alt="<?php echo esc_attr($footerlogo['alt']); ?>">
+                          <img loading="lazy" decoding="async" class="max-w-full h-auto vertical-top rounded-inherit" width="200" height="40" src="<?php echo esc_url($footerlogo['url']); ?>" alt="<?php echo esc_attr($footerlogo['alt']); ?>">
                         <?php else: ?>
                           <figcaption class="h5 text-dark">TechDotBit</figcaption>
                         <?php endif; ?>
@@ -78,8 +78,8 @@
                     <ul class="social-icon social-icon-border-none text-24">
                       <?php while( have_rows('social_media', 'option') ) : the_row(); ?>
                       <li>
-                        <a class="text-dark text-24 hover:text-dark" href="<?php the_sub_field('link'); ?>" target="_blank">
-                          <img width="24" height="24" src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('alt'); ?>">
+                        <a class="text-dark text-24 hover:text-dark" href="<?php echo esc_url( get_sub_field('link') ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( get_sub_field('alt') ); ?>">
+                          <img loading="lazy" decoding="async" width="24" height="24" src="<?php echo esc_url( get_sub_field('icon') ); ?>" alt="<?php echo esc_attr( get_sub_field('alt') ); ?>" loading="lazy">
                         </a>
                       </li>
                       <?php endwhile; ?>
@@ -109,7 +109,7 @@
                         <h3 class="text-13 text-dark mb-0">Looking for collaboration?</h3>
                         <p>
                           <span class="text-16 text-dark">
-                            <a  class="text-dark"><?php the_sub_field('phone'); ?></a>
+                            <a class="text-dark" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_sub_field('phone') ) ); ?>"><?php the_sub_field('phone'); ?></a>
                           </span>
                         </p>
                       </div>
@@ -125,7 +125,7 @@
                       <div class="contents">
                         <h3 class="text-13 text-dark mb-0">eMail Us</h3>
                         <p>
-                          <a class="text-dark"><?php the_sub_field('email'); ?></a>
+                          <a class="text-dark" href="mailto:<?php echo esc_attr( get_sub_field('email') ); ?>"><?php the_sub_field('email'); ?></a>
                         </p>
                       </div>
                     </div>
@@ -184,18 +184,21 @@
               </div>
               <div class="col col-12 col-md-5 text-start sm:text-center">
                 <div class="ld-fancy-heading">
-                  <p class="ld-fh-element mb-0/5em text-13 text-dark">Copyright &copy;2023 - <?php echo date('Y'); ?> TechDotBit.</p>
+                  <p class="ld-fh-element mb-0/5em text-13 text-dark">Copyright &copy; 2023&ndash;<?php echo esc_html( wp_date( 'Y' ) ); ?> TechDotBit. All rights reserved.</p>
                 </div>
               </div>
               <div class="col col-12 col-sm-7 text-end sm:text-center">
                 <div class="lqd-fancy-menu lqd-menu-td-none -mr-15 -ml-15">
                   <ul class="reset-ul inline-nav link-14">
                     <li class="w-auto relative inline-flex flex-wrap mx-15">
-                      <a class="text-dark-70 hover:text-dark" href="<?php echo site_url(); ?>/privacy-policy/">Privacy Policy</a>
+                      <a class="text-dark-70 hover:text-dark" href="<?php echo esc_url( get_privacy_policy_url() ? get_privacy_policy_url() : home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
                     </li>
+                    <?php $ace_terms = get_page_by_path( 'terms-of-use' ) ? get_page_by_path( 'terms-of-use' ) : get_page_by_path( 'terms-and-conditions' ); ?>
+                    <?php if ( $ace_terms ) : ?>
                     <li class="w-auto relative inline-flex flex-wrap mx-15">
-                      <a class="text-dark-70 hover:text-dark" href="#" target="_blank">Terms of Use</a>
+                      <a class="text-dark-70 hover:text-dark" href="<?php echo esc_url( get_permalink( $ace_terms ) ); ?>">Terms of Use</a>
                     </li>
+                    <?php endif; ?>
                   </ul>
                 </div>
               </div>
@@ -245,7 +248,7 @@
 
 	<script>
 		document.addEventListener( 'wpcf7mailsent', function( event ) {
-		  location = '<?php echo site_url(); ?>/thank-you/';
+		  location = '<?php echo esc_url( home_url( '/thank-you/' ) ); ?>';
 		}, false );
 	</script>
   </body>

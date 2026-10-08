@@ -40,8 +40,8 @@
         </div>
       </div>
     </div>
-    <video class="hero_intro_video" poster="<?php the_sub_field('banner_bg'); ?>" autoplay="" muted="" loop=""> 
-      <source src="<?php the_sub_field('video_file'); ?>" type="video/mp4">
+    <video class="hero_intro_video" poster="<?php echo esc_url( get_sub_field('banner_bg') ); ?>" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <?php if ( get_sub_field('video_file') ) : ?><source src="<?php echo esc_url( get_sub_field('video_file') ); ?>" type="video/mp4"><?php endif; ?>
     </video>
   </section>
   <?php endwhile;
@@ -87,12 +87,12 @@ endif; ?>
                     ?>
                     <div class="iconbox-icon-wrap mb-1em">
                       <span class="iconbox-icon-container w-64 h-64 text-24 text-white rounded-full">
-                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="64" height="64" loading="lazy" class="img-fluid">
+                        <img loading="lazy" decoding="async" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="64" height="64" loading="lazy" class="img-fluid">
                       </span>
                     </div>
                     <?php endif; ?>
                     <div class="contents">
-                      <h3 class="text-15 mb-15 leading-1\5em uppercase"><?php if(get_sub_field('link')): ?><a href="<?php the_sub_field('link'); ?>"><?php endif; ?><?php the_sub_field('title'); ?><?php if(get_sub_field('link')): ?></a><?php endif; ?></h3>
+                      <h3 class="text-15 mb-15 leading-1/5em uppercase"><?php if(get_sub_field('link')): ?><a href="<?php the_sub_field('link'); ?>"><?php endif; ?><?php the_sub_field('title'); ?><?php if(get_sub_field('link')): ?></a><?php endif; ?></h3>
                       <p><?php the_sub_field('paragraph'); ?></p>
                       
                       
@@ -151,7 +151,7 @@ endif; ?>
                     if( !empty( $image ) ): 
                   ?>
                   <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 rounded-6">
-                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"  width="998" height="696" loading="lazy" class="max-w-full h-auto vertical-top rounded-inherit">
+                    <img loading="lazy" decoding="async" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"  width="998" height="696" loading="lazy" class="max-w-full h-auto vertical-top rounded-inherit">
                   </figure>
                   <?php endif; ?>
                 </div>
@@ -183,7 +183,7 @@ endif; ?>
         <?php if( have_rows('list') ): ?>
             <?php while( have_rows('list') ) : the_row(); ?>
             <div class="col col-6 col-md-4 col-lg-3 col-xl-2 py-20 text-center ca-initvalues-applied lqd-animations-done" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;x&quot; : 35 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;x&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
-              <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>"  width="64 " height="64" loading="lazy" class="img-fluid">
+              <img loading="lazy" decoding="async" src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('title'); ?>"  width="64 " height="64" loading="lazy" class="img-fluid">
               <h3 class="text-16 mt-20"><?php the_sub_field('title'); ?></h3>
               <?php if(get_sub_field('paragraph')): ?>
                 <p class="mt-20"><?php the_sub_field('paragraph'); ?></p>
@@ -268,7 +268,7 @@ endif; ?>
                       <div class="carousel-item-content">
                         <div class="flex items-center justify-center">
                           <figure class="max-w-full  m-0 text-center">
-                            <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>" width="64" height="64" class="max-w-full h-auto vertical-top rounded-inherit">
+                            <img loading="lazy" decoding="async" src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>" width="64" height="64" class="max-w-full h-auto vertical-top rounded-inherit">
                             <figcaption><?php the_sub_field('name'); ?></figcaption>
                           </figure>
                         </div>
@@ -290,7 +290,7 @@ endif; ?>
                       <div class="carousel-item-content">
                         <div class="flex items-center justify-center">
                           <figure class="max-w-full  m-0 text-center">
-                            <img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>" width="64" height="64" class="max-w-full h-auto vertical-top rounded-inherit">
+                            <img loading="lazy" decoding="async" src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>" width="64" height="64" class="max-w-full h-auto vertical-top rounded-inherit">
                             <figcaption><?php the_sub_field('name'); ?></figcaption>
                           </figure>
                         </div>
@@ -314,7 +314,7 @@ endif; ?>
       <div class="row ">
         <div class="col col-12 text-center mb-40 mx-auto">
           <div class="ld-fancy-heading">
-            <h2 class="ld-fh-element mb-0/4em" data-text-rotator="true">
+            <h2 class="ld-fh-element mb-0/4em">
               <?php the_field('process_heading'); ?>
             </h2>
           </div>
@@ -329,7 +329,7 @@ endif; ?>
               ?>
               <div class="iconbox-icon-wrap mb-1em text-center">
                 <span class="iconbox-icon-container w-300  h-200  text-24 text-white rounded-full">
-                  <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="300 " height="200  " loading="lazy" class="img-fluid">
+                  <img loading="lazy" decoding="async" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"  width="300 " height="200  " loading="lazy" class="img-fluid">
                 </span>
               </div>
               <?php endif; ?>

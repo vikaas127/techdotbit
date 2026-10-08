@@ -8,15 +8,17 @@ function add_theme_scripts() {
   wp_enqueue_style( 'theme-style', get_stylesheet_directory_uri() . '/assets/css/theme.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'utility-style', get_stylesheet_directory_uri() . '/assets/css/utility.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'classic-style', get_stylesheet_directory_uri() . '/assets/css/demo/classic.css', array(), '1.1', 'all');
-  wp_enqueue_style( 'font-style', 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&amp;family=Open+Sans:wght@400;500&amp;display=swap', array(), '1.1', 'all');
-  wp_enqueue_style( 'Custom-style', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), '1.1', 'all');
+  wp_enqueue_style( 'font-style', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap', array(), null );
+  wp_enqueue_style( 'Custom-style', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), '1.2', 'all');
+  wp_enqueue_style( 'modern-style', get_stylesheet_directory_uri() . '/assets/css/modern.css', array( 'Custom-style' ), filemtime( get_stylesheet_directory() . '/assets/css/modern.css' ), 'all');
   
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts', 20 );
 
 function add_my_script() {
     wp_dequeue_script( 'twenty-twenty-one-script' );
-    wp_enqueue_script('jquery-script', get_stylesheet_directory_uri() . '/assets/vendors/jquery.min.js', array('jquery'));
+    // Use WordPress's bundled jQuery; loading a second (older) copy here
+    // overwrote it and broke plugin scripts such as the job application form.
     wp_enqueue_script('jquery-ui-script', get_stylesheet_directory_uri() . '/assets/vendors/jquery-ui/jquery-ui.min.js', array('jquery'));
     wp_enqueue_script('fastdom-script', get_stylesheet_directory_uri() . '/assets/vendors/fastdom/fastdom.min.js', array('jquery'));
     wp_enqueue_script('bootstrap-script', get_stylesheet_directory_uri() . '/assets/vendors/bootstrap/js/bootstrap.min.js', array('jquery'));
@@ -244,7 +246,7 @@ add_filter( 'request', "parse_request_remove_cpt_slug" , 1, 1 );
     return $post_id;
     }
     // exit on autosave 
-    if (defined('DOING_AUTOSAVE') == DOING_AUTOSAVE) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
     return $post_id;
     }
     if(isset($_POST['_url'])) 
@@ -316,8 +318,8 @@ function parse_toc($headings, $index, $recursive_counter) {
 
   // get all needed elements
   $last_element = $index > 0 ? $headings[$index - 1] : NULL;
-  $current_element = $headings[$index];
-  $next_element = $index < count($headings) ? $headings[$index + 1] : NULL;
+  $current_element = $headings[$index] ?? NULL;
+  $next_element = $headings[$index + 1] ?? NULL;
 
   // end recursive calls
   if($current_element == NULL) return;
@@ -326,12 +328,12 @@ function parse_toc($headings, $index, $recursive_counter) {
   // get all needed variables
   $tag = intval($headings[$index]["tag"]);
   $id = $headings[$index]["id"];
-  $classes = $headings[$index]["classes"];
+  $classes = $headings[$index]["classes"] ?? array();
   $name = $headings[$index]["name"];
 
 
   // element not in toc
-  if($current_element["classes"] && in_array("nitoc", $current_element["classes"])) {
+  if(!empty($current_element["classes"]) && in_array("nitoc", $current_element["classes"])) {
     parse_toc($headings, $index + 1, $recursive_counter + 1);
     return;
   }
@@ -343,19 +345,19 @@ function parse_toc($headings, $index, $recursive_counter) {
 
   // build li class
   $li_classes = "";
-  if($current_element["classes"] && in_array("toc-bold", $current_element["classes"])) $li_classes = " class='bold'";
+  if(!empty($current_element["classes"]) && in_array("toc-bold", $current_element["classes"])) $li_classes = " class='bold'";
 
   // parse line begin
   echo "<li" . $li_classes .">";
 
   // only parse name, when li is not bold
-  if($current_element["classes"] && in_array("toc-bold", $current_element["classes"])) {
+  if(!empty($current_element["classes"]) && in_array("toc-bold", $current_element["classes"])) {
     echo $name;
   } else {
-    echo "<a href='#" . $id . "'>" . $name . "</a>";
+    echo "<a href='#" . esc_attr($id) . "'>" . wp_strip_all_tags($name) . "</a>";
   }
 
-  if(intval($next_element["tag"]) > $tag) {
+  if($next_element && intval($next_element["tag"]) > $tag) {
     parse_toc($headings, $index + 1, $recursive_counter + 1);
   }
 
@@ -363,7 +365,7 @@ function parse_toc($headings, $index, $recursive_counter) {
   echo "</li>";
 
   // parse next line
-  if(intval($next_element["tag"]) == $tag) {
+  if($next_element && intval($next_element["tag"]) == $tag) {
     parse_toc($headings, $index + 1, $recursive_counter + 1);
   }
 
@@ -379,7 +381,7 @@ function parse_toc($headings, $index, $recursive_counter) {
 
 function get_headings($content) {
   $headings = array();
-  preg_match_all("/<h([1-6])(.*)>(.*)<\/h[1-6]>/", $content, $matches);
+  preg_match_all("/<h([1-6])([^>]*)>(.*?)<\/h\\1>/s", $content, $matches);
   
   for($i = 0; $i < count($matches[1]); $i++) {
 
@@ -388,7 +390,7 @@ function get_headings($content) {
     // get id
     $att_string = $matches[2][$i];
     preg_match("/id=\"([^\"]*)\"/", $att_string , $id_matches);
-    $headings[$i]["id"] = $id_matches[1];
+    $headings[$i]["id"] = $id_matches[1] ?? sanitize_title(wp_strip_all_tags($matches[3][$i]));
 
     // get classes
     $att_string = $matches[2][$i];
@@ -426,15 +428,15 @@ function wpvkp_social_buttons($content) {
         $sb_url = urlencode(get_permalink());
  
         // Get current page title
-        $sb_title = str_replace( ' ', '%20', get_the_title());
+        $sb_title = rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, 'UTF-8' ) );
         
         // Get Post Thumbnail for pinterest
         $sb_thumb = get_the_post_thumbnail_src(get_the_post_thumbnail());
  
         // Construct sharing URL without using any script
-        $twitterURL = 'https://twitter.com/intent/tweet?text='.$sb_title.'&amp;url='.$sb_url.'&amp;via=wpvkp';
+        $twitterURL = 'https://twitter.com/intent/tweet?text='.$sb_title.'&amp;url='.$sb_url;
         $facebookURL = 'https://www.facebook.com/sharer/sharer.php?u='.$sb_url;
-        $linkedInURL = 'https://www.linkedin.com/shareArticle?mini=true&url='.$sb_url.'&amp;title='.$sb_title;
+        $linkedInURL = 'https://www.linkedin.com/shareArticle?mini=true&amp;url='.$sb_url.'&amp;title='.$sb_title;
  
         // Add sharing button at the end of page/page content
         $content .= '<div class="social-box"><div class="social-btn">';
@@ -451,7 +453,8 @@ function wpvkp_social_buttons($content) {
 };
 // Enable the_content if you want to automatically show social buttons below your post.
 
- add_filter( 'the_content', 'wpvkp_social_buttons');
+ // Share buttons are placed by the [social] shortcode in single.php; appending
+ // them to every page's content duplicated them on posts.
 
 // This will create a wordpress shortcode [social].
 // Please it in any widget and social buttons appear their.
@@ -495,7 +498,7 @@ function newsletter_subscription_form() {
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('newsletter-message').innerHTML = data.message;
+                document.getElementById('newsletter-message').textContent = (data.data && data.data.message) || '';
             });
         });
     </script>
@@ -528,3 +531,50 @@ function handle_newsletter_subscription() {
 add_action('wp_ajax_subscribe_newsletter', 'handle_newsletter_subscription');
 add_action('wp_ajax_nopriv_subscribe_newsletter', 'handle_newsletter_subscription');
 
+
+/**
+ * Give headings in post content an id so Table of Contents links can jump to them.
+ */
+function ace_add_heading_ids( $content ) {
+  if ( ! is_singular( 'post' ) || ! in_the_loop() ) {
+    return $content;
+  }
+  return preg_replace_callback( '/<h([1-6])([^>]*)>(.*?)<\/h\1>/s', function ( $m ) {
+    if ( preg_match( '/\sid=/', $m[2] ) ) {
+      return $m[0];
+    }
+    $id = sanitize_title( wp_strip_all_tags( $m[3] ) );
+    return $id ? '<h' . $m[1] . $m[2] . ' id="' . esc_attr( $id ) . '">' . $m[3] . '</h' . $m[1] . '>' : $m[0];
+  }, $content );
+}
+add_filter( 'the_content', 'ace_add_heading_ids', 5 );
+
+/**
+ * The parent theme only adds sub-menu toggle buttons for its own "primary"
+ * location; add them for ours so mobile visitors can open sub-menus.
+ */
+add_filter( 'walker_nav_menu_start_el', function ( $output, $item, $depth, $args ) {
+  if ( isset( $args->theme_location ) && 'primary-menu' === $args->theme_location && 0 === $depth && in_array( 'menu-item-has-children', (array) $item->classes, true ) ) {
+    $output .= '<button class="sub-menu-toggle" aria-expanded="false"><span class="icon-plus" aria-hidden="true">+</span><span class="icon-minus" aria-hidden="true">&minus;</span><span class="screen-reader-text">' . esc_html__( 'Open sub-menu', 'ace' ) . '</span></button>';
+  }
+  return $output;
+}, 10, 4 );
+
+/**
+ * Print the Google Tag Manager <noscript> fallback right after <body>.
+ */
+add_action( 'wp_body_open', function () {
+  echo '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54W7LPM5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' . "\n";
+} );
+
+/**
+ * URL of the page that lists all portfolio projects (used by "See more works").
+ */
+function ace_portfolio_url() {
+  $pages = get_pages( array( 'meta_key' => '_wp_page_template', 'meta_value' => 'portfolio-template.php', 'number' => 1 ) );
+  if ( $pages ) {
+    return get_permalink( $pages[0] );
+  }
+  $archive = get_post_type_archive_link( 'project' );
+  return $archive ? $archive : home_url( '/' );
+}

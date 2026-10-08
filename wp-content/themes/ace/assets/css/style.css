@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 
@@ -140,8 +139,8 @@
     margin-top: 20px;
     font-size: 16px;
 }
-.lqd-head-sec .service-menu > .sub-menu > li > .sub-menu > li:not(last-child){
-	margin-bottom: 5x;
+.lqd-head-sec .service-menu > .sub-menu > li > .sub-menu > li:not(:last-child){
+	margin-bottom: 5px;
 }
 .lqd-head-sec .service-menu > .sub-menu > li > .sub-menu > li > a:hover{
 	text-decoration: underline;
@@ -406,7 +405,7 @@
     background-image: url(../images/noise1.png);
     background-size: cover;
     width: 100%;
-    height: 404px;
+    min-height: 404px;
     padding: 20px;
     overflow: hidden;
     border-radius: 30px;
@@ -423,7 +422,9 @@ ul.home-whytech_block-list {
     margin-bottom: 0;
 }
 
-@media (min-width: 992px){
+/* Reveal-on-hover only where a real mouse exists; touch devices see the full card */
+@media (min-width: 992px) and (hover: hover){
+    .why-tdb .home-whytech_block { height: 404px; }
     .home-whytech_block-inner{
     -webkit-transition: all.6s;
     -moz-transition: all.6s;
@@ -501,7 +502,7 @@ ul#portfolio-filter li a.active {
 #portfolio-list figure img{
 	border-radius: 15px;	
 	 display: block;     /* Prevent inline spacing issues */
-    margin: 50 auto;     /* Center the images if necessary */
+    margin: 0 auto;     /* Center the images if necessary */
     max-width: 100%; 
 }
 #portfolio-list figure figcaption span{

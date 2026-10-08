@@ -12,14 +12,17 @@ jQuery(document).ready(function(){
           jQuery('.menu > li.menu-item-has-children').children('.sub-menu').slideUp();
           jQuery(".menu > li.menu-item-has-children .sub-menu").removeClass("open"); 
           jQuery(".menu > li.menu-item-has-children").removeClass("active"); 
+             jQuery(".menu > li.menu-item-has-children > button").attr("aria-expanded", "false");
              target.slideDown();
              jQuery(this).parent().children('.sub-menu').addClass("open");
              jQuery(this).parent().addClass('active');
+             jQuery(this).attr("aria-expanded", "true");
           }
          else{
             target.slideUp();
             jQuery(this).parent().children('.sub-menu').removeClass("open");
             jQuery(this).parent().removeClass('active');
+            jQuery(this).attr("aria-expanded", "false");
          }      
     });
 
@@ -46,35 +49,40 @@ jQuery(document).ready(function(){
     });
 
 
-    jQuery('#tabs-tools li:first-child').addClass('active');
-      jQuery('.tab-content').hide();
-      jQuery('.tab-content:first').show();
-
-      // Click function
-      jQuery('#tabs-tools li').click(function(){
-        jQuery('#tabs-tools li').removeClass('active');
-        jQuery(this).addClass('active');
-        jQuery('.tab-content').hide();
-        
-        var activeTab = jQuery(this).find('a').attr('href');
-        jQuery(activeTab).fadeIn();
-        return false;
+    // Tabs: each tab list only controls the panels in its own section, so
+    // pages with several tab sets (e.g. project pages) don't interfere.
+    jQuery('.tools-tab, .feature-tab > ul').each(function(){
+        var $list = jQuery(this);
+        var $panels = $list.closest('.lqd-section, .feature-tab, .row').find('.tab-content');
+        $list.find('li').removeClass('active').first().addClass('active');
+        $panels.hide().first().show();
+        $list.find('li').on('click', function(){
+            $list.find('li').removeClass('active');
+            jQuery(this).addClass('active');
+            $panels.hide();
+            var target = jQuery(this).find('a').attr('href');
+            if (target && target.length > 1) {
+                $panels.filter(function(){ return '#' + this.id === target; }).fadeIn();
+            }
+            return false;
+        });
     });
 
 
-	jQuery(".faq-list > li").click(function(e){    
+	// Only the question toggles, so links inside an answer keep working.
+	jQuery(".faq-list > li > .question").click(function(e){    
          e.preventDefault();
-         var target = jQuery(this).children('.answer');
+         var target = jQuery(this).parent().children('.answer');
          var targetStatus = target.css('display');
          if(targetStatus == 'none'){
           jQuery('.faq-list > li').children('.answer').slideUp();
           jQuery(".faq-list > li .question").removeClass("open"); 
              target.slideDown();
-             jQuery(this).children('.question').addClass("open");
+             jQuery(this).addClass("open");
           }
          else{
             target.slideUp();
-            jQuery(this).children('.question').removeClass("open");
+            jQuery(this).removeClass("open");
          }      
       });
       

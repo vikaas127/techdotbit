@@ -9,7 +9,7 @@
   	  <div class="row">
   	  	<div class="col col-12 col-lg-7 text-center mb-60 mx-auto">
   	  	  <div class="ld-fancy-heading">
-  	  	    <h2 class="ld-fh-element mb-0/4em" data-text-rotator="true">
+  	  	    <h2 class="ld-fh-element mb-0/4em">
   	  	      <span>Frequently Asked Questions</span>
   	  	    </h2>
   	  	  </div>

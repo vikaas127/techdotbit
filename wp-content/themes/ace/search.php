@@ -5,8 +5,8 @@
       <div class="row">
         <div class="col col-12 col-lg-7 col-xl-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
           <div class="ld-fancy-heading">
-            <h1 class="ld-fh-element mb-0/35em lqd-split-lines text-white" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php echo single_cat_title(); ?></h1>
-            <div class="breadcrumb text-14"><a href="<?php echo site_url(); ?>" class="text-white">Home</a> &nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php echo site_url(); ?>/blog/" class="text-white">Blog</a> &nbsp;&nbsp;/&nbsp;&nbsp; <span class="text-white"><?php echo single_cat_title(); ?></span></div>
+            <h1 class="ld-fh-element mb-0/35em lqd-split-lines text-white" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php printf( esc_html__( 'Search results for "%s"', 'ace' ), esc_html( get_search_query() ) ); ?></h1>
+            <div class="breadcrumb text-14"><a href="<?php echo site_url(); ?>" class="text-white">Home</a> &nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php echo site_url(); ?>/blog/" class="text-white">Blog</a> &nbsp;&nbsp;/&nbsp;&nbsp; <span class="text-white"><?php esc_html_e( 'Search', 'ace' ); ?></span></div>
           </div>
         </div>
       </div>
@@ -59,7 +59,8 @@
                     <?php the_posts_pagination();  ?>
                 </div>
             <?php else: ?>
-                <p class="px-15">No post found.</p>
+                <p class="px-15"><?php esc_html_e( 'Nothing matched your search. Try different keywords.', 'ace' ); ?></p>
+                <?php get_search_form(); ?>
             <?php endif; ?>
           </div>
           <div class="col-lg-4 col-md-4 px-15 ">

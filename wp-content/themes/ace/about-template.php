@@ -84,7 +84,7 @@ endif; ?>
                     <?php endif; ?>
                     
                     <div class="contents">
-                      <h3 class="text-15 mb-15 leading-1\5em uppercase"><?php the_sub_field('title'); ?></h3>
+                      <h3 class="text-15 mb-15 leading-1/5em uppercase"><?php the_sub_field('title'); ?></h3>
                       <p><?php the_sub_field('paragraph'); ?></p>
                     </div>
                   </div>

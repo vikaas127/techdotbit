@@ -46,7 +46,7 @@ Template Name: Newsroom Template
 	}
     .news-more-link:hover, .news-more-link:focus {
         background: #000;
-        color: #000000;
+        color: #fff;
         border-color: #000;
         box-shadow: -4px 4px 5px rgb(0 0 0 / 15%);
     }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#0c2340">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <?php wp_head(); ?>
@@ -15,11 +16,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-54W7LPM5');</script>
 <!-- End Google Tag Manager -->
   </head>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54W7LPM5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
   <body data-mobile-nav-breakpoint="1199" data-mobile-nav-style="classic" data-mobile-nav-scheme="gray" data-mobile-nav-trigger-alignment="right" data-mobile-header-scheme="gray" data-mobile-secondary-bar="false" data-mobile-logo-alignment="center" <?php body_class(); ?>>
+    <?php wp_body_open(); ?>
+    <a class="skip-link screen-reader-text" href="#lqd-site-content"><?php esc_html_e( 'Skip to content', 'ace' ); ?></a>
     <div id="wrap">
       <div class="lqd-sticky-placeholder hidden"></div>
       <header id="site-header" class="main-header" data-sticky-header="true" data-sticky-values-measured="false">
@@ -29,13 +28,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="lqd-head-sec container flex items-stretch justify-between p-0">
               <div class="col col-auto lqd-head-col justify-start">
                 <div class="header-module module-logo no-rotate navbar-brand-plain">
-                  <a class="navbar-brand" href="<?php echo site_url(); ?>" rel="home">
+                  <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> home">
                     <span class="navbar-brand-inner">
                       <?php 
                         $logo = get_sub_field('logo'); 
                         if( !empty( $logo ) ): 
                       ?>
-                        <img class="max-w-full h-auto vertical-top rounded-inherit" width="250" height="50" src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>">
+                        <img class="max-w-full h-auto vertical-top rounded-inherit" width="250" height="50" src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr( $logo['alt'] ? $logo['alt'] : get_bloginfo( 'name' ) ); ?>">
                       <?php else: ?>
                         TechDotBit
                       <?php endif; ?>
@@ -46,12 +45,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
               <div class="col lqd-head-col justify-end">
                 <div class="header-module module-primary-nav pos-stc items-stretch">
-                  <div class="navbar-collapse lqd-submenu-default-style inline-flex flex-col items-stretch flex-basic-0 h-full" id="main-header-collapse" aria-expanded="false" role="navigation">
+                  <nav class="navbar-collapse lqd-submenu-default-style inline-flex flex-col items-stretch flex-basic-0 h-full" id="main-header-collapse" aria-label="<?php esc_attr_e( 'Main menu', 'ace' ); ?>">
                     <?php wp_nav_menu( array( 'theme_location' => 'primary-menu' ) ); ?>
-                    
-                  </div>
+                  </nav>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -68,13 +65,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </span>
                 </span>
               </button>
-              <a class="navbar-brand" href="<?php echo site_url(); ?>">
+              <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> home">
                 <span class="navbar-brand-inner">
                   <?php 
                     $logo = get_sub_field('logo'); 
                     if( !empty( $logo ) ): 
                   ?>
-                    <img class="max-w-full h-auto vertical-top rounded-inherit" width="200" height="40" src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>">
+                    <img class="max-w-full h-auto vertical-top rounded-inherit" width="200" height="40" src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr( $logo['alt'] ? $logo['alt'] : get_bloginfo( 'name' ) ); ?>">
                   <?php else: ?>
                     TechDotBit
                   <?php endif; ?>
@@ -82,9 +79,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </a>
             </div>
             <div class="lqd-mobile-sec-nav">
-              <div class="mobile-navbar-collapse navbar-collapse collapse" id="lqd-mobile-sec-nav" aria-expanded="false" role="navigation">
-                <?php wp_nav_menu( array( 'theme_location' => 'primary-menu' ) ); ?>
-              </div>
+              <nav class="mobile-navbar-collapse navbar-collapse collapse" id="lqd-mobile-sec-nav" aria-label="<?php esc_attr_e( 'Mobile menu', 'ace' ); ?>">
+                <?php wp_nav_menu( array( 'theme_location' => 'primary-menu', 'menu_id' => 'mobile-primary-menu', 'container_class' => 'menu-primary-menu-mobile-container' ) ); ?>
+              </nav>
             </div>
           </div>
           <?php endwhile; ?>

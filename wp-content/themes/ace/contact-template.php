@@ -65,18 +65,18 @@ endif; ?>
           <?php while( have_rows('more_locations') ) : the_row(); ?>
             <address class="border p-20">
               <h5 class="text-16 mb-15"><?php the_sub_field('location'); ?></h5>
-              <?php the_field('address'); ?>
+              <?php the_sub_field('address'); ?>
 
               <?php if(get_sub_field('phone')): ?>
                 <div class="d-flex items-center">
                   <h5 class="text-16 my-1" style="margin-right: 15px;">Phone:</h5>
-                  <a href="tel:<?php the_sub_field('phone'); ?>"><?php the_field('phone'); ?></a>
+                  <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_sub_field('phone') ) ); ?>"><?php the_sub_field('phone'); ?></a>
                 </div>
               <?php endif; ?>
               <?php if(get_sub_field('email')): ?>
                 <div class="d-flex items-center">
                   <h5 class="text-16 my-1" style="margin-right: 15px;">Email:</h5>
-                  <a href="mailto:<?php the_sub_field('email'); ?>"><?php the_field('email'); ?></a>
+                  <a href="mailto:<?php echo esc_attr( get_sub_field('email') ); ?>"><?php the_sub_field('email'); ?></a>
                 </div>
               <?php endif; ?>
             </address>
