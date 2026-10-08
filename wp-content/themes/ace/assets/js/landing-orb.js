@@ -11,8 +11,9 @@
 	var canvas = document.querySelector('.tdb-orb');
 	if (!canvas || !canvas.getContext) return;
 	var ctx = canvas.getContext('2d');
-	var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	var dpr = Math.min(window.devicePixelRatio || 1, 2);
+	// Phones and data-saver mode get a single still frame instead of a running animation.
+	var reduce = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || window.innerWidth < 768 || (navigator.connection && navigator.connection.saveData);
+	var dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.5 : 2);
 
 	// Brand palette along the tube: green -> emerald -> teal -> cyan -> lime -> green.
 	var palette = [[62, 173, 60], [16, 185, 129], [20, 184, 166], [34, 211, 238], [132, 204, 22], [62, 173, 60]];
@@ -121,8 +122,9 @@
 	var canvas = document.querySelector('.tdb-streaks');
 	if (!canvas || !canvas.getContext) return;
 	var ctx = canvas.getContext('2d');
-	var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	var dpr = Math.min(window.devicePixelRatio || 1, 2);
+	// Phones and data-saver mode get a single still frame instead of a running animation.
+	var reduce = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || window.innerWidth < 768 || (navigator.connection && navigator.connection.saveData);
+	var dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.5 : 2);
 	var w, h, cx, cy, rings = [];
 
 	function resize() {

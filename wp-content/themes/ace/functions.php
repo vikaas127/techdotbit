@@ -8,7 +8,7 @@ function add_theme_scripts() {
   wp_enqueue_style( 'theme-style', get_stylesheet_directory_uri() . '/assets/css/theme.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'utility-style', get_stylesheet_directory_uri() . '/assets/css/utility.min.css', array(), '1.1', 'all');
   wp_enqueue_style( 'classic-style', get_stylesheet_directory_uri() . '/assets/css/demo/classic.css', array(), '1.1', 'all');
-  wp_enqueue_style( 'font-style', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap', array(), null );
+  wp_enqueue_style( 'font-style', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap', array(), null );
   wp_enqueue_style( 'Custom-style', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), '1.2', 'all');
   wp_enqueue_style( 'modern-style', get_stylesheet_directory_uri() . '/assets/css/modern.css', array( 'Custom-style' ), filemtime( get_stylesheet_directory() . '/assets/css/modern.css' ), 'all');
   wp_enqueue_style( 'ai-theme-style', get_stylesheet_directory_uri() . '/assets/css/ai-theme.css', array( 'modern-style' ), filemtime( get_stylesheet_directory() . '/assets/css/ai-theme.css' ), 'all');
@@ -693,13 +693,7 @@ add_action( 'pre_get_posts', function ( $q ) {
 	}
 } );
 
-/** Blog styles (listings and single posts), after the light theme. */
-add_action( 'wp_enqueue_scripts', function () {
-	if ( is_home() || is_archive() || is_search() || is_singular( 'post' ) ) {
-		$file = get_stylesheet_directory() . '/assets/css/blog.css';
-		wp_enqueue_style( 'ace-blog', get_stylesheet_directory_uri() . '/assets/css/blog.css', array( 'ace-light-theme' ), filemtime( $file ) );
-	}
-}, 41 );
+/* Blog styles are printed inline by inc/blog/listing.php and single.php (ace_inline_css). */
 
 /** Homepage section styles and scripts (inc/home/*.php). */
 add_action( 'wp_enqueue_scripts', function () {
@@ -794,3 +788,59 @@ function ace_inline_css( $file ) {
 		echo '<style id="tdb-css-' . esc_attr( sanitize_title( $file ) ) . '">' . file_get_contents( $path ) . '</style>'; // phpcs:ignore -- theme file
 	}
 }
+
+
+/* =====================================================================
+ * Speed: trim WordPress front-end extras the site does not use
+ * =================================================================== */
+add_action( 'init', function () {
+	if ( is_admin() ) {
+		return;
+	}
+	// Emoji detection script and styles.
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	add_filter( 'emoji_svg_url', '__return_false' );
+	// oEmbed discovery links and the embed script.
+	remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+	remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+	// Unneeded head links.
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+	remove_action( 'wp_head', 'wp_generator' );
+} );
+add_action( 'wp_enqueue_scripts', function () {
+	// Block editor styles are only needed on posts that contain blocks (the site uses the classic editor).
+	$has_blocks = is_singular() && has_blocks( get_queried_object_id() );
+	if ( ! $has_blocks ) {
+		foreach ( array( 'wp-block-library', 'wp-block-library-theme', 'global-styles', 'classic-theme-styles', 'core-block-supports' ) as $h ) {
+			wp_dequeue_style( $h );
+		}
+	}
+	wp_dequeue_script( 'wp-embed' );
+	// Dashicons only for logged-in users (admin bar).
+	if ( ! is_user_logged_in() ) {
+		wp_dequeue_style( 'dashicons' );
+	}
+}, 100 );
+// Connect to Google Fonts early.
+add_filter( 'wp_resource_hints', function ( $urls, $relation ) {
+	if ( 'preconnect' === $relation ) {
+		$urls[] = 'https://fonts.googleapis.com';
+		$urls[] = array( 'href' => 'https://fonts.gstatic.com', 'crossorigin' );
+	}
+	return $urls;
+}, 10, 2 );
+// Load the decorative JavaScript (sliders, animations) without blocking the page.
+add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+	$defer = array( 'fastdom-script', 'SplitText-script', 'fontfaceobserver-script', 'liquid-gdpr-script' );
+	if ( in_array( $handle, $defer, true ) && false === strpos( $tag, ' defer' ) ) {
+		$tag = str_replace( ' src=', ' defer src=', $tag );
+	}
+	return $tag;
+}, 10, 2 );
