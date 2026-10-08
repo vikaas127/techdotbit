@@ -639,3 +639,12 @@ add_filter( 'the_content', function ( $content ) {
     return preg_replace( '/^<a\s/i', '<a rel="sponsored nofollow noopener" ', $tag );
   }, $content );
 }, 20 );
+
+/**
+ * Light theme: white, professional look (loaded after every other stylesheet,
+ * including landing.css). Remove this to go back to the dark design.
+ */
+add_action( 'wp_enqueue_scripts', function () {
+  $file = get_stylesheet_directory() . '/assets/css/light-theme.css';
+  wp_enqueue_style( 'ace-light-theme', get_stylesheet_directory_uri() . '/assets/css/light-theme.css', array( 'ai-theme-style' ), filemtime( $file ) );
+}, 40 );

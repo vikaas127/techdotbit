@@ -140,7 +140,7 @@
 				start: Math.random() * Math.PI * 2,
 				speed: (0.05 + Math.random() * 0.12) * (i % 2 ? 1 : -1),
 				len: 0.18 + Math.random() * 0.35,
-				hue: i % 4 === 0 ? '62,173,60' : '45,212,191',
+				hue: i % 4 === 0 ? '47,158,58' : '13,148,136',
 				bright: i % 3 !== 1
 			});
 		}
@@ -156,7 +156,7 @@
 			ctx.translate(cx, cy);
 			ctx.scale(1, g.squash);
 			// faint full ring
-			ctx.strokeStyle = 'rgba(148,163,184,0.045)';
+			ctx.strokeStyle = 'rgba(100,116,139,0.08)';
 			ctx.lineWidth = 1;
 			ctx.beginPath(); ctx.arc(0, 0, g.r, 0, Math.PI * 2); ctx.stroke();
 			if (g.bright) {
@@ -254,5 +254,59 @@
 		new IntersectionObserver(function (e) { if (e[0].isIntersecting) start(); else stop(); }, { threshold: 0.25 }).observe(flow);
 	} else {
 		start();
+	}
+})();
+
+/**
+ * Homepage agent console: type the request, run each step (lighting up the
+ * tool it uses), show the verified result, then replay while on screen.
+ */
+(function () {
+	'use strict';
+	var root = document.querySelector('[data-tdb-console]');
+	if (!root) return;
+	var typed = root.querySelector('.tdb-console__typed');
+	var steps = Array.prototype.slice.call(root.querySelectorAll('.tdb-console__steps li'));
+	var tools = root.querySelectorAll('.tdb-console__tools span');
+	var text = typed.getAttribute('data-text') || '';
+	var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var timers = [], visible = true, running = false;
+
+	function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+	function setTool(name) { tools.forEach(function (t) { t.classList.toggle('is-on', t.getAttribute('data-tool') === name); }); }
+	function finalState() {
+		typed.textContent = text;
+		steps.forEach(function (s) { s.className = 'is-done'; });
+		setTool(null);
+		root.classList.add('is-complete');
+	}
+	if (reduce) { finalState(); return; }
+
+	function run() {
+		running = true;
+		timers.forEach(clearTimeout); timers = [];
+		root.classList.remove('is-complete');
+		steps.forEach(function (s) { s.className = ''; });
+		setTool(null);
+		typed.textContent = '';
+		var t = 300;
+		for (var i = 1; i <= text.length; i++) {
+			(function (n) { later(function () { typed.textContent = text.slice(0, n); }, t); })(i);
+			t += 32;
+		}
+		t += 400;
+		steps.forEach(function (s, idx) {
+			later(function () { s.className = 'is-running'; setTool(s.getAttribute('data-tool')); }, t);
+			t += 1100;
+			later(function () { s.className = 'is-done'; }, t);
+			t += 150;
+		});
+		later(function () { setTool(null); root.classList.add('is-complete'); }, t);
+		later(function () { running = false; if (visible && !document.hidden) run(); }, t + 4200);
+	}
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible && !running) run(); }).observe(root);
+	} else {
+		run();
 	}
 })();

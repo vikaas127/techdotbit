@@ -44,15 +44,35 @@ if ( $hl && false !== strpos( $title, $hl ) ) {
 				<?php if ( $cta2 ) : ?><a class="tdb-btn tdb-btn--glass" href="<?php echo esc_url( $cta2url ); ?>"><?php echo esc_html( $cta2 ); ?> <span aria-hidden="true">&rarr;</span></a><?php endif; ?>
 			</div>
 		</div>
-		<?php if ( $proof ) : ?>
-		<ul class="tdb-proof" aria-label="<?php esc_attr_e( 'Results', 'ace' ); ?>">
-			<?php foreach ( $proof as $i => $card ) : ?>
-				<li class="tdb-proof__card" style="--i: <?php echo (int) $i; ?>">
-					<strong><?php echo esc_html( $card['value'] ); ?></strong>
-					<span><?php echo esc_html( $card['label'] ); ?></span>
-				</li>
+		<div class="tdb-console" aria-hidden="true" data-tdb-console>
+			<div class="tdb-console__bar">
+				<span class="tdb-console__dots"><i></i><i></i><i></i></span>
+				<span class="tdb-console__title">TechDotBit Agent</span>
+				<span class="tdb-console__live"><i></i>Live</span>
+			</div>
+			<div class="tdb-console__body">
+				<div class="tdb-console__msg"><span class="tdb-console__you">You</span><span class="tdb-console__typed" data-text="Qualify today's inbound leads and update the CRM"></span></div>
+				<ol class="tdb-console__steps">
+					<li data-tool="crm"><span class="tdb-console__state"></span>Reading new inbound leads</li>
+					<li data-tool="web"><span class="tdb-console__state"></span>Enriching with company data</li>
+					<li data-tool="db"><span class="tdb-console__state"></span>Scoring against your ideal customer profile</li>
+					<li data-tool="crm"><span class="tdb-console__state"></span>Updating CRM records</li>
+					<li data-tool="mail"><span class="tdb-console__state"></span>Drafting follow-ups for hot leads</li>
+				</ol>
+				<div class="tdb-console__tools">
+					<span data-tool="crm">CRM</span><span data-tool="web">Web search</span><span data-tool="db">Database</span><span data-tool="mail">Email</span>
+				</div>
+				<div class="tdb-console__done"><b>&#10003; Completed</b> &middot; 2 leads flagged for human review</div>
+			</div>
+		</div>
+	</div>
+	<?php if ( $proof ) : ?>
+	<div class="container">
+		<ul class="tdb-proof-row" aria-label="<?php esc_attr_e( 'Results', 'ace' ); ?>">
+			<?php foreach ( $proof as $card ) : ?>
+				<li><strong><?php echo esc_html( $card['value'] ); ?></strong><span><?php echo esc_html( $card['label'] ); ?></span></li>
 			<?php endforeach; ?>
 		</ul>
-		<?php endif; ?>
 	</div>
+	<?php endif; ?>
 </section>

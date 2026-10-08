@@ -59,6 +59,7 @@ endif; ?>
 
   <?php include locate_template( 'inc/ai-services-grid.php' ); ?>
 
+  <?php include locate_template( 'inc/ai-integrations.php' ); ?>
   <?php include locate_template( 'inc/ai-tech-stack.php' ); ?>
 
 <?php if( have_rows('services') ):
