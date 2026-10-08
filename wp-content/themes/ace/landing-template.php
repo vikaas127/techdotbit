@@ -222,7 +222,7 @@ while ( have_posts() ) :
 								<?php endif; ?>
 							</span></div>
 							<div class="contents">
-								<h3><?php echo esc_html( $card['title'] ); ?></h3>
+								<h3><?php if ( ! empty( $card['link'] ) ) : ?><a href="<?php echo esc_url( $card['link'] ); ?>"><?php echo esc_html( $card['title'] ); ?></a><?php else : ?><?php echo esc_html( $card['title'] ); ?><?php endif; ?></h3>
 								<p><?php echo esc_html( $card['text'] ); ?></p>
 							</div>
 						</div>
@@ -251,6 +251,82 @@ while ( have_posts() ) :
 				<p><?php echo esc_html( $f( 'lp_form_text', __( 'Share a few details and an engineer will get back to you within one business day with next steps.', 'ace' ) ) ); ?></p>
 			</div>
 			<div class="tdb-form-band__form"><?php echo $glass; // phpcs:ignore ?></div>
+		</div>
+	</section>
+	<?php endif; ?>
+
+	<?php $dash_tabs = $f( 'lp_dash_tabs', array() ); ?>
+	<?php if ( $dash_tabs ) : ?>
+	<section class="lqd-section tdb-dash-section py-75">
+		<div class="container">
+			<?php if ( $f( 'lp_dash_heading' ) ) : ?>
+				<div class="tdb-lp-head">
+					<h2><?php echo esc_html( $f( 'lp_dash_heading' ) ); ?></h2>
+					<?php if ( $f( 'lp_dash_text' ) ) : ?><p><?php echo esc_html( $f( 'lp_dash_text' ) ); ?></p><?php endif; ?>
+				</div>
+			<?php endif; ?>
+
+			<div class="tdb-dash" data-tdb-tabs>
+				<div class="tdb-dash__tabs" role="tablist">
+					<?php foreach ( $dash_tabs as $ti => $tab ) : ?>
+						<button type="button" role="tab" id="tdb-dash-tab-<?php echo (int) $ti; ?>" aria-controls="tdb-dash-panel-<?php echo (int) $ti; ?>" aria-selected="<?php echo 0 === $ti ? 'true' : 'false'; ?>"<?php echo 0 === $ti ? '' : ' tabindex="-1"'; ?>><?php echo esc_html( $tab['label'] ); ?></button>
+					<?php endforeach; ?>
+				</div>
+
+				<?php foreach ( $dash_tabs as $ti => $tab ) : ?>
+				<div class="tdb-dash__panel" role="tabpanel" id="tdb-dash-panel-<?php echo (int) $ti; ?>" aria-labelledby="tdb-dash-tab-<?php echo (int) $ti; ?>"<?php echo 0 === $ti ? '' : ' hidden'; ?>>
+					<?php if ( ! empty( $tab['kpis'] ) ) : ?>
+					<div class="tdb-kpis">
+						<?php foreach ( $tab['kpis'] as $ki => $kpi ) :
+							$up = ( 'down' !== $kpi['trend'] );
+							// Deterministic little trend line for the sparkline.
+							$pts = array();
+							for ( $p = 0; $p <= 8; $p++ ) {
+								$base  = $up ? 52 - $p * 5.2 : 10 + $p * 5.2;
+								$wiggle = sin( ( $p + $ki * 2 ) * 1.7 ) * 3;
+								$pts[] = round( $p * 25, 1 ) . ',' . round( $base + $wiggle, 1 );
+							}
+							$line = 'M' . implode( ' L', $pts );
+							$last = explode( ',', end( $pts ) );
+							?>
+							<div class="tdb-kpi tdb-kpi--<?php echo $up ? 'up' : 'down'; ?>">
+								<p class="tdb-kpi__label"><?php echo esc_html( $kpi['label'] ); ?></p>
+								<p class="tdb-kpi__value"><?php echo esc_html( $kpi['value'] ); ?></p>
+								<?php if ( $kpi['note'] ) : ?><p class="tdb-kpi__note"><?php echo $up ? '&uarr;' : '&darr;'; ?> <?php echo esc_html( $kpi['note'] ); ?></p><?php endif; ?>
+								<svg class="tdb-kpi__spark" viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true">
+									<path class="tdb-kpi__area" d="<?php echo esc_attr( $line . ' L200,64 L0,64 Z' ); ?>"/>
+									<path class="tdb-kpi__line" d="<?php echo esc_attr( $line ); ?>"/>
+									<circle cx="<?php echo esc_attr( $last[0] ); ?>" cy="<?php echo esc_attr( $last[1] ); ?>" r="3.5"/>
+								</svg>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<?php endif; ?>
+
+					<?php if ( ! empty( $tab['rows'] ) ) : ?>
+					<div class="tdb-dash__table-wrap">
+						<table class="tdb-dash__table">
+							<thead><tr><th scope="col">Task</th><th scope="col">Run by</th><th scope="col">Model</th><th scope="col">Eval</th><th scope="col">Cost</th></tr></thead>
+							<tbody>
+								<?php foreach ( $tab['rows'] as $row ) :
+									$running = ( false !== stripos( (string) $row['status'], 'running' ) );
+									?>
+									<tr<?php echo $running ? ' class="is-running"' : ''; ?>>
+										<td><?php echo esc_html( $row['task'] ); ?></td>
+										<td><span class="tdb-dash__agent"><span class="tdb-dash__avatar" aria-hidden="true"><?php echo esc_html( mb_substr( $row['agent'], 0, 1 ) ); ?></span><?php echo esc_html( $row['agent'] ); ?></span></td>
+										<td class="tdb-dash__muted"><?php echo esc_html( $row['model'] ); ?></td>
+										<td><span class="tdb-dash__status<?php echo $running ? ' is-running' : ''; ?>"><?php echo esc_html( $row['status'] ); ?></span></td>
+										<td><?php echo esc_html( $row['cost'] ); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+					<?php endif; ?>
+				</div>
+				<?php endforeach; ?>
+				<?php if ( $f( 'lp_dash_note' ) ) : ?><p class="tdb-dash__note"><?php echo esc_html( $f( 'lp_dash_note' ) ); ?></p><?php endif; ?>
+			</div>
 		</div>
 	</section>
 	<?php endif; ?>
@@ -308,6 +384,51 @@ while ( have_posts() ) :
 		) );
 	?></script>
 	<?php endif; ?>
+
+	<?php
+	// Related AI pages (other published pages on this template) for internal linking.
+	$related = get_posts( array(
+		'post_type'      => 'page',
+		'post_status'    => 'publish',
+		'posts_per_page' => 6,
+		'post__not_in'   => array( get_the_ID() ),
+		'meta_key'       => '_wp_page_template',
+		'meta_value'     => 'landing-template.php',
+		'orderby'        => 'menu_order title',
+		'order'          => 'ASC',
+	) );
+	?>
+	<?php if ( $related ) : ?>
+	<section class="lqd-section tdb-related py-75">
+		<div class="container">
+			<div class="tdb-lp-head"><h2><?php esc_html_e( 'Explore more AI services', 'ace' ); ?></h2></div>
+			<ul class="tdb-related__list">
+				<?php foreach ( $related as $rel ) : ?>
+					<li>
+						<a href="<?php echo esc_url( get_permalink( $rel ) ); ?>">
+							<span class="tdb-related__title"><?php echo esc_html( get_the_title( $rel ) ); ?></span>
+							<?php if ( has_excerpt( $rel ) ) : ?><span class="tdb-related__text"><?php echo esc_html( get_the_excerpt( $rel ) ); ?></span><?php endif; ?>
+							<span class="tdb-related__arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+	<?php endif; ?>
+
+	<script type="application/ld+json"><?php
+		// Describe this page as a Service offered by the company (helps rich results).
+		echo wp_json_encode( array(
+			'@context'    => 'https://schema.org',
+			'@type'       => 'Service',
+			'name'        => wp_strip_all_tags( $title ),
+			'description' => wp_strip_all_tags( $intro ? $intro : get_the_excerpt() ),
+			'url'         => get_permalink(),
+			'serviceType' => wp_strip_all_tags( $eyebrow ? $eyebrow : $title ),
+			'provider'    => array( '@type' => 'Organization', 'name' => get_bloginfo( 'name' ), 'url' => home_url( '/' ) ),
+		), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	?></script>
 
 	<?php include locate_template( 'inc/testimonials.php' ); ?>
 	<?php include locate_template( 'inc/bottom-cta.php' ); ?>

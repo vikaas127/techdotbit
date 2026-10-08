@@ -300,3 +300,78 @@ h1, h2, h3, .h1, .h2, .h3 { font-family: var(--ai-display); letter-spacing: -.02
 	.lqd-head-sec .menu > li:last-child a { background: #3ead3c !important; }
 	.lqd-head-sec .menu > li:last-child a:hover { background: #2f8f2d !important; filter: none; }
 }
+
+/* ---------- Client logos grid (inc/brands.php) ---------- */
+.tdb-clients {
+	padding: clamp(48px, 6vw, 80px) 0;
+	background: #fff;
+	border-top: 1px solid #eef1f5;
+	border-bottom: 1px solid #eef1f5;
+}
+.tdb-clients__title {
+	margin: 0 0 clamp(28px, 4vw, 44px);
+	text-align: center;
+	color: #6b7690;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+}
+.tdb-clients__grid {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: clamp(28px, 4vw, 48px) clamp(16px, 3vw, 40px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tdb-clients__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 14px;
+	text-align: center;
+}
+.tdb-clients__logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 56px;
+}
+.tdb-clients__logo img {
+	width: auto !important;
+	height: auto !important;
+	max-width: min(170px, 100%);
+	max-height: 48px;
+	object-fit: contain;
+	filter: grayscale(1) contrast(1.1);
+	opacity: .62;
+	transition: filter .35s, opacity .35s, transform .35s;
+}
+.tdb-clients__item:hover img { filter: none; opacity: 1; transform: scale(1.04); }
+.tdb-clients__link {
+	color: #23873a;
+	font-weight: 600;
+	font-size: 15px;
+}
+.tdb-clients__link:hover { color: #1b6e2f; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 991px) { .tdb-clients__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 575px) { .tdb-clients__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* FAQ list on landing pages */
+.tdb-lp-faq .faq-list { margin: 0 auto; padding: 0; list-style: none; }
+.tdb-lp-faq .faq-list > li {
+	list-style: none;
+	margin: 0 0 12px;
+	border: 1px solid #e3e8ef;
+	border-radius: 14px;
+	background: #fff;
+	transition: border-color .25s, box-shadow .25s;
+}
+.tdb-lp-faq .faq-list > li::marker { content: none; }
+.tdb-lp-faq .faq-list > li:hover { border-color: #b9e6c3; }
+.tdb-lp-faq .faq-list .question { padding: 20px 56px 20px 24px; font-size: 17px; cursor: pointer; }
+.tdb-lp-faq .faq-list .answer { padding: 0 24px 20px; color: #44506a; }
+.tdb-lp-faq .faq-list .question::after { right: 24px; top: 50%; transform: translateY(-50%); color: #23873a; }

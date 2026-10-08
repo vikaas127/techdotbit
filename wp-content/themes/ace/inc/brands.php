@@ -1,38 +1,38 @@
-<?php if( have_rows('brands', 'option') ): ?>
-<section class="lqd-section clients py-55 sm:hidden border-bottom border-black-10">
-    <div class="container">
-      <div class="row">
-        <div class="col col-12 col-lg-3 module-col">
-          <div class="ld-fancy-heading">
-            <h6 class="ld-fh-element mb-1em mb-1em text-14 text-black">GLOBAL EXPERTS</h6>
-          </div>
-        </div>
-        <div class="col col-12 col-lg-9">
-          <div class="carousel-container carousel-nav-left carousel-nav-mobile-centercarousel-nav-md carousel-dots-mobile-center carousel-dots-style1 carousel-dots-mobile-outside">
-            <div class="carousel-items row flickity-enabled is-draggable lqd-carousel-ready flickity-equal-cells" data-lqd-flickity="{&quot;marquee&quot;:true,&quot;wrapAround&quot;:true,&quot;equalHeightCells&quot;:true,&quot;middleAlignContent&quot;:true,&quot;columnsAutoWidth&quot;:true,&quot;marqueeTickerSpeed&quot;:&quot;0.5&quot;,&quot;cellAlign&quot;:&quot;center&quot;,&quot;draggable&quot;:true}">
-              <?php while( have_rows('brands', 'option') ) : the_row(); ?>
-              <div class="carousel-item has-width w-20percent text-center">
-                <div class="carousel-item-inner">
-                  <div class="carousel-item-content">
-                    <div class="flex items-center">
-                      <?php 
-                        $image = get_sub_field('image'); 
-                        if( !empty( $image ) ): 
-                      ?>
-                      <figure class="max-w-full inline-flex vertical-top m-0 flex-grow-1 justify-center">
-                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" width="86" height="31" loading="lazy" class="max-w-full h-auto vertical-top rounded-inherit">
-                      </figure>
-                      <?php endif; ?>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <?php endwhile; ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<?php
+/**
+ * Client logos: a clean grid of grayscale logos (full colour on hover).
+ * Uses the "brands" repeater in Theme Options (sub field "image").
+ * Optional sub fields, if you add them to that repeater in ACF:
+ *   "name"       - company name (used for alt text when the image has none)
+ *   "link"       - URL to a case study
+ *   "link_label" - text under the logo, e.g. "Case study" (default)
+ */
+if ( have_rows( 'brands', 'option' ) ) : ?>
+<section class="lqd-section tdb-clients" aria-labelledby="tdb-clients-title">
+  <div class="container">
+    <p id="tdb-clients-title" class="tdb-clients__title"><?php esc_html_e( 'Trusted by teams worldwide', 'ace' ); ?></p>
+    <ul class="tdb-clients__grid">
+      <?php while ( have_rows( 'brands', 'option' ) ) : the_row();
+        $image = get_sub_field( 'image' );
+        if ( empty( $image ) ) {
+          continue;
+        }
+        $name  = get_sub_field( 'name' );
+        $link  = get_sub_field( 'link' );
+        $label = get_sub_field( 'link_label' );
+        $url   = is_array( $image ) ? $image['url'] : $image;
+        $alt   = is_array( $image ) && ! empty( $image['alt'] ) ? $image['alt'] : ( $name ? $name : __( 'Client logo', 'ace' ) );
+        ?>
+        <li class="tdb-clients__item">
+          <span class="tdb-clients__logo">
+            <img src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async"<?php if ( is_array( $image ) && ! empty( $image['width'] ) ) : ?> width="<?php echo (int) $image['width']; ?>" height="<?php echo (int) $image['height']; ?>"<?php endif; ?>>
+          </span>
+          <?php if ( $link ) : ?>
+            <a class="tdb-clients__link" href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $label ? $label : __( 'Case study', 'ace' ) ); ?></a>
+          <?php endif; ?>
+        </li>
+      <?php endwhile; ?>
+    </ul>
+  </div>
+</section>
 <?php endif; ?>

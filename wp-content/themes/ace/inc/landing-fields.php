@@ -71,7 +71,40 @@ add_action( 'acf/init', function () {
 				'sub_fields' => array(
 					array( 'key' => 'field_tdb_lp_card_icon', 'name' => 'icon', 'label' => 'Icon', 'type' => 'image', 'return_format' => 'array' ),
 					$text( 'card_title', 'title', 'Title' ),
+					$text( 'card_link', 'link', 'Link (optional)', array( 'type' => 'url' ) ),
 					array( 'key' => 'field_tdb_lp_card_text', 'name' => 'text', 'label' => 'Text', 'type' => 'textarea', 'rows' => 3 ),
+				),
+			),
+			array( 'key' => 'field_tdb_lp_tab_dash', 'label' => 'Dashboard', 'type' => 'tab' ),
+			$text( 'dash_heading', 'lp_dash_heading', 'Dashboard section heading', array( 'instructions' => 'Optional "dashboard showcase" section with tabs, KPI cards and a task table. Leave the tabs empty to hide it.' ) ),
+			array( 'key' => 'field_tdb_lp_dash_text', 'name' => 'lp_dash_text', 'label' => 'Dashboard intro', 'type' => 'textarea', 'rows' => 2 ),
+			$text( 'dash_note', 'lp_dash_note', 'Small note under the dashboard', array( 'default_value' => 'Illustrative example. Figures vary by project.' ) ),
+			array(
+				'key' => 'field_tdb_lp_dash_tabs', 'name' => 'lp_dash_tabs', 'label' => 'Tabs', 'type' => 'repeater',
+				'layout' => 'block', 'button_label' => 'Add tab', 'max' => 5,
+				'sub_fields' => array(
+					$text( 'dash_tab_label', 'label', 'Tab label' ),
+					array(
+						'key' => 'field_tdb_lp_dash_kpis', 'name' => 'kpis', 'label' => 'KPI cards', 'type' => 'repeater',
+						'layout' => 'table', 'button_label' => 'Add KPI', 'max' => 4,
+						'sub_fields' => array(
+							$text( 'kpi_label', 'label', 'Label' ),
+							$text( 'kpi_value', 'value', 'Value' ),
+							$text( 'kpi_note', 'note', 'Note' ),
+							array( 'key' => 'field_tdb_lp_kpi_trend', 'name' => 'trend', 'label' => 'Trend', 'type' => 'select', 'choices' => array( 'up' => 'Up', 'down' => 'Down' ), 'default_value' => 'up' ),
+						),
+					),
+					array(
+						'key' => 'field_tdb_lp_dash_rows', 'name' => 'rows', 'label' => 'Task rows', 'type' => 'repeater',
+						'layout' => 'table', 'button_label' => 'Add row', 'max' => 6,
+						'sub_fields' => array(
+							$text( 'row_task', 'task', 'Task' ),
+							$text( 'row_agent', 'agent', 'Run by' ),
+							$text( 'row_model', 'model', 'Model' ),
+							$text( 'row_status', 'status', 'Status / eval', array( 'instructions' => 'Write "Running" to show a live indicator.' ) ),
+							$text( 'row_cost', 'cost', 'Cost' ),
+						),
+					),
 				),
 			),
 			array( 'key' => 'field_tdb_lp_tab_steps', 'label' => 'Process', 'type' => 'tab' ),

@@ -530,3 +530,135 @@ body.tdb-lp-style-agents { background: #fff; }
 	.tdb-caret, .tdb-prompt__caret, .tdb-agents-lines path, .tdb-agent__avatar i { animation: none; }
 	.tdb-agent { opacity: 1; transform: none; animation: none; }
 }
+
+/* Card titles that link to service pages */
+.tdb-lp-cards .iconbox h3 a { color: #fff !important; }
+.tdb-lp-cards .iconbox h3 a::after { content: " \2192"; color: #86efac; transition: margin-left .25s; }
+.tdb-lp-cards .iconbox:hover h3 a::after { margin-left: 4px; }
+
+/* Related AI services (internal links) */
+.tdb-related { background: #fff; }
+.tdb-related__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 18px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tdb-related__list a {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	height: 100%;
+	padding: 24px 56px 24px 24px;
+	border: 1px solid #e3e8ef;
+	border-radius: 16px;
+	background: #fff;
+	color: inherit;
+	transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.tdb-related__list a:hover { border-color: #3ead3c; box-shadow: 0 18px 40px -26px rgba(10, 60, 35, .45); transform: translateY(-3px); }
+.tdb-related__title { color: var(--tdb-ink, #0b1526); font-weight: 700; font-size: 1.05rem; }
+.tdb-related__text { color: #6b7690; font-size: 14.5px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tdb-related__arrow {
+	position: absolute; top: 22px; right: 22px;
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 30px; height: 30px; border-radius: 50%;
+	background: #effaf1; color: #23873a; font-weight: 700;
+	transition: transform .25s;
+}
+.tdb-related__list a:hover .tdb-related__arrow { transform: translateX(3px); background: #3ead3c; color: #fff; }
+
+/* =====================================================================
+ * Dashboard showcase (tabs + KPI cards + task table)
+ * =================================================================== */
+.tdb-dash-section { background: #fff; }
+.tdb-dash { max-width: 1180px; margin: 0 auto; }
+.tdb-dash__tabs {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-bottom: 26px;
+	padding: 6px;
+	border: 1px solid #e6eaf0;
+	border-radius: 14px;
+	background: #fff;
+	max-width: 100%;
+}
+.tdb-dash__tabs button {
+	padding: 11px 20px;
+	border: 0;
+	border-radius: 10px;
+	background: transparent;
+	color: #44506a;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color .2s, color .2s;
+}
+.tdb-dash__tabs button:hover { color: var(--tdb-ink, #0b1526); }
+.tdb-dash__tabs button[aria-selected="true"] { background: #f1f4f8; color: var(--tdb-ink, #0b1526); box-shadow: 0 0 0 1px #e3e8ef inset; }
+.tdb-dash__panel {
+	overflow: hidden;
+	border: 1px solid #e6eaf0;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 30px 70px -45px rgba(10, 30, 60, .35);
+	animation: tdb-fade .45s cubic-bezier(.16, 1, .3, 1);
+}
+@keyframes tdb-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.tdb-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid #edf0f4; }
+.tdb-kpi { padding: 26px 26px 18px; border-right: 1px solid #edf0f4; }
+.tdb-kpi:last-child { border-right: 0; }
+.tdb-kpi__label { margin: 0 0 6px; color: #7a8399; font-size: 15px; }
+.tdb-kpi__value { margin: 0; color: var(--tdb-ink, #0b1526); font-family: var(--ai-display, inherit); font-size: clamp(1.8rem, 1.4rem + 1vw, 2.4rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.15; }
+.tdb-kpi__note { margin: 4px 0 0; font-size: 15px; font-weight: 500; }
+.tdb-kpi--up .tdb-kpi__note { color: #2f9e3a; }
+.tdb-kpi--down .tdb-kpi__note { color: #0e9488; }
+.tdb-kpi__spark { display: block; width: 100%; height: 64px; margin-top: 14px; overflow: visible; }
+.tdb-kpi__line { fill: none; stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.tdb-kpi--up .tdb-kpi__line { stroke: #3ead3c; }
+.tdb-kpi--down .tdb-kpi__line { stroke: #0ea5a4; }
+.tdb-kpi--up .tdb-kpi__area { fill: rgba(62, 173, 60, .12); }
+.tdb-kpi--down .tdb-kpi__area { fill: rgba(14, 165, 164, .10); }
+.tdb-kpi--up circle { fill: #3ead3c; }
+.tdb-kpi--down circle { fill: #0ea5a4; }
+.tdb-kpi__line { stroke-dasharray: 400; stroke-dashoffset: 400; animation: tdb-draw 1.6s .2s cubic-bezier(.16, 1, .3, 1) forwards; }
+@keyframes tdb-draw { to { stroke-dashoffset: 0; } }
+
+.tdb-dash__table-wrap { overflow-x: auto; padding: 8px 26px 18px; }
+.tdb-dash__table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 16px; }
+.tdb-dash__table th { padding: 16px 12px; color: #7a8399; font-weight: 500; text-align: left; border-bottom: 1px solid #edf0f4; }
+.tdb-dash__table td { padding: 18px 12px; color: var(--tdb-ink, #0b1526); border-bottom: 1px solid #f0f2f6; white-space: nowrap; }
+.tdb-dash__table tr:last-child td { border-bottom: 0; }
+.tdb-dash__table tr.is-running td { background: #f3fbf5; }
+.tdb-dash__muted { color: #7a8399 !important; }
+.tdb-dash__agent { display: inline-flex; align-items: center; gap: 10px; }
+.tdb-dash__avatar {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 30px; height: 30px; border-radius: 8px;
+	background: linear-gradient(135deg, #d9f5e0, #d5f3f5);
+	color: #23873a; font-weight: 700; font-size: 13px;
+}
+.tdb-dash__status { color: #2f9e3a; font-weight: 600; }
+.tdb-dash__status.is-running { color: #0e9488; }
+.tdb-dash__status.is-running::after { content: ""; display: inline-block; width: 1.2em; text-align: left; animation: tdb-dots 1.4s steps(4) infinite; }
+@keyframes tdb-dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+.tdb-dash__note { margin: 14px 0 0; color: #8b93ad; font-size: 13px; text-align: right; }
+
+@media (max-width: 991px) {
+	.tdb-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.tdb-kpi:nth-child(2n) { border-right: 0; }
+	.tdb-kpi:nth-child(-n+2) { border-bottom: 1px solid #edf0f4; }
+}
+@media (max-width: 480px) {
+	.tdb-dash__tabs { display: flex; overflow-x: auto; flex-wrap: nowrap; }
+	.tdb-dash__tabs button { white-space: nowrap; padding: 10px 14px; }
+	.tdb-kpi { padding: 18px 16px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.tdb-kpi__line { animation: none; stroke-dashoffset: 0; }
+	.tdb-dash__panel { animation: none; }
+}
