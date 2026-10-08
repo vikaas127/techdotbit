@@ -39,3 +39,13 @@ phpinfo.php
 *.tar.gz
 *.sql
 wp-content/plugins/wordpress-mcp/
+
+# Generated optimisation caches (LiteSpeed / Boost). These must never be
+# versioned: pulling old copies back onto the server serves stale CSS/JS.
+wp-content/litespeed/ucss/
+wp-content/litespeed/ccss/
+wp-content/litespeed/css/
+wp-content/litespeed/js/
+wp-content/litespeed/avatar/
+wp-content/litespeed/localres/
+wp-content/boost-cache/cache/
