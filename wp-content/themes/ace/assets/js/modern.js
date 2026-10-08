@@ -51,7 +51,7 @@
 		var dpr = Math.min(window.devicePixelRatio || 1, 2);
 		var nodes = [], w = 0, h = 0, raf = null, visible = true;
 		var pointer = { x: -9999, y: -9999 };
-		var colors = ['139,92,246', '99,102,241', '34,211,238', '52,211,153'];
+		var colors = ['62,173,60', '16,185,129', '34,211,238', '134,239,172'];
 
 		function size() {
 			var r = banner.getBoundingClientRect();
