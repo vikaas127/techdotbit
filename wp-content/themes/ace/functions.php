@@ -674,3 +674,29 @@ add_action( 'wp_head', function () {
 add_filter( 'acf/format_value', function ( $value ) {
 	return is_string( $value ) ? str_replace( 'takeyour', 'take your', $value ) : $value;
 }, 20 );
+
+/** Estimated reading time in minutes (about 220 words a minute). */
+function ace_reading_time( $post_id ) {
+	$words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+	return max( 1, (int) ceil( $words / 220 ) );
+}
+
+/** Blog listings: 1 lead + 9 cards on the blog home, 9 cards elsewhere. */
+add_action( 'pre_get_posts', function ( $q ) {
+	if ( is_admin() || ! $q->is_main_query() ) {
+		return;
+	}
+	if ( $q->is_home() ) {
+		$q->set( 'posts_per_page', 10 );
+	} elseif ( $q->is_archive() || $q->is_search() ) {
+		$q->set( 'posts_per_page', 9 );
+	}
+} );
+
+/** Blog styles (listings and single posts), after the light theme. */
+add_action( 'wp_enqueue_scripts', function () {
+	if ( is_home() || is_archive() || is_search() || is_singular( 'post' ) ) {
+		$file = get_stylesheet_directory() . '/assets/css/blog.css';
+		wp_enqueue_style( 'ace-blog', get_stylesheet_directory_uri() . '/assets/css/blog.css', array( 'ace-light-theme' ), filemtime( $file ) );
+	}
+}, 41 );

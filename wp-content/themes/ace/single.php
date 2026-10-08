@@ -245,123 +245,93 @@ get_header(); ?>
 
 <?php else: ?>
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
-	<nav class="breadcrumb inner-banner-area bg-gray-100 py-30" aria-label="Breadcrumb">
-		<div class="container">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> &nbsp;&nbsp;/&nbsp;&nbsp;
-				<a href="<?php echo esc_url( get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/' ) ); ?>">Blog</a> &nbsp;&nbsp;/&nbsp;&nbsp;
-				<?php $category = get_the_category();
-				if ( ! empty( $category ) ) { ?>
-					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>"><?php echo esc_html( $category[0]->cat_name ); ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;
-				<?php } ?>
-				<span aria-current="page"><?php the_title(); ?></span>
-		</div>
-	</nav>
-
-	<article class="single-blog-post pt-75">
-		<div class="container entry-header">
-			<div class="row items-center">
-				<div class="col col-12 col-lg-6">
-					<span class="d-block"><?php $cat = get_the_category(); if ( $cat ) { echo esc_html( $cat[0]->cat_name ); } ?></span>
-					<h1 class="heading mt-15 text-24"><?php the_title(); ?></h1>
-					<!--<p><--?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>-->
-					<div class="d-flex author-profile items-center mt-30 mt-lg-45">
-						<div class="author-img mr-15">
-							<?php echo get_avatar( get_the_author_meta( 'ID' ), 64 ); ?>
-						</div>
-						<div class="author-content">
-							<h4 class="text-16"><?php the_author(); ?></h4>
-							<span class="d-inline-flex align-items-center pr-md-3"><?php echo esc_html( get_the_date() ); ?></span> 
-							
-						</div>
-					</div>
-				</div>
-				<div class="col col-12 col-lg-6 col-xl-5 offset-xl-1 mt-15 mt-lg-0">
-					<?php if(has_post_thumbnail()){ ?>
-						<?php the_post_thumbnail( 'large', array( 'class' => 'img-fluid post-thumbnail rounded-4 mt-lg-0', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?>
-					<?php } ?>
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
+		$ace_cat      = get_the_category();
+		$ace_cat      = $ace_cat ? $ace_cat[0] : null;
+		$ace_blog_url = get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/' );
+		$ace_share    = rawurlencode( get_permalink() );
+		$ace_stitle   = rawurlencode( get_the_title() );
+		?>
+	<article <?php post_class( 'tdb-article' ); ?>>
+		<header class="tdb-article__head">
+			<div class="container">
+				<nav class="tdb-crumbs" aria-label="Breadcrumb">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'ace' ); ?></a>
+					<span aria-hidden="true">/</span>
+					<a href="<?php echo esc_url( $ace_blog_url ); ?>"><?php esc_html_e( 'Blog', 'ace' ); ?></a>
+					<?php if ( $ace_cat ) : ?>
+						<span aria-hidden="true">/</span>
+						<a href="<?php echo esc_url( get_category_link( $ace_cat ) ); ?>"><?php echo esc_html( $ace_cat->name ); ?></a>
+					<?php endif; ?>
+				</nav>
+				<?php if ( $ace_cat ) : ?><a class="tdb-post-card__cat" href="<?php echo esc_url( get_category_link( $ace_cat ) ); ?>"><?php echo esc_html( $ace_cat->name ); ?></a><?php endif; ?>
+				<h1 class="tdb-article__title"><?php the_title(); ?></h1>
+				<?php if ( has_excerpt() ) : ?><p class="tdb-article__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
+				<div class="tdb-article__meta">
+					<?php echo get_avatar( get_the_author_meta( 'ID' ), 40, '', '', array( 'class' => 'tdb-article__avatar' ) ); ?>
+					<span class="tdb-article__author"><?php the_author(); ?></span>
+					<span aria-hidden="true">·</span>
+					<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
+					<span aria-hidden="true">·</span>
+					<span><?php echo esc_html( sprintf( __( '%d min read', 'ace' ), ace_reading_time( get_the_ID() ) ) ); ?></span>
 				</div>
 			</div>
-		
+		</header>
 
-			<div class="row mt-40">
-				<?php if ( is_single() && 'post' == get_post_type() ) { ?>
-				<div class="col col-12 col-lg-3">
-					<div class="left-box pr-20">
-						<?php echo do_shortcode('[TOC]'); ?>
-						<hr class="mt-30 mb-30">
-						<div class="share-box">
-							<h5 class="text-16 mb-15">Share this article</h5>
-							<?php echo do_shortcode('[social]'); ?>
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="container">
+				<figure class="tdb-article__cover"><?php the_post_thumbnail( 'large', array( 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?></figure>
+			</div>
+		<?php endif; ?>
+
+		<div class="container">
+			<div class="tdb-article__layout">
+				<aside class="tdb-article__side">
+					<div class="tdb-article__sticky">
+						<?php $ace_toc = do_shortcode( '[TOC]' ); if ( false !== strpos( $ace_toc, '<li' ) ) : ?>
+							<div class="tdb-article__toc"><?php echo $ace_toc; // phpcs:ignore -- theme shortcode ?></div>
+						<?php endif; ?>
+						<div class="tdb-share">
+							<p class="tdb-share__title"><?php esc_html_e( 'Share this article', 'ace' ); ?></p>
+							<a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo $ace_share; ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on LinkedIn', 'ace' ); ?>"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z"/></svg></a>
+							<a href="https://twitter.com/intent/tweet?url=<?php echo $ace_share; ?>&amp;text=<?php echo $ace_stitle; ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on X', 'ace' ); ?>"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a>
+							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $ace_share; ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on Facebook', 'ace' ); ?>"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.2H8v3.2h2.6V22H14v-10.3h2.7l.4-3.2H14Z"/></svg></a>
+							<a href="https://wa.me/?text=<?php echo $ace_stitle . '%20' . $ace_share; ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on WhatsApp', 'ace' ); ?>"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3Z"/></svg></a>
 						</div>
 					</div>
-				</div>
-				<?php } ?>
-				<div class="col col-12 col-lg-9 entry-content">
+				</aside>
+				<div class="tdb-article__body entry-content">
 					<?php the_content(); ?>
+					<div class="tdb-article__cta">
+						<div>
+							<p class="tdb-article__cta-title"><?php esc_html_e( 'Want to put this into practice?', 'ace' ); ?></p>
+							<p><?php esc_html_e( 'Talk to our team about AI agents, ERP or custom software for your business.', 'ace' ); ?></p>
+						</div>
+						<a class="tdb-article__cta-btn" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Book a free consultation', 'ace' ); ?> <span aria-hidden="true">&rarr;</span></a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</article>
-
-
-
 	<?php endwhile; endif; ?>
 
-	<?php if ( is_single() && 'post' == get_post_type() ) { 
-
-	$cat = get_the_category(); 
-	?>
-		<div class="container py-75">
-			<h2 class="h3 py-15">Related Posts</h2>
-			<div class="row mt-20 blog-posts related-post">
-				<?php
-					$related = get_posts( array(
-						'posts_per_page' => 3,
-						'post__not_in'   => array( get_the_ID() ),
-						'category__in'   => wp_get_post_categories( get_the_ID() ),
-					) );
-					foreach( $related as $post ){
-						setup_postdata( $post ); ?>
-
-						<div class="lqd-lp-column flex flex-col col-lg-4 col-md-6 col-sm-6 col-12 py-0 px-15 mb-30">
-						  <article id="post-<?php the_ID(); ?>" class="article">
-					      
-					        <?php $categories = get_the_category();
-                    foreach ($categories as $cat) {
-                        $category_link = get_category_link($cat->cat_ID);
-                        echo '<a class="inline-block font-medium mb-15 text-14" href="' . esc_url($category_link) . '" title="' . esc_attr($cat->name) . '">' . esc_html($cat->name) . '</a>';
-                    }
-                  ?>
-					       
-						      <figure>
-						        <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large', array( 'class' => 'img-fluid', 'alt' => the_title_attribute( array( 'echo' => false ) ), 'loading' => 'lazy', 'decoding' => 'async' ) ); } ?>
-						      </figure>
-						    
-						      <h3 class="entry-title lqd-lp-title text-20 mt-1/5rem relative z-2 mb-20">
-						        <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-						      </h3>
-						    	<?php the_excerpt(); ?>
-					        <div class="lqd-lp-author flex flex-wrap items-center relative z-3 text-16">
-                   <!--  <figure class="rounded-full overflow-hidden mr-10">
-                      <?php // echo get_avatar( get_the_author_meta('ID')); ?>
-                    </figure> -->
-                    <span class="lqd-lp-author-info">
-                      <?php the_author(); ?> &nbsp;&nbsp; <?php echo esc_html( get_the_date() ); ?>
-                    </span>
-                  </div>
-						  </article>
-						</div>
-						
-					<?php
-					}
-					wp_reset_postdata();
-				?>
+	<?php
+	$ace_related = new WP_Query( array(
+		'posts_per_page'      => 3,
+		'post__not_in'        => array( get_queried_object_id() ),
+		'category__in'        => wp_get_post_categories( get_queried_object_id() ),
+		'ignore_sticky_posts' => 1,
+	) );
+	if ( $ace_related->have_posts() ) : ?>
+		<section class="tdb-related-posts">
+			<div class="container">
+				<h2 class="tdb-related-posts__title"><?php esc_html_e( 'Related articles', 'ace' ); ?></h2>
+				<div class="tdb-post-grid">
+					<?php while ( $ace_related->have_posts() ) : $ace_related->the_post(); include locate_template( 'inc/blog/card.php' ); endwhile; ?>
+				</div>
 			</div>
-		</div>
-
-	<?php } ?>
+		</section>
+	<?php endif; wp_reset_postdata(); ?>
 <?php  endif; ?>
 
 <?php include_once('inc/bottom-cta.php'); ?>
