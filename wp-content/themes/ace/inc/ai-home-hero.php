@@ -12,7 +12,11 @@ $hub_url = $hub && 'publish' === $hub->post_status ? get_permalink( $hub ) : hom
 $audit   = get_page_by_path( 'ai-services/ai-readiness-assessment' );
 
 $eyebrow = $hf( 'home_eyebrow', __( 'AI-first software engineering', 'ace' ) );
-$title   = $hf( 'home_title', __( 'AI agents and AI-driven software that move your business forward', 'ace' ) );
+$title   = $hf( 'home_title', __( 'AI-driven software that moves your business forward', 'ace' ) );
+// Drop the old "AI agents and" opening if it is still saved in the field.
+if ( 0 === stripos( $title, 'AI agents and ' ) ) {
+	$title = preg_replace( '/\bmove your\b/', 'moves your', substr( $title, strlen( 'AI agents and ' ) ) );
+}
 $hl      = $hf( 'home_highlight', __( 'AI-driven software', 'ace' ) );
 $intro   = $hf( 'home_intro', __( 'TechDotBit designs, builds and runs AI agents, AI-led software and intelligent automation, from the first idea to secure, monitored production systems.', 'ace' ) );
 $agents  = get_page_by_path( 'ai-services/ai-agent-development' );
