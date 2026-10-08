@@ -202,7 +202,16 @@ while ( have_posts() ) :
 
 	<?php endif; ?>
 
-	<?php $cards = $f( 'lp_cards', array() ); ?>
+	<?php
+	$cards = $f( 'lp_cards', array() );
+	// Generated ERP / industry / hire pages: interactive feature hub + stage flow instead of a text-heavy card grid.
+	$ace_visual_page = get_post_meta( get_the_ID(), '_ace_erp_page', true ) || get_post_meta( get_the_ID(), '_ace_industry_page', true ) || get_post_meta( get_the_ID(), '_ace_hire_page', true );
+	if ( $ace_visual_page && count( $cards ) >= 3 ) {
+		include locate_template( 'inc/sections/feature-hub.php' );
+		include locate_template( 'inc/sections/stage-flow.php' );
+		$cards = array();
+	}
+	?>
 	<?php if ( $cards ) : ?>
 	<section class="lqd-section services inner-services tdb-lp-cards" id="use-cases">
 		<div class="container">

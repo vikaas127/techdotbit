@@ -811,3 +811,67 @@ a.tdb-contact__method:hover { border-color: #3ead3c; transform: translateY(-2px)
 @keyframes tdb-blink-caret { 50% { opacity: 0; } }
 .tdb-cover__candle { transform-box: fill-box; transform-origin: center; animation: tdb-cover-candle 3s ease-in-out infinite alternate; animation-delay: calc(var(--c) * .12s); }
 @keyframes tdb-cover-candle { from { transform: scaleY(.7); opacity: .7; } }
+
+/* =====================================================================
+ * Mega menus (DotOne/ERP, Hire, Industries, AI Services): clean panels
+ * =================================================================== */
+@media (min-width: 992px) {
+	.lqd-head-sec .menu > li.full-menu > .sub-menu {
+		width: min(1080px, calc(100vw - 48px)) !important;
+		max-width: none !important;
+		padding: 26px 28px 22px !important;
+		border: 1px solid #e4e9f0 !important;
+		border-radius: 20px !important;
+		background: #fff !important;
+		box-shadow: 0 24px 60px rgba(15, 23, 42, .14) !important;
+		gap: 8px 28px !important;
+	}
+	.lqd-head-sec .menu > li.full-menu:hover > .sub-menu > li { width: calc(25% - 21px) !important; }
+	/* Column headings (only items that have their own links below) */
+	.lqd-head-sec .menu > li.full-menu > .sub-menu > li.menu-item-has-children > a {
+		display: block !important;
+		margin: 0 0 8px !important;
+		padding: 0 0 10px !important;
+		border-bottom: 1px solid #eef2f6 !important;
+		color: #64748b !important;
+		font-size: 11.5px !important;
+		font-weight: 700 !important;
+		letter-spacing: .12em;
+		text-transform: uppercase;
+	}
+	.lqd-head-sec .menu > li.full-menu > .sub-menu > li.menu-item-has-children > a::before, .lqd-head-sec .menu > li.full-menu > .sub-menu > li.menu-item-has-children > a::after { display: none !important; }
+	/* Flat mega menus (e.g. AI Services): plain links in columns */
+	.lqd-head-sec .menu > li.full-menu > .sub-menu > li:not(.menu-item-has-children) > a { display: flex !important; margin: 0 -10px !important; padding: 8px 10px !important; border-radius: 10px; color: #1e293b !important; font-size: 14.5px !important; font-weight: 500 !important; line-height: 1.35 !important; transition: background .15s, color .15s; }
+	.lqd-head-sec .menu > li.full-menu > .sub-menu > li:not(.menu-item-has-children) > a::before { display: none !important; }
+	.lqd-head-sec .menu > li.full-menu > .sub-menu > li:not(.menu-item-has-children) > a:hover { background: #f1faf2; color: #23873a !important; }
+	.lqd-head-sec .menu > li.full-menu:hover > .sub-menu:not(:has(> li.menu-item-has-children)) { gap: 0 28px !important; }
+	/* Links inside columns */
+	.lqd-head-sec .full-menu .sub-menu .sub-menu { position: static !important; display: block !important; padding: 0 !important; margin: 0 !important; border: 0 !important; box-shadow: none !important; background: none !important; opacity: 1 !important; visibility: visible !important; transform: none !important; animation: none !important; min-width: 0 !important; }
+	.lqd-head-sec .full-menu .sub-menu .sub-menu li { margin: 0 !important; padding: 0 !important; list-style: none !important; }
+	.lqd-head-sec .full-menu .sub-menu .sub-menu li::before, .lqd-head-sec .full-menu .sub-menu .sub-menu li::marker, .lqd-head-sec .full-menu .sub-menu .sub-menu a::before, .lqd-head-sec .full-menu .sub-menu .sub-menu a::after { content: none !important; display: none !important; }
+	.lqd-head-sec .full-menu .sub-menu .sub-menu a {
+		display: flex !important; align-items: center; justify-content: space-between; gap: 8px;
+		margin: 0 -10px !important; padding: 7px 10px !important; border-radius: 10px;
+		color: #1e293b !important; font-size: 14.5px !important; font-weight: 500 !important; line-height: 1.35 !important;
+		transition: background .15s, color .15s;
+	}
+	.lqd-head-sec .full-menu .sub-menu .sub-menu a:hover { background: #f1faf2; color: #23873a !important; }
+	.lqd-head-sec .full-menu .sub-menu .sub-menu a:hover::after { content: "→" !important; display: inline !important; color: #3ead3c; font-size: 13px; }
+	/* ERP menu: at most 6 links per column, plus "View all" */
+	.lqd-head-sec .erp-menu .sub-menu .sub-menu > li:nth-child(n+7):not(:last-child) { display: none !important; }
+	.lqd-head-sec .full-menu .sub-menu .sub-menu > li:last-child > a[href*="#"] { margin-top: 4px !important; color: #23873a !important; font-weight: 600 !important; }
+	/* Last column of the ERP/DotOne menu as a highlight card */
+	.lqd-head-sec .erp-menu > .sub-menu > li:last-child { padding: 16px 16px 10px !important; border-radius: 16px; background: linear-gradient(135deg, #0d1f17, #0b1a2c); }
+	.lqd-head-sec .erp-menu > .sub-menu > li:last-child > a { border-bottom-color: rgba(255, 255, 255, .12) !important; color: #86efac !important; }
+	.lqd-head-sec .erp-menu > .sub-menu > li:last-child .sub-menu a { color: #e2e8f0 !important; }
+	.lqd-head-sec .erp-menu > .sub-menu > li:last-child .sub-menu a:hover { background: rgba(255, 255, 255, .08); color: #fff !important; }
+}
+@media (min-width: 992px) {
+	body .lqd-head-sec .menu > li.erp-menu > .sub-menu > li:last-child > a { color: #86efac !important; border-bottom-color: rgba(255, 255, 255, .12) !important; }
+}
+@media (min-width: 992px) {
+	.lqd-head-sec .menu > li.industry-menu > .sub-menu { width: min(640px, calc(100vw - 48px)) !important; }
+	.lqd-head-sec .menu > li.industry-menu:hover > .sub-menu > li.menu-item-has-children { width: calc(50% - 14px) !important; }
+	.lqd-head-sec .menu > li.industry-menu:hover > .sub-menu > li:not(.menu-item-has-children) { width: 100% !important; margin-top: 6px; padding-top: 10px; border-top: 1px solid #eef2f6; }
+	.lqd-head-sec .menu > li.industry-menu > .sub-menu > li:not(.menu-item-has-children) > a { color: #23873a !important; font-weight: 600 !important; }
+}
