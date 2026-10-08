@@ -28,7 +28,7 @@ $ace_lib_url = $ace_library && 'publish' === $ace_library->post_status ? get_per
 					</ul>
 					<?php if ( ! empty( $cat['flow'] ) ) : ?>
 						<p class="tdb-flow" aria-label="<?php esc_attr_e( 'Manufacturing flow', 'ace' ); ?>">
-							<?php foreach ( $cat['flow'] as $fi => $f ) : ?><span style="--i: <?php echo (int) $fi; ?>"><?php echo esc_html( $f ); ?></span><?php endforeach; ?>
+							<?php foreach ( $cat['flow'] as $ace_fi => $ace_flow ) : ?><span style="--i: <?php echo (int) $ace_fi; ?>"><?php echo esc_html( $ace_flow ); ?></span><?php endforeach; ?>
 						</p>
 					<?php endif; ?>
 					<?php if ( $ace_lib_url ) : ?>

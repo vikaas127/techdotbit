@@ -30,6 +30,25 @@ while ( have_posts() ) :
 	$features   = $f( 'lp_hero_features', array() );
 	$cta_label  = $f( 'lp_cta_label', __( 'Book a free consultation', 'ace' ) );
 
+	// Hero background animation (per page) with a sensible default per style.
+	$bg = $f( 'lp_bg_visual', '' );
+	if ( ! $bg ) {
+		$bg = 'streaks' === $style ? 'streaks' : ( 'agents' === $style ? '' : 'knot' );
+	}
+	$ace_bg_html = function ( $bg ) use ( $visual ) {
+		if ( is_array( $visual ) && ! empty( $visual['url'] ) ) {
+			return '<img src="' . esc_url( $visual['url'] ) . '" alt="" width="' . (int) $visual['width'] . '" height="' . (int) $visual['height'] . '" fetchpriority="high">';
+		}
+		switch ( $bg ) {
+			case 'knot':    return '<canvas class="tdb-orb"></canvas>';
+			case 'streaks': return '<canvas class="tdb-streaks"></canvas>';
+			case 'network': return '<span class="tdb-net-host"></span>';
+			case 'aurora':  return '<span class="tdb-aurora"><i></i><i></i><i></i></span>';
+			case 'grid':    return '<span class="tdb-gridfx"></span>';
+		}
+		return '';
+	};
+
 	// The glass enquiry card: inside the hero (knot style) or its own section (streaks style).
 	ob_start();
 	?>
@@ -68,6 +87,7 @@ while ( have_posts() ) :
 		?>
 
 	<section class="tdb-hero tdb-hero--agents" aria-labelledby="tdb-hero-title">
+		<?php if ( $bg ) : ?><div class="tdb-hero__visual tdb-hero__visual--full" aria-hidden="true"><?php echo $ace_bg_html( $bg ); // phpcs:ignore ?></div><?php endif; ?>
 		<div class="container">
 			<div class="tdb-agents-top">
 				<div>
@@ -118,7 +138,7 @@ while ( have_posts() ) :
 	<?php elseif ( 'streaks' === $style ) : ?>
 
 	<section class="tdb-hero tdb-hero--streaks" aria-labelledby="tdb-hero-title">
-		<div class="tdb-hero__visual" aria-hidden="true"><canvas class="tdb-streaks"></canvas></div>
+		<div class="tdb-hero__visual" aria-hidden="true"><?php echo $ace_bg_html( $bg ); // phpcs:ignore -- built from escaped parts ?></div>
 		<div class="container">
 			<div class="tdb-hero__copy">
 				<?php if ( $eyebrow ) : ?>
@@ -152,13 +172,7 @@ while ( have_posts() ) :
 	<?php else : ?>
 
 	<section class="tdb-hero" aria-labelledby="tdb-hero-title">
-		<div class="tdb-hero__visual" aria-hidden="true">
-			<?php if ( is_array( $visual ) && ! empty( $visual['url'] ) ) : ?>
-				<img src="<?php echo esc_url( $visual['url'] ); ?>" alt="" width="<?php echo (int) $visual['width']; ?>" height="<?php echo (int) $visual['height']; ?>" fetchpriority="high">
-			<?php else : ?>
-				<canvas class="tdb-orb"></canvas>
-			<?php endif; ?>
-		</div>
+		<div class="tdb-hero__visual" aria-hidden="true"><?php echo $ace_bg_html( $bg ); // phpcs:ignore -- built from escaped parts ?></div>
 
 		<div class="container tdb-hero__inner">
 			<div class="tdb-hero__copy">

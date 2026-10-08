@@ -1486,3 +1486,51 @@ body.tdb-lp-style-agents { background: #fff; }
 }
 @media (max-width: 767px) { .tdb-build__grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .tdb-flow span { animation: none; } }
+
+/* =====================================================================
+ * Hero background animations (per page)
+ * =================================================================== */
+.tdb-hero__visual--full { left: 0; right: 0; width: auto; opacity: .7; }
+.tdb-net-host { position: absolute; inset: 0; display: block; }
+.tdb-net-host .tdb-neural { opacity: 1; }
+
+/* Aurora: soft drifting colour fields */
+.tdb-aurora { position: absolute; inset: 0; display: block; overflow: hidden; filter: blur(40px); }
+.tdb-aurora i {
+	position: absolute;
+	width: 46%; aspect-ratio: 1;
+	border-radius: 50%;
+	opacity: .55;
+	animation: tdb-aurora-move 16s ease-in-out infinite alternate;
+}
+.tdb-aurora i:nth-child(1) { left: 30%; top: 5%; background: radial-gradient(closest-side, rgba(62, 173, 60, .55), transparent); }
+.tdb-aurora i:nth-child(2) { left: 52%; top: 35%; background: radial-gradient(closest-side, rgba(34, 211, 238, .5), transparent); animation-duration: 20s; animation-delay: -6s; }
+.tdb-aurora i:nth-child(3) { left: 40%; top: 55%; background: radial-gradient(closest-side, rgba(16, 185, 129, .45), transparent); animation-duration: 24s; animation-delay: -12s; }
+@keyframes tdb-aurora-move {
+	0% { transform: translate(0, 0) scale(1); }
+	50% { transform: translate(-12%, 8%) scale(1.2); }
+	100% { transform: translate(10%, -6%) scale(.9); }
+}
+
+/* Pulsing grid: dots with a highlight wave sweeping across */
+.tdb-gridfx {
+	position: absolute; inset: 0; display: block;
+	background-image: radial-gradient(rgba(35, 135, 58, .35) 1.4px, transparent 1.6px);
+	background-size: 28px 28px;
+	-webkit-mask-image: linear-gradient(100deg, transparent 0%, #000 25%, #000 75%, transparent 100%);
+	mask-image: linear-gradient(100deg, transparent 0%, #000 25%, #000 75%, transparent 100%);
+}
+.tdb-gridfx::after {
+	content: "";
+	position: absolute; inset: 0;
+	background-image: radial-gradient(rgba(14, 148, 136, .9) 1.8px, transparent 2px);
+	background-size: 28px 28px;
+	-webkit-mask-image: radial-gradient(circle 220px at var(--gx, 60%) 50%, #000, transparent 70%);
+	mask-image: radial-gradient(circle 220px at var(--gx, 60%) 50%, #000, transparent 70%);
+	animation: tdb-grid-sweep 7s ease-in-out infinite alternate;
+}
+@property --gx { syntax: '<percentage>'; inherits: false; initial-value: 60%; }
+@keyframes tdb-grid-sweep { from { --gx: 35%; } to { --gx: 95%; } }
+@media (prefers-reduced-motion: reduce) {
+	.tdb-aurora i, .tdb-gridfx::after { animation: none; }
+}

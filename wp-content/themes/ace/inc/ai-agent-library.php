@@ -30,7 +30,7 @@ $ace_cats = ace_ai_agents();
 				<?php if ( ! empty( $cat['flow'] ) ) : ?>
 					<div class="tdb-library__industry">
 						<p class="tdb-flow" aria-label="<?php esc_attr_e( 'Manufacturing flow', 'ace' ); ?>">
-							<?php foreach ( $cat['flow'] as $fi => $f ) : ?><span style="--i: <?php echo (int) $fi; ?>"><?php echo esc_html( $f ); ?></span><?php endforeach; ?>
+							<?php foreach ( $cat['flow'] as $ace_fi => $ace_flow ) : ?><span style="--i: <?php echo (int) $ace_fi; ?>"><?php echo esc_html( $ace_flow ); ?></span><?php endforeach; ?>
 						</p>
 						<p class="tdb-library__industries"><b><?php esc_html_e( 'Built for:', 'ace' ); ?></b> <?php echo esc_html( implode( ' · ', $cat['industries'] ) ); ?></p>
 					</div>

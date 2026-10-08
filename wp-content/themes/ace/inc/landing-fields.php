@@ -54,6 +54,12 @@ add_action( 'acf/init', function () {
 				'layout' => 'table', 'button_label' => 'Add agent', 'max' => 4,
 				'sub_fields' => array( $text( 'agent_name', 'name', 'Agent name' ) ),
 			),
+			array(
+				'key' => 'field_tdb_lp_bg', 'name' => 'lp_bg_visual', 'label' => 'Hero background animation', 'type' => 'select',
+				'choices' => array( '' => 'Default for the style', 'knot' => '3D knot', 'streaks' => 'Light streaks', 'network' => 'Neural network', 'aurora' => 'Aurora', 'grid' => 'Pulsing grid' ),
+				'default_value' => '', 'allow_null' => 0,
+				'instructions' => 'Use a different animation on each page so the site does not feel repetitive.',
+			),
 			array( 'key' => 'field_tdb_lp_visual', 'name' => 'lp_visual', 'label' => 'Hero visual (optional)', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Leave empty to show the animated 3D shape.' ),
 			array( 'key' => 'field_tdb_lp_tab_form', 'label' => 'Form', 'type' => 'tab' ),
 			$text( 'form_title', 'lp_form_title', 'Form title', array( 'default_value' => "Let's talk" ) ),

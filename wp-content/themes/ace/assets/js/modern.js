@@ -40,7 +40,7 @@
 	}
 
 	/* Neural-network canvas behind every page hero */
-	document.querySelectorAll('.banner').forEach(function (banner) {
+	document.querySelectorAll('.banner, .tdb-net-host').forEach(function (banner) {
 		var canvas = document.createElement('canvas');
 		canvas.className = 'tdb-neural';
 		canvas.setAttribute('aria-hidden', 'true');

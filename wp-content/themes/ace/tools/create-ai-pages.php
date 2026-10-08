@@ -127,6 +127,9 @@ $hub = array(
 			array( 'AI Workflow Automation', 'Teams of specialist agents that run sales, support and operations work on autopilot.', ace_url( 'ai-workflow-automation' ) ),
 			array( 'AI-Driven Software Development', 'An end-to-end AI-augmented delivery model, from code to production operations.', ace_url( 'ai-driven-software-development' ) ),
 			array( 'Free AI Readiness Assessment', 'A practical review of where AI can help your business, with a prioritised roadmap.', ace_url( 'ai-readiness-assessment' ) ),
+			array( 'AI-Powered ERP (DotOne)', 'A complete ERP with AI agents for sales, purchase, inventory, production and finance.', ace_url( 'ai-powered-erp' ) ),
+			array( 'AI Agent Library', 'Management, engineering, business and industry agents, and what each one does.', ace_url( 'ai-agent-library' ) ),
+			array( 'Enterprise-Ready AI', 'Permissions, approvals, audit trails and private deployment for every agent.', ace_url( 'enterprise-ai' ) ),
 		) ),
 		'lp_steps_heading' => 'How we deliver AI projects',
 		'lp_steps'         => $default_steps,
@@ -618,6 +621,188 @@ foreach ( $industries as $ind ) {
 		'fields'  => $fields,
 	);
 }
+
+/* -------------------------------------------------------------------------
+ * AI agent platform pages (agent library, architecture, ERP, studio ...)
+ * ---------------------------------------------------------------------- */
+$pages[] = array(
+	'slug'    => 'ai-agent-library',
+	'title'   => 'AI Agent Library',
+	'excerpt' => 'Library of TechDotBit AI agents: project manager, product manager, QA, sales, CRM, support, finance, purchase, inventory, manufacturing, reporting and more, with what each agent does.',
+	'content' => '',
+	'fields'  => array(
+		'lp_hero_style'      => 'agents',
+		'lp_bg_visual'       => 'grid',
+		'lp_eyebrow'         => 'AI Agent Library',
+		'lp_title'           => 'Specialist AI agents for every task in your business',
+		'lp_title_highlight' => 'every task',
+		'lp_intro'           => 'Management, engineering, business and industry agents that plan, test, sell, support, purchase, produce and report, each configured for your rules and connected to your systems.',
+		'lp_cta_label'       => 'Build your agent team',
+		'lp_cta2_label'      => 'Browse agents',
+		'lp_cta2_link'       => '#tdb-library-title',
+		'lp_prompt'          => 'Which agents do I need for my factory?',
+		'lp_agents'          => array( array( 'name' => 'Sales Agent' ), array( 'name' => 'Inventory Agent' ), array( 'name' => 'Manufacturing Agent' ) ),
+		'lp_sections'        => array( 'library', 'use_cases', 'enterprise' ),
+		'lp_form_heading'    => 'Tell us which work you want an agent to take over',
+		'lp_form_text'       => 'We will recommend the right agents, the systems they need and how to start safely.',
+		'lp_faq'             => ace_faq( array(
+			array( 'What is an AI agent?', 'An AI agent is software that understands a goal, plans the steps and carries them out in your systems, such as ERP, CRM, email and databases, then checks the result and asks a person when it is unsure.' ),
+			array( 'Can agents work together?', 'Yes. Agents can hand work to each other, for example a Sales Agent passing confirmed orders to a Manufacturing Agent, under the same permissions and approval rules.' ),
+			array( 'Are the agents customised for my business?', 'Every agent is configured with your processes, knowledge, tools, permissions and approval rules. The library is a starting point, not a one-size-fits-all product.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'how-ai-agents-work',
+	'title'   => 'How AI Agents Work',
+	'excerpt' => 'How TechDotBit AI agents work: understand, reason, plan, execute, verify and learn, inside a secure, layered architecture with human oversight.',
+	'content' => '<h2>Agents that execute, not just chat</h2><p>A chatbot answers questions. An AI agent gets work done: it combines a language model with your business context, a plan, secure access to your tools and a verification step. That is what lets it update an ERP record, raise a purchase request or run a regression test, and prove it did so correctly.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'streaks',
+		'lp_bg_visual'     => 'network',
+		'lp_eyebrow'       => 'How AI agents work',
+		'lp_title'         => 'How Our AI Agents Understand, Decide and Act',
+		'lp_intro'         => 'A transparent loop of understand, reason, plan, execute, verify and learn, running inside an architecture built for security, control and audit.',
+		'lp_cta_label'     => 'See it on your use case',
+		'lp_hero_features' => array(
+			array( 'title' => 'Transparent', 'text' => 'Every step and action is logged and explainable.' ),
+			array( 'title' => 'Controlled', 'text' => 'Permissions and human approval for sensitive actions.' ),
+			array( 'title' => 'Connected', 'text' => 'Works inside your ERP, CRM, email and tools.' ),
+		),
+		'lp_sections'      => array( 'how', 'architecture', 'human', 'enterprise' ),
+		'lp_form_heading'  => 'Want to see an agent work on your data?',
+		'lp_form_text'     => 'Share a process and we will walk you through how an agent would handle it.',
+		'lp_faq'           => ace_faq( array(
+			array( 'How is an AI agent different from a chatbot?', 'A chatbot replies to messages. An AI agent plans and executes multi-step work across your systems, verifies the outcome and escalates to people when needed.' ),
+			array( 'Which AI models do your agents use?', 'Our architecture is model-agnostic. We use models such as GPT, Claude, Gemini and Llama, or private open-source models, depending on quality, cost and data-privacy needs.' ),
+			array( 'Can an agent make a mistake?', 'Any system can. That is why every agent verifies its own work, logs every action, works within strict permissions and asks for human approval on sensitive steps.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'ai-transformation',
+	'title'   => 'AI Transformation',
+	'excerpt' => 'AI transformation services: turn your existing business into an AI-powered business with AI agents for operations, reporting, testing and follow-ups.',
+	'content' => '<h2>Start with one process, then scale</h2><p>AI transformation does not mean replacing your systems or your people. We start with one high-impact process, put an AI agent to work inside your existing ERP, CRM and tools, measure the results and then expand to the next process.</p>',
+	'fields'  => array(
+		'lp_hero_style'     => 'knot',
+		'lp_bg_visual'      => 'aurora',
+		'lp_eyebrow'        => 'AI Transformation',
+		'lp_title'          => 'Turn Your Existing Business Into an AI-Powered Business',
+		'lp_intro'          => 'Replace manual work, data searching, manual reports and slow follow-ups with AI agents that analyse, recommend, act and report automatically.',
+		'lp_points'         => ace_points( array( 'Start with one high-impact process', 'Works with your existing ERP, CRM and tools', 'Human approval where it matters' ) ),
+		'lp_form_title'     => 'Get your AI transformation plan',
+		'lp_sections'       => array( 'transform', 'use_cases', 'demos', 'erp' ),
+		'lp_faq'            => ace_faq( array(
+			array( 'Where should AI transformation start?', 'With one process that is high-volume, repetitive and measurable, such as reporting, purchase planning, testing or lead follow-up. Quick, visible results build confidence for the next step.' ),
+			array( 'Do we need to replace our current software?', 'No. Agents work inside your existing ERP, CRM and applications through secure integrations. If you want a modern AI-ready ERP, DotOne is an option.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'ai-agent-studio',
+	'title'   => 'AI Agent Studio',
+	'excerpt' => 'TechDotBit AI Agent Studio: build, configure, connect, test, deploy and monitor AI agents with roles, knowledge, tools, permissions, memory, rules and approvals.',
+	'content' => '',
+	'fields'  => array(
+		'lp_hero_style'      => 'agents',
+		'lp_bg_visual'       => 'aurora',
+		'lp_eyebrow'         => 'AI Agent Studio',
+		'lp_title'           => 'The studio where we build dependable AI agents',
+		'lp_title_highlight' => 'dependable AI agents',
+		'lp_intro'           => 'Build, configure, connect, test, deploy and monitor: every agent gets a role, objective, knowledge, tools, permissions, memory, rules and approval requirements.',
+		'lp_cta_label'       => 'Design an agent with us',
+		'lp_cta2_label'      => 'How agents work',
+		'lp_cta2_link'       => ace_url( 'how-ai-agents-work' ),
+		'lp_prompt'          => 'Create an Inventory Agent for our warehouse',
+		'lp_agents'          => array( array( 'name' => 'Configure' ), array( 'name' => 'Connect' ), array( 'name' => 'Deploy' ) ),
+		'lp_sections'        => array( 'studio', 'architecture', 'enterprise' ),
+		'lp_form_heading'    => 'Have a process in mind for an agent?',
+		'lp_form_text'       => 'Tell us about it and we will design the agent with you.',
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'enterprise-ai',
+	'title'   => 'Enterprise-Ready AI',
+	'excerpt' => 'Enterprise-ready AI agents: data privacy, role-based access, authentication, audit trails, human approval, agent permissions, data isolation and flexible deployment.',
+	'content' => '',
+	'fields'  => array(
+		'lp_hero_style'    => 'streaks',
+		'lp_bg_visual'     => 'grid',
+		'lp_eyebrow'       => 'Enterprise-ready AI',
+		'lp_title'         => 'AI Agents You Can Trust With Real Business Work',
+		'lp_intro'         => 'Data privacy, permissions, approvals, audit trails and monitoring are built into every agent, so you get the speed of AI without losing control.',
+		'lp_cta_label'     => 'Talk to our security team',
+		'lp_hero_features' => array(
+			array( 'title' => 'Private', 'text' => 'Your data is never used to train public models.' ),
+			array( 'title' => 'Governed', 'text' => 'Permissions, approvals and audit logs for every agent.' ),
+			array( 'title' => 'Flexible', 'text' => 'Deploy in our cloud, your cloud or on-premise.' ),
+		),
+		'lp_sections'      => array( 'enterprise', 'architecture', 'human' ),
+		'lp_faq'           => ace_faq( array(
+			array( 'Can an AI agent do something dangerous?', 'Agents can only perform the actions they are explicitly permitted to, sensitive actions require human approval, and every action is logged and can be audited.' ),
+			array( 'Where is our data stored?', 'Wherever you need it: in our cloud, your cloud account or on your own servers, with data isolated per customer.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'ai-engineering',
+	'title'   => 'AI Engineering',
+	'excerpt' => 'AI engineering services: AI application development, generative AI, AI agents, LLM integration, RAG, machine learning, computer vision, NLP and AI integration with existing software.',
+	'content' => '',
+	'fields'  => array(
+		'lp_hero_style'    => 'knot',
+		'lp_bg_visual'     => 'network',
+		'lp_eyebrow'       => 'AI Engineering',
+		'lp_title'         => 'AI Engineering for Products and Platforms',
+		'lp_intro'         => 'AI applications, agents, LLM and RAG systems, machine learning and computer vision, engineered by a team that also builds software, ERP and business processes.',
+		'lp_points'        => ace_points( array( 'AI + software + ERP + process knowledge', 'Add intelligence to existing applications', 'Production-grade, secure and monitored' ) ),
+		'lp_form_title'    => 'Discuss your AI project',
+		'lp_show_stack'    => 1,
+		'lp_sections'      => array( 'engineering', 'how', 'integrations' ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'ai-powered-erp',
+	'title'   => 'AI-Powered ERP',
+	'excerpt' => 'AI-powered ERP for manufacturing and distribution: DotOne ERP with AI agents for sales, purchase, inventory, production, finance and reporting.',
+	'content' => '<h2>Why AI-powered ERP?</h2><p>Traditional ERP is a system of record: it tells you what happened. An AI-powered ERP also tells you what should happen next and does the routine work, from recommending purchases and planning production to chasing receivables and preparing management reports.</p><h2>Built for manufacturers and growing businesses</h2><p>DotOne, built by TechDotBit, covers CRM, sales, purchase, inventory, manufacturing, finance, HR and analytics, with AI agents working across every module. It is designed for industries such as plywood, tape, footwear, lamination, ACP, metals, FMCG and service businesses.</p>',
+	'fields'  => array(
+		'lp_hero_style'     => 'knot',
+		'lp_bg_visual'      => 'knot',
+		'lp_eyebrow'        => 'AI + ERP',
+		'lp_title'          => 'AI-Powered ERP That Runs Your Operations',
+		'lp_intro'          => 'DotOne combines a complete ERP for sales, purchase, inventory, manufacturing, finance and HR with AI agents that plan, recommend and act across every module.',
+		'lp_points'         => ace_points( array( 'Sales → Production → Purchase → Inventory → Quality → Dispatch', 'AI agents for purchase, inventory, production and finance', 'Built for manufacturing and distribution' ) ),
+		'lp_form_title'     => 'Book a DotOne demo',
+		'lp_sections'       => array( 'erp', 'categories', 'use_cases', 'transform' ),
+		'lp_faq'            => ace_faq( array(
+			array( 'What is an AI-powered ERP?', 'An ERP that not only records transactions but uses AI agents to analyse data, recommend actions and automate routine work such as purchase planning, production scheduling and reporting.' ),
+			array( 'Can you add AI agents to our current ERP?', 'Yes. Agents can connect to most ERPs through their APIs or database. If your current ERP is limiting you, DotOne is a modern, AI-ready alternative.' ),
+			array( 'Which industries is DotOne built for?', 'Manufacturing and distribution businesses such as plywood, tape, footwear, lamination, ACP, metals and FMCG, as well as service businesses.' ),
+		) ),
+	),
+);
+
+/* Vary the hero animations of the earlier pages so no two neighbours repeat. */
+$ace_bg_by_slug = array(
+	'ai-led-software-development' => 'network', 'agentic-qa-testing' => 'grid', 'aiops-observability' => 'streaks',
+	'ai-legacy-modernization' => 'aurora', 'responsible-ai-security' => 'grid', 'llm-development' => 'network',
+	'ai-agent-development' => 'streaks', 'ai-workflow-automation' => 'aurora', 'ai-driven-software-development' => 'knot',
+	'ai-readiness-assessment' => 'aurora', 'ai-for-fintech' => 'grid', 'ai-for-healthcare' => 'aurora', 'ai-for-ecommerce' => 'network',
+);
+foreach ( $pages as &$pg ) {
+	if ( isset( $ace_bg_by_slug[ $pg['slug'] ] ) && empty( $pg['fields']['lp_bg_visual'] ) ) {
+		$pg['fields']['lp_bg_visual'] = $ace_bg_by_slug[ $pg['slug'] ];
+	}
+}
+unset( $pg );
 
 /* -------------------------------------------------------------------------
  * Dashboard showcase (illustrative example data, labelled as such on the page)
