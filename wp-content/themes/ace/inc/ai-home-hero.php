@@ -11,20 +11,20 @@ $hub     = get_page_by_path( 'ai-services' );
 $hub_url = $hub && 'publish' === $hub->post_status ? get_permalink( $hub ) : home_url( '/contact-us/' );
 $audit   = get_page_by_path( 'ai-services/ai-readiness-assessment' );
 
-$eyebrow = $hf( 'home_eyebrow', __( 'AI-first software engineering', 'ace' ) );
+$eyebrow = $hf( 'home_eyebrow', __( 'AI & software engineering company', 'ace' ) );
 $title   = $hf( 'home_title', __( 'AI-driven software that moves your business forward', 'ace' ) );
 // Drop the old "AI agents and" opening if it is still saved in the field.
 if ( 0 === stripos( $title, 'AI agents and ' ) ) {
 	$title = preg_replace( '/\bmove your\b/', 'moves your', substr( $title, strlen( 'AI agents and ' ) ) );
 }
 $hl      = $hf( 'home_highlight', __( 'AI-driven software', 'ace' ) );
-$intro   = $hf( 'home_intro', __( 'TechDotBit designs, builds and runs AI agents, AI-led software and intelligent automation, from the first idea to secure, monitored production systems.', 'ace' ) );
+$intro   = $hf( 'home_intro', __( 'We design and build AI solutions, intelligent agents, automation and custom software around the way your business works, and keep them running reliably in production.', 'ace' ) );
 $agents  = get_page_by_path( 'ai-services/ai-agent-development' );
 $contact = get_page_by_path( 'contact-us' );
-$cta1    = $hf( 'home_cta1_label', __( 'Explore AI Agents', 'ace' ) );
-$cta1url = $hf( 'home_cta1_url', $agents && 'publish' === $agents->post_status ? get_permalink( $agents ) : $hub_url );
-$cta2    = $hf( 'home_cta2_label', __( 'Build With Us', 'ace' ) );
-$cta2url = $hf( 'home_cta2_url', $contact ? get_permalink( $contact ) : ( $audit && 'publish' === $audit->post_status ? get_permalink( $audit ) : home_url( '/contact-us/' ) ) );
+$cta1    = $hf( 'home_cta1_label', __( 'Start a project', 'ace' ) );
+$cta1url = $hf( 'home_cta1_url', $contact ? get_permalink( $contact ) : home_url( '/contact-us/' ) );
+$cta2    = $hf( 'home_cta2_label', __( 'See our work', 'ace' ) );
+$cta2url = $hf( 'home_cta2_url', '#work' );
 $proof   = $hf( 'home_proof', array(
 	array( 'value' => __( 'Up to 40%', 'ace' ), 'label' => __( 'faster feature delivery', 'ace' ) ),
 	array( 'value' => '99.9%', 'label' => __( 'uptime with self-healing AIOps', 'ace' ) ),

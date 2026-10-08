@@ -7,9 +7,10 @@
 <?php
 // New AI hero by default; "Classic video banner" keeps the original ACF banner.
 $ace_home_mode = function_exists( 'get_field' ) && get_field( 'home_hero_mode' ) ? get_field( 'home_hero_mode' ) : 'ai';
+// Old ACF sections only show in "classic" mode.
+$ace_show_old = ( 'classic' === $ace_home_mode );
 if ( 'classic' !== $ace_home_mode ) {
   include locate_template( 'inc/ai-home-hero.php' );
-  include locate_template( 'inc/ai-agent-loop.php' );
 }
 ?>
 <?php if( 'classic' === $ace_home_mode && have_rows('banner') ):
@@ -58,16 +59,15 @@ endif; ?>
   <?php include_once('inc/brands.php'); ?>
 
   <?php
-  // AI story: what we build -> use cases -> AI + ERP -> engineering -> services -> trust -> integrations -> stack.
-  foreach ( array( 'inc/ai-agent-categories.php', 'inc/sections/use-cases.php', 'inc/sections/dotone-erp.php', 'inc/sections/ai-engineering.php', 'inc/ai-services-grid.php', 'inc/sections/human-ai.php', 'inc/sections/enterprise.php', 'inc/ai-integrations.php', 'inc/ai-tech-stack.php' ) as $ace_part ) {
-    include locate_template( $ace_part );
+  // Company story: about -> what we do -> AI agents -> industries -> why us -> work -> our product.
+  if ( ! $ace_show_old ) {
+    foreach ( array( 'about', 'capabilities', 'agents', 'industries', 'why', 'work', 'product' ) as $ace_part ) {
+      include locate_template( 'inc/home/' . $ace_part . '.php' );
+    }
   }
   ?>
 
-<?php
-// Old sections hidden on the AI homepage (still shown in "classic" mode).
-$ace_show_old = ( 'classic' === $ace_home_mode );
-if( $ace_show_old && have_rows('services') ):
+<?php if( $ace_show_old && have_rows('services') ):
   while( have_rows('services') ) : the_row(); ?>
   <section class="lqd-section services pt-75 pb-45 border-bottom border-black-10" id="services">
     <div class="container">
@@ -132,7 +132,7 @@ endif; ?>
 <?php if ( $ace_show_old ) { include_once('inc/awards.php'); } ?>
   <?php if ( $ace_show_old ) { include_once('inc/case-study.php'); } ?>
 
-<?php if( have_rows('steps') ): ?>
+<?php if( $ace_show_old && have_rows('steps') ): ?>
   <section class="lqd-section steps bg-gray-100 py-75 mt-55">
     <div class="container">
       
@@ -180,7 +180,7 @@ endif; ?>
     </div>
   </section>
 <?php endif; ?>
-<?php if( have_rows('industries') ): ?>
+<?php if( $ace_show_old && have_rows('industries') ): ?>
   <?php while( have_rows('industries') ) : the_row(); ?>
   <section class="lqd-section pt-100 pb-100 bg-gray-100">
     <div class="container">
@@ -327,7 +327,7 @@ endif; ?>
     <?php endwhile; ?>
 <?php endif; ?>
 
-<?php if( have_rows('process') ): ?>
+<?php if( $ace_show_old && have_rows('process') ): ?>
   <section class="lqd-section service-plans p-model pt-100 pb-70" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;.animation-element&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;x&quot; : 35 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;x&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
     <div class="container">
       <div class="row ">
@@ -367,7 +367,7 @@ endif; ?>
 
 <?php if ( $ace_show_old ) { include_once('inc/stats.php'); } ?>
 
-<?php if( have_rows('cta') ): ?>
+<?php if( $ace_show_old && have_rows('cta') ): ?>
   <?php while( have_rows('cta') ) : the_row(); ?>
   <section class="lqd-section image-bg help py-100 transition-all">
     <span class="row-bg-loader w-60 h-60 inline-block absolute top-50percent left-50percent -mt-30 -ml-30 transition-all"></span>

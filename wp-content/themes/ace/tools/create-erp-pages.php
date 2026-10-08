@@ -23,11 +23,8 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 $ace_args    = isset( $args ) ? (array) $args : array();
 
 /*
- * ERP and product content now belongs on the separate DotOne website, so this
- * script does nothing on TechDotBit unless asked explicitly:
- *   ... create-erp-pages.php remove     # unpublish ERP pages it created + remove its menu links
- *   ... create-erp-pages.php confirm    # create the pages anyway (e.g. on a DotOne WordPress install)
- * The page copy in tools/erp-content/ can be reused on the DotOne site.
+ * Optional cleanup:
+ *   ... create-erp-pages.php remove     # unpublish ERP pages it created (kept as drafts) + remove their menu links
  */
 if ( in_array( 'remove', $ace_args, true ) ) {
 	global $wpdb;
@@ -54,10 +51,6 @@ if ( in_array( 'remove', $ace_args, true ) ) {
 		wp_delete_post( $ace_mi->ID, true );
 	}
 	WP_CLI::success( sprintf( 'Unpublished %d ERP pages (kept as drafts) and removed their menu links.', count( $ace_gen ) ) );
-	return;
-}
-if ( ! in_array( 'confirm', $ace_args, true ) ) {
-	WP_CLI::warning( 'ERP pages belong on the DotOne website, so nothing was created. Use "remove" to unpublish pages created earlier, or "confirm" to create them anyway.' );
 	return;
 }
 $ace_refresh = in_array( 'refresh', $ace_args, true );
