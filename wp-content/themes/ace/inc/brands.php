@@ -14,6 +14,8 @@ $ace_extra_clients = apply_filters( 'ace_extra_clients', array(
   array( 'name' => 'E3 Group', 'file' => 'e3-group.png' ),
   array( 'name' => 'Bhutan Tuff', 'file' => 'bhutan-tuff.png' ),
   array( 'name' => 'Sharman Udyog Pvt. Ltd.', 'file' => 'sharman-udyog.png' ),
+  array( 'name' => 'Glupac', 'file' => 'glupac.png' ),
+  array( 'name' => 'NP', 'file' => 'np.png' ),
 ) );
 if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
 <style id="tdb-clients-critical">
