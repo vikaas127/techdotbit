@@ -21,6 +21,45 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 }
 
 $ace_args    = isset( $args ) ? (array) $args : array();
+
+/*
+ * ERP and product content now belongs on the separate DotOne website, so this
+ * script does nothing on TechDotBit unless asked explicitly:
+ *   ... create-erp-pages.php remove     # unpublish ERP pages it created + remove its menu links
+ *   ... create-erp-pages.php confirm    # create the pages anyway (e.g. on a DotOne WordPress install)
+ * The page copy in tools/erp-content/ can be reused on the DotOne site.
+ */
+if ( in_array( 'remove', $ace_args, true ) ) {
+	global $wpdb;
+	$ace_gen = $wpdb->get_col( "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_ace_erp_page' AND meta_value = '1'" );
+	foreach ( $ace_gen as $ace_pid ) {
+		if ( 'publish' === get_post_status( $ace_pid ) ) {
+			wp_update_post( array( 'ID' => (int) $ace_pid, 'post_status' => 'draft' ) );
+		}
+		foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_object_id', 'meta_value' => $ace_pid ) ) as $ace_mi ) {
+			wp_delete_post( $ace_mi->ID, true );
+		}
+	}
+	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_compare' => 'LIKE', 'meta_value' => '/erp-software/' ) ) as $ace_mi ) {
+		wp_delete_post( $ace_mi->ID, true );
+	}
+	// The "DotOne ERP" column the menu step added (and anything left under it).
+	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_value' => 'https://dotone.biz/' ) ) as $ace_mi ) {
+		if ( 'DotOne ERP' !== $ace_mi->post_title || ! (int) get_post_meta( $ace_mi->ID, '_menu_item_menu_item_parent', true ) ) {
+			continue;
+		}
+		foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_menu_item_parent', 'meta_value' => $ace_mi->ID ) ) as $ace_child ) {
+			wp_delete_post( $ace_child->ID, true );
+		}
+		wp_delete_post( $ace_mi->ID, true );
+	}
+	WP_CLI::success( sprintf( 'Unpublished %d ERP pages (kept as drafts) and removed their menu links.', count( $ace_gen ) ) );
+	return;
+}
+if ( ! in_array( 'confirm', $ace_args, true ) ) {
+	WP_CLI::warning( 'ERP pages belong on the DotOne website, so nothing was created. Use "remove" to unpublish pages created earlier, or "confirm" to create them anyway.' );
+	return;
+}
 $ace_refresh = in_array( 'refresh', $ace_args, true );
 $ace_draft   = in_array( 'draft', $ace_args, true );
 $ace_menu    = ! in_array( 'nomenu', $ace_args, true );
