@@ -58,6 +58,8 @@ endif; ?>
 
   <?php include locate_template( 'inc/ai-services-grid.php' ); ?>
 
+  <?php include locate_template( 'inc/ai-tech-stack.php' ); ?>
+
 <?php if( have_rows('services') ):
   while( have_rows('services') ) : the_row(); ?>
   <section class="lqd-section services pt-75 pb-45 border-bottom border-black-10" id="services">

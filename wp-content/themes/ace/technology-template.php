@@ -143,6 +143,8 @@ endif; ?>
 
 <?php include_once('inc/testimonials.php'); ?>
 
+<?php include locate_template( 'inc/ai-tech-stack.php' ); ?>
+
 <?php include_once('inc/faq-list.php'); ?>
 
 <?php include_once('inc/bottom-cta.php'); ?>

@@ -331,6 +331,8 @@ while ( have_posts() ) :
 	</section>
 	<?php endif; ?>
 
+	<?php if ( $f( 'lp_show_stack' ) ) { include locate_template( 'inc/ai-tech-stack.php' ); } ?>
+
 	<?php $steps = $f( 'lp_steps', array() ); ?>
 	<?php if ( $steps ) : ?>
 	<section class="lqd-section tdb-lp-steps py-75">

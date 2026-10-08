@@ -107,6 +107,7 @@ add_action( 'acf/init', function () {
 					),
 				),
 			),
+			array( 'key' => 'field_tdb_lp_show_stack', 'name' => 'lp_show_stack', 'label' => 'Show the AI & Python technology stack section', 'type' => 'true_false', 'ui' => 1 ),
 			array( 'key' => 'field_tdb_lp_tab_steps', 'label' => 'Process', 'type' => 'tab' ),
 			$text( 'steps_heading', 'lp_steps_heading', 'Heading', array( 'default_value' => 'How we work' ) ),
 			array(

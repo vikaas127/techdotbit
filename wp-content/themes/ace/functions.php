@@ -587,7 +587,7 @@ function ace_portfolio_url() {
 require_once get_stylesheet_directory() . '/inc/landing-fields.php';
 
 add_action( 'wp_enqueue_scripts', function () {
-  if ( ! is_page_template( 'landing-template.php' ) && ! is_front_page() ) {
+  if ( ! is_page_template( array( 'landing-template.php', 'technology-template.php' ) ) && ! is_front_page() ) {
     return;
   }
   $dir = get_stylesheet_directory();

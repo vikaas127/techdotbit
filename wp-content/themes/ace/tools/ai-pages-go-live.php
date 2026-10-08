@@ -1,7 +1,8 @@
 <?php
 /**
  * Puts the AI section live in one step:
- *  1. creates the AI pages if they do not exist yet (tools/create-ai-pages.php),
+ *  1. adds any AI pages that do not exist yet (tools/create-ai-pages.php);
+ *     pages that already exist are NOT changed, so WP Admin edits are kept,
  *  2. publishes the hub and every page under /ai-services/,
  *  3. adds an "AI Services" dropdown to the main menu (before the last,
  *     button-styled item) listing all AI pages.
@@ -23,12 +24,10 @@ $find_hub = function () use ( $wpdb ) {
 	$id = $wpdb->get_var( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'page' AND post_name = 'ai-services' AND post_status NOT IN ('trash','auto-draft') ORDER BY ID ASC LIMIT 1" );
 	return $id ? get_post( (int) $id ) : null;
 };
+// Add any AI pages that do not exist yet; existing pages are left untouched.
+$GLOBALS['ace_only_missing'] = true;
+require __DIR__ . '/create-ai-pages.php';
 $hub = $find_hub();
-if ( ! $hub ) {
-	WP_CLI::log( 'AI pages not found: creating them first...' );
-	require __DIR__ . '/create-ai-pages.php';
-	$hub = $find_hub();
-}
 if ( ! $hub ) {
 	WP_CLI::error( 'Could not find or create the AI Services hub page.' );
 }

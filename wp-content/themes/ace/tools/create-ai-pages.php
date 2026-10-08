@@ -6,8 +6,10 @@
  * Run from the WordPress root:
  *   wp eval-file wp-content/themes/ace/tools/create-ai-pages.php
  *
- * Safe to re-run: existing pages (matched by slug) are updated, never
- * duplicated, and their publish status is kept. New pages are drafts.
+ * Re-running RESETS the text of existing AI pages to the copy in this file
+ * (useful after editing this file; it overwrites edits made in WP Admin).
+ * Pages are never duplicated and their publish status is kept. New pages are
+ * drafts. To only add new pages, use tools/ai-pages-go-live.php instead.
  * Copy uses only the figures supplied by TechDotBit (40% faster delivery,
  * 99.9% uptime); no client names or results are invented.
  */
@@ -34,6 +36,11 @@ function ace_find_page( $slug ) {
 
 function ace_save_page( $p, $parent_id = 0, $order = 0 ) {
 	$page = ace_find_page( $p['slug'] );
+	// When called from ai-pages-go-live.php, only create pages that are missing
+	// and never overwrite content that may have been edited in WP Admin.
+	if ( $page && ! empty( $GLOBALS['ace_only_missing'] ) ) {
+		return $page->ID;
+	}
 	$args = array(
 		'post_type'    => 'page',
 		'post_title'   => $p['title'],
@@ -95,6 +102,7 @@ $hub = array(
 	'content' => '<h2>One partner for AI across the software lifecycle</h2><p>TechDotBit brings AI into the way software is designed, built, tested and run. Whether you want to accelerate an engineering team, automate a business workflow with AI agents or modernize a legacy platform, we combine experienced engineers with agentic tooling and clear governance, so AI delivers results you can measure and trust.</p>',
 	'fields'  => array(
 		'lp_hero_style'    => 'streaks',
+		'lp_show_stack'    => 1,
 		'lp_eyebrow'       => 'AI Services',
 		'lp_title'         => 'AI Services That Turn Ideas Into Production Results',
 		'lp_intro'         => 'From AI-led development and autonomous testing to AI agents and legacy modernization, we help companies adopt AI safely and see real impact on delivery speed, quality and cost.',
@@ -114,6 +122,7 @@ $hub = array(
 			array( 'AIOps & Observability', 'Predictive analytics, anomaly detection and self-healing scripts keep systems at 99.9% uptime.', ace_url( 'aiops-observability' ) ),
 			array( 'AI-Powered Legacy Modernization', 'Automated refactoring turns legacy monoliths into scalable, AI-native microservices.', ace_url( 'ai-legacy-modernization' ) ),
 			array( 'Responsible AI & Security', 'Guardrails, compliance, bias detection and hallucination controls for enterprise AI.', ace_url( 'responsible-ai-security' ) ),
+			array( 'LLM Development', 'RAG assistants, fine-tuning and private LLMs built on GPT, Claude, Gemini, Llama and more.', ace_url( 'llm-development' ) ),
 			array( 'AI Agent Development', 'Custom AI agents connected to your tools and data, with human approval where it matters.', ace_url( 'ai-agent-development' ) ),
 			array( 'AI Workflow Automation', 'Teams of specialist agents that run sales, support and operations work on autopilot.', ace_url( 'ai-workflow-automation' ) ),
 			array( 'AI-Driven Software Development', 'An end-to-end AI-augmented delivery model, from code to production operations.', ace_url( 'ai-driven-software-development' ) ),
@@ -141,6 +150,7 @@ $pages[] = array(
 	'content' => '<h2>What is AI-led software development?</h2><p>AI-led development uses agentic coding tools to handle repetitive engineering work such as scaffolding, boilerplate, refactoring, documentation and first-draft tests. Experienced engineers stay in charge of architecture, business logic and code review, so you get speed without losing quality or ownership of your codebase.</p><h2>How it changes your delivery</h2><p>We introduce AI-augmented workflows into your existing repositories and CI/CD pipelines, set clear review rules and measure the impact on cycle time and defects. Teams spend less time on routine code and more on the features that differentiate your product.</p>',
 	'fields'  => array(
 		'lp_hero_style'    => 'knot',
+		'lp_show_stack'    => 1,
 		'lp_eyebrow'       => 'AI-Led Software Development',
 		'lp_title'         => 'AI-Led Software Development',
 		'lp_intro'         => 'Transition to AI-augmented workflows using agentic tools to eliminate manual boilerplate. Focus on high-level architecture and logic to accelerate feature delivery by up to 40%.',
@@ -301,6 +311,58 @@ $pages[] = array(
 			array( 'What is responsible AI?', 'Responsible AI means designing AI systems that are secure, fair, transparent and accountable, with controls that protect users, data and the business.' ),
 			array( 'How do you reduce AI hallucinations?', 'We ground answers in your approved data, add retrieval and citation, evaluate responses automatically and route low-confidence answers to people.' ),
 			array( 'Can you review AI systems built by another team?', 'Yes. We can assess existing AI applications for security, data protection and quality risks and recommend practical fixes.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'llm-development',
+	'title'   => 'LLM Development Services',
+	'excerpt' => 'LLM development services: model selection, RAG, fine-tuning, LLM agents, evaluation, guardrails and secure deployment of GPT, Claude, Gemini, Llama and open-source models.',
+	'content' => '<h2>What is a large language model (LLM)?</h2><p>A large language model is an AI model trained on vast amounts of text that can understand and generate language, write and review code, summarise documents, extract data and reason through multi-step tasks. Well-known families include OpenAI GPT, Anthropic Claude, Google Gemini, and open-source models such as Meta Llama, Mistral, DeepSeek and Qwen.</p>'
+		. '<h2>RAG, fine-tuning or prompting?</h2><p>Most business use cases do not need a custom-trained model. <strong>Prompt engineering</strong> gets surprisingly far with a strong general model. <strong>Retrieval-augmented generation (RAG)</strong> connects the model to your own documents and data, so answers are current, grounded and cite their sources. <strong>Fine-tuning</strong> adapts a model to a specific style, format or narrow task, and can make a smaller, cheaper model perform like a larger one. We help you choose the simplest approach that meets your quality, cost and privacy goals.</p>'
+		. '<h2>Hosted API or open-source model?</h2><p>Hosted models from providers such as OpenAI, Anthropic and Google offer top quality with no infrastructure to manage. Open-source models like Llama, Mistral or Qwen can run in your own cloud or data centre for full data control and predictable cost at scale. Many production systems combine both, routing each request to the most suitable model.</p>'
+		. '<h2>From prototype to production</h2><p>A demo is easy; a reliable LLM product is not. We add evaluation datasets, guardrails against prompt injection and data leakage, monitoring of quality, latency and cost, and human review for sensitive actions, so your LLM features keep working as models and data change.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'streaks',
+		'lp_eyebrow'       => 'LLM Development',
+		'lp_title'         => 'LLM Development Services for Real Business Use',
+		'lp_intro'         => 'We build secure, production-ready applications on large language models: from RAG assistants and AI agents to fine-tuned and self-hosted open-source models, with evaluation and guardrails built in.',
+		'lp_cta_label'     => 'Discuss your LLM project',
+		'lp_hero_features' => array(
+			array( 'title' => 'RAG assistants', 'text' => 'Answers grounded in your documents and data, with sources.' ),
+			array( 'title' => 'Fine-tuning', 'text' => 'Adapt open-source or hosted models to your domain and format.' ),
+			array( 'title' => 'Private LLMs', 'text' => 'Self-hosted models in your cloud for full data control.' ),
+		),
+		'lp_form_heading'  => 'Tell us about your LLM idea',
+		'lp_form_text'     => 'Share your use case and data. We will recommend the right model, architecture and next steps.',
+		'lp_cards_eyebrow' => 'LLM services',
+		'lp_cards_heading' => 'Everything you need to build with LLMs',
+		'lp_cards'         => ace_cards( array(
+			array( 'LLM strategy & model selection', 'Compare GPT, Claude, Gemini, Llama, Mistral and others on your own tasks for quality, speed, cost and privacy.' ),
+			array( 'RAG & knowledge assistants', 'Chat and search over your documents, wikis, tickets and databases, with citations and access control.' ),
+			array( 'LLM agents & tool use', 'Agents that call your APIs, query data and complete multi-step workflows safely.', ace_url( 'ai-agent-development' ) ),
+			array( 'Fine-tuning & distillation', 'LoRA / PEFT fine-tuning and distillation to make smaller models faster and cheaper.' ),
+			array( 'Private & on-premise LLMs', 'Deploy open-source models with vLLM, Ollama or cloud GPUs inside your own environment.' ),
+			array( 'Prompt engineering & structured output', 'Reliable prompts, JSON / schema outputs and function calling for production systems.' ),
+			array( 'Evaluation & monitoring', 'Test datasets, automated scoring and tracing of quality, latency and cost in production.' ),
+			array( 'Guardrails & security', 'Protection against prompt injection, data leakage, hallucinations and harmful output.', ace_url( 'responsible-ai-security' ) ),
+			array( 'LLM integration', 'Add LLM features to your web, mobile and enterprise apps through clean, secure APIs.' ),
+		) ),
+		'lp_show_stack'    => 1,
+		'lp_steps_heading' => 'How we deliver LLM projects',
+		'lp_steps'         => ace_steps( array(
+			array( 'Use case & data', 'Define the task, success metrics and the data the model needs.' ),
+			array( 'Model bake-off', 'Test candidate models and approaches (prompting, RAG, fine-tuning) on real examples.' ),
+			array( 'Build & integrate', 'Production pipeline, APIs, guardrails and integration with your systems.' ),
+			array( 'Evaluate & operate', 'Continuous evaluation, monitoring and cost optimisation after launch.' ),
+		) ),
+		'lp_faq'           => ace_faq( array(
+			array( 'Which LLM is best for my business?', 'It depends on the task, data sensitivity, latency and budget. We test several models on your real examples and recommend the best fit; often a mix of a large model for hard tasks and a smaller, cheaper one for routine work.' ),
+			array( 'Should we use RAG or fine-tuning?', 'Use RAG when answers must reflect your own, changing documents and data. Use fine-tuning to teach a consistent style, format or narrow skill. Many solutions combine both.' ),
+			array( 'Can we run an LLM privately?', 'Yes. Open-source models such as Llama, Mistral or Qwen can be deployed in your own cloud account or data centre so your data never leaves your environment.' ),
+			array( 'How do you reduce hallucinations?', 'We ground answers in trusted sources with RAG, require citations, evaluate responses automatically, and route low-confidence answers to a person.' ),
+			array( 'How much does an LLM application cost to run?', 'Costs depend on model choice, request volume and response length. We design for cost from the start with model routing, caching and smaller models where quality allows, and we monitor spend in production.' ),
 		) ),
 	),
 );
