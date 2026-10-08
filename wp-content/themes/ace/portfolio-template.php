@@ -78,7 +78,7 @@ endif; ?>
                         <figure>
                             <?php the_post_thumbnail('full', [ 'alt' => esc_html ( get_the_title() ) ] ); ?>
                             <figcaption>
-                                <span><?php echo $term->name; ?></span>
+                                <span><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span>
                                 <h3><?php the_title(); ?></h3>
                                 
                                 <a href="<?php the_permalink() ?>" class="link">View Portfolio</a>

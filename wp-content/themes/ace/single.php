@@ -32,7 +32,7 @@ get_header(); ?>
 					<div class="hidden md:block">
 						<?php the_post_thumbnail('full', [ 'alt' => esc_html ( get_the_title() ) ] ); ?>
 					</div>
-					<p class="text-light mb-25">Category:<span class="block text-white font-medium"><?php echo $term->name; ?></span></p>
+					<p class="text-light mb-25">Category:<span class="block text-white font-medium"><?php echo ( $terms && ! is_wp_error( $terms ) ) ? esc_html( $terms[0]->name ) : ''; ?></span></p>
 					<p class="text-white mb-0"><?php the_field('short_description'); ?></p>
 					
 				</div>

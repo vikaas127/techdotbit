@@ -456,7 +456,7 @@ function wpvkp_social_buttons($content) {
 // This will create a wordpress shortcode [social].
 // Please it in any widget and social buttons appear their.
 // You will need to enabled shortcode execution in widgets.
-add_shortcode('social','wpvkp_social_buttons');
+add_shortcode('social', function() { return wpvkp_social_buttons(''); });
 
 function custom_excerpt_length( $length ) {
   return 15;
