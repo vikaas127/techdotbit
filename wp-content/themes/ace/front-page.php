@@ -4,7 +4,14 @@
     .main-header.is-stuck{top: 0px;}
 </style>
 
-<?php if( have_rows('banner') ):
+<?php
+// New AI hero by default; "Classic video banner" keeps the original ACF banner.
+$ace_home_mode = function_exists( 'get_field' ) && get_field( 'home_hero_mode' ) ? get_field( 'home_hero_mode' ) : 'ai';
+if ( 'classic' !== $ace_home_mode ) {
+  include locate_template( 'inc/ai-home-hero.php' );
+}
+?>
+<?php if( 'classic' === $ace_home_mode && have_rows('banner') ):
   while( have_rows('banner') ) : the_row(); ?>
   <section class="lqd-section banner bg-no-repeat bg-center bg-cover py-60 md:px-0 d-flex items-center" id="banner">
     <div class="container">
@@ -48,6 +55,8 @@
 endif; ?>
 
   <?php include_once('inc/brands.php'); ?>
+
+  <?php include locate_template( 'inc/ai-services-grid.php' ); ?>
 
 <?php if( have_rows('services') ):
   while( have_rows('services') ) : the_row(); ?>

@@ -130,3 +130,43 @@ add_action( 'acf/init', function () {
 		),
 	) );
 } );
+
+/**
+ * Homepage AI hero + AI services grid (front-page.php).
+ */
+add_action( 'acf/init', function () {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+	$t = function ( $key, $name, $label, $extra = array() ) {
+		return array_merge( array( 'key' => 'field_tdb_home_' . $key, 'name' => $name, 'label' => $label, 'type' => 'text' ), $extra );
+	};
+	acf_add_local_field_group( array(
+		'key'      => 'group_tdb_home_ai',
+		'title'    => 'Homepage: AI hero',
+		'position' => 'acf_after_title',
+		'menu_order' => -10,
+		'location' => array( array( array( 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ) ) ),
+		'fields'   => array(
+			array(
+				'key' => 'field_tdb_home_mode', 'name' => 'home_hero_mode', 'label' => 'Hero', 'type' => 'button_group',
+				'choices' => array( 'ai' => 'AI hero (new)', 'classic' => 'Classic video banner' ), 'default_value' => 'ai',
+				'instructions' => 'Leave the text fields empty to use the built-in AI copy.',
+			),
+			$t( 'eyebrow', 'home_eyebrow', 'Small label' ),
+			$t( 'title', 'home_title', 'Headline (H1)' ),
+			$t( 'highlight', 'home_highlight', 'Highlighted words in the headline' ),
+			array( 'key' => 'field_tdb_home_intro', 'name' => 'home_intro', 'label' => 'Intro', 'type' => 'textarea', 'rows' => 3 ),
+			$t( 'cta1', 'home_cta1_label', 'Primary button label' ),
+			$t( 'cta1_url', 'home_cta1_url', 'Primary button link', array( 'type' => 'url' ) ),
+			$t( 'cta2', 'home_cta2_label', 'Secondary button label' ),
+			$t( 'cta2_url', 'home_cta2_url', 'Secondary button link', array( 'type' => 'url' ) ),
+			array(
+				'key' => 'field_tdb_home_proof', 'name' => 'home_proof', 'label' => 'Floating proof cards', 'type' => 'repeater',
+				'layout' => 'table', 'button_label' => 'Add card', 'max' => 3,
+				'sub_fields' => array( $t( 'proof_value', 'value', 'Big value' ), $t( 'proof_label', 'label', 'Label' ) ),
+			),
+			$t( 'grid_heading', 'home_ai_grid_heading', 'AI services section heading' ),
+		),
+	) );
+} );
