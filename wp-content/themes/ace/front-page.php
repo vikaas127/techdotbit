@@ -64,7 +64,10 @@ endif; ?>
   }
   ?>
 
-<?php if( have_rows('services') ):
+<?php
+// Old sections hidden on the AI homepage (still shown in "classic" mode).
+$ace_show_old = ( 'classic' === $ace_home_mode );
+if( $ace_show_old && have_rows('services') ):
   while( have_rows('services') ) : the_row(); ?>
   <section class="lqd-section services pt-75 pb-45 border-bottom border-black-10" id="services">
     <div class="container">
@@ -126,8 +129,8 @@ endif; ?>
   </section>
   <?php endwhile;
 endif; ?>
-<?php include_once('inc/awards.php'); ?>
-  <?php include_once('inc/case-study.php'); ?>
+<?php if ( $ace_show_old ) { include_once('inc/awards.php'); } ?>
+  <?php if ( $ace_show_old ) { include_once('inc/case-study.php'); } ?>
 
 <?php if( have_rows('steps') ): ?>
   <section class="lqd-section steps bg-gray-100 py-75 mt-55">
@@ -263,7 +266,7 @@ endif; ?>
   <?php endwhile; ?>
 <?php endif; ?>
 
-<?php if( have_rows('modern_tech') ): ?>
+<?php if( $ace_show_old && have_rows('modern_tech') ): ?>
     <?php while( have_rows('modern_tech') ) : the_row(); ?>
     <section class="lqd-section clients modern-tech py-75">
         <div class="container-fluid">
@@ -361,7 +364,7 @@ endif; ?>
 
 
 
-<?php include_once('inc/stats.php'); ?>
+<?php if ( $ace_show_old ) { include_once('inc/stats.php'); } ?>
 
 <?php if( have_rows('cta') ): ?>
   <?php while( have_rows('cta') ) : the_row(); ?>
