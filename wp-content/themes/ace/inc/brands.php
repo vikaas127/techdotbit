@@ -10,9 +10,10 @@
 // Extra client logos shipped with the theme (assets/images/clients/), shown
 // after the logos from Theme Options. Change via the 'ace_extra_clients' filter.
 $ace_extra_clients = apply_filters( 'ace_extra_clients', array(
-  array( 'name' => 'Virgo ACP', 'file' => 'virgo-acp.png', 'w' => 313, 'h' => 124 ),
-  array( 'name' => 'E3 Group', 'file' => 'e3-group.png', 'w' => 335, 'h' => 142 ),
-  array( 'name' => 'Bhutan Tuff', 'file' => 'bhutan-tuff.png', 'w' => 487, 'h' => 138 ),
+  array( 'name' => 'Virgo ACP', 'file' => 'virgo-acp.png' ),
+  array( 'name' => 'E3 Group', 'file' => 'e3-group.png' ),
+  array( 'name' => 'Bhutan Tuff', 'file' => 'bhutan-tuff.png' ),
+  array( 'name' => 'Sharman Udyog Pvt. Ltd.', 'file' => 'sharman-udyog.png' ),
 ) );
 if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
 <style id="tdb-clients-critical">
@@ -24,7 +25,7 @@ if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
 .tdb-clients__item{display:flex;flex-direction:column;align-items:center;gap:14px;list-style:none}
 .tdb-clients__item::marker{content:none}
 .tdb-clients__logo{display:flex;align-items:center;justify-content:center;width:100%;height:64px}
-.tdb-clients__logo img{width:auto!important;height:auto!important;max-width:min(160px,100%);max-height:56px;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
+.tdb-clients__logo img{width:160px!important;height:62px!important;max-width:100%;object-fit:contain;object-position:center;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
 .tdb-clients__item:hover img{filter:none;opacity:1}
 @media (max-width:991px){.tdb-clients__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:575px){.tdb-clients__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -56,7 +57,7 @@ if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
       <?php foreach ( $ace_extra_clients as $ace_client ) : ?>
         <li class="tdb-clients__item">
           <span class="tdb-clients__logo">
-            <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/clients/' . $ace_client['file'] ) ); ?>" alt="<?php echo esc_attr( $ace_client['name'] ); ?>" loading="lazy" decoding="async" width="<?php echo (int) $ace_client['w']; ?>" height="<?php echo (int) $ace_client['h']; ?>">
+            <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/clients/' . $ace_client['file'] ) ); ?>" alt="<?php echo esc_attr( $ace_client['name'] ); ?>" loading="lazy" decoding="async" width="360" height="140">
           </span>
         </li>
       <?php endforeach; ?>
