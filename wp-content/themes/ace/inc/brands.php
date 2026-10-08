@@ -1,11 +1,11 @@
 <?php
 /**
- * Client logos: a clean grid of grayscale logos (full colour on hover).
+ * Client logos: one line of small grayscale logos that scrolls continuously
+ * (pauses on hover, full colour on hover, static for reduced motion).
  * Uses the "brands" repeater in Theme Options (sub field "image").
  * Optional sub fields, if you add them to that repeater in ACF:
  *   "name"       - company name (used for alt text when the image has none)
- *   "link"       - URL to a case study
- *   "link_label" - text under the logo, e.g. "Case study" (default)
+ *   "link"       - URL the logo links to (e.g. a case study)
  */
 // Extra client logos shipped with the theme (assets/images/clients/), shown
 // after the logos from Theme Options. Change via the 'ace_extra_clients' filter.
@@ -17,51 +17,62 @@ $ace_extra_clients = apply_filters( 'ace_extra_clients', array(
   array( 'name' => 'Glupac', 'file' => 'glupac.png' ),
   array( 'name' => 'NP', 'file' => 'np.png' ),
 ) );
-if ( have_rows( 'brands', 'option' ) || $ace_extra_clients ) : ?>
+// Collect every logo first: Theme Options rows, then the theme's own files.
+$ace_logos = array();
+if ( have_rows( 'brands', 'option' ) ) {
+  while ( have_rows( 'brands', 'option' ) ) {
+    the_row();
+    $image = get_sub_field( 'image' );
+    if ( empty( $image ) ) {
+      continue;
+    }
+    $name = get_sub_field( 'name' );
+    $ace_logos[] = array(
+      'url'  => is_array( $image ) ? $image['url'] : $image,
+      'alt'  => is_array( $image ) && ! empty( $image['alt'] ) ? $image['alt'] : ( $name ? $name : __( 'Client logo', 'ace' ) ),
+      'link' => get_sub_field( 'link' ),
+    );
+  }
+}
+foreach ( $ace_extra_clients as $ace_client ) {
+  $ace_logos[] = array(
+    'url'  => get_theme_file_uri( 'assets/images/clients/' . $ace_client['file'] ),
+    'alt'  => $ace_client['name'],
+    'link' => '',
+  );
+}
+if ( $ace_logos ) : ?>
 <style id="tdb-clients-critical">
-/* Essential layout inline so the grid can never render unstyled, even if an
-   optimisation cache serves an outdated stylesheet. Full styles: ai-theme.css */
-.tdb-clients{padding:clamp(48px,6vw,80px) 0;background:#fff}
-.tdb-clients__title{margin:0 0 clamp(28px,4vw,44px);text-align:center;color:#6b7690;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-.tdb-clients__grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(28px,4vw,48px) clamp(16px,3vw,40px);margin:0;padding:0;list-style:none}
-.tdb-clients__item{display:flex;flex-direction:column;align-items:center;gap:14px;list-style:none}
-.tdb-clients__item::marker{content:none}
-.tdb-clients__logo{display:flex;align-items:center;justify-content:center;width:100%;height:64px}
-.tdb-clients__logo img{width:160px!important;height:62px!important;max-width:100%;object-fit:contain;object-position:center;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
-.tdb-clients__item:hover img{filter:none;opacity:1}
-@media (max-width:991px){.tdb-clients__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:575px){.tdb-clients__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Essential styles inline so the strip never renders unstyled, even if an
+   optimisation cache serves an outdated stylesheet. */
+.tdb-clients{padding:clamp(36px,4vw,56px) 0!important;background:#fff}
+.tdb-clients__title{margin:0 0 24px;text-align:center;color:#6b7690;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.tdb-marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tdb-marquee__track{display:flex;align-items:center;gap:clamp(36px,5vw,64px);width:max-content;margin:0;padding:0;list-style:none;animation:tdb-marquee var(--tdb-marquee-time,40s) linear infinite}
+.tdb-marquee:hover .tdb-marquee__track{animation-play-state:paused}
+.tdb-marquee__item{flex:none;list-style:none;margin:0}
+.tdb-marquee__item::marker{content:none}
+.tdb-marquee__item img,.tdb-marquee__item a{display:block}
+.tdb-marquee__item img{width:110px!important;height:40px!important;max-width:none;object-fit:contain;filter:grayscale(1);opacity:.6;transition:filter .3s,opacity .3s}
+.tdb-marquee__item:hover img{filter:none;opacity:1}
+@keyframes tdb-marquee{to{transform:translateX(calc(-50% - clamp(36px,5vw,64px) / 2))}}
+@media (max-width:575px){.tdb-marquee__item img{width:90px!important;height:34px!important}}
+@media (prefers-reduced-motion:reduce){.tdb-marquee{overflow-x:auto}.tdb-marquee__track{animation:none}}
 </style>
 <section class="lqd-section tdb-clients" aria-labelledby="tdb-clients-title">
   <div class="container">
     <p id="tdb-clients-title" class="tdb-clients__title"><?php esc_html_e( 'Trusted by teams worldwide', 'ace' ); ?></p>
-    <ul class="tdb-clients__grid">
-      <?php if ( have_rows( 'brands', 'option' ) ) : while ( have_rows( 'brands', 'option' ) ) : the_row();
-        $image = get_sub_field( 'image' );
-        if ( empty( $image ) ) {
-          continue;
-        }
-        $name  = get_sub_field( 'name' );
-        $link  = get_sub_field( 'link' );
-        $label = get_sub_field( 'link_label' );
-        $url   = is_array( $image ) ? $image['url'] : $image;
-        $alt   = is_array( $image ) && ! empty( $image['alt'] ) ? $image['alt'] : ( $name ? $name : __( 'Client logo', 'ace' ) );
-        ?>
-        <li class="tdb-clients__item">
-          <span class="tdb-clients__logo">
-            <img src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async"<?php if ( is_array( $image ) && ! empty( $image['width'] ) ) : ?> width="<?php echo (int) $image['width']; ?>" height="<?php echo (int) $image['height']; ?>"<?php endif; ?>>
-          </span>
-          <?php if ( $link ) : ?>
-            <a class="tdb-clients__link" href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $label ? $label : __( 'Case study', 'ace' ) ); ?></a>
-          <?php endif; ?>
-        </li>
-      <?php endwhile; endif; ?>
-      <?php foreach ( $ace_extra_clients as $ace_client ) : ?>
-        <li class="tdb-clients__item">
-          <span class="tdb-clients__logo">
-            <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/clients/' . $ace_client['file'] ) ); ?>" alt="<?php echo esc_attr( $ace_client['name'] ); ?>" loading="lazy" decoding="async" width="360" height="140">
-          </span>
-        </li>
+  </div>
+  <div class="tdb-marquee" style="--tdb-marquee-time: <?php echo (int) max( 20, count( $ace_logos ) * 3 ); ?>s">
+    <ul class="tdb-marquee__track">
+      <?php foreach ( array( false, true ) as $ace_copy ) : // second copy makes the loop seamless ?>
+        <?php foreach ( $ace_logos as $ace_logo ) : ?>
+          <li class="tdb-marquee__item"<?php echo $ace_copy ? ' aria-hidden="true"' : ''; ?>>
+            <?php if ( $ace_logo['link'] ) : ?><a href="<?php echo esc_url( $ace_logo['link'] ); ?>"<?php echo $ace_copy ? ' tabindex="-1"' : ''; ?>><?php endif; ?>
+            <img src="<?php echo esc_url( $ace_logo['url'] ); ?>" alt="<?php echo $ace_copy ? '' : esc_attr( $ace_logo['alt'] ); ?>" width="110" height="40" loading="lazy" decoding="async">
+            <?php if ( $ace_logo['link'] ) : ?></a><?php endif; ?>
+          </li>
+        <?php endforeach; ?>
       <?php endforeach; ?>
     </ul>
   </div>
