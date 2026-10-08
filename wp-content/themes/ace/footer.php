@@ -24,6 +24,8 @@
         'ERP software'        => ace_page_url( 'erp-software' ),
       );
       ?>
+      <?php // Footer styles inline, so a stale optimised-CSS cache can never leave the footer unstyled. ?>
+      <style id="tdb-footer-css"><?php echo file_get_contents( get_stylesheet_directory() . '/assets/css/footer.css' ); // phpcs:ignore -- theme file ?></style>
       <footer id="site-footer" class="tdb-footer">
         <span class="tdb-footer__glow" aria-hidden="true"></span>
         <div class="container">
