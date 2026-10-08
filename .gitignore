@@ -1,0 +1,41 @@
+# Folders to skip
+shankar/
+pms/
+
+# Secrets
+wp-config.php
+.env
+**/.env
+.private/
+erp/application/config/app-config.php
+erp/application/config/database.php
+
+# WordPress uploads, cache & backups
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+wp-content/updraft/
+wp-content/backup*/
+
+# Backups, logs, junk
+**/backups/
+**/flexibackup/
+**/temp/
+error_log
+**/error_log
+*.log
+.htaccess.bk
+.htaccess.old-*
+phpinfo.php
+
+# Dependencies
+**/vendor/
+**/node_modules/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.sql
+wp-content/plugins/wordpress-mcp/

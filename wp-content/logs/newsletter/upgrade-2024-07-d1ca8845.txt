@@ -1,0 +1,38 @@
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.4 MB/256 MB - Dayananad > Start upgrade from 0.0.0
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_emails`] => Created table `wp_newsletter_emails`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_sent`] => Created table `wp_newsletter_sent`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter`] => Created table `wp_newsletter`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_user_logs`] => Created table `wp_newsletter_user_logs`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_user_meta`] => Created table `wp_newsletter_user_meta`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_stats`] => Created table `wp_newsletter_stats`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Array
+(
+    [`wp_newsletter_logs`] => Created table `wp_newsletter_logs`
+)
+
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > Backing up options of 0.0.0
+21-07-2024 09:53:45 - INFO  - 8.4.7 - 92.7 MB/256 MB - Dayananad > End

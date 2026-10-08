@@ -1,0 +1,54 @@
+/*
+Theme Name:   Ace
+Description:  Twenty Twenty One Child Theme
+Author:       Vikas
+Template:     twentytwentyone
+Version:      1.0.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  ace
+*/
+
+
+#mega-menu-wrap-primary-menu{
+	background:  transparent; position: static
+}
+.header-module {
+    align-items: center;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-item>a.mega-menu-link {
+    height: auto;
+    padding: 20px 10px;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-item>a.mega-menu-link:hover, #mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-item>a.mega-menu-link:focus, #mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-item.mega-current-menu-ancestor>a.mega-menu-link {
+    background: #001827;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-megamenu>ul.mega-sub-menu li.mega-menu-column>ul.mega-sub-menu>li.mega-menu-item h4.mega-block-title{
+    color: #000;
+    font-size: 15px;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu li.mega-menu-megamenu>ul.mega-sub-menu>li.mega-menu-row .mega-menu-column>ul.mega-sub-menu>li.mega-menu-item {
+    padding: 0px 15px;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu li.mega-menu-megamenu>ul.mega-sub-menu>li.mega-menu-row .mega-menu-column>ul.mega-sub-menu>li.mega-menu-item .mega-menu-link {
+    font-size: 14px;
+    font-weight: 400 !important;
+    border-left: 1px solid #b7b7b7 !important;
+    padding: 5px 0 5px 10px;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu li.mega-menu-megamenu.industry-menu>ul.mega-sub-menu>li.mega-menu-row .mega-menu-column>ul.mega-sub-menu>li.mega-menu-item .mega-menu-link{
+	padding-left: 0; border: none !important
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu{position: static; }
+header .container{position: relative; }
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu img {
+    width: 24px !important;
+    height: 24px !important;
+    padding: 0;
+}
+#mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:hover, #mega-menu-wrap-primary-menu #mega-menu-primary-menu>li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:focus{
+    background: transparent !important; color: #000 !important
+}
+ul.mega-sub-menu {
+    padding: 10px 5px !important;
+}
