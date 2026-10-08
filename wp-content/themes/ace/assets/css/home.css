@@ -194,3 +194,28 @@
 @media (max-width: 640px) {
 	.tdb-about__facts { grid-template-columns: 1fr; }
 }
+
+/* ---------------------------------------------------------------- FAQ */
+.tdb-hfaq__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.tdb-hfaq__side { position: sticky; top: 120px; }
+.tdb-hfaq__side > p:not(.tdb-h__chip) { margin: 0 0 24px; color: #475569; font-size: 1.05rem; line-height: 1.65; }
+.tdb-hfaq__list { display: grid; gap: 12px; }
+.tdb-hfaq__item { border: 1px solid #e4e9f0; border-radius: 16px; background: #fff; transition: border-color .25s, box-shadow .25s; }
+.tdb-hfaq__item[open] { border-color: #cdeed4; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
+.tdb-hfaq__item summary { position: relative; display: block; padding: 20px 60px 20px 22px; color: #0f172a; font-size: 1.05rem; font-weight: 600; line-height: 1.45; list-style: none; cursor: pointer; }
+.tdb-hfaq__item summary::-webkit-details-marker { display: none; }
+.tdb-hfaq__item summary i { position: absolute; top: 50%; right: 20px; width: 28px; height: 28px; margin-top: -14px; border-radius: 50%; background: #eef9f0; transition: background .25s, transform .3s; }
+.tdb-hfaq__item summary i::before, .tdb-hfaq__item summary i::after { content: ""; position: absolute; top: 50%; left: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; border-radius: 2px; background: #23873a; transition: transform .3s, background .25s; }
+.tdb-hfaq__item summary i::after { transform: rotate(90deg); }
+.tdb-hfaq__item[open] summary i { background: #3ead3c; transform: rotate(180deg); }
+.tdb-hfaq__item[open] summary i::before, .tdb-hfaq__item[open] summary i::after { background: #fff; }
+.tdb-hfaq__item[open] summary i::after { transform: rotate(0deg); }
+.tdb-hfaq__item summary:hover { color: #23873a; }
+.tdb-hfaq__answer { padding: 0 22px 20px; }
+.tdb-hfaq__item[open] .tdb-hfaq__answer { animation: tdb-faq-in .35s ease; }
+@keyframes tdb-faq-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.tdb-hfaq__answer p { margin: 0; color: #475569; font-size: 15.5px; line-height: 1.7; }
+@media (max-width: 991px) {
+	.tdb-hfaq__grid { grid-template-columns: 1fr; }
+	.tdb-hfaq__side { position: static; }
+}

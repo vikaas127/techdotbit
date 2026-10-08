@@ -407,7 +407,7 @@ endif; ?>
 
   <?php include_once('inc/testimonials.php'); ?>
 
-  <?php include_once('inc/faq-list.php'); ?>
+  <?php if ( $ace_show_old ) { include_once('inc/faq-list.php'); } else { include locate_template( 'inc/home/faq.php' ); } ?>
 
   <?php include_once('inc/bottom-cta.php'); ?>
 

@@ -613,3 +613,76 @@ html, body { overflow-x: clip; }
 	.tdb-partner__icon svg path, .tdb-partner__icon svg circle { stroke-dasharray: none; stroke-dashoffset: 0; animation: none !important; }
 	.tdb-partner__line, .tdb-partner.is-in .tdb-partner__line i { transform: none; animation: none; }
 }
+
+/* =====================================================================
+ * Contact page (contact-template.php)
+ * =================================================================== */
+.tdb-contact-hero { padding: clamp(56px, 7vw, 96px) 0 clamp(36px, 4vw, 56px); background: radial-gradient(40% 80% at 100% 0%, rgba(34, 211, 238, .10), transparent 70%), radial-gradient(35% 70% at 0% 100%, rgba(62, 173, 60, .10), transparent 70%), #fff; border-bottom: 1px solid #e4e9f0; }
+.tdb-contact__chip { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 6px 14px; border: 1px solid #cdeed4; border-radius: 999px; background: #eef9f0; color: #23873a; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.tdb-contact__chip span { width: 7px; height: 7px; border-radius: 50%; background: #3ead3c; }
+.tdb-contact-hero h1 { max-width: 18ch; margin: 0 0 16px; color: #0f172a !important; font-size: clamp(2.2rem, 1.4rem + 3vw, 3.8rem); line-height: 1.06; letter-spacing: -.035em; }
+.tdb-contact-hero__intro { max-width: 60ch; margin: 0; color: #475569; font-size: clamp(1.02rem, .95rem + .3vw, 1.18rem); line-height: 1.65; }
+
+.tdb-contact { padding: clamp(40px, 5vw, 72px) 0 clamp(56px, 7vw, 96px); background: #f7f9fb; }
+.tdb-contact__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.tdb-contact__info { display: flex; flex-direction: column; gap: 16px; }
+.tdb-contact__card, .tdb-contact__offices, .tdb-contact__form { padding: clamp(22px, 3vw, 32px); border: 1px solid #e4e9f0; border-radius: 20px; background: #fff; box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 30px rgba(16, 24, 40, .05); }
+.tdb-contact__card h2, .tdb-contact__offices h3 { margin: 0 0 16px; color: #0f172a !important; font-size: 1.15rem; }
+.tdb-contact__steps { margin: 0; padding: 0; list-style: none; counter-reset: cstep; }
+.tdb-contact__steps li { position: relative; margin: 0 0 16px; padding-left: 46px; list-style: none; counter-increment: cstep; }
+.tdb-contact__steps li:last-child { margin-bottom: 0; }
+.tdb-contact__steps li::marker { content: none; }
+.tdb-contact__steps li::before { content: counter(cstep); position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #3ead3c, #0e9488); color: #fff; font-size: 13px; font-weight: 800; }
+.tdb-contact__steps li:not(:last-child)::after { content: ""; position: absolute; left: 14px; top: 34px; bottom: -14px; width: 2px; background: #e4e9f0; }
+.tdb-contact__steps b { display: block; color: #0f172a; font-size: 15px; }
+.tdb-contact__steps span { color: #64748b; font-size: 14px; line-height: 1.5; }
+.tdb-contact__methods { display: grid; gap: 10px; }
+.tdb-contact__method { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border: 1px solid #e4e9f0; border-radius: 16px; background: #fff; text-decoration: none !important; transition: border-color .2s, transform .2s, box-shadow .2s; }
+a.tdb-contact__method:hover { border-color: #3ead3c; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(16, 24, 40, .07); }
+.tdb-contact__icon { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: #eef9f0; color: #23873a; }
+.tdb-contact__method small { display: block; margin-bottom: 2px; color: #64748b; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.tdb-contact__method b { display: block; color: #0f172a; font-size: 15.5px; font-weight: 600; line-height: 1.5; word-break: break-word; }
+.tdb-contact__address p { margin: 0; }
+.tdb-contact__office { padding: 12px 0; border-top: 1px solid #eef2f6; color: #475569; font-size: 14px; line-height: 1.55; }
+.tdb-contact__office:first-of-type { border-top: 0; padding-top: 0; }
+.tdb-contact__office b { display: block; margin-bottom: 4px; color: #0f172a; font-size: 15px; }
+.tdb-contact__office p { margin: 0; }
+.tdb-contact__office a { display: block; color: #23873a !important; }
+.tdb-contact__career { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border: 1px dashed #cfd8e3; border-radius: 16px; background: #fff; color: #23873a !important; font-size: 20px; text-decoration: none !important; transition: border-color .2s; }
+.tdb-contact__career:hover { border-color: #3ead3c; }
+.tdb-contact__career b { display: block; color: #0f172a; font-size: 15px; }
+.tdb-contact__career small { color: #64748b; font-size: 13.5px; }
+
+.tdb-contact__form h2 { margin: 0 0 6px; color: #0f172a !important; font-size: clamp(1.4rem, 1.2rem + .8vw, 1.8rem); letter-spacing: -.02em; }
+.tdb-contact__form > p { margin: 0 0 22px; color: #64748b; font-size: 14.5px; }
+.tdb-contact__form h3, .tdb-contact__form h4, .tdb-contact__form h5 { display: none; }
+.tdb-contact__form .wpcf7 p { margin: 0 0 14px; }
+.tdb-contact__form .wpcf7-form-control-wrap { display: block; width: 100%; }
+.tdb-contact__form input[type="text"], .tdb-contact__form input[type="email"], .tdb-contact__form input[type="tel"], .tdb-contact__form input[type="url"], .tdb-contact__form input[type="number"], .tdb-contact__form textarea, .tdb-contact__form select, .tdb-contact__form .ui-selectmenu-button, .tdb-contact__form .ui-selectmenu-button.ui-button {
+	width: 100% !important; min-height: 50px; margin: 0; padding: 12px 16px !important;
+	border: 1px solid #dbe2ea !important; border-radius: 12px !important; background: #fff !important;
+	color: #0f172a !important; font-size: 15px !important; line-height: 1.4; text-align: left; box-shadow: none !important;
+	transition: border-color .2s, box-shadow .2s;
+}
+.tdb-contact__form textarea { min-height: 130px; resize: vertical; }
+.tdb-contact__form select, .tdb-contact__form .ui-selectmenu-button { -webkit-appearance: none; appearance: none; padding-right: 40px !important; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%2364748b' stroke-width='1.6'%3E%3Cpath d='m1 1 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 16px center !important; }
+.tdb-contact__form .ui-selectmenu-button .ui-selectmenu-text { margin: 0; padding: 0; line-height: 24px; }
+.tdb-contact__form .ui-selectmenu-button .ui-icon { display: none; }
+.tdb-contact__form input:focus, .tdb-contact__form textarea:focus, .tdb-contact__form select:focus { outline: none; border-color: #3ead3c !important; box-shadow: 0 0 0 4px rgba(62, 173, 60, .12) !important; }
+.tdb-contact__form ::placeholder { color: #94a3b8; opacity: 1; }
+.tdb-contact__form input[type="file"] { width: 100%; padding: 12px; border: 1px dashed #cfd8e3; border-radius: 12px; background: #fbfcfd; color: #64748b; font-size: 14px; }
+.tdb-contact__form input[type="file"]::file-selector-button { margin-right: 12px; padding: 8px 16px; border: 1px solid #cfe9d2; border-radius: 999px; background: #f1faf2; color: #23873a; font-weight: 600; cursor: pointer; }
+.tdb-contact__form .wpcf7-submit, .tdb-contact__form input[type="submit"] { width: auto !important; min-height: 50px; margin-top: 6px; padding: 0 30px !important; border: 0 !important; border-radius: 999px !important; background: #3ead3c !important; color: #fff !important; font-weight: 600; font-size: 15px; cursor: pointer; box-shadow: 0 10px 24px rgba(62, 173, 60, .28); transition: background .2s, transform .2s; }
+.tdb-contact__form .wpcf7-submit:hover { background: #23873a !important; transform: translateY(-1px); }
+.tdb-contact__form br { display: none; }
+.tdb-contact__secure { display: flex; align-items: center; gap: 8px; margin: 16px 0 0; color: #64748b; font-size: 13px; }
+.tdb-contact__secure svg { flex: none; color: #3ead3c; }
+@media (min-width: 768px) {
+	.tdb-contact__form .wpcf7-form { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; }
+	.tdb-contact__form .wpcf7-form > * { grid-column: 1 / -1; }
+	.tdb-contact__form .wpcf7-form > p:has(input[type="email"]), .tdb-contact__form .wpcf7-form > p:has(input[type="tel"]) { grid-column: auto; }
+}
+@media (max-width: 991px) {
+	.tdb-contact__grid { grid-template-columns: 1fr; }
+	.tdb-contact__form { order: -1; }
+}

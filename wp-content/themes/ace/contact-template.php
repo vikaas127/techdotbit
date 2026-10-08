@@ -1,97 +1,99 @@
 <?php
 /* Template Name: Contact Template */
 
-get_header(); ?>
+get_header();
 
-<style>
-  .border{border: 1px solid #ddd; background: #eee;}
-  .border p{margin-bottom: 0}
-  .btns{list-style: none; padding: 0; display: flex; gap: 15px; border-bottom: 1px solid #3ead3c; margin-bottom: 30px;}
-</style>
+$ace_title = __( 'Let\'s build something intelligent together', 'ace' );
+if ( have_rows( 'banner' ) ) {
+	while ( have_rows( 'banner' ) ) {
+		the_row();
+		if ( get_sub_field( 'title' ) && 'contact us' !== strtolower( trim( wp_strip_all_tags( get_sub_field( 'title' ) ) ) ) ) {
+			$ace_title = wp_strip_all_tags( get_sub_field( 'title' ) );
+		}
+	}
+}
+$ace_phone    = get_field( 'phone' );
+$ace_email    = get_field( 'email' );
+$ace_address  = get_field( 'address' );
+$ace_career   = get_page_by_path( 'career' );
+$ace_icon     = function ( $path ) {
+	return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $path . '</svg>';
+};
+?>
 
-<?php if( have_rows('banner') ):
-  while( have_rows('banner') ) : the_row(); ?>
-  <section class="lqd-section banner bg-no-repeat bg-center bg-cover py-70 px-70 md:px-0" style="background-image: url(<?php the_sub_field('banner_bg'); ?>);">
-    <div class="container">
-      <div class="row">
-        <div class="col col-12 col-lg-7 col-xl-6" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;: &quot;inview&quot;, &quot;animationTarget&quot;: &quot;all-childs&quot;, &quot;duration&quot;: &quot;1800&quot;, &quot;delay&quot;: &quot;180&quot;, &quot;ease&quot;: &quot;power4.out&quot;, &quot;direction&quot;: &quot;forward&quot;, &quot;initValues&quot;: {&quot;y&quot; : 45 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;y&quot; : 0 , &quot;transformOriginX&quot; : 50 , &quot;transformOriginY&quot; : 50 , &quot;transformOriginZ&quot;: &quot;0px&quot;, &quot;opacity&quot; : 1}}">
-          <?php if(get_sub_field('title')): ?>
-          <div class="ld-fancy-heading">
-            <h1 class="ld-fh-element mb-0/35em lqd-split-lines text-white" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php the_sub_field('title'); ?></h1>
-          </div>
-          <?php endif; ?>
-          <?php if(get_sub_field('paragraph')): ?>
-          <div class="ld-fancy-heading">
-            <p class="ld-fh-element mb-2em lqd-split-lines leading-30 text-17 text-white-80" data-split-text="true" data-split-options="{&quot;type&quot;: &quot;lines&quot;}"><?php the_sub_field('paragraph'); ?>
-            </p>
-          </div>
-          <?php endif; ?>
-        </div>
-      </div>
-    </div>
-  </section>
-  <?php endwhile;
-endif; ?>
-
-<section class="lqd-section py-70">
-  <div class="container">
-    <ul class="btns">
-      <li><a href="#" class="btn font-medium btn-solid text-white bg-primary border-none text-11 leading-1/5em tracking-0/1em rounded-4"><span class="inline-flex py-0/85em px-1/5em">
-                      <span class="btn-txt" data-text="Request Free Audit">For Business</span>
-                    </span></a></li>
-      <li><a href="<?php echo site_url(); ?>/career/" class="btn font-medium btn-solid text-white bg-secondary border-none text-11 leading-1/5em tracking-0/1em rounded-4"><span class="inline-flex py-0/85em px-1/5em">
-                      <span class="btn-txt" data-text="Request Free Audit">For Career</span>
-                    </span></a></li>
-    </ul>
-    <div class="row">
-      <div class="col col-12 col-lg-6 col-xl-5">
-        <h2><?php the_field('heading'); ?></h2>
-        <p class="text-15"><?php the_field('paragraph'); ?></p>
-        <address class="mt-30">
-          <h5 class="text-16 mb-15">Address</h5>
-          <?php the_field('address'); ?>
-
-          <div class="d-flex items-center">
-            <h5 class="text-16 my-1" style="margin-right: 15px;">Phone:</h5>
-            <a href="tel:<?php the_field('phone'); ?>"><?php the_field('phone'); ?></a>
-          </div>
-          <div class="d-flex items-center">
-            <h5 class="text-16 my-1" style="margin-right: 15px;">Email:</h5>
-            <a href="mailto:<?php the_field('email'); ?>"><?php the_field('email'); ?></a>
-          </div>
-        </address>
-
-        <?php if( have_rows('more_locations') ): ?>
-          <?php while( have_rows('more_locations') ) : the_row(); ?>
-            <address class="border p-20">
-              <h5 class="text-16 mb-15"><?php the_sub_field('location'); ?></h5>
-              <?php the_sub_field('address'); ?>
-
-              <?php if(get_sub_field('phone')): ?>
-                <div class="d-flex items-center">
-                  <h5 class="text-16 my-1" style="margin-right: 15px;">Phone:</h5>
-                  <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_sub_field('phone') ) ); ?>"><?php the_sub_field('phone'); ?></a>
-                </div>
-              <?php endif; ?>
-              <?php if(get_sub_field('email')): ?>
-                <div class="d-flex items-center">
-                  <h5 class="text-16 my-1" style="margin-right: 15px;">Email:</h5>
-                  <a href="mailto:<?php echo esc_attr( get_sub_field('email') ); ?>"><?php the_sub_field('email'); ?></a>
-                </div>
-              <?php endif; ?>
-            </address>
-          <?php endwhile; ?>
-        <?php endif; ?>
-
-        
-
-      </div>
-      <div class="col col-12 col-lg-6 col-xl-6 offset-xl-1 contact-form">
-        <?php echo do_shortcode('[contact-form-7 id="b3de3ca" title="Contact Us Form"]'); ?>
-      </div>
-    </div>
-  </div>
+<section class="tdb-contact-hero">
+	<div class="container">
+		<p class="tdb-contact__chip"><span></span><?php esc_html_e( 'Contact us', 'ace' ); ?></p>
+		<h1><?php echo esc_html( $ace_title ); ?></h1>
+		<p class="tdb-contact-hero__intro"><?php esc_html_e( 'Tell us what you want to build or improve, whether it is an AI agent, a custom application or an automation. We will reply with ideas and next steps.', 'ace' ); ?></p>
+	</div>
 </section>
 
-<?php include_once('inc/brands.php'); ?>
+<section class="tdb-contact">
+	<div class="container">
+		<div class="tdb-contact__grid">
+			<aside class="tdb-contact__info">
+				<div class="tdb-contact__card">
+					<h2><?php esc_html_e( 'What happens next', 'ace' ); ?></h2>
+					<ol class="tdb-contact__steps">
+						<li><b><?php esc_html_e( 'We review your message', 'ace' ); ?></b><span><?php esc_html_e( 'An engineer, not a bot, reads what you need.', 'ace' ); ?></span></li>
+						<li><b><?php esc_html_e( 'A short discovery call', 'ace' ); ?></b><span><?php esc_html_e( 'We ask the right questions and suggest an approach.', 'ace' ); ?></span></li>
+						<li><b><?php esc_html_e( 'A clear proposal', 'ace' ); ?></b><span><?php esc_html_e( 'Scope, timeline and team, with no obligation.', 'ace' ); ?></span></li>
+					</ol>
+				</div>
+
+				<div class="tdb-contact__methods">
+					<?php if ( $ace_email ) : ?>
+						<a class="tdb-contact__method" href="mailto:<?php echo esc_attr( $ace_email ); ?>">
+							<span class="tdb-contact__icon"><?php echo $ace_icon( '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' ); // phpcs:ignore ?></span>
+							<span><small><?php esc_html_e( 'Email', 'ace' ); ?></small><b><?php echo esc_html( $ace_email ); ?></b></span>
+						</a>
+					<?php endif; ?>
+					<?php if ( $ace_phone ) : ?>
+						<a class="tdb-contact__method" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $ace_phone ) ); ?>">
+							<span class="tdb-contact__icon"><?php echo $ace_icon( '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>' ); // phpcs:ignore ?></span>
+							<span><small><?php esc_html_e( 'Phone', 'ace' ); ?></small><b><?php echo esc_html( $ace_phone ); ?></b></span>
+						</a>
+					<?php endif; ?>
+					<?php if ( $ace_address ) : ?>
+						<div class="tdb-contact__method">
+							<span class="tdb-contact__icon"><?php echo $ace_icon( '<path d="M12 21s-6-5.4-6-11a6 6 0 0 1 12 0c0 5.6-6 11-6 11Z"/><circle cx="12" cy="10" r="2.2"/>' ); // phpcs:ignore ?></span>
+							<span><small><?php esc_html_e( 'Head office', 'ace' ); ?></small><b class="tdb-contact__address"><?php echo wp_kses_post( $ace_address ); ?></b></span>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<?php if ( have_rows( 'more_locations' ) ) : ?>
+					<div class="tdb-contact__offices">
+						<h3><?php esc_html_e( 'Other offices', 'ace' ); ?></h3>
+						<?php while ( have_rows( 'more_locations' ) ) : the_row(); ?>
+							<div class="tdb-contact__office">
+								<b><?php echo esc_html( wp_strip_all_tags( get_sub_field( 'location' ) ) ); ?></b>
+								<div><?php echo wp_kses_post( get_sub_field( 'address' ) ); ?></div>
+								<?php if ( get_sub_field( 'phone' ) ) : ?><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_sub_field( 'phone' ) ) ); ?>"><?php echo esc_html( get_sub_field( 'phone' ) ); ?></a><?php endif; ?>
+								<?php if ( get_sub_field( 'email' ) ) : ?><a href="mailto:<?php echo esc_attr( get_sub_field( 'email' ) ); ?>"><?php echo esc_html( get_sub_field( 'email' ) ); ?></a><?php endif; ?>
+							</div>
+						<?php endwhile; ?>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( $ace_career ) : ?>
+					<a class="tdb-contact__career" href="<?php echo esc_url( get_permalink( $ace_career ) ); ?>">
+						<span><b><?php esc_html_e( 'Looking for a job?', 'ace' ); ?></b><small><?php esc_html_e( 'See open roles at TechDotBit', 'ace' ); ?></small></span>
+						<span aria-hidden="true">&rarr;</span>
+					</a>
+				<?php endif; ?>
+			</aside>
+
+			<div class="tdb-contact__form">
+				<h2><?php esc_html_e( 'Tell us about your project', 'ace' ); ?></h2>
+				<p><?php esc_html_e( 'A few details help us prepare. Fields marked * are required.', 'ace' ); ?></p>
+				<?php echo do_shortcode( '[contact-form-7 id="b3de3ca" title="Contact Us Form"]' ); ?>
+				<p class="tdb-contact__secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l4.6-4.6L17 10l-6 6Z"/></svg><?php esc_html_e( 'Your details are confidential. We can sign an NDA before you share specifics.', 'ace' ); ?></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<?php include_once( 'inc/brands.php' ); ?>
 <?php get_footer(); ?>
