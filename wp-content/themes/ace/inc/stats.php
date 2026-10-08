@@ -1,4 +1,5 @@
 <?php if( have_rows('stats', 'option') ): ?>
+<?php ace_inline_css( 'stats.css' ); ?>
 <section class="lqd-section services pt-75 pb-50 inner-services bg-blue stats">
   <div class="container">
     <div class="row justify-center">
