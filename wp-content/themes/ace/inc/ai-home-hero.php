@@ -15,10 +15,12 @@ $eyebrow = $hf( 'home_eyebrow', __( 'AI-first software engineering', 'ace' ) );
 $title   = $hf( 'home_title', __( 'AI agents and AI-driven software that move your business forward', 'ace' ) );
 $hl      = $hf( 'home_highlight', __( 'AI-driven software', 'ace' ) );
 $intro   = $hf( 'home_intro', __( 'TechDotBit designs, builds and runs AI agents, AI-led software and intelligent automation, from the first idea to secure, monitored production systems.', 'ace' ) );
-$cta1    = $hf( 'home_cta1_label', __( 'Get a free AI assessment', 'ace' ) );
-$cta1url = $hf( 'home_cta1_url', $audit && 'publish' === $audit->post_status ? get_permalink( $audit ) : home_url( '/contact-us/' ) );
-$cta2    = $hf( 'home_cta2_label', __( 'Explore AI services', 'ace' ) );
-$cta2url = $hf( 'home_cta2_url', $hub_url );
+$agents  = get_page_by_path( 'ai-services/ai-agent-development' );
+$contact = get_page_by_path( 'contact-us' );
+$cta1    = $hf( 'home_cta1_label', __( 'Explore AI Agents', 'ace' ) );
+$cta1url = $hf( 'home_cta1_url', $agents && 'publish' === $agents->post_status ? get_permalink( $agents ) : $hub_url );
+$cta2    = $hf( 'home_cta2_label', __( 'Build With Us', 'ace' ) );
+$cta2url = $hf( 'home_cta2_url', $contact ? get_permalink( $contact ) : ( $audit && 'publish' === $audit->post_status ? get_permalink( $audit ) : home_url( '/contact-us/' ) ) );
 $proof   = $hf( 'home_proof', array(
 	array( 'value' => __( 'Up to 40%', 'ace' ), 'label' => __( 'faster feature delivery', 'ace' ) ),
 	array( 'value' => '99.9%', 'label' => __( 'uptime with self-healing AIOps', 'ace' ) ),

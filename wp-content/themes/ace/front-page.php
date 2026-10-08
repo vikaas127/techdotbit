@@ -9,6 +9,7 @@
 $ace_home_mode = function_exists( 'get_field' ) && get_field( 'home_hero_mode' ) ? get_field( 'home_hero_mode' ) : 'ai';
 if ( 'classic' !== $ace_home_mode ) {
   include locate_template( 'inc/ai-home-hero.php' );
+  include locate_template( 'inc/ai-agent-loop.php' );
 }
 ?>
 <?php if( 'classic' === $ace_home_mode && have_rows('banner') ):

@@ -232,3 +232,27 @@
 		});
 	});
 })();
+
+/**
+ * AI agent workflow: light up each step in turn (Understand -> ... -> Learn)
+ * while the section is on screen.
+ */
+(function () {
+	'use strict';
+	var flow = document.querySelector('[data-tdb-loop]');
+	if (!flow || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+	var steps = flow.querySelectorAll('.tdb-loop__step');
+	var i = 0, timer = null;
+	function tick() {
+		steps.forEach(function (s) { s.classList.remove('is-active'); });
+		steps[i].classList.add('is-active');
+		i = (i + 1) % steps.length;
+	}
+	function start() { if (!timer) { tick(); timer = setInterval(tick, 1300); } }
+	function stop() { clearInterval(timer); timer = null; }
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver(function (e) { if (e[0].isIntersecting) start(); else stop(); }, { threshold: 0.25 }).observe(flow);
+	} else {
+		start();
+	}
+})();
