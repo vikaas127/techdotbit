@@ -1,0 +1,31 @@
+/* Testimonials (inc/testimonials.php) */
+.tdb-tst { padding: clamp(64px, 8vw, 104px) 0; background: radial-gradient(45% 60% at 100% 0%, rgba(34, 211, 238, .08), transparent 70%), radial-gradient(40% 60% at 0% 100%, rgba(62, 173, 60, .08), transparent 70%), #f7f9fb; }
+.tdb-tst__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
+.tdb-tst__chip { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 14px; border: 1px solid #cdeed4; border-radius: 999px; background: #eef9f0; color: #23873a !important; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.tdb-tst__chip span { width: 7px; height: 7px; border-radius: 50%; background: #3ead3c; }
+.tdb-tst h2 { margin: 0; color: #0f172a !important; font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1.1; letter-spacing: -.03em; }
+.tdb-tst__nav { display: flex; gap: 10px; }
+.tdb-tst__arrow { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid #dfe6ee; border-radius: 50%; background: #fff; color: #0f172a; cursor: pointer; transition: background .2s, border-color .2s, color .2s, transform .2s; }
+.tdb-tst__arrow:hover { border-color: #3ead3c; background: #3ead3c; color: #fff; transform: translateY(-2px); }
+.tdb-tst__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 2px 18px; scrollbar-width: none; }
+.tdb-tst__track::-webkit-scrollbar { display: none; }
+.tdb-tst__track:focus-visible { outline: 2px solid #3ead3c; outline-offset: 4px; border-radius: 12px; }
+.tdb-tst__card { display: flex; flex-direction: column; margin: 0; padding: 28px 28px 24px; border: 1px solid #e4e9f0; border-radius: 22px; background: #fff; box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 30px rgba(16, 24, 40, .06); scroll-snap-align: start; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.tdb-tst__card:hover { transform: translateY(-4px); border-color: #cdeed4; box-shadow: 0 2px 4px rgba(16, 24, 40, .04), 0 20px 44px rgba(16, 24, 40, .10); }
+.tdb-tst__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.tdb-tst__stars { color: #f59e0b; font-size: 17px; letter-spacing: 2px; }
+.tdb-tst__q { color: #d5efd9; }
+.tdb-tst__card blockquote { flex: 1; margin: 0 0 22px; padding: 0; border: 0; background: none; }
+.tdb-tst__card blockquote p { display: -webkit-box; margin: 0; overflow: hidden; color: #334155; font-size: 16px; line-height: 1.7; -webkit-line-clamp: 7; -webkit-box-orient: vertical; }
+.tdb-tst__card figcaption { display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid #eef2f6; }
+.tdb-tst__card figcaption img, .tdb-tst__initial { flex: none; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #eef9f0; }
+.tdb-tst__initial { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3ead3c, #0e9488); color: #fff; font-weight: 800; font-size: 20px; }
+.tdb-tst__card figcaption b { display: block; color: #0f172a; font-size: 15.5px; }
+.tdb-tst__card figcaption small { color: #64748b; font-size: 13.5px; }
+.tdb-tst__dots { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.tdb-tst__dots i { width: 8px; height: 8px; border-radius: 999px; background: #d5dde6; transition: width .3s, background .3s; }
+.tdb-tst__dots i.is-active { width: 28px; background: #3ead3c; }
+@media (max-width: 991px) { .tdb-tst__track { grid-auto-columns: calc((100% - 24px) / 2); } }
+@media (max-width: 640px) { .tdb-tst__track { grid-auto-columns: 88%; gap: 14px; } .tdb-tst__nav { display: none; } }
+.tdb-tst__card blockquote, .tdb-tst__card blockquote p { font-style: normal !important; quotes: none; }
+.tdb-tst__card blockquote::before, .tdb-tst__card blockquote::after { content: none !important; }
