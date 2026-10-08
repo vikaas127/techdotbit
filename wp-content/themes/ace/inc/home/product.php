@@ -12,7 +12,7 @@ $ace_erp_hub = get_page_by_path( 'erp-software' );
 			<div class="tdb-prod__copy">
 				<p class="tdb-prod__eyebrow"><?php esc_html_e( 'Our product · Built by TechDotBit', 'ace' ); ?></p>
 				<h2 id="tdb-prod-title">DotOne</h2>
-				<p><?php esc_html_e( 'An intelligent business management platform that brings a growing company\'s operations together in one connected system.', 'ace' ); ?></p>
+				<p><?php esc_html_e( 'Your business operations in one intelligent platform.', 'ace' ); ?></p>
 				<div class="tdb-prod__actions">
 					<a class="tdb-h__btn" href="https://dotone.biz/" target="_blank" rel="noopener"><?php esc_html_e( 'Visit DotOne', 'ace' ); ?> <span aria-hidden="true">&nearr;</span></a>
 					<?php if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) : ?>

@@ -275,9 +275,24 @@ while ( have_posts() ) :
 	<?php if ( trim( get_the_content() ) ) : ?>
 	<section class="lqd-section tdb-lp-content py-75">
 		<div class="container">
-			<div class="entry-content tdb-prose">
+			<div class="entry-content tdb-prose tdb-readmore" id="tdb-page-text">
 				<?php the_content(); ?>
 			</div>
+			<button type="button" class="tdb-readmore-btn" aria-controls="tdb-page-text" aria-expanded="false" hidden><span><?php esc_html_e( 'Read more', 'ace' ); ?></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+			<script>
+			(function () {
+				var box = document.getElementById('tdb-page-text'), btn = box && box.nextElementSibling;
+				if (!box || !btn) return;
+				if (box.scrollHeight <= box.clientHeight + 60) { box.classList.add('is-open'); return; }
+				btn.hidden = false;
+				btn.addEventListener('click', function () {
+					var open = box.classList.toggle('is-open');
+					btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+					btn.firstChild.textContent = open ? '<?php echo esc_js( __( 'Show less', 'ace' ) ); ?>' : '<?php echo esc_js( __( 'Read more', 'ace' ) ); ?>';
+					if (!open) box.scrollIntoView({ block: 'start', behavior: 'smooth' });
+				});
+			})();
+			</script>
 		</div>
 	</section>
 	<?php endif; ?>

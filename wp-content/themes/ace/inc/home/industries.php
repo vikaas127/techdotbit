@@ -22,7 +22,6 @@ $ace_inds = array(
 				<p class="tdb-h__chip"><span></span><?php esc_html_e( 'Industries', 'ace' ); ?></p>
 				<h2 id="tdb-inds-title"><?php esc_html_e( 'Technology for real-world industries', 'ace' ); ?></h2>
 			</div>
-			<p class="tdb-inds__intro"><?php esc_html_e( 'Good software starts with understanding the business. We bring industry context to every AI and software project, so solutions fit how work is really done.', 'ace' ); ?></p>
 		</div>
 		<div class="tdb-inds__grid">
 			<?php foreach ( $ace_inds as $ace_i => $ace_ind ) : ?>
@@ -30,7 +29,7 @@ $ace_inds = array(
 				<<?php echo $ace_has ? 'a href="' . esc_url( $ace_ind_url ) . '"' : 'div'; ?> class="tdb-inds__item" style="--i: <?php echo (int) $ace_i; ?>">
 					<span class="tdb-inds__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><?php echo $ace_ind[2]; // phpcs:ignore -- static ?></svg></span>
 					<h3><?php echo esc_html( $ace_ind[0] ); ?></h3>
-					<p><?php echo esc_html( $ace_ind[1] ); ?></p>
+					<p class="tdb-inds__hint"><?php echo esc_html( $ace_ind[1] ); ?></p>
 				</<?php echo $ace_has ? 'a' : 'div'; ?>>
 			<?php endforeach; ?>
 		</div>

@@ -18,17 +18,13 @@ $ace_agents = array(
 		<div class="tdb-h__head">
 			<p class="tdb-h__chip"><span></span><?php esc_html_e( 'AI agents', 'ace' ); ?></p>
 			<h2 id="tdb-hagents-title"><?php esc_html_e( 'AI that doesn\'t stop at answers. It gets work done.', 'ace' ); ?></h2>
-			<p><?php esc_html_e( 'We build agents that understand a goal, use your systems and finish the task, with people approving what matters.', 'ace' ); ?></p>
 		</div>
 		<div class="tdb-hagents__grid">
 			<?php foreach ( $ace_agents as $ace_i => $ace_a ) : ?>
 				<article class="tdb-hagents__card" style="--i: <?php echo (int) $ace_i; ?>" data-tdb-ticker>
 					<header>
 						<span class="tdb-hagents__avatar" aria-hidden="true"><?php echo esc_html( substr( $ace_a[0], 0, 1 ) ); ?></span>
-						<div>
-							<h3><?php echo esc_html( $ace_a[0] ); ?></h3>
-							<p><?php echo esc_html( $ace_a[1] ); ?></p>
-						</div>
+						<h3><?php echo esc_html( $ace_a[0] ); ?></h3>
 						<span class="tdb-hagents__live" aria-hidden="true"><?php esc_html_e( 'Live', 'ace' ); ?></span>
 					</header>
 					<ol class="tdb-hagents__log" aria-label="<?php echo esc_attr( sprintf( __( 'Example tasks for the %s', 'ace' ), $ace_a[0] ) ); ?>">

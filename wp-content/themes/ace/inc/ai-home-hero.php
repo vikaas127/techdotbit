@@ -18,7 +18,7 @@ if ( 0 === stripos( $title, 'AI agents and ' ) ) {
 	$title = preg_replace( '/\bmove your\b/', 'moves your', substr( $title, strlen( 'AI agents and ' ) ) );
 }
 $hl      = $hf( 'home_highlight', __( 'AI-driven software', 'ace' ) );
-$intro   = $hf( 'home_intro', __( 'We design and build AI solutions, intelligent agents, automation and custom software around the way your business works, and keep them running reliably in production.', 'ace' ) );
+$intro   = $hf( 'home_intro', __( 'AI solutions, intelligent agents and custom software, built around how your business works.', 'ace' ) );
 $agents  = get_page_by_path( 'ai-services/ai-agent-development' );
 $contact = get_page_by_path( 'contact-us' );
 $cta1    = $hf( 'home_cta1_label', __( 'Start a project', 'ace' ) );

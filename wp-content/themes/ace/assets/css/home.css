@@ -219,3 +219,26 @@
 	.tdb-hfaq__grid { grid-template-columns: 1fr; }
 	.tdb-hfaq__side { position: static; }
 }
+
+/* ---------------------------------------------- Leaner, more visual layout */
+.tdb-h__head { margin-bottom: clamp(28px, 4vw, 44px); }
+.tdb-hagents__card header { align-items: center; margin-bottom: 14px; }
+.tdb-hagents__card h3 { margin: 0; }
+.tdb-caps__panel > p { font-size: 1.15rem; color: #334155; }
+
+/* Industries: icon tiles, detail appears on hover */
+.tdb-inds__item { display: flex !important; flex-direction: column; align-items: flex-start; min-height: 150px; padding: 28px 26px; }
+.tdb-inds__icon { width: 52px; height: 52px; border-radius: 16px; margin-bottom: 18px; transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .3s, color .3s; }
+.tdb-inds__icon svg { width: 26px; height: 26px; }
+.tdb-inds__item:hover .tdb-inds__icon, .tdb-inds__item:focus-visible .tdb-inds__icon { background: linear-gradient(135deg, #3ead3c, #0e9488); color: #fff; transform: translateY(-4px) scale(1.05); }
+.tdb-inds__item h3 { margin: 0; transition: color .25s; }
+.tdb-inds__item:hover h3 { color: #23873a !important; }
+.tdb-inds__hint { max-height: 0; margin: 0 !important; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .3s ease, margin .35s ease; }
+.tdb-inds__item:hover .tdb-inds__hint, .tdb-inds__item:focus-visible .tdb-inds__hint { max-height: 80px; margin-top: 8px !important; opacity: 1; }
+@media (hover: none) { .tdb-inds__hint { display: none; } .tdb-inds__item { min-height: 0; } }
+
+/* Why: short tags next to titles */
+.tdb-why__list li { display: flex; align-items: center; gap: 10px; min-height: 38px; padding-bottom: 14px; margin-bottom: 14px; }
+.tdb-why__list b { margin: 0; }
+.tdb-why__list span { color: #23873a; font-size: 14px; font-weight: 500; }
+.tdb-why__list span::before { content: "— "; color: #cbd5e1; }

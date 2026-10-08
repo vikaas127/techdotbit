@@ -20,7 +20,6 @@ $ace_faq = array(
 			<div class="tdb-hfaq__side">
 				<p class="tdb-h__chip"><span></span><?php esc_html_e( 'FAQ', 'ace' ); ?></p>
 				<h2 id="tdb-hfaq-title"><?php esc_html_e( 'Questions we hear often', 'ace' ); ?></h2>
-				<p><?php esc_html_e( 'Straight answers about how we build AI and software. Have another question? Our engineers are happy to help.', 'ace' ); ?></p>
 				<a class="tdb-h__btn" href="<?php echo esc_url( ace_page_url( 'contact-us' ) ); ?>"><?php esc_html_e( 'Ask a question', 'ace' ); ?> <span aria-hidden="true">&rarr;</span></a>
 			</div>
 			<div class="tdb-hfaq__list">

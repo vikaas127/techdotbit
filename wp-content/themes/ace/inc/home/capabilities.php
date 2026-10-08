@@ -8,7 +8,7 @@ $ace_caps = array(
 	array(
 		'name'  => 'AI solutions',
 		'line'  => 'Copilots, smart search and prediction built into your products.',
-		'text'  => 'We find where AI pays off in your business, then build it properly: grounded in your data, evaluated before launch and monitored after it.',
+		'text'  => 'AI grounded in your data, tested before launch.',
 		'items' => array( 'LLM apps and copilots', 'RAG search over your documents', 'Forecasting and scoring models', 'Document and image understanding' ),
 		'url'   => ace_page_url( 'ai-services' ),
 		'icon'  => '<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/>',
@@ -16,7 +16,7 @@ $ace_caps = array(
 	array(
 		'name'  => 'Custom software',
 		'line'  => 'Web, mobile and business applications shaped around your process.',
-		'text'  => 'Portals, internal tools, mobile apps and platforms engineered for your workflows, with clean architecture your team can own.',
+		'text'  => 'Applications engineered around your workflows.',
 		'items' => array( 'Web and mobile applications', 'Business and workflow systems', 'APIs and integrations', 'Modernisation of legacy software' ),
 		'url'   => ace_page_url( 'ai-services/ai-led-software-development' ),
 		'icon'  => '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="m9 9-2.5 2.5L9 14M15 9l2.5 2.5L15 14M8 21h8"/>',
@@ -24,7 +24,7 @@ $ace_caps = array(
 	array(
 		'name'  => 'Automation',
 		'line'  => 'Connect your systems and remove repetitive work.',
-		'text'  => 'We map the manual steps between your tools, then automate them with integrations, workflows and AI agents that hand exceptions to people.',
+		'text'  => 'Your tools connected, manual steps removed.',
 		'items' => array( 'Workflow and approval automation', 'System-to-system integrations', 'Document and data entry automation', 'AI agents for back-office tasks' ),
 		'url'   => ace_page_url( 'ai-services/ai-workflow-automation' ),
 		'icon'  => '<path d="M4 7h10M4 7l3-3M4 7l3 3M20 17H10M20 17l-3-3M20 17l-3 3"/>',
@@ -32,7 +32,7 @@ $ace_caps = array(
 	array(
 		'name'  => 'Product engineering',
 		'line'  => 'From first prototype to a product that scales.',
-		'text'  => 'Discovery, UX, engineering, QA and cloud operations in one team, so ideas become reliable products and keep improving after launch.',
+		'text'  => 'Discovery to scale, in one team.',
 		'items' => array( 'Discovery, UX and prototypes', 'Full-stack product development', 'Agentic QA and test automation', 'Cloud, DevOps and AIOps' ),
 		'url'   => ace_page_url( 'ai-services/ai-engineering', ace_page_url( 'ai-services' ) ),
 		'icon'  => '<path d="M5 19c4-1 6-3 7-6l3-3a3 3 0 0 0-4-4l-3 3c-3 1-5 3-6 7l3 3Z"/><circle cx="15.5" cy="8.5" r="1.2"/><path d="M8 16l-2 2"/>',
@@ -44,7 +44,6 @@ $ace_caps = array(
 		<div class="tdb-h__head">
 			<p class="tdb-h__chip"><span></span><?php esc_html_e( 'What we do', 'ace' ); ?></p>
 			<h2 id="tdb-caps-title"><?php esc_html_e( 'From idea to intelligent software', 'ace' ); ?></h2>
-			<p><?php esc_html_e( 'One engineering team for the AI, the software around it and the automation that ties it into your business.', 'ace' ); ?></p>
 		</div>
 		<div class="tdb-caps__wrap" data-tdb-caps>
 			<div class="tdb-caps__list" role="tablist" aria-label="<?php esc_attr_e( 'Capabilities', 'ace' ); ?>">
