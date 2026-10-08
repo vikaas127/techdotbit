@@ -14,7 +14,7 @@ if ( function_exists( 'get_field' ) ) {
 if ( ! $ace_work && post_type_exists( 'project' ) ) {
 	$ace_work = get_posts( array( 'post_type' => 'project', 'numberposts' => 6 ) );
 }
-$ace_work = array_slice( array_filter( array_map( 'get_post', (array) $ace_work ) ), 0, 5 ); // 1 wide + 4 = two full rows
+$ace_work = array_slice( array_filter( array_map( 'get_post', (array) $ace_work ) ), 0, 6 ); // two rows of three
 if ( ! $ace_work ) {
 	return;
 }
@@ -33,7 +33,7 @@ if ( ! $ace_work ) {
 				$ace_terms = get_the_terms( $ace_w->ID, 'tagportfolio' );
 				$ace_tag   = $ace_terms && ! is_wp_error( $ace_terms ) ? $ace_terms[0]->name : '';
 				?>
-				<a class="tdb-work__card<?php echo 0 === $ace_i ? ' tdb-work__card--wide' : ''; ?>" href="<?php echo esc_url( get_permalink( $ace_w ) ); ?>" style="--i: <?php echo (int) $ace_i; ?>">
+				<a class="tdb-work__card" href="<?php echo esc_url( get_permalink( $ace_w ) ); ?>" style="--i: <?php echo (int) $ace_i; ?>">
 					<span class="tdb-work__media">
 						<?php if ( has_post_thumbnail( $ace_w ) ) : ?>
 							<?php echo get_the_post_thumbnail( $ace_w, 'large', array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
