@@ -12,6 +12,7 @@ $ace_cat_name = function ( $name ) {
 $ace_cur_cat  = is_category() ? get_queried_object_id() : 0;
 $ace_feature  = is_home() && have_posts(); // 1 lead + 9 cards per page
 ?>
+<?php ace_inline_css( 'work.css' ); ace_inline_css( 'blog.css' ); ?>
 <section class="tdb-blog-hero">
 	<div class="container">
 		<div class="tdb-blog-hero__top">

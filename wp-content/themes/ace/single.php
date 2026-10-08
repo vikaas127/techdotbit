@@ -252,6 +252,7 @@ get_header(); ?>
 		$ace_share    = rawurlencode( get_permalink() );
 		$ace_stitle   = rawurlencode( get_the_title() );
 		?>
+	<?php ace_inline_css( 'work.css' ); ace_inline_css( 'blog.css' ); ?>
 	<article <?php post_class( 'tdb-article' ); ?>>
 		<header class="tdb-article__head">
 			<div class="container">

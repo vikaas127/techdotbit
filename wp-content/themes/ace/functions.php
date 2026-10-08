@@ -778,3 +778,19 @@ add_filter( 'litespeed_optimize_css_excludes', function ( $list ) {
 add_action( 'litespeed_init', function () {
 	do_action( 'litespeed_conf_force', 'optm-ucss', false );
 } );
+
+/**
+ * Print a theme stylesheet inline (once per page), so sections styled by it
+ * can never appear unstyled because of a stale optimised-CSS cache.
+ */
+function ace_inline_css( $file ) {
+	static $done = array();
+	if ( isset( $done[ $file ] ) ) {
+		return;
+	}
+	$done[ $file ] = true;
+	$path = get_stylesheet_directory() . '/assets/css/' . $file;
+	if ( is_readable( $path ) ) {
+		echo '<style id="tdb-css-' . esc_attr( sanitize_title( $file ) ) . '">' . file_get_contents( $path ) . '</style>'; // phpcs:ignore -- theme file
+	}
+}

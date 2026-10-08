@@ -18,6 +18,7 @@ $ace_hub_icons = array(
 // [x, y, side]: side anchors the node box so it never overflows the diagram.
 $ace_hub_pos = array( array( 50, 7, 'c' ), array( 100, 30, 'r' ), array( 100, 72, 'r' ), array( 50, 93, 'c' ), array( 0, 72, 'l' ), array( 0, 30, 'l' ) );
 ?>
+<?php ace_inline_css( 'hub.css' ); ?>
 <section class="tdb-hub" id="use-cases" aria-labelledby="tdb-hub-title" data-tdb-hub>
 	<div class="container">
 		<div class="tdb-lp-head">

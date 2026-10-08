@@ -20,6 +20,7 @@ if ( ! $ace_work ) {
 	return;
 }
 ?>
+<?php ace_inline_css( 'work.css' ); ?>
 <section class="tdb-h tdb-work" id="work" aria-labelledby="tdb-work-title" data-tdb-inview>
 	<div class="container">
 		<div class="tdb-inds__top">

@@ -10,6 +10,7 @@ $ace_terms  = get_terms( array( 'taxonomy' => 'tagportfolio', 'hide_empty' => tr
 $ace_loop   = new WP_Query( array( 'post_type' => 'project', 'posts_per_page' => -1 ) );
 ?>
 
+<?php ace_inline_css( 'work.css' ); ?>
 <section class="tdb-work-hero">
 	<div class="container">
 		<p class="tdb-contact__chip"><span></span><?php esc_html_e( 'Our work', 'ace' ); ?></p>

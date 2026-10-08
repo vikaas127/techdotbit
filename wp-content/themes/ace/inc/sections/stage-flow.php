@@ -17,6 +17,7 @@ if ( count( $ace_stages ) < 3 ) {
 	return;
 }
 ?>
+<?php ace_inline_css( 'hub.css' ); ?>
 <section class="tdb-flowx" aria-labelledby="tdb-flowx-title" data-tdb-flowx>
 	<div class="container">
 		<div class="tdb-lp-head">
