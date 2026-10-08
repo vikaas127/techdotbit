@@ -580,3 +580,27 @@ function ace_portfolio_url() {
   $archive = get_post_type_archive_link( 'project' );
   return $archive ? $archive : home_url( '/' );
 }
+
+/**
+ * "AI Landing Page" template: fields + assets (only on pages that use it).
+ */
+require_once get_stylesheet_directory() . '/inc/landing-fields.php';
+
+add_action( 'wp_enqueue_scripts', function () {
+  if ( ! is_page_template( 'landing-template.php' ) ) {
+    return;
+  }
+  $dir = get_stylesheet_directory();
+  $uri = get_stylesheet_directory_uri();
+  wp_enqueue_style( 'ace-landing', $uri . '/assets/css/landing.css', array( 'ai-theme-style' ), filemtime( $dir . '/assets/css/landing.css' ) );
+  wp_enqueue_script( 'ace-landing-orb', $uri . '/assets/js/landing-orb.js', array(), filemtime( $dir . '/assets/js/landing-orb.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+}, 30 );
+
+// Body class for the landing page hero style (styles the header per style).
+add_filter( 'body_class', function ( $classes ) {
+  if ( is_page_template( 'landing-template.php' ) && function_exists( 'get_field' ) ) {
+    $style     = get_field( 'lp_hero_style' );
+    $classes[] = 'tdb-lp-style-' . sanitize_html_class( $style ? $style : 'knot' );
+  }
+  return $classes;
+} );

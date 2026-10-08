@@ -1,0 +1,208 @@
+/**
+ * Glossy 3D "knot" drawn on a canvas for the AI Landing Page hero.
+ * A (2,5) torus knot is rotated in 3D, cut into short segments, sorted
+ * back-to-front and each segment is stroked in layers (dark rim -> body ->
+ * light -> specular line) so it reads as a smooth shiny tube.
+ * No WebGL or libraries; pauses off-screen and respects reduced motion.
+ */
+(function () {
+	'use strict';
+
+	var canvas = document.querySelector('.tdb-orb');
+	if (!canvas || !canvas.getContext) return;
+	var ctx = canvas.getContext('2d');
+	var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+	// Brand palette along the tube: green -> emerald -> teal -> cyan -> lime -> green.
+	var palette = [[62, 173, 60], [16, 185, 129], [20, 184, 166], [34, 211, 238], [132, 204, 22], [62, 173, 60]];
+	function colorAt(t) {
+		var x = t * (palette.length - 1), i = Math.floor(x), f = x - i, a = palette[i], b = palette[Math.min(i + 1, palette.length - 1)];
+		return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+	}
+	function rgb(c, k, alpha) {
+		return 'rgba(' + Math.round(Math.min(255, c[0] * k)) + ',' + Math.round(Math.min(255, c[1] * k)) + ',' + Math.round(Math.min(255, c[2] * k)) + ',' + (alpha == null ? 1 : alpha) + ')';
+	}
+
+	var N = 720, SEG = 6, P = 2, Q = 5;
+	// [width, brightness] from the rim inwards: a soft cylindrical gradient.
+	var LAYERS = [[1, .28], [.92, .42], [.83, .56], [.73, .7], [.62, .84], [.5, .98], [.38, 1.12], [.26, 1.28]];
+	var base = [], pts = new Array(N), segs = [];
+	for (var i = 0; i < N; i++) {
+		var t = i / N * Math.PI * 2, rr = 1 + 0.45 * Math.cos(Q * t);
+		base.push({ x: rr * Math.cos(P * t), y: rr * Math.sin(P * t), z: 0.72 * Math.sin(Q * t), c: colorAt(i / N) });
+	}
+	for (var s = 0; s < N; s += SEG) segs.push({ from: s, z: 0 });
+
+	var w, h, cx, cy, scale;
+	function resize() {
+		var rect = canvas.getBoundingClientRect();
+		w = rect.width; h = rect.height;
+		canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		cx = w * 0.6; cy = h * 0.56;
+		scale = Math.min(w, h) * 0.28;
+	}
+
+	function frame(time) {
+		var t = (time || 0) / 1000;
+		var ay = t * 0.16, ax = 0.95 + Math.sin(t * 0.19) * 0.22, az = t * 0.06;
+		var sy = Math.sin(ay), cyy = Math.cos(ay), sx = Math.sin(ax), cxx = Math.cos(ax), sz = Math.sin(az), czz = Math.cos(az);
+		for (var i = 0; i < N; i++) {
+			var p = base[i];
+			var x = p.x * czz - p.y * sz, y = p.x * sz + p.y * czz, z = p.z;
+			var x2 = x * cyy + z * sy, z2 = -x * sy + z * cyy;
+			var y3 = y * cxx - z2 * sx, z3 = y * sx + z2 * cxx;
+			var persp = 3.4 / (3.4 + z3);
+			pts[i] = { x: cx + x2 * scale * persp, y: cy + y3 * scale * persp, z: z3, s: persp };
+		}
+		for (var k = 0; k < segs.length; k++) {
+			var a = pts[segs[k].from], b = pts[(segs[k].from + SEG) % N];
+			segs[k].z = (a.z + b.z) / 2;
+		}
+		segs.sort(function (m, n) { return n.z - m.z; });
+
+		ctx.clearRect(0, 0, w, h);
+		ctx.lineCap = 'butt';
+		ctx.lineJoin = 'round';
+		var tube = scale * 0.30;
+		for (var j = 0; j < segs.length; j++) {
+			var from = segs[j].from, mid = pts[(from + (SEG >> 1)) % N];
+			var depth = Math.max(0, Math.min(1, (segs[j].z + 1.4) / 2.8)); // 0 near, 1 far
+			var light = 1.12 - depth * 0.55;
+			var col = base[from].c, wdt = tube * mid.s;
+
+			// Overlap neighbours by two samples with flat ends so joints vanish.
+			var st = pts[(from - 2 + N) % N];
+			ctx.beginPath();
+			ctx.moveTo(st.x, st.y);
+			for (var q = -1; q <= SEG + 2; q++) {
+				var pt = pts[(from + q + N) % N];
+				ctx.lineTo(pt.x, pt.y);
+			}
+			// rim, body, light core, specular line (offset up-left)
+			for (var L = 0; L < LAYERS.length; L++) {
+				ctx.strokeStyle = rgb(col, LAYERS[L][1] * light);
+				ctx.lineWidth = wdt * LAYERS[L][0];
+				ctx.stroke();
+			}
+			ctx.save();
+			ctx.translate(-wdt * 0.12, -wdt * 0.14);
+			ctx.strokeStyle = 'rgba(255,255,255,' + (0.55 * (1 - depth * 0.7)).toFixed(3) + ')';
+			ctx.lineWidth = wdt * 0.13;
+			ctx.stroke();
+			ctx.restore();
+		}
+	}
+
+	var running = false, visible = true;
+	function loop(time) {
+		frame(time);
+		running = visible && !document.hidden && !reduce;
+		if (running) window.requestAnimationFrame(loop);
+	}
+	function start() { if (!running && !reduce) { running = true; window.requestAnimationFrame(loop); } }
+
+	resize(); frame(4000);
+	canvas.classList.add('is-ready');
+	window.addEventListener('resize', function () { resize(); frame(performance.now()); }, { passive: true });
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) start(); }).observe(canvas);
+	}
+	document.addEventListener('visibilitychange', function () { if (!document.hidden) start(); });
+	start();
+})();
+
+/**
+ * Style B: glowing light streaks orbiting on concentric arcs.
+ */
+(function () {
+	'use strict';
+	var canvas = document.querySelector('.tdb-streaks');
+	if (!canvas || !canvas.getContext) return;
+	var ctx = canvas.getContext('2d');
+	var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var dpr = Math.min(window.devicePixelRatio || 1, 2);
+	var w, h, cx, cy, rings = [];
+
+	function resize() {
+		var r = canvas.getBoundingClientRect();
+		w = r.width; h = r.height;
+		canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		cx = w * 0.62; cy = h * 0.5;
+		rings = [];
+		var max = Math.max(w, h) * 0.75;
+		for (var i = 0; i < 16; i++) {
+			rings.push({
+				r: max * (0.18 + i / 16 * 0.82),
+				squash: 0.82 + (i % 3) * 0.06,
+				start: Math.random() * Math.PI * 2,
+				speed: (0.05 + Math.random() * 0.12) * (i % 2 ? 1 : -1),
+				len: 0.18 + Math.random() * 0.35,
+				hue: i % 4 === 0 ? '62,173,60' : '45,212,191',
+				bright: i % 3 !== 1
+			});
+		}
+	}
+
+	function draw(time) {
+		var t = (time || 0) / 1000;
+		ctx.clearRect(0, 0, w, h);
+		ctx.lineCap = 'round';
+		for (var i = 0; i < rings.length; i++) {
+			var g = rings[i];
+			ctx.save();
+			ctx.translate(cx, cy);
+			ctx.scale(1, g.squash);
+			// faint full ring
+			ctx.strokeStyle = 'rgba(148,163,184,0.045)';
+			ctx.lineWidth = 1;
+			ctx.beginPath(); ctx.arc(0, 0, g.r, 0, Math.PI * 2); ctx.stroke();
+			if (g.bright) {
+				// comet: tail fades into the head
+				var head = g.start + t * g.speed, steps = 14, dir = g.speed > 0 ? -1 : 1;
+				for (var k = 0; k < steps; k++) {
+					var a0 = head + dir * g.len * (k / steps), a1 = head + dir * g.len * ((k + 1) / steps);
+					var alpha = (1 - k / steps);
+					ctx.strokeStyle = 'rgba(' + g.hue + ',' + (0.85 * alpha * alpha).toFixed(3) + ')';
+					ctx.lineWidth = 2.2 * alpha + 0.4;
+					ctx.beginPath();
+					ctx.arc(0, 0, g.r, Math.min(a0, a1), Math.max(a0, a1));
+					ctx.stroke();
+				}
+				// glow at the head
+				ctx.strokeStyle = 'rgba(' + g.hue + ',0.18)';
+				ctx.lineWidth = 8;
+				ctx.beginPath(); ctx.arc(0, 0, g.r, head - 0.03, head + 0.03); ctx.stroke();
+			}
+			ctx.restore();
+		}
+	}
+
+	var running = false, visible = true;
+	function loop(time) { draw(time); running = visible && !document.hidden && !reduce; if (running) requestAnimationFrame(loop); }
+	function start() { if (!running && !reduce) { running = true; requestAnimationFrame(loop); } }
+	resize(); draw(2500);
+	window.addEventListener('resize', function () { resize(); draw(performance.now()); }, { passive: true });
+	if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) start(); }).observe(canvas);
+	document.addEventListener('visibilitychange', function () { if (!document.hidden) start(); });
+	start();
+})();
+
+/**
+ * Style C: type the prompt text in the agents panel (text is already in the
+ * HTML, so it is readable without JavaScript).
+ */
+(function () {
+	'use strict';
+	var el = document.querySelector('.tdb-prompt__text');
+	if (!el || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+	var text = el.getAttribute('data-text') || el.textContent, i = 0;
+	el.textContent = '';
+	function type() {
+		el.textContent = text.slice(0, ++i);
+		if (i < text.length) setTimeout(type, 38 + Math.random() * 40);
+	}
+	setTimeout(type, 400);
+})();
