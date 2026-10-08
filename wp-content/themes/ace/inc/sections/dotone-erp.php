@@ -28,49 +28,55 @@ if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) {
 	}
 }
 ?>
-<section class="tdb-erp" id="ai-erp" aria-labelledby="tdb-erp-title">
+<?php ace_inline_css( 'erp-os.css' ); ?>
+<section class="tdb-eos" id="ai-erp" aria-labelledby="tdb-eos-title">
+	<span class="tdb-eos__grid" aria-hidden="true"></span>
 	<div class="container">
-		<div class="tdb-erp__top">
-			<div>
-				<p class="tdb-chip"><span></span>AI + ERP</p>
-				<h2 id="tdb-erp-title">From AI agents to an AI-powered business operating system</h2>
+		<div class="tdb-eos__wrap">
+			<div class="tdb-eos__copy">
+				<p class="tdb-eos__chip"><span></span>AI + ERP</p>
+				<h2 id="tdb-eos-title">An ERP that doesn't just record. <em>It acts.</em></h2>
+				<div class="tdb-eos__compare">
+					<div class="tdb-eos__row tdb-eos__row--old"><b>Traditional ERP</b><span>Records what happened</span></div>
+					<div class="tdb-eos__row tdb-eos__row--new"><b>AI-powered ERP</b><span>Decides what's next and does the routine work</span></div>
+				</div>
+				<div class="tdb-eos__actions">
+					<a class="tdb-eos__btn" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne <span aria-hidden="true">&nearr;</span></a>
+					<a class="tdb-eos__btn tdb-eos__btn--ghost" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Add AI to my ERP <span aria-hidden="true">&rarr;</span></a>
+				</div>
+				<?php if ( $ace_erp_links ) : ?>
+					<nav class="tdb-eos__inds" aria-label="ERP software by industry">
+						<span>ERP for</span>
+						<?php foreach ( array_slice( $ace_erp_links, 0, 6, true ) as $ace_label => $ace_url ) : ?>
+							<a href="<?php echo esc_url( $ace_url ); ?>"><?php echo esc_html( $ace_label ); ?></a>
+						<?php endforeach; ?>
+						<a class="tdb-eos__all" href="<?php echo esc_url( get_permalink( $ace_erp_hub ) ); ?>">All <span aria-hidden="true">&rarr;</span></a>
+					</nav>
+				<?php endif; ?>
 			</div>
-			<div class="tdb-erp__compare">
-				<p><span class="tdb-erp__tag tdb-erp__tag--old">Traditional ERP</span> records what happened.</p>
-				<p><span class="tdb-erp__tag">AI-powered ERP</span> helps decide what should happen next, and does the routine work.</p>
-			</div>
-		</div>
 
-		<div class="tdb-erp__board">
-			<div class="tdb-erp__brand">
-				<strong>DotOne</strong>
-				<span>The AI-powered ERP platform for modern businesses, built by TechDotBit.</span>
-			</div>
-			<ol class="tdb-erp__track" aria-label="DotOne modules">
-				<?php foreach ( $ace_modules as $i => $m ) : ?>
-					<li style="--i: <?php echo (int) $i; ?>"><?php echo esc_html( $m ); ?></li>
+			<div class="tdb-eos__visual" aria-hidden="true">
+				<span class="tdb-eos__orbit tdb-eos__orbit--outer"></span>
+				<span class="tdb-eos__orbit tdb-eos__orbit--inner"></span>
+				<?php foreach ( $ace_modules as $i => $m ) :
+					$ang = deg2rad( -90 + $i * ( 360 / count( $ace_modules ) ) );
+					$x   = 50 + 40 * cos( $ang );
+					$y   = 50 + 40 * sin( $ang );
+					?>
+					<span class="tdb-eos__spoke" style="--a: <?php echo esc_attr( round( -90 + $i * ( 360 / count( $ace_modules ) ), 2 ) ); ?>deg; --i: <?php echo (int) $i; ?>"><i></i></span>
+					<span class="tdb-eos__mod" style="left: <?php echo esc_attr( round( $x, 2 ) ); ?>%; top: <?php echo esc_attr( round( $y, 2 ) ); ?>%; --i: <?php echo (int) $i; ?>"><?php echo esc_html( $m ); ?></span>
 				<?php endforeach; ?>
-			</ol>
-			<div class="tdb-erp__plus" aria-hidden="true"><span>+ AI Agents</span></div>
-			<ul class="tdb-erp__agents">
-				<?php foreach ( $ace_erp_agents as $i => $a ) : ?>
-					<li style="--i: <?php echo (int) $i; ?>"><?php echo esc_html( $a ); ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<div class="tdb-erp__cta">
-				<p>Already have an ERP, CRM or internal application? We can add AI agents to it, or move you to DotOne.</p>
-				<a class="tdb-btn tdb-btn--primary" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne</a>
-				<a class="tdb-btn tdb-btn--glass" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Add AI to my ERP <span aria-hidden="true">&rarr;</span></a>
-			</div>
-			<?php if ( $ace_erp_links ) : ?>
-				<nav class="tdb-erp__industries" aria-label="ERP software by industry">
-					<span>ERP software for</span>
-					<?php foreach ( $ace_erp_links as $ace_label => $ace_url ) : ?>
-						<a href="<?php echo esc_url( $ace_url ); ?>"><?php echo esc_html( $ace_label ); ?></a>
+				<span class="tdb-eos__core">
+					<span class="tdb-eos__pulse"></span><span class="tdb-eos__pulse tdb-eos__pulse--2"></span>
+					<b>DotOne</b>
+					<small>+ AI agents</small>
+				</span>
+				<div class="tdb-eos__agents">
+					<?php foreach ( array_slice( $ace_erp_agents, 0, 4 ) as $i => $ag ) : ?>
+						<span class="tdb-eos__agent" style="--i: <?php echo (int) $i; ?>"><i></i><?php echo esc_html( $ag ); ?></span>
 					<?php endforeach; ?>
-					<a class="tdb-erp__all" href="<?php echo esc_url( get_permalink( $ace_erp_hub ) ); ?>">All ERP solutions <span aria-hidden="true">&rarr;</span></a>
-				</nav>
-			<?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
