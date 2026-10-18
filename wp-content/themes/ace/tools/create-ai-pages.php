@@ -82,6 +82,9 @@ function ace_points( $rows ) {
 	return array_map( function ( $t ) { return array( 'text' => $t ); }, $rows );
 }
 function ace_url( $slug ) {
+	if ( 'software-development-company-noida' === $slug ) { // Top-level page ('parent' => 'root').
+		return home_url( '/' . $slug . '/' );
+	}
 	return home_url( '/ai-services/' . $slug . '/' );
 }
 
@@ -790,6 +793,181 @@ $pages[] = array(
 	),
 );
 
+/* -------------------------------------------------------------------------
+ * Solution and local pages
+ * ---------------------------------------------------------------------- */
+$pages[] = array(
+	'slug'    => 'ai-invoice-processing',
+	'title'   => 'AI Invoice Processing',
+	'excerpt' => 'AI invoice processing for Indian GST invoices: extract GSTIN, HSN and tax lines, match to purchase orders and post to your ERP or Tally, with human review.',
+	'content' => '<h2>What is AI invoice processing?</h2><p>AI invoice processing reads supplier invoices from email, PDF, scans or photos, extracts the data your accounts team would otherwise type by hand, checks it and prepares the entry for your accounting system. Instead of keying every line, your team reviews and approves.</p><h2>Built for Indian GST invoices</h2><p>GST invoices come in every layout. Our AI agents extract the supplier and buyer GSTIN, invoice number and date, place of supply, HSN or SAC codes, taxable value and CGST, SGST, IGST and cess lines, and check that the tax arithmetic adds up before anything is posted.</p><h2>Purchase order and receipt matching</h2><p>Each invoice is matched against the purchase order and goods receipt for item, quantity, rate and tax. Clean matches move straight to approval; price differences, short receipts and missing POs are flagged with the reason so your team can resolve them quickly.</p><h2>Posting to your ERP or Tally</h2><p>Approved invoices are posted as purchase entries to DotOne, Tally or your existing ERP through secure integrations, with the original document attached for audit.</p><h2>Human review where it matters</h2><p>Low-confidence fields, new suppliers and mismatches always go to a person. Every extraction, edit and approval is logged, so finance stays in control.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'agents',
+		'lp_bg_visual'     => 'grid',
+		'lp_eyebrow'       => 'AI Invoice Processing',
+		'lp_title'         => 'AI Invoice Processing for Indian GST Invoices',
+		'lp_intro'         => 'AI agents that read supplier invoices, extract GSTIN, HSN and tax lines, match them to purchase orders and post approved entries to your ERP or Tally, with your team reviewing the exceptions.',
+		'lp_cta_label'     => 'Automate your invoices',
+		'lp_hero_features' => array(
+			array( 'title' => 'Extract', 'text' => 'GSTIN, HSN/SAC, taxable value and CGST, SGST and IGST lines from any layout.' ),
+			array( 'title' => 'Match', 'text' => 'Check every invoice against the purchase order and goods receipt.' ),
+			array( 'title' => 'Post', 'text' => 'Approved entries posted to DotOne, Tally or your ERP.', 'link' => ace_url( 'ai-powered-erp' ) ),
+		),
+		'lp_form_heading'  => 'How many invoices does your team key in each month?',
+		'lp_form_text'     => 'Share a few sample invoices and your accounting system, and we will show you how an agent would process them.',
+		'lp_cards_eyebrow' => 'What it handles',
+		'lp_cards_heading' => 'From inbox to posted entry',
+		'lp_cards'         => ace_cards( array(
+			array( 'Invoice capture', 'Collect invoices from a shared mailbox, WhatsApp, uploads or scans, including multi-page PDFs and photos.' ),
+			array( 'GST data extraction', 'Supplier and buyer GSTIN, invoice number and date, place of supply, HSN or SAC, rates and tax amounts.' ),
+			array( 'Validation checks', 'GSTIN format, duplicate invoices, tax arithmetic and intra-state versus inter-state tax type.' ),
+			array( 'PO and GRN matching', 'Two-way and three-way matching on item, quantity, rate and tax, with clear exception reasons.' ),
+			array( 'ERP and Tally posting', 'Purchase entries posted to DotOne, Tally or your current ERP with the source document attached.' ),
+			array( 'Human review and audit', 'Exceptions routed to the right person, and every action logged for audit.', ace_url( 'enterprise-ai' ) ),
+		) ),
+		'lp_steps_heading' => 'How we roll out invoice automation',
+		'lp_steps'         => ace_steps( array(
+			array( 'Sample', 'Review a set of your real invoices, suppliers and approval rules.' ),
+			array( 'Configure', 'Set up extraction, validation and matching for your formats and ERP.' ),
+			array( 'Pilot', 'Run alongside your team with every entry reviewed before posting.' ),
+			array( 'Scale', 'Widen automatic approval for clean matches and keep tuning.' ),
+		) ),
+		'lp_faq'           => ace_faq( array(
+			array( 'Can AI read GST invoices from any supplier format?', 'Yes. The agent does not rely on fixed templates, so it can read different layouts, scans and photos. Fields it is not confident about are sent to a person for review.' ),
+			array( 'Does it work with Tally?', 'Yes. Approved invoices can be posted as purchase entries to Tally, DotOne or your existing ERP through secure integrations.' ),
+			array( 'How does purchase order matching work?', 'Each invoice is compared with the purchase order and, where available, the goods receipt for item, quantity, rate and tax. Clean matches go to approval; differences are flagged with the reason.' ),
+			array( 'Will invoices be posted without anyone checking?', 'Only if you choose. Most teams start with every entry reviewed, then allow automatic posting for clean matches from trusted suppliers while exceptions always go to a person.' ),
+			array( 'Is our financial data secure?', 'Access is permission-based, every action is logged, and your data is never used to train public models. Deployment can be in our cloud, your cloud or on-premise.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'whatsapp-ai-agent',
+	'title'   => 'WhatsApp AI Agent',
+	'excerpt' => 'WhatsApp AI agent for business on the WhatsApp Business Platform: order status, lead capture and payment reminders connected to your ERP, with opt-in and human handoff.',
+	'content' => '<h2>Your business, available on WhatsApp</h2><p>Your customers, dealers and suppliers already use WhatsApp. A WhatsApp AI agent answers them instantly, around the clock, using live data from your systems instead of canned replies, and passes the conversation to your team when a person is needed.</p><h2>Built on the WhatsApp Business Platform</h2><p>We build on the official WhatsApp Business Platform (Cloud API), with approved message templates, a verified business profile and proper opt-in, so your number stays in good standing and messages are delivered reliably.</p><h2>Connected to your ERP and CRM</h2><p>The agent looks up orders, dispatches, invoices and outstanding balances in DotOne, Tally, your ERP or CRM, so answers are accurate and up to date. New enquiries are created as leads automatically.</p><h2>Opt-in, privacy and human handoff</h2><p>Business-initiated messages such as payment reminders are only sent to contacts who have opted in, using approved templates. Every conversation is logged, and the agent hands over to your team with full context whenever a customer asks for a person or a request needs judgement.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'streaks',
+		'lp_bg_visual'     => 'aurora',
+		'lp_eyebrow'       => 'WhatsApp AI Agent',
+		'lp_title'         => 'WhatsApp AI Agent for Business',
+		'lp_intro'         => 'An AI agent on the official WhatsApp Business Platform that shares order status, captures leads and sends payment reminders using live data from your ERP, and hands over to your team when needed.',
+		'lp_cta_label'     => 'Plan your WhatsApp agent',
+		'lp_hero_features' => array(
+			array( 'title' => 'Answer', 'text' => 'Order, dispatch and invoice status from your ERP in seconds.' ),
+			array( 'title' => 'Capture', 'text' => 'Qualify enquiries and create leads in your CRM automatically.' ),
+			array( 'title' => 'Follow up', 'text' => 'Opt-in payment reminders using approved message templates.' ),
+		),
+		'lp_form_heading'  => 'What should your WhatsApp agent handle first?',
+		'lp_form_text'     => 'Tell us about your customers, your systems and the questions your team answers most, and we will suggest where to start.',
+		'lp_cards_eyebrow' => 'Use cases',
+		'lp_cards_heading' => 'What a WhatsApp AI agent can do',
+		'lp_cards'         => ace_cards( array(
+			array( 'Order and dispatch status', 'Customers and dealers ask in their own words and get live status, dispatch details and documents from your ERP.' ),
+			array( 'Lead capture and qualification', 'Answer product questions, collect requirements and create qualified leads for your sales team.' ),
+			array( 'Payment reminders', 'Polite, opt-in reminders for due and overdue invoices, with the invoice and payment details attached.' ),
+			array( 'Catalogue and price enquiries', 'Share products, availability and approved price lists from your system of record.' ),
+			array( 'ERP-connected actions', 'Raise orders, complaints or service requests directly in DotOne, Tally, your ERP or CRM.', ace_url( 'ai-powered-erp' ) ),
+			array( 'Human handoff', 'Hand the chat to the right person with the full conversation and context when needed.' ),
+		) ),
+		'lp_steps_heading' => 'From number to live agent',
+		'lp_steps'         => ace_steps( array(
+			array( 'Plan', 'Choose the first use cases, opt-in flow and handoff rules.' ),
+			array( 'Set up', 'WhatsApp Business Platform account, verified profile and message templates.' ),
+			array( 'Connect', 'Integrate with your ERP, CRM and team inbox.' ),
+			array( 'Launch & improve', 'Go live with monitoring and keep improving answers.' ),
+		) ),
+		'lp_faq'           => ace_faq( array(
+			array( 'Is this the official WhatsApp API?', 'Yes. We build on the official WhatsApp Business Platform (Cloud API) from Meta, with a verified business profile and approved message templates, not unofficial tools that put your number at risk.' ),
+			array( 'Can it check order status from our ERP?', 'Yes. The agent connects to DotOne, Tally, your ERP or CRM through secure integrations and answers with live order, dispatch, invoice and balance information.' ),
+			array( 'How do payment reminders work?', 'Reminders are sent only to contacts who have opted in, using templates approved on the WhatsApp Business Platform, with the amount, due date and invoice details from your system.' ),
+			array( 'What happens when a customer wants to talk to a person?', 'The agent hands the conversation to your team with the full chat history and context, and you can set rules for when it should always escalate.' ),
+			array( 'Can it reply in Hindi and other languages?', 'Yes. The agent can understand and reply in Hindi, English and other languages your customers use, within the rules you set.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'ai-development-company-noida',
+	'title'   => 'AI Development Company in Noida',
+	'excerpt' => 'TechDotBit is an AI development company in Noida, Sector 62, building AI agents, LLM and RAG applications, AI-powered ERP and automation for businesses across Delhi NCR.',
+	'content' => '<h2>An AI development company in Noida</h2><p>TechDotBit Private Limited is based at Graphix Tower, A-13A, Sector 62, Noida. We design, build and run AI solutions for startups, manufacturers, distributors and enterprises across Noida, Greater Noida, Delhi, Gurugram, Ghaziabad and the wider Delhi NCR region.</p><h2>What we build</h2><p>Custom AI agents, LLM and RAG applications, AI workflow automation, AI invoice processing, WhatsApp AI agents and AI-powered ERP with DotOne, all connected to the systems you already use and delivered with guardrails, logging and human approval.</p><h2>AI that understands software, ERP and process</h2><p>Our team builds software, ERP and business processes as well as AI, so solutions fit how your business actually runs. AI-augmented engineering helps us accelerate feature delivery by up to 40%.</p><h2>Meet us in Sector 62</h2><p>Being local means we can sit with your team, walk your shop floor or office and map processes in person, then deliver in short iterations you can review.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'agents',
+		'lp_bg_visual'     => 'network',
+		'lp_eyebrow'       => 'AI development in Noida',
+		'lp_title'         => 'AI Development Company in Noida',
+		'lp_intro'         => 'From our office in Sector 62, Noida, we build AI agents, LLM applications, automation and AI-powered ERP for businesses across Delhi NCR, connected to your existing systems.',
+		'lp_cta_label'     => 'Meet our AI team',
+		'lp_points'        => ace_points( array( 'Graphix Tower, A-13A, Sector 62, Noida', 'Serving Noida, Delhi, Gurugram and all of Delhi NCR', 'AI + software + ERP + process knowledge' ) ),
+		'lp_form_heading'  => 'Discuss your AI project with our Noida team',
+		'lp_form_text'     => 'Tell us what you want to automate or build. We can meet at your office or ours in Sector 62.',
+		'lp_cards_eyebrow' => 'AI services in Noida',
+		'lp_cards_heading' => 'What we build for Delhi NCR businesses',
+		'lp_cards'         => ace_cards( array(
+			array( 'AI Agent Development', 'Custom AI agents connected to your tools and data, with human approval where it matters.', ace_url( 'ai-agent-development' ) ),
+			array( 'LLM Development', 'RAG assistants, fine-tuning and private LLMs on GPT, Claude, Gemini, Llama and more.', ace_url( 'llm-development' ) ),
+			array( 'AI Workflow Automation', 'Specialist agents that run sales, support and operations work.', ace_url( 'ai-workflow-automation' ) ),
+			array( 'AI Invoice Processing', 'GST invoice extraction, PO matching and posting to your ERP or Tally.', ace_url( 'ai-invoice-processing' ) ),
+			array( 'WhatsApp AI Agent', 'Order status, lead capture and payment reminders on WhatsApp.', ace_url( 'whatsapp-ai-agent' ) ),
+			array( 'AI-Powered ERP (DotOne)', 'A complete ERP with AI agents for sales, purchase, inventory, production and finance.', ace_url( 'ai-powered-erp' ) ),
+		) ),
+		'lp_steps_heading' => 'How we deliver AI projects',
+		'lp_steps'         => $default_steps,
+		'lp_faq'           => ace_faq( array(
+			array( 'Where is TechDotBit located?', 'Our office is at TechDotBit Private Limited, Graphix Tower, A-13A, Sector 62, Noida, and we work with businesses across Delhi NCR.' ),
+			array( 'Do you work with businesses outside Noida?', 'Yes. We serve Delhi, Gurugram, Ghaziabad, Greater Noida and the rest of Delhi NCR in person, and clients elsewhere remotely.' ),
+			array( 'Can you meet us at our office or factory?', 'Yes. Being in Noida, we can visit your office or shop floor to understand your processes before proposing a solution.' ),
+			array( 'What kind of AI projects do you take on?', 'AI agents, LLM and RAG applications, workflow automation, invoice processing, WhatsApp agents and AI-powered ERP, usually starting with one focused, measurable project.' ),
+			array( 'How do we get started?', 'Start with a short conversation or our free AI readiness assessment. We then agree a first project with clear success metrics.' ),
+		) ),
+	),
+);
+
+$pages[] = array(
+	'slug'    => 'software-development-company-noida',
+	'parent'  => 'root', // Top-level page: /software-development-company-noida/.
+	'title'   => 'Software Development Company in Noida',
+	'excerpt' => 'TechDotBit is a software development company in Noida, Sector 62, building custom software, web and mobile apps, ERP and AI solutions for businesses across Delhi NCR.',
+	'content' => '<h2>A software development company in Noida</h2><p>TechDotBit Private Limited is based at Graphix Tower, A-13A, Sector 62, Noida. We build custom software, web and mobile applications, ERP systems and AI solutions for startups, manufacturers, distributors and enterprises across Delhi NCR.</p><h2>Custom software built around your process</h2><p>We start with how your business actually works, then design software that fits it, rather than forcing your team into a generic product. Every project is delivered in short iterations you can review.</p><h2>Web and mobile applications</h2><p>Customer portals, dealer and field apps, internal tools and SaaS products, built for performance, security and easy maintenance.</p><h2>ERP and AI</h2><p>DotOne, our ERP, covers CRM, sales, purchase, inventory, manufacturing, finance and HR, with AI agents across every module. We also add AI agents and automation to existing software. AI-augmented engineering helps us accelerate feature delivery by up to 40%.</p><h2>Local team, in person</h2><p>Being in Sector 62 means we can meet at your office or ours, walk through your processes and stay close to the project from discovery to launch and support.</p>',
+	'fields'  => array(
+		'lp_hero_style'    => 'knot',
+		'lp_bg_visual'     => 'streaks',
+		'lp_eyebrow'       => 'Software development in Noida',
+		'lp_title'         => 'Software Development Company in Noida',
+		'lp_intro'         => 'Custom software, web and mobile apps, ERP and AI, built by our team in Sector 62, Noida for businesses across Delhi NCR.',
+		'lp_cta_label'     => 'Discuss your project',
+		'lp_points'        => ace_points( array( 'Graphix Tower, A-13A, Sector 62, Noida', 'Custom software, web and mobile apps, ERP and AI', 'Serving Noida, Delhi, Gurugram and all of Delhi NCR' ) ),
+		'lp_form_heading'  => 'Tell us about your software project',
+		'lp_form_text'     => 'Share what you want to build and an engineer from our Noida team will get back to you with next steps.',
+		'lp_cards_eyebrow' => 'What we build',
+		'lp_cards_heading' => 'Software development services in Noida',
+		'lp_cards'         => ace_cards( array(
+			array( 'Custom software development', 'Business applications designed around your processes, data and users.' ),
+			array( 'Web application development', 'Portals, dashboards, SaaS products and internal tools that are fast and secure.' ),
+			array( 'Mobile app development', 'Android and iOS apps for customers, dealers, field teams and staff.' ),
+			array( 'ERP development (DotOne)', 'A complete ERP for sales, purchase, inventory, manufacturing, finance and HR.', ace_url( 'ai-powered-erp' ) ),
+			array( 'AI development', 'AI agents, LLM applications and automation added to new or existing software.', ace_url( 'ai-development-company-noida' ) ),
+			array( 'Legacy modernization', 'Move ageing systems to modern, scalable architecture without disrupting the business.', ace_url( 'ai-legacy-modernization' ) ),
+		) ),
+		'lp_steps_heading' => 'How we deliver software projects',
+		'lp_steps'         => ace_steps( array(
+			array( 'Discover', 'Understand your process, users, systems and goals.' ),
+			array( 'Design', 'Agree scope, architecture and screens before building.' ),
+			array( 'Build', 'Deliver in short iterations you can review and test.' ),
+			array( 'Launch & support', 'Go live, train your team and keep improving.' ),
+		) ),
+		'lp_faq'           => ace_faq( array(
+			array( 'Where is your software development office?', 'TechDotBit Private Limited, Graphix Tower, A-13A, Sector 62, Noida. We work with businesses across Delhi NCR.' ),
+			array( 'What kind of software do you build?', 'Custom business software, web applications, mobile apps, ERP systems and AI solutions, including integrations with the tools you already use.' ),
+			array( 'Do you build ERP software?', 'Yes. DotOne, our ERP, covers CRM, sales, purchase, inventory, manufacturing, finance and HR, and we also customise and integrate existing ERPs.' ),
+			array( 'Can you add AI to our existing software?', 'Yes. We add AI agents, LLM features and automation to existing applications through secure integrations, without rebuilding everything.' ),
+			array( 'Can we meet your team in person?', 'Yes. We are in Sector 62, Noida, and can meet at your office or ours anywhere in Delhi NCR.' ),
+		) ),
+	),
+);
+
 /* Vary the hero animations of the earlier pages so no two neighbours repeat. */
 $ace_bg_by_slug = array(
 	'ai-led-software-development' => 'network', 'agentic-qa-testing' => 'grid', 'aiops-observability' => 'streaks',
@@ -864,6 +1042,7 @@ unset( $pg );
 WP_CLI::log( 'Saving AI pages:' );
 $hub_id = ace_save_page( $hub, 0, 0 );
 foreach ( $pages as $i => $p ) {
-	ace_save_page( $p, $hub_id, $i + 1 );
+	// 'parent' => 'root' creates a top-level page instead of a child of /ai-services/.
+	ace_save_page( $p, ( isset( $p['parent'] ) && 'root' === $p['parent'] ) ? 0 : $hub_id, $i + 1 );
 }
 WP_CLI::success( 'Done. Review the drafts under Pages, then publish. Hub: ' . get_preview_post_link( $hub_id ) );

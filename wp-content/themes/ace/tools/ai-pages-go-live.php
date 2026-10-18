@@ -44,6 +44,18 @@ foreach ( array_merge( array( $hub ), $children ) as $p ) {
 	}
 }
 
+// Top-level pages defined in create-ai-pages.php ('parent' => 'root') are
+// published too, but are not listed under the "AI Services" menu.
+foreach ( $pages as $def ) {
+	if ( isset( $def['parent'] ) && 'root' === $def['parent'] ) {
+		$top_page = ace_find_page( $def['slug'] );
+		if ( $top_page && 'publish' !== $top_page->post_status ) {
+			wp_update_post( array( 'ID' => $top_page->ID, 'post_status' => 'publish' ) );
+			WP_CLI::log( '  published  ' . $top_page->post_title );
+		}
+	}
+}
+
 /* 3. Main menu ---------------------------------------------------------- */
 $locations = get_nav_menu_locations();
 $menu_id   = isset( $locations['primary-menu'] ) ? (int) $locations['primary-menu'] : 0;
