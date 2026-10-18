@@ -72,7 +72,12 @@ foreach ( $ace_groups as $ace_g => $ace_meta ) {
 		WP_CLI::warning( 'Missing ' . $ace_file );
 		continue;
 	}
-	foreach ( (array) require $ace_file as $ace_p ) {
+	// Extra content files for the same group, e.g. erp-content/industries-more.php.
+	$ace_items = (array) require $ace_file;
+	foreach ( (array) glob( __DIR__ . '/erp-content/' . $ace_g . '-*.php' ) as $ace_extra ) {
+		$ace_items = array_merge( $ace_items, (array) require $ace_extra );
+	}
+	foreach ( $ace_items as $ace_p ) {
 		$ace_p['group']                 = $ace_g;
 		$ace_pages[ $ace_p['slug'] ]    = $ace_p;
 	}
