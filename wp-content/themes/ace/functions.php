@@ -714,6 +714,102 @@ function ace_dotone_url() {
 	return 'https://dotone.in/';
 }
 
+/**
+ * TechDotBit page slug => matching dotone.in page and label, so each ERP and
+ * AI page links to the most relevant DotOne page instead of the home page.
+ */
+function ace_dotone_map() {
+	$industry = array( '/industries/manufacturing', 'for manufacturing' );
+	return apply_filters( 'ace_dotone_map', array(
+		// Hub and industries.
+		'erp-software'                       => array( '/erp-software', 'ERP software' ),
+		'manufacturing-erp-software'         => array( '/manufacturing-erp', 'manufacturing ERP' ),
+		'pharma-erp-software'                => array( '/industries/pharma', 'for pharma' ),
+		'dairy-food-processing-erp-software' => array( '/industries/dairy', 'for dairy and food' ),
+		'fmcg-erp-software'                  => array( '/industries/food-beverage', 'for food and FMCG' ),
+		'chemical-erp-software'              => array( '/industries/chemical', 'for chemicals' ),
+		'packaging-erp-software'             => array( '/industries/packaging', 'for packaging' ),
+		'auto-components-erp-software'       => array( '/industries/automotive', 'for automotive' ),
+		'wire-cable-erp-software'            => array( '/industries/electronics', 'for electrical and electronics' ),
+		'distribution-erp-software'          => array( '/industries/trading-distribution', 'for trading and distribution' ),
+		'plywood-erp-software'               => $industry,
+		'adhesive-tape-erp-software'         => $industry,
+		'footwear-erp-software'              => $industry,
+		'laminate-erp-software'              => $industry,
+		'acp-erp-software'                   => $industry,
+		'steel-metal-erp-software'           => $industry,
+		'textile-garment-erp-software'       => $industry,
+		'plastic-erp-software'               => $industry,
+		'furniture-erp-software'             => $industry,
+		'pvc-pipe-erp-software'              => $industry,
+		'paper-mill-erp-software'            => $industry,
+		'service-business-erp-software'      => array( '/industries', 'industry solutions' ),
+		// Modules.
+		'inventory-management-software'      => array( '/inventory-management', 'inventory management' ),
+		'warehouse-management-software'      => array( '/warehouse-management', 'warehouse management' ),
+		'dispatch-logistics-software'        => array( '/warehouse-management', 'warehouse and dispatch' ),
+		'multi-location-erp'                 => array( '/warehouse-management', 'multi-location stock' ),
+		'production-planning-software'       => array( '/production-management', 'production management' ),
+		'shop-floor-tracking'                => array( '/production-management', 'production management' ),
+		'job-work-software'                  => array( '/production-management', 'production management' ),
+		'plant-maintenance-software'         => array( '/production-management', 'production management' ),
+		'bom-management-software'            => array( '/guides/bom-setup', 'BOM setup guide' ),
+		'purchase-management-software'       => array( '/purchase-management', 'purchase management' ),
+		'sales-order-management-software'    => array( '/sales-management', 'sales management' ),
+		'quality-management-software'        => array( '/quality-management', 'quality management' ),
+		'batch-traceability-software'        => array( '/quality-management', 'quality and traceability' ),
+		'accounting-gst-software'            => array( '/accounting', 'accounting and GST' ),
+		'costing-software'                   => array( '/finance-management', 'finance and costing' ),
+		'hr-payroll-software'                => array( '/hrms', 'HR and payroll' ),
+		'erp-crm-software'                   => array( '/crm', 'CRM' ),
+		'erp-reporting-analytics'            => array( '/reports-analytics', 'reports and analytics' ),
+		'mobile-erp-app'                     => array( '/mobile-erp', 'mobile ERP' ),
+		// Services, guides and comparisons.
+		'cloud-erp-software'                 => array( '/erp-software', 'cloud ERP' ),
+		'msme-erp-software'                  => array( '/erp-software', 'ERP for MSMEs' ),
+		'custom-erp-development'             => array( '/solutions', 'solutions' ),
+		'erp-implementation-services'        => array( '/walkthrough', 'product walkthrough' ),
+		'erp-integration-services'           => array( '/api-reference', 'API reference' ),
+		'erp-consulting-services'            => array( '/solutions/digital-transformation', 'digital transformation' ),
+		'how-to-choose-erp-software'         => array( '/guides/what-is-erp', 'ERP guide' ),
+		'erp-software-pricing'               => array( '/pricing', 'pricing' ),
+		'tally-to-erp-migration'             => array( '/integrations/tally', 'Tally integration' ),
+		'erp-vs-tally'                       => array( '/integrations/tally', 'Tally integration' ),
+		'tally-alternative'                  => array( '/integrations/tally', 'Tally integration' ),
+		'busy-alternative'                   => array( '/integrations/tally', 'Tally integration' ),
+		'gohighlevel-alternative'            => array( '/crm', 'CRM' ),
+		'leadsquared-alternative'            => array( '/crm', 'CRM' ),
+		'dotone-vs-erpnext'                  => array( '/demo', 'demo' ),
+		'odoo-alternative'                   => array( '/demo', 'demo' ),
+		'sap-alternative'                    => array( '/demo', 'demo' ),
+		'sap-b1-alternative'                 => array( '/demo', 'demo' ),
+		'zoho-alternative'                   => array( '/demo', 'demo' ),
+		'dynamics-365-alternative'           => array( '/demo', 'demo' ),
+		'tranzact-alternative'               => array( '/demo', 'demo' ),
+		'erp-software-company-noida'         => array( '/about', 'about DotOne' ),
+		// AI pages.
+		'ai-powered-erp'                     => array( '/ai-powered-erp', 'AI-powered ERP' ),
+		'ai-agent-library'                   => array( '/ai-agents', 'AI agents' ),
+		'ai-workflow-automation'             => array( '/workflow-automation', 'workflow automation' ),
+	) );
+}
+
+/** The dotone.in entry [url, label] for the current page, or null. */
+function ace_dotone_page_link() {
+	if ( ! is_page() ) {
+		return null;
+	}
+	$map  = ace_dotone_map();
+	$slug = get_post_field( 'post_name', get_queried_object_id() );
+	return isset( $map[ $slug ] ) ? array( 'https://dotone.in' . $map[ $slug ][0], $map[ $slug ][1] ) : null;
+}
+
+/** dotone.in URL for the current page: its matching page, else the home page. */
+function ace_dotone_page_url() {
+	$link = ace_dotone_page_link();
+	return $link ? $link[0] : ace_dotone_url();
+}
+
 /** Old product domain -> dotone.in, for links saved in content, ACF fields and menus. */
 function ace_dotone_fix_domain( $text ) {
 	return is_string( $text ) && false !== stripos( $text, 'dotone.biz' ) ? preg_replace( '#(https?:)?//(www\.)?dotone\.biz\b#i', 'https://dotone.in', $text ) : $text;
@@ -748,12 +844,20 @@ add_filter( 'the_content', function ( $content ) {
 			continue;
 		}
 		if ( ! $skip && preg_match( '/\bDOTONE\b|\bDotOne\b/i', $part ) ) {
-			$parts[ $i ] = preg_replace( '/\b(DOTONE|DotOne|Dotone)\b/', '<a href="' . esc_url( ace_dotone_url() ) . '" target="_blank" rel="noopener">$1</a>', $part, 1 );
+			$parts[ $i ] = preg_replace( '/\b(DOTONE|DotOne|Dotone)\b/', '<a href="' . esc_url( ace_dotone_page_url() ) . '" target="_blank" rel="noopener">$1</a>', $part, 1 );
 			return implode( '', $parts );
 		}
 	}
 	return $content;
 }, 25 );
+// Mapped pages end with a link to the matching dotone.in page.
+add_filter( 'the_content', function ( $content ) {
+	$link = ( is_admin() || ! in_the_loop() || ! is_main_query() ) ? null : ace_dotone_page_link();
+	if ( ! $link || false !== strpos( $content, 'tdb-dotone-more' ) ) {
+		return $content;
+	}
+	return $content . "\n" . '<p class="tdb-dotone-more"><a href="' . esc_url( $link[0] ) . '" target="_blank" rel="noopener">See DotOne ' . esc_html( $link[1] ) . ' on dotone.in <span aria-hidden="true">&nearr;</span></a></p>';
+}, 26 );
 // The "DotOne" item in the main menu opens the product website.
 add_filter( 'nav_menu_link_attributes', function ( $atts, $item ) {
 	if ( 0 === (int) $item->menu_item_parent && preg_match( '/^\s*dot\s*one\s*$/i', wp_strip_all_tags( $item->title ) ) ) {
