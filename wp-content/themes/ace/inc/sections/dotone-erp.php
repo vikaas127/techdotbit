@@ -41,7 +41,7 @@ if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) {
 					<div class="tdb-eos__row tdb-eos__row--new"><b>AI-powered ERP</b><span>Decides what's next and does the routine work</span></div>
 				</div>
 				<div class="tdb-eos__actions">
-					<a class="tdb-eos__btn" href="https://dotone.biz/" target="_blank" rel="noopener">Explore DotOne <span aria-hidden="true">&nearr;</span></a>
+					<a class="tdb-eos__btn" href="<?php echo esc_url( ace_dotone_url() ); ?>" target="_blank" rel="noopener">Explore DotOne <span aria-hidden="true">&nearr;</span></a>
 					<a class="tdb-eos__btn tdb-eos__btn--ghost" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Add AI to my ERP <span aria-hidden="true">&rarr;</span></a>
 				</div>
 				<?php if ( $ace_erp_links ) : ?>

@@ -14,7 +14,7 @@ $ace_erp_hub = get_page_by_path( 'erp-software' );
 				<h2 id="tdb-prod-title">DotOne</h2>
 				<p><?php esc_html_e( 'Your business operations in one intelligent platform.', 'ace' ); ?></p>
 				<div class="tdb-prod__actions">
-					<a class="tdb-h__btn" href="https://dotone.biz/" target="_blank" rel="noopener"><?php esc_html_e( 'Visit DotOne', 'ace' ); ?> <span aria-hidden="true">&nearr;</span></a>
+					<a class="tdb-h__btn" href="<?php echo esc_url( ace_dotone_url() ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Visit DotOne', 'ace' ); ?> <span aria-hidden="true">&nearr;</span></a>
 					<?php if ( $ace_erp_hub && 'publish' === $ace_erp_hub->post_status ) : ?>
 						<a class="tdb-prod__link" href="<?php echo esc_url( get_permalink( $ace_erp_hub ) ); ?>"><?php esc_html_e( 'ERP software by industry', 'ace' ); ?> <span aria-hidden="true">&rarr;</span></a>
 					<?php endif; ?>

@@ -44,7 +44,7 @@ if ( in_array( 'remove', $ace_args, true ) ) {
 		wp_delete_post( $ace_mi->ID, true );
 	}
 	// The "DotOne" column the menu step added (and anything left under it).
-	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_value' => 'https://dotone.biz/' ) ) as $ace_mi ) {
+	foreach ( get_posts( array( 'post_type' => 'nav_menu_item', 'numberposts' => -1, 'post_status' => 'any', 'meta_key' => '_menu_item_url', 'meta_value' => array( 'https://dotone.in/', 'https://dotone.biz/' ), 'meta_compare' => 'IN' ) ) as $ace_mi ) {
 		if ( ! in_array( $ace_mi->post_title, array( 'DotOne', 'DotOne ERP' ), true ) || ! (int) get_post_meta( $ace_mi->ID, '_menu_item_menu_item_parent', true ) ) {
 			continue;
 		}
@@ -451,7 +451,7 @@ if ( $ace_menu ) {
 			}
 			$ace_col = $ace_add( array(
 				'menu-item-title'     => 'DotOne',
-				'menu-item-url'       => 'https://dotone.biz/',
+				'menu-item-url'       => 'https://dotone.in/',
 				'menu-item-type'      => 'custom',
 				'menu-item-parent-id' => $ace_parent,
 				'menu-item-position'  => $ace_col_pos,

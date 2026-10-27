@@ -89,7 +89,7 @@
                   <span><?php echo esc_html( $ace_contact['phone'] ); ?></span>
                 </a>
               <?php endif; ?>
-              <a class="tdb-footer__dotone" href="https://dotone.biz/" target="_blank" rel="noopener">
+              <a class="tdb-footer__dotone" href="<?php echo esc_url( ace_dotone_url() ); ?>" target="_blank" rel="noopener">
                 <span class="tdb-footer__dotone-mark" aria-hidden="true">D1</span>
                 <span><small><?php esc_html_e( 'Our product', 'ace' ); ?></small><b>DotOne <span aria-hidden="true">&nearr;</span></b></span>
               </a>

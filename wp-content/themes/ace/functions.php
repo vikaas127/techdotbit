@@ -711,17 +711,28 @@ add_action( 'wp_enqueue_scripts', function () {
  * to the product website.
  */
 function ace_dotone_url() {
-	return 'https://dotone.biz/';
+	return 'https://dotone.in/';
+}
+
+/** Old product domain -> dotone.in, for links saved in content, ACF fields and menus. */
+function ace_dotone_fix_domain( $text ) {
+	return is_string( $text ) && false !== stripos( $text, 'dotone.biz' ) ? preg_replace( '#(https?:)?//(www\.)?dotone\.biz\b#i', 'https://dotone.in', $text ) : $text;
 }
 add_filter( 'acf/format_value', function ( $value ) {
-	return is_string( $value ) ? str_replace( 'DotOne ERP', 'DotOne', $value ) : $value;
+	return is_string( $value ) ? ace_dotone_fix_domain( str_replace( 'DotOne ERP', 'DotOne', $value ) ) : $value;
 }, 21 );
+add_filter( 'nav_menu_link_attributes', function ( $atts ) {
+	if ( ! empty( $atts['href'] ) ) {
+		$atts['href'] = ace_dotone_fix_domain( $atts['href'] );
+	}
+	return $atts;
+} );
 add_filter( 'the_content', function ( $content ) {
 	if ( ! is_string( $content ) || false === stripos( $content, 'dotone' ) ) {
 		return $content;
 	}
-	$content = str_replace( 'DotOne ERP', 'DotOne', $content );
-	if ( is_admin() || false !== stripos( $content, 'dotone.biz' ) ) {
+	$content = ace_dotone_fix_domain( str_replace( 'DotOne ERP', 'DotOne', $content ) );
+	if ( is_admin() || false !== stripos( $content, 'dotone.in' ) ) {
 		return $content;
 	}
 	// Link the first "DotOne" that is plain text (not in a link or heading).
