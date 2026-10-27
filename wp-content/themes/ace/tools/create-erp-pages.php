@@ -12,6 +12,9 @@
  *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php draft      # create new pages as drafts
  *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php nomenu     # skip the menu step
  *
+ * When new pages are added, the hub's page index is re-written so it links to
+ * them (previous text is kept in the hub's Revisions).
+ *
  * Pages that already exist and were NOT created by this script are never
  * changed. "refresh" overwrites WP Admin edits on generated pages.
  */
@@ -338,10 +341,20 @@ $ace_hub_id = ace_erp_save( $ace_hub, 0, 0, $ace_hub_fields, $ace_refresh, $ace_
 
 $ace_ids = array();
 $ace_i   = 0;
+$ace_new = 0;
 foreach ( $ace_pages as $ace_slug => $ace_p ) {
+	$ace_existed          = (bool) ace_erp_find( $ace_slug, $ace_hub_id );
 	$ace_p['content']   = ace_erp_html( $ace_p, $ace_pages, $ace_hub_slug );
 	$ace_ids[ $ace_slug ] = ace_erp_save( $ace_p, $ace_hub_id, $ace_i + 1, ace_erp_fields( $ace_p, $ace_i ), $ace_refresh, $ace_draft );
+	$ace_new             += $ace_existed ? 0 : 1;
 	$ace_i++;
+}
+
+// New pages were added but the hub was kept: re-write only the hub's body so
+// its index links to every ERP page (the old text stays in Revisions).
+if ( $ace_new && ! $ace_refresh && get_post_meta( $ace_hub_id, '_ace_erp_page', true ) ) {
+	wp_update_post( wp_slash( array( 'ID' => $ace_hub_id, 'post_content' => $ace_hub['content'] ) ) );
+	WP_CLI::log( sprintf( '  hub      index updated with %d new page(s)', $ace_new ) );
 }
 
 /* -------------------------------------------------------------------------
