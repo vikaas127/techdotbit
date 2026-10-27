@@ -88,9 +88,8 @@ return array(
 					'Every job worker is set up as a virtual stock location. Material sent on a challan moves into that location and stays visible in [[inventory-management-software|inventory]] reports as your stock held elsewhere, valued and aged. You can see at any time how much of each item is lying at each vendor and against which order.',
 					'When processed goods come back, the ERP uses the BOM or conversion ratio defined for that process to calculate how much input should have been consumed. If 100 kg of coil goes for slitting and 97 kg of strips returns, the system knows what the standard consumption was, what the allowed process loss is and whether the difference is within tolerance or needs to be explained.',
 				),
-				'h3' => 'Allowed process loss',
-				'p2' => array(
-					'Process loss percentages are defined per item or per process and agreed with each job worker. Losses within the allowance are consumed automatically; anything beyond it is flagged for review, recovery from the vendor or approval, so material does not quietly disappear at the job worker.',
+				'h3' => array(
+					array( 'Allowed process loss', 'Process loss percentages are defined per item or per process and agreed with each job worker. Losses within the allowance are consumed automatically; anything beyond it is flagged for review, recovery from the vendor or approval, so material does not quietly disappear at the job worker.' ),
 				),
 			),
 			array(
@@ -250,9 +249,10 @@ return array(
 				'p'  => array(
 					'Overall Equipment Effectiveness, or OEE, measures how much of a machine planned time actually produced good output at the rated speed. It is calculated as Availability x Performance x Quality. Availability is run time divided by planned production time. Performance is actual output divided by what the machine could have made at its ideal rate in that run time. Quality is good output divided by total output.',
 				),
-				'h3' => 'A simple worked example (illustrative figures)',
+				'h3' => array(
+					array( 'A simple worked example (illustrative figures)', 'Suppose a machine is planned for a 480-minute shift and is stopped for 60 minutes, so it runs 420 minutes: availability is 420 / 480 = 87.5 percent. Its ideal rate is 2 pieces per minute, so it could have made 840 pieces in 420 minutes; it actually made 756: performance is 756 / 840 = 90 percent. Of those, 720 were good: quality is 720 / 756 = about 95.2 percent. OEE is 0.875 x 0.90 x 0.952, about 75 percent. These numbers are only an illustration, not a benchmark or a result from any customer.' ),
+				),
 				'p2' => array(
-					'Suppose a machine is planned for a 480-minute shift and is stopped for 60 minutes, so it runs 420 minutes: availability is 420 / 480 = 87.5 percent. Its ideal rate is 2 pieces per minute, so it could have made 840 pieces in 420 minutes; it actually made 756: performance is 756 / 840 = 90 percent. Of those, 720 were good: quality is 720 / 756 = about 95.2 percent. OEE is 0.875 x 0.90 x 0.952, about 75 percent. These numbers are only an illustration, not a benchmark or a result from any customer.',
 					'The value of OEE is less in the final figure and more in the breakdown. It tells you whether the biggest loss is stoppages, slow running or rejections, so improvement effort goes to the right place.',
 				),
 			),

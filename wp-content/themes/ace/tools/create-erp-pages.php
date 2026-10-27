@@ -11,9 +11,11 @@
  *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php refresh    # also re-write pages created by this script
  *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php draft      # create new pages as drafts
  *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php nomenu     # skip the menu step
+ *   wp eval-file wp-content/themes/ace/tools/create-erp-pages.php only=job-work-software,shop-floor-tracking
+ *                                                                            # re-write just these generated pages
  *
- * When new pages are added, the hub's page index is re-written so it links to
- * them (previous text is kept in the hub's Revisions).
+ * When the hub's page index is missing any ERP page, it is re-written so it
+ * links to all of them (previous text is kept in the hub's Revisions).
  *
  * Pages that already exist and were NOT created by this script are never
  * changed. "refresh" overwrites WP Admin edits on generated pages.
@@ -59,6 +61,12 @@ if ( in_array( 'remove', $ace_args, true ) ) {
 $ace_refresh = in_array( 'refresh', $ace_args, true );
 $ace_draft   = in_array( 'draft', $ace_args, true );
 $ace_menu    = ! in_array( 'nomenu', $ace_args, true );
+$ace_only    = array();
+foreach ( $ace_args as $ace_arg ) {
+	if ( 0 === strpos( $ace_arg, 'only=' ) ) {
+		$ace_only = array_filter( explode( ',', substr( $ace_arg, 5 ) ) );
+	}
+}
 
 /* -------------------------------------------------------------------------
  * Content
@@ -341,20 +349,21 @@ $ace_hub_id = ace_erp_save( $ace_hub, 0, 0, $ace_hub_fields, $ace_refresh, $ace_
 
 $ace_ids = array();
 $ace_i   = 0;
-$ace_new = 0;
 foreach ( $ace_pages as $ace_slug => $ace_p ) {
-	$ace_existed          = (bool) ace_erp_find( $ace_slug, $ace_hub_id );
 	$ace_p['content']   = ace_erp_html( $ace_p, $ace_pages, $ace_hub_slug );
-	$ace_ids[ $ace_slug ] = ace_erp_save( $ace_p, $ace_hub_id, $ace_i + 1, ace_erp_fields( $ace_p, $ace_i ), $ace_refresh, $ace_draft );
-	$ace_new             += $ace_existed ? 0 : 1;
+	$ace_ids[ $ace_slug ] = ace_erp_save( $ace_p, $ace_hub_id, $ace_i + 1, ace_erp_fields( $ace_p, $ace_i ), $ace_refresh || in_array( $ace_slug, $ace_only, true ), $ace_draft );
 	$ace_i++;
 }
 
-// New pages were added but the hub was kept: re-write only the hub's body so
-// its index links to every ERP page (the old text stays in Revisions).
-if ( $ace_new && ! $ace_refresh && get_post_meta( $ace_hub_id, '_ace_erp_page', true ) ) {
+// The hub was kept but its index is missing ERP pages: re-write only the
+// hub's body so it links to every ERP page (the old text stays in Revisions).
+$ace_hub_body    = (string) get_post_field( 'post_content', $ace_hub_id );
+$ace_hub_missing = array_filter( array_keys( $ace_pages ), function ( $slug ) use ( $ace_hub_body, $ace_hub_slug ) {
+	return false === strpos( $ace_hub_body, '/' . $ace_hub_slug . '/' . $slug . '/' );
+} );
+if ( $ace_hub_missing && ! $ace_refresh && get_post_meta( $ace_hub_id, '_ace_erp_page', true ) ) {
 	wp_update_post( wp_slash( array( 'ID' => $ace_hub_id, 'post_content' => $ace_hub['content'] ) ) );
-	WP_CLI::log( sprintf( '  hub      index updated with %d new page(s)', $ace_new ) );
+	WP_CLI::log( sprintf( '  hub      index updated with %d missing page(s)', count( $ace_hub_missing ) ) );
 }
 
 /* -------------------------------------------------------------------------
