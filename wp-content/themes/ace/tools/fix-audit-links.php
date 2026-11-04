@@ -15,6 +15,9 @@
  *  - Plain-text post meta (ACF fields) holding a techdotbit.com URL or <a> links.
  *  - Removes injected spam links (casino) and unlinks dead external links,
  *    keeping their text; fixes moved external URLs (dotoneforbusiness -> dotone.in).
+ *  - Images: /staging/ paths fixed, moved hotlinked images updated, hotlinked
+ *    images that no longer exist removed; outbound links that redirect
+ *    updated to their final URL.
  *  - Turns <h1> headings inside post content into <h2> (the theme already
  *    prints the title as the page's H1).
  *  - Lists (only) other links that look like injected spam, for review.
@@ -82,7 +85,7 @@ $ids = $wpdb->get_col(
 	"SELECT ID FROM {$wpdb->posts}
 	 WHERE post_type NOT IN ('revision','nav_menu_item','attachment')
 	   AND post_status IN ('publish','draft','pending','private','future')
-	   AND post_content LIKE '%<a%'"
+	   AND ( post_content LIKE '%<a%' OR post_content LIKE '%<img%' OR post_content LIKE '%<h1%' OR post_content LIKE '%http://%' )"
 );
 foreach ( $ids as $id ) {
 	$before = $wpdb->get_var( $wpdb->prepare( "SELECT post_content FROM {$wpdb->posts} WHERE ID = %d", $id ) );

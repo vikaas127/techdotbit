@@ -112,6 +112,8 @@ function techdotbit_fix_links_in_html( $html ) {
         );
     }
 
+    $html = techdotbit_fix_images_in_html( $html );
+
     // Own-domain images, scripts and styles over http:// are mixed content.
     $html = preg_replace( '#(?<=["\'(\s,=])http://(?:www\.)?techdotbit\.com(?=[/"\'\s)?\#]|$)#i', 'https://techdotbit.com', $html );
     $html = preg_replace( '#http:\\\\/\\\\/(?:www\.)?techdotbit\.com(?=\\\\/|")#i', 'https:\/\/techdotbit.com', $html );
@@ -131,6 +133,8 @@ function techdotbit_dead_link_patterns() {
         '#^https?://avinetworks\.com/glossary/kubernetes-container/?#i',
         '#^https?://www\.jpmorgan\.com/technology/technology-blog/synthetic-data-for-real-insights#i',
         '#^https?://www\.fbi\.gov/stats-services/publications/insurance-fraud#i',
+        '#^https?://promotions\.bankofamerica\.com/digitalbanking/mobilebanking/erica#i',
+        '#^https?://drive\.google\.com/drive/folders/#i',
     ) );
 }
 
@@ -152,11 +156,108 @@ function techdotbit_replace_external_url( $url ) {
     if ( preg_match( '#^https?:/{3,}(.+)$#i', $raw, $m ) ) {
         return 'https://' . $m[1];
     }
+    $map = techdotbit_external_redirect_map();
+    if ( isset( $map[ $raw ] ) ) {
+        return $map[ $raw ];
+    }
     // DotOne's old domains no longer resolve.
     if ( preg_match( '#^https?://(www\.)?dotoneforbusiness\.(com|in)(/.*)?$#i', $raw ) ) {
         return function_exists( 'ace_dotone_url' ) ? ace_dotone_url() : 'https://dotone.in/';
     }
     return $url;
+}
+
+/**
+ * Outbound links that permanently redirect (checked November 2026), mapped
+ * to where they end up so visitors and crawlers skip the redirect.
+ */
+function techdotbit_external_redirect_map() {
+    return apply_filters( 'techdotbit_external_redirect_map', array(
+        'http://www.talend.com/' => 'https://www.qlik.com/us/qlik-talend',
+        'https://ai.google.dev/available_regions#available_regions' => 'https://aistudio.google.com/docs/available-regions',
+        'https://ai.google.dev/docs' => 'https://aistudio.google.com/docs',
+        'https://ai.google.dev/tutorials/dart_quickstart' => 'https://aistudio.google.com/docs/get-started?codelanguage=dart',
+        'https://aistudio.google.com/?utm_source=flutter&utm_medium=referral&utm_campaign=blog_gaidartsdk_announcment&utm_content=' => 'https://aistudio.google.com/welcome?utm_source=flutter&utm_medium=referral&utm_campaign=blog_gaidartsdk_announcment&utm_content',
+        'https://apps.apple.com/cn/app/%E9%97%B2%E9%B1%BC-%E9%97%B2%E4%B8%8D%E4%BD%8F-%E4%B8%8A%E9%97%B2%E9%B1%BC/id510909506' => 'https://apps.apple.com/cn/app/%E9%97%B2%E9%B1%BC-%E4%B8%8A%E9%97%B2%E9%B1%BC-%E8%B5%9A%E4%B8%80%E7%AC%94/id510909506',
+        'https://apps.apple.com/us/app/acorn-tv/id896014310' => 'https://apps.apple.com/us/app/acorn-tv-brilliant-mysteries/id896014310',
+        'https://apps.apple.com/us/app/hallmark-movies-now/id472567577' => 'https://apps.apple.com/us/app/hallmark/id472567577',
+        'https://apps.apple.com/us/app/realtor-com-real-estate/id336698281' => 'https://apps.apple.com/us/app/realtor-com-real-estate-rent/id336698281',
+        'https://apps.apple.com/us/app/story-collage-editor-postmuse/id1373022941?ls=1' => 'https://apps.apple.com/us/app/reels-story-templates-postmuse/id1373022941?ls=1',
+        'https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664' => 'https://apps.apple.com/us/app/youtube/id544007664',
+        'https://aws.amazon.com/cloudformation' => 'https://aws.amazon.com/cloudformation/',
+        'https://aws.amazon.com/what-is-aws' => 'https://aws.amazon.com/what-is-aws/',
+        'https://cloud.google.com/dataflow' => 'https://cloud.google.com/products/dataflow',
+        'https://cloud.google.com/use-cases/generative-ai' => 'https://cloud.google.com/ai/generative-ai',
+        'https://docs.mongodb.com/' => 'https://www.mongodb.com/docs/',
+        'https://insights.stackoverflow.com/survey/2021#most-loved-dreaded-and-wanted-language-want' => 'https://survey.stackoverflow.co/2021',
+        'https://nodejs.org/' => 'https://nodejs.org/en',
+        'https://scrapy.org/' => 'https://www.scrapy.org/',
+        'https://spot.io/resources/cloud-cost/cloud-cost-optimization-15-ways-to-optimize-your-cloud/' => 'https://www.flexera.com/blog/finops/cloud-cost-optimization-15-ways-to-optimize-your-cloud/',
+        'https://www.android.com/everyone/' => 'https://www.android.com/why-android/',
+        'https://www.azzure-it.com/' => 'https://advania.co.uk',
+        'https://www.bmc.com/blogs/csp-cloud-service-providers/' => 'https://www.bmc.com/resources/topics/csp-cloud-service-providers.html',
+        'https://www.capitalone.com/digital/eno/' => 'https://www.capitalone.com/digital/tools/eno/',
+        'https://www.facebook.com/profile.php?id=100091553312657' => 'https://www.facebook.com/people/Techdotbit/100091553312657/',
+        'https://www.gnani.ai/resources/blogs/ai-speech-recognition-what-is-it-and-how-it-works/' => 'https://www.gnani.ai/resources/blogs/ai-speech-recognition-what-is-it-and-how-it-works',
+        'https://www.hmnow.com/' => 'https://www.hallmarkplus.com/',
+        'https://www.hulu.com/' => 'https://www.hulu.com/welcome',
+        'https://www.ibm.com/cloud/learn/cloud-computing' => 'https://www.ibm.com/topics',
+        'https://www.ibm.com/topics/encryption#:~:text=Data%20encryption%20is%20a%20way,data%20encryption%3A%20asymmetric%20vs%20symmetric' => 'https://www.ibm.com/think/topics/encryption',
+        'https://www.ibm.com/topics/natural-language-processing#:~:text=Natural%20language%20processing%20(NLP)%20refers,same%20way%20human%20beings%20can.' => 'https://www.ibm.com/think/topics/natural-language-processing',
+        'https://www.ibm.com/topics/serverless#:~:text=Serverless%20computing%20is%20an%20application,managing%20servers%20or%20backend%20infrastructure.' => 'https://www.ibm.com/think/topics/serverless',
+        'https://www.ibm.com/watson/advantage-reports/market-report.html' => 'https://www.ibm.com/products/watsonx',
+        'https://www.knowledgehut.com/blog/blockchain/smart-contract' => 'https://www.upgrad.com/blog/how-to-write-first-smart-contract/',
+        'https://www.microsoft.com/en-us/power-platform/products/power-bi/' => 'https://www.microsoft.com/en-us/microsoft-fabric/features/power-bi',
+        'https://www.mongodb.com/transactions' => 'https://www.mongodb.com/products/capabilities/transactions',
+        'https://www.techtarget.com/searchcio/definition/compliance-audit' => 'https://www.techtarget.com/it-strategy/definition/compliance-audit',
+        'https://www2.deloitte.com/' => 'https://www.deloitte.com/us/en.html',
+        'https://www2.deloitte.com/content/dam/insights/us/articles/4958_Digital-banking-charticle/4958_Online-banking_Charticle.pdf' => 'https://www.deloitte.com/content/dam/insights/articles/2024/4958_digital-banking-charticle/4958-online-banking-charticle.pdf',
+    ) );
+}
+
+/**
+ * Images: content copied from the old staging site, hotlinked images that
+ * moved, and hotlinked images that no longer exist (removed).
+ */
+function techdotbit_dead_image_patterns() {
+    return apply_filters( 'techdotbit_dead_image_patterns', array(
+        '#^https?://solveit\.dev/_next/image#i',
+        '#^https?://media\.umbraco\.io/goodhabitz/#i',
+        '#^https?://www\.apptunix\.com/blog/wp-content/uploads/sites/3/2019/11/KlasterMe#i',
+        '#^https?://www\.philips-hue\.com/.*signifyimg#i',
+        '#^https?://i\.morioh\.com/2023/11/17/c1b87fb6\.webp#i',
+        '#^https?://letstranzact\.com/_nuxt/img/#i',
+    ) );
+}
+
+function techdotbit_fix_images_in_html( $html ) {
+    if ( ! is_string( $html ) || false === stripos( $html, '<img' ) ) {
+        return $html;
+    }
+    $html = str_ireplace( 'techdotbit.com/staging/wp-content/', 'techdotbit.com/wp-content/', $html );
+    $html = str_replace(
+        array( 'https://reflectly.app/assets/', 'https://cdn-images-1.medium.com/max/1600/' ),
+        array( 'https://reflectlyapp.com/assets/', 'https://cdn-images-1.medium.com/v2/resize:fit:1600/' ),
+        $html
+    );
+    $html = preg_replace_callback(
+        '/<img\b[^>]*>/i',
+        function ( $m ) {
+            if ( ! preg_match( '/\s(?:data-)?src\s*=\s*(["\'])(.*?)\1/i', $m[0], $src ) ) {
+                return $m[0];
+            }
+            $url = html_entity_decode( $src[2], ENT_QUOTES );
+            foreach ( techdotbit_dead_image_patterns() as $pattern ) {
+                if ( preg_match( $pattern, $url ) ) {
+                    return '';
+                }
+            }
+            return $m[0];
+        },
+        $html
+    );
+    // Wrappers left empty by a removed image.
+    return preg_replace( '#<figure\b[^>]*>\s*</figure>#i', '', $html );
 }
 
 /**
