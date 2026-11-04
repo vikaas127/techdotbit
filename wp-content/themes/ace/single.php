@@ -269,7 +269,7 @@ get_header(); ?>
 				<h1 class="tdb-article__title"><?php the_title(); ?></h1>
 				<?php if ( has_excerpt() ) : ?><p class="tdb-article__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 				<div class="tdb-article__meta">
-					<?php echo get_avatar( get_the_author_meta( 'ID' ), 40, '', '', array( 'class' => 'tdb-article__avatar' ) ); ?>
+					<?php echo get_avatar( get_the_author_meta( 'ID' ), 40, '', get_the_author(), array( 'class' => 'tdb-article__avatar' ) ); ?>
 					<span class="tdb-article__author"><?php the_author(); ?></span>
 					<span aria-hidden="true">·</span>
 					<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>

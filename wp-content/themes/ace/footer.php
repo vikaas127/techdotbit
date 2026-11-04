@@ -50,7 +50,7 @@
               <?php if ( have_rows( 'social_media', 'option' ) ) : ?>
                 <ul class="tdb-footer__social">
                   <?php while ( have_rows( 'social_media', 'option' ) ) : the_row(); ?>
-                    <li><a href="<?php echo esc_url( get_sub_field( 'link' ) ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( get_sub_field( 'alt' ) ); ?>"><img loading="lazy" decoding="async" width="18" height="18" src="<?php echo esc_url( get_sub_field( 'icon' ) ); ?>" alt=""></a></li>
+                    <li><a href="<?php echo esc_url( get_sub_field( 'link' ) ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( get_sub_field( 'alt' ) ); ?>"><img loading="lazy" decoding="async" width="18" height="18" src="<?php echo esc_url( get_sub_field( 'icon' ) ); ?>" alt="<?php echo esc_attr( get_sub_field( 'alt' ) ? get_sub_field( 'alt' ) : __( 'Social media', 'ace' ) ); ?>"></a></li>
                   <?php endwhile; ?>
                 </ul>
               <?php endif; ?>

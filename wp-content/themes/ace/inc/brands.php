@@ -69,7 +69,7 @@ if ( $ace_logos ) : ?>
         <?php foreach ( $ace_logos as $ace_logo ) : ?>
           <li class="tdb-marquee__item"<?php echo $ace_copy ? ' aria-hidden="true"' : ''; ?>>
             <?php if ( $ace_logo['link'] ) : ?><a href="<?php echo esc_url( $ace_logo['link'] ); ?>"<?php echo $ace_copy ? ' tabindex="-1"' : ''; ?>><?php endif; ?>
-            <img src="<?php echo esc_url( $ace_logo['url'] ); ?>" alt="<?php echo $ace_copy ? '' : esc_attr( $ace_logo['alt'] ); ?>" width="110" height="40" loading="lazy" decoding="async">
+            <img src="<?php echo esc_url( $ace_logo['url'] ); ?>" alt="<?php echo esc_attr( $ace_logo['alt'] ); ?>" width="110" height="40" loading="lazy" decoding="async">
             <?php if ( $ace_logo['link'] ) : ?></a><?php endif; ?>
           </li>
         <?php endforeach; ?>

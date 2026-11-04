@@ -37,7 +37,7 @@ while ( have_posts() ) :
 	}
 	$ace_bg_html = function ( $bg ) use ( $visual ) {
 		if ( is_array( $visual ) && ! empty( $visual['url'] ) ) {
-			return '<img src="' . esc_url( $visual['url'] ) . '" alt="" width="' . (int) $visual['width'] . '" height="' . (int) $visual['height'] . '" fetchpriority="high">';
+			return '<img src="' . esc_url( $visual['url'] ) . '" alt="' . esc_attr( ! empty( $visual['alt'] ) ? $visual['alt'] : get_the_title() ) . '" width="' . (int) $visual['width'] . '" height="' . (int) $visual['height'] . '" fetchpriority="high">';
 		}
 		switch ( $bg ) {
 			case 'knot':    return '<canvas class="tdb-orb"></canvas>';
@@ -239,7 +239,7 @@ while ( have_posts() ) :
 						<div class="iconbox">
 							<div class="iconbox-icon-wrap mb-1em"><span class="iconbox-icon-container">
 								<?php if ( ! empty( $card['icon']['url'] ) ) : ?>
-									<img src="<?php echo esc_url( $card['icon']['url'] ); ?>" alt="" width="32" height="32" loading="lazy">
+									<img src="<?php echo esc_url( $card['icon']['url'] ); ?>" alt="<?php echo esc_attr( ! empty( $card['icon']['alt'] ) ? $card['icon']['alt'] : ( isset( $card['title'] ) ? $card['title'] : '' ) ); ?>" width="32" height="32" loading="lazy">
 								<?php else : ?>
 									<svg class="tdb-line-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $ace_icons[ $ci % count( $ace_icons ) ]; // phpcs:ignore -- static markup ?></svg>
 								<?php endif; ?>

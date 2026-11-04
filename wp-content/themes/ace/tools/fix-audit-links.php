@@ -13,6 +13,11 @@
  *  - Menu item URLs (e.g. INDUSTRIES -> http://techdotbit.com/industries).
  *  - <a href> links in post, page and other post-type content.
  *  - Plain-text post meta (ACF fields) holding a techdotbit.com URL or <a> links.
+ *  - Removes injected spam links (casino) and unlinks dead external links,
+ *    keeping their text; fixes moved external URLs (dotoneforbusiness -> dotone.in).
+ *  - Turns <h1> headings inside post content into <h2> (the theme already
+ *    prints the title as the page's H1).
+ *  - Lists (only) other links that look like injected spam, for review.
  *
  * Each link becomes its final address: https, no www, trailing slash, and
  * moved pages mapped (/blogs -> /blog/, /contact -> /contact-us/, ...).
@@ -38,17 +43,21 @@ $total = 0;
 
 /** Log each changed link in $before -> $after (both HTML). */
 $ace_log_diff = function ( $label, $before, $after ) {
-	preg_match_all( '/<a\b[^>]*?\shref\s*=\s*(["\'])(.*?)\1/is', $before, $a );
-	preg_match_all( '/<a\b[^>]*?\shref\s*=\s*(["\'])(.*?)\1/is', $after, $b );
-	$changes = array();
-	foreach ( $a[2] as $i => $old ) {
-		if ( isset( $b[2][ $i ] ) && $b[2][ $i ] !== $old ) {
-			$changes[ $old . '  ->  ' . html_entity_decode( $b[2][ $i ] ) ] = true;
-		}
-	}
+	$re = '/<a\b[^>]*?\shref\s*=\s*(["\'])(.*?)\1/is';
+	preg_match_all( $re, $before, $a );
+	preg_match_all( $re, $after, $b );
+	$old = array_map( 'html_entity_decode', $a[2] );
+	$new = array_map( 'html_entity_decode', $b[2] );
 	WP_CLI::log( '  ' . $label );
-	foreach ( array_keys( $changes ) as $c ) {
-		WP_CLI::log( '      ' . $c );
+	foreach ( array_unique( array_diff( $old, $new ) ) as $x ) {
+		WP_CLI::log( '      - ' . $x );
+	}
+	foreach ( array_unique( array_diff( $new, $old ) ) as $x ) {
+		WP_CLI::log( '      + ' . $x );
+	}
+	$h1 = preg_match_all( '/<h1[\s>]/i', $before ) - preg_match_all( '/<h1[\s>]/i', $after );
+	if ( $h1 > 0 ) {
+		WP_CLI::log( "      $h1 <h1> -> <h2>" );
 	}
 };
 
@@ -77,7 +86,7 @@ $ids = $wpdb->get_col(
 );
 foreach ( $ids as $id ) {
 	$before = $wpdb->get_var( $wpdb->prepare( "SELECT post_content FROM {$wpdb->posts} WHERE ID = %d", $id ) );
-	$after  = techdotbit_fix_links_in_html( $before );
+	$after  = techdotbit_demote_content_h1( techdotbit_fix_links_in_html( $before ) );
 	if ( $after === $before ) {
 		continue;
 	}
@@ -117,6 +126,29 @@ foreach ( $rows as $row ) {
 		$wpdb->update( $wpdb->postmeta, array( 'meta_value' => $new ), array( 'meta_id' => $row->meta_id ) );
 		wp_cache_delete( $row->post_id, 'post_meta' );
 	}
+}
+
+/* 4. Possible spam links (report only) ---------------------------------- */
+WP_CLI::log( "\n4) Links that look like injected spam (review and remove by hand)" );
+$spam_words = '(casino|betting|\\bbet[0-9a-z-]*\\.|poker|slots?\\b|gambl|viagra|cialis|payday|loan|escort|porn|xxx|replica|essay)';
+$rows       = $wpdb->get_results(
+	"SELECT ID, post_content FROM {$wpdb->posts}
+	 WHERE post_type NOT IN ('revision','nav_menu_item') AND post_status <> 'trash' AND post_content LIKE '%<a%'"
+);
+$found = 0;
+foreach ( $rows as $row ) {
+	if ( preg_match_all( '/<a\\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)<\\/a>/is', $row->post_content, $m, PREG_SET_ORDER ) ) {
+		foreach ( $m as $link ) {
+			$host = (string) wp_parse_url( $link[1], PHP_URL_HOST );
+			if ( $host && preg_match( '#' . $spam_words . '#i', $host . ' ' . wp_strip_all_tags( $link[2] ) ) && ! preg_match( '#techdotbit\\.com$#', $host ) ) {
+				$found++;
+				WP_CLI::log( sprintf( '  #%d %s: %s ("%s")', $row->ID, get_permalink( $row->ID ), $link[1], wp_strip_all_tags( $link[2] ) ) );
+			}
+		}
+	}
+}
+if ( ! $found ) {
+	WP_CLI::log( '  none found' );
 }
 
 WP_CLI::log( '' );

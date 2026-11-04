@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: TechDotBit Link & Social Tag Hygiene
- * Description: Fixes site-audit issues that come from menu items and post content stored in the database: rewrites internal links to their final HTTPS URL (no http://, no www, trailing slash, known moved URLs), turns bare email hrefs into mailto: links, 301s the old /blogs URL, adds a site-wide link to the HTML sitemap, fills in missing Open Graph / Twitter image and description, and trims over-long meta descriptions.
- * Version:     1.0.0
+ * Description: Fixes site-audit issues from menu items and post content stored in the database: internal links to their final HTTPS URL, mailto: for bare email hrefs, dead and spam outbound links, http:// own-domain assets, one H1 per page, /blogs and /jobs/ redirects, a footer link to the HTML sitemap, fallback meta descriptions and Open Graph tags, shorter titles, and the off-topic category out of the index.
+ * Version:     1.1.0
  * Author:      TechDotBit
  */
 
@@ -73,22 +73,107 @@ function techdotbit_normalize_internal_url( $url ) {
  * editing the database.
  */
 function techdotbit_fix_links_in_html( $html ) {
-    if ( ! is_string( $html ) || false === stripos( $html, '<a' ) ) {
+    if ( ! is_string( $html ) || '' === $html ) {
         return $html;
     }
 
-    return preg_replace_callback(
-        '/(<a\b[^>]*?\shref\s*=\s*)(["\'])(.*?)\2/is',
-        function ( $m ) {
-            $fixed = techdotbit_normalize_internal_url( $m[3] );
-            if ( $fixed === $m[3] ) {
+    if ( false !== stripos( $html, '<a' ) ) {
+        // Spam and dead external links: drop spam entirely, unwrap dead links (keep the text).
+        $html = preg_replace_callback(
+            '/<a\b[^>]*?\shref\s*=\s*(["\'])(.*?)\1[^>]*>(.*?)<\/a>/is',
+            function ( $m ) {
+                $url = html_entity_decode( trim( $m[2] ), ENT_QUOTES );
+                foreach ( techdotbit_spam_link_patterns() as $pattern ) {
+                    if ( preg_match( $pattern, $url ) ) {
+                        return '';
+                    }
+                }
+                foreach ( techdotbit_dead_link_patterns() as $pattern ) {
+                    if ( preg_match( $pattern, $url ) ) {
+                        return $m[3];
+                    }
+                }
                 return $m[0];
-            }
-            return $m[1] . $m[2] . esc_attr( $fixed ) . $m[2];
-        },
-        $html
-    );
+            },
+            $html
+        );
+
+        // Internal links to their final URL; known moved external links.
+        $html = preg_replace_callback(
+            '/(<a\b[^>]*?\shref\s*=\s*)(["\'])(.*?)\2/is',
+            function ( $m ) {
+                $fixed = techdotbit_normalize_internal_url( techdotbit_replace_external_url( $m[3] ) );
+                if ( $fixed === $m[3] ) {
+                    return $m[0];
+                }
+                return $m[1] . $m[2] . esc_attr( $fixed ) . $m[2];
+            },
+            $html
+        );
+    }
+
+    // Own-domain images, scripts and styles over http:// are mixed content.
+    $html = preg_replace( '#(?<=["\'(\s,=])http://(?:www\.)?techdotbit\.com(?=[/"\'\s)?\#]|$)#i', 'https://techdotbit.com', $html );
+    $html = preg_replace( '#http:\\\\/\\\\/(?:www\.)?techdotbit\.com(?=\\\\/|")#i', 'https:\/\/techdotbit.com', $html );
+
+    return $html;
 }
+
+/**
+ * Outbound links to sites that are gone (404 or no longer resolving). The
+ * link is removed and its text kept.
+ */
+function techdotbit_dead_link_patterns() {
+    return apply_filters( 'techdotbit_dead_link_patterns', array(
+        '#^https?://apps\.apple\.com/us/app/(crackle-movies-tv|hbo-now-stream-tv-movies|getease|klasterme)/#i',
+        '#^https?://play\.google\.com/store/apps/details\?id=(com\.gotv\.crackle\.handset|com\.hbo\.hbonow|com\.yeagger\.ease)\b#i',
+        '#^https?://(www\.)?crackle\.com(/|$)#i',
+        '#^https?://avinetworks\.com/glossary/kubernetes-container/?#i',
+        '#^https?://www\.jpmorgan\.com/technology/technology-blog/synthetic-data-for-real-insights#i',
+        '#^https?://www\.fbi\.gov/stats-services/publications/insurance-fraud#i',
+    ) );
+}
+
+/**
+ * Injected spam links (removed together with their anchor text).
+ */
+function techdotbit_spam_link_patterns() {
+    return apply_filters( 'techdotbit_spam_link_patterns', array(
+        '#^https?://([a-z0-9-]+\.)*goldenbet-casino\.co\.uk#i',
+    ) );
+}
+
+/**
+ * External URLs that moved or were mistyped, mapped to a working address.
+ */
+function techdotbit_replace_external_url( $url ) {
+    $raw = html_entity_decode( trim( $url ), ENT_QUOTES );
+    // http:////ec.europa.eu/... (extra slashes).
+    if ( preg_match( '#^https?:/{3,}(.+)$#i', $raw, $m ) ) {
+        return 'https://' . $m[1];
+    }
+    // DotOne's old domains no longer resolve.
+    if ( preg_match( '#^https?://(www\.)?dotoneforbusiness\.(com|in)(/.*)?$#i', $raw ) ) {
+        return function_exists( 'ace_dotone_url' ) ? ace_dotone_url() : 'https://dotone.in/';
+    }
+    return $url;
+}
+
+/**
+ * The theme prints the post/page title as the H1, so H1s inside the content
+ * become H2s (one H1 per page).
+ */
+function techdotbit_demote_content_h1( $content ) {
+    if ( ! is_string( $content ) || false === stripos( $content, '<h1' ) ) {
+        return $content;
+    }
+    $content = preg_replace( '/<h1(\s[^>]*)?>/i', '<h2$1>', $content );
+    return preg_replace( '/<\/h1\s*>/i', '</h2>', $content );
+}
+
+add_filter( 'the_content', function ( $content ) {
+    return is_singular() && in_the_loop() ? techdotbit_demote_content_h1( $content ) : $content;
+}, 20 );
 
 add_action( 'template_redirect', function () {
     if ( is_admin() || is_feed() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
@@ -96,6 +181,67 @@ add_action( 'template_redirect', function () {
     }
     ob_start( 'techdotbit_fix_links_in_html' );
 }, 0 );
+
+/**
+ * /jobs/ (the job board archive) duplicates the /career/ page, has no H1 and
+ * nothing links to it. Send it to the careers page and keep it out of the
+ * sitemap. Single job pages are unchanged.
+ */
+function techdotbit_careers_url() {
+    $page = get_page_by_path( 'career' );
+    return $page && 'publish' === $page->post_status ? get_permalink( $page ) : '';
+}
+
+add_action( 'template_redirect', function () {
+    if ( is_post_type_archive( 'jobpost' ) && ( $url = techdotbit_careers_url() ) ) {
+        wp_safe_redirect( $url, 301 );
+        exit;
+    }
+}, 1 );
+
+add_filter( 'aioseo_sitemap_post_archives', function ( $entries ) {
+    $jobs = home_url( '/jobs/' );
+    return array_values( array_filter( (array) $entries, function ( $entry ) use ( $jobs ) {
+        return empty( $entry['loc'] ) || trailingslashit( $entry['loc'] ) !== $jobs;
+    } ) );
+} );
+
+add_filter( 'aioseo_sitemap_posts', function ( $entries ) {
+    $jobs = home_url( '/jobs/' );
+    return array_values( array_filter( (array) $entries, function ( $entry ) use ( $jobs ) {
+        return empty( $entry['loc'] ) || trailingslashit( $entry['loc'] ) !== $jobs;
+    } ) );
+} );
+
+/**
+ * Off-topic categories (their posts are already hidden): noindex, follow and
+ * out of the sitemap.
+ */
+function techdotbit_offtopic_category_slugs() {
+    return apply_filters( 'techdotbit_offtopic_category_slugs', array( '1v1-lol-unblocked' ) );
+}
+
+add_filter( 'aioseo_robots_meta', function ( $attributes ) {
+    if ( is_category( techdotbit_offtopic_category_slugs() ) ) {
+        $attributes['noindex'] = 'noindex';
+        unset( $attributes['nofollow'] );
+    }
+    return $attributes;
+} );
+
+add_filter( 'aioseo_sitemap_term', function ( $entry, $term_id, $taxonomy ) {
+    $term = get_term( $term_id, $taxonomy );
+    if ( 'category' === $taxonomy && $term && ! is_wp_error( $term ) && in_array( $term->slug, techdotbit_offtopic_category_slugs(), true ) ) {
+        $entry['techdotbit_drop'] = true;
+    }
+    return $entry;
+}, 10, 3 );
+
+add_filter( 'aioseo_sitemap_terms', function ( $entries ) {
+    return array_values( array_filter( (array) $entries, function ( $entry ) {
+        return empty( $entry['techdotbit_drop'] );
+    } ) );
+}, 20 );
 
 /**
  * /blogs (linked from older posts and possibly elsewhere) 404s; send it to
@@ -150,6 +296,21 @@ function techdotbit_trim_text( $text, $max ) {
  * Description to use when a page has none: its excerpt or opening text.
  */
 function techdotbit_fallback_description() {
+    if ( is_category() || is_tag() || is_tax() ) {
+        $term = get_queried_object();
+        if ( ! $term instanceof WP_Term ) {
+            return '';
+        }
+        $text = trim( wp_strip_all_tags( term_description( $term ) ) );
+        if ( '' === $text ) {
+            $text = sprintf(
+                /* translators: %s: category name */
+                __( 'Articles and guides on %s from TechDotBit: practical insights on software development, ERP and AI for growing businesses.', 'ace' ),
+                $term->name
+            );
+        }
+        return techdotbit_trim_text( $text, 155 );
+    }
     if ( ! is_singular() ) {
         return '';
     }
@@ -159,8 +320,55 @@ function techdotbit_fallback_description() {
     }
     $text = has_excerpt( $post ) ? $post->post_excerpt : strip_shortcodes( $post->post_content );
     $text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $text ) ) );
-    return '' === $text ? '' : techdotbit_trim_text( $text, 155 );
+    if ( mb_strlen( $text ) < 70 ) {
+        // Template-built pages (hire, industry, service) keep their copy in ACF fields.
+        $text = sprintf(
+            /* translators: %s: page title */
+            __( '%s by TechDotBit: custom software, mobile app, ERP and AI development for businesses in India and worldwide. Talk to our team today.', 'ace' ),
+            wp_strip_all_tags( get_the_title( $post ) )
+        );
+    }
+    return techdotbit_trim_text( $text, 155 );
 }
+
+/**
+ * Pages without a meta description (AIOSEO prints none when it is empty) get
+ * one from the excerpt, opening text or a short summary.
+ */
+add_action( 'wp_head', function () {
+    if ( ! function_exists( 'aioseo' ) || is_404() || is_search() ) {
+        return;
+    }
+    $current = aioseo()->meta->description->getDescription();
+    if ( '' !== trim( (string) $current ) ) {
+        return;
+    }
+    $description = techdotbit_fallback_description();
+    if ( $description ) {
+        printf( "<meta name=\"description\" content=\"%s\" />\n", esc_attr( $description ) );
+    }
+}, 2 );
+
+/**
+ * Titles: drop the " - TechDotBit" suffix when the title is already longer
+ * than 60 characters, and give category archives a fuller, unique title
+ * (e.g. "Dedicated Development Team" category vs. the service page).
+ */
+add_filter( 'aioseo_title', function ( $title ) {
+    $plain  = html_entity_decode( wp_strip_all_tags( (string) $title ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+    $suffix = '#\s+(?:-|–|—|\||&\#8211;|&\#8212;|&ndash;|&mdash;)\s+TechDotBit\s*$#u';
+    if ( is_category() && ! is_paged() ) {
+        $term = get_queried_object();
+        $name = html_entity_decode( $term instanceof WP_Term ? $term->name : '', ENT_QUOTES );
+        if ( '' !== $name && preg_match( '#^' . preg_quote( $name, '#' ) . substr( $suffix, 1 ), $plain ) ) {
+            return sprintf( __( '%s Articles & Guides - TechDotBit', 'ace' ), $term->name );
+        }
+    }
+    if ( mb_strlen( $plain ) > 60 && preg_match( $suffix, $plain ) ) {
+        return preg_replace( $suffix, '', $plain );
+    }
+    return $title;
+} );
 
 /**
  * Image to use for social cards: the featured image, else the site icon.
